@@ -1,0 +1,5 @@
+Makefile 	=> avoir 1 makefile qui compile chaque fichier .cpp => .cpp to .o
+		=> puis un autre (le makefile appelant quif ait l'edition des liens)
+		=> permet ainsi de compiler les tests car sinon trois quatre mains differents...
+
+TO DO

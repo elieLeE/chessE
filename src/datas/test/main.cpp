@@ -9,16 +9,21 @@
 
 #include "TestPosition.h"
 
+#include <boost/assert.hpp>
+
 using namespace std;
+using namespace datas;
 
 int main() {
 	cout << "test unitaire datas" << endl;
 
-	datas::TestPosition unitTestPosition;
+	TestPosition unitTestPosition;
 
 	unitTestPosition.startTests();
 
 	cout << "OK" << endl;
+
+	//BOOST_ASSERT_MSG(false, "test");
 
 	return 0;
 }
