@@ -30,7 +30,7 @@ public:
 	static datas::MoveCSPtr nextMove();
 	//static boost::shared_ptr<datas::Move> nextMove();
 
-private:
+protected:
 	Display();
 
 	static Display* _display;

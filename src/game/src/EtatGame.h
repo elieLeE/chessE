@@ -35,6 +35,14 @@ public:
 	bool getPossiblePriseEnPassant() const;
 	void setPossiblePriseEnPassant(bool iPossiblePriseEnPassant);
 
+	//supprime toutes les pieces
+	void reset();
+
+	void setByFile(FILE* f);
+	void resetByFile(FILE* f);
+	void setBegginingGameWithoutHandicap();
+
+
 private:
 	EtatGame();
 	EtatGame(const EtatGame&);

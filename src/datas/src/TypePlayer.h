@@ -15,6 +15,11 @@ typedef enum ETypePlayer{
 	IA_PlAYER
 }ETypePlayer;
 
+typedef enum ENumPlayer{
+	JOUEUR_1,
+	JOUEUR_2
+}ENumPlayer;
+
 }
 
 #endif /* TYPEPLAYER_H_ */
