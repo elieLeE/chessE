@@ -8,6 +8,8 @@
 #include "Dame.h"
 #include "TypePiece.h"
 #include "PieceValue.h"
+#include "Tour.h"
+#include "Fou.h"
 
 namespace datas{
 

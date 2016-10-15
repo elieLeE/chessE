@@ -16,14 +16,14 @@ namespace datas{
 	class Move;
 
 	typedef boost::shared_ptr<Move> MoveCSPtr;
+
+	typedef boost::shared_ptr<datas::Piece> PieceCSPtr;
+
+	typedef std::vector<PieceCSPtr> AlivePiece;
+	typedef boost::shared_ptr<AlivePiece> AlivePieceCSPtr;
+
+	typedef std::vector<std::vector<PieceCSPtr> > Plateau;
+	typedef boost::shared_ptr<Plateau> PlateauCSPtr;
 }
-
-typedef boost::shared_ptr<datas::Piece> PieceCSPtr;
-
-typedef std::vector<PieceCSPtr> AlivePiece;
-typedef boost::shared_ptr<AlivePiece> AlivePieceCSPtr;
-
-typedef std::vector<std::vector<PieceCSPtr> > Plateau;
-typedef boost::shared_ptr<Plateau> PlateauCSPtr;
 
 #endif /* TYPES_H_ */

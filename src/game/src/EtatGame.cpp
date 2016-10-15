@@ -27,27 +27,27 @@ EtatGame* EtatGame::accessInstance() {
 	return _instance;
 }
 
-const AlivePieceCSPtr& EtatGame::getAlivePiecesJ1() const{
+const datas::AlivePieceCSPtr& EtatGame::getAlivePiecesJ1() const{
 	return _alivePiecesJ1;
 }
 
-void EtatGame::setAlivePiecesJ1(AlivePieceCSPtr& iAllievePieces){
+void EtatGame::setAlivePiecesJ1(datas::AlivePieceCSPtr& iAllievePieces){
 	_alivePiecesJ1 = iAllievePieces;
 }
 
-const AlivePieceCSPtr& EtatGame::getAlivePiecesJ2() const{
+const datas::AlivePieceCSPtr& EtatGame::getAlivePiecesJ2() const{
 	return _alivePiecesJ2;
 }
 
-void EtatGame::setAlivePiecesJ2(AlivePieceCSPtr& iAllivePieces){
+void EtatGame::setAlivePiecesJ2(datas::AlivePieceCSPtr& iAllivePieces){
 	_alivePiecesJ2 = iAllivePieces;
 }
 
-const PlateauCSPtr& EtatGame::getPlateau() const{
+const datas::PlateauCSPtr& EtatGame::getPlateau() const{
 	return _plateau;
 }
 
-void EtatGame::setPlateau(PlateauCSPtr& iPlateau){
+void EtatGame::setPlateau(datas::PlateauCSPtr& iPlateau){
 	_plateau = iPlateau;
 }
 

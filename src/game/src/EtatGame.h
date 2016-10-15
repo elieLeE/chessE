@@ -23,14 +23,14 @@ public:
 	//utile ?? => pour _possiblePriseEnPassant ? => passer par 1 pointeur de booleen ??
 	static EtatGame* accessInstance();
 
-	const AlivePieceCSPtr& getAlivePiecesJ1() const;
-	void setAlivePiecesJ1(AlivePieceCSPtr& iAllivePieces);
+	const datas::AlivePieceCSPtr& getAlivePiecesJ1() const;
+	void setAlivePiecesJ1(datas::AlivePieceCSPtr& iAllivePieces);
 
-	const AlivePieceCSPtr& getAlivePiecesJ2() const;
-	void setAlivePiecesJ2(AlivePieceCSPtr& iAllivePieces);
+	const datas::AlivePieceCSPtr& getAlivePiecesJ2() const;
+	void setAlivePiecesJ2(datas::AlivePieceCSPtr& iAllivePieces);
 
-	const PlateauCSPtr& getPlateau() const;
-	void setPlateau(PlateauCSPtr& iPlateau);
+	const datas::PlateauCSPtr& getPlateau() const;
+	void setPlateau(datas::PlateauCSPtr& iPlateau);
 
 	bool getPossiblePriseEnPassant() const;
 	void setPossiblePriseEnPassant(bool iPossiblePriseEnPassant);
@@ -52,9 +52,11 @@ private:
 
 	bool _possiblePriseEnPassant;
 
-	AlivePieceCSPtr _alivePiecesJ1;
-	AlivePieceCSPtr _alivePiecesJ2;
-	PlateauCSPtr _plateau;
+	datas::AlivePieceCSPtr _alivePiecesJ1;
+	datas::AlivePieceCSPtr _alivePiecesJ2;
+	datas::PlateauCSPtr _plateau;
+
+	datas::MoveCSPtr lastMove;
 
 };
 
