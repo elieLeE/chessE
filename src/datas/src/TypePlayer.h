@@ -16,7 +16,7 @@ typedef enum ETypePlayer{
 }ETypePlayer;
 
 typedef enum ENumPlayer{
-	JOUEUR_1,
+	JOUEUR_1 = 1,
 	JOUEUR_2
 }ENumPlayer;
 

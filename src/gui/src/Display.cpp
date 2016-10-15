@@ -8,7 +8,6 @@
 #include "Display.h"
 #include "../../datas/src/Move.h"
 #include "TypeGui.h"
-#include "Test.h"
 
 namespace gui{
 
@@ -23,10 +22,6 @@ Display::Display():_pDisplayTerminal(new DisplayTerminal())
 
 Display::~Display()
 {}
-
-void Test::test(){
-
-}
 
 const Display* Display::getInstance(){
 	if(!_display){

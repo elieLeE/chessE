@@ -8,7 +8,9 @@
 #ifndef DEFIENGUI_H_
 #define DEFIENGUI_H_
 
-#define DISPLAY_WINDOW 1
+#include "TypeGui.h"
+
+#define DISPLAY_WINDOW TERMINAL_GUI
 
 
 #endif /* DEFIENGUI_H_ */
