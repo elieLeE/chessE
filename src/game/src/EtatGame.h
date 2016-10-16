@@ -23,14 +23,19 @@ public:
 	//utile ?? => pour _possiblePriseEnPassant ? => passer par 1 pointeur de booleen ??
 	static EtatGame* accessInstance();
 
-	const datas::AlivePieceCSPtr& getAlivePiecesJ1() const;
-	void setAlivePiecesJ1(datas::AlivePieceCSPtr& iAllivePieces);
+	void initEtatGame();
 
-	const datas::AlivePieceCSPtr& getAlivePiecesJ2() const;
-	void setAlivePiecesJ2(datas::AlivePieceCSPtr& iAllivePieces);
+	const datas::PiecePtr& getPiece(int ligne, int col) const;
+	datas::PiecePtr& accessPiece(int ligne, int col);
 
-	const datas::PlateauCSPtr& getPlateau() const;
-	void setPlateau(datas::PlateauCSPtr& iPlateau);
+	const datas::AlivePiecePtr& getAlivePiecesJ1() const;
+	void setAlivePiecesJ1(datas::AlivePiecePtr& iAllivePieces);
+
+	const datas::AlivePiecePtr& getAlivePiecesJ2() const;
+	void setAlivePiecesJ2(datas::AlivePiecePtr& iAllivePieces);
+
+	const datas::PlateauPtr& getPlateau() const;
+	void setPlateau(datas::PlateauPtr& iPlateau);
 
 	bool getPossiblePriseEnPassant() const;
 	void setPossiblePriseEnPassant(bool iPossiblePriseEnPassant);
@@ -52,11 +57,13 @@ private:
 
 	bool _possiblePriseEnPassant;
 
-	datas::AlivePieceCSPtr _alivePiecesJ1;
-	datas::AlivePieceCSPtr _alivePiecesJ2;
-	datas::PlateauCSPtr _plateau;
+	datas::AlivePiecePtr _alivePiecesJ1;
+	datas::AlivePiecePtr _alivePiecesJ2;
+	datas::PlateauPtr _plateau;
 
-	datas::MoveCSPtr lastMove;
+
+
+	datas::MovePtr lastMove;
 
 };
 

@@ -13,7 +13,7 @@
 
 namespace game{
 
-	static datas::MoveCSPtr nextMoveIA(EtatGame* iEtatGame);
+	static datas::MovePtr nextMoveIA(EtatGame* iEtatGame);
 
 } /* namespace game*/
 #endif /* IA_H_ */

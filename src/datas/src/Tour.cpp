@@ -17,8 +17,14 @@ Tour::Tour(EColor iColor, Position iPosition):Piece(iColor, iPosition, TOUR_TYPE
 Tour::~Tour()
 {}
 
-bool Tour::isValidatedMove(const game::EtatGame& iEtatGame, const Move iMove) const{
+bool Tour::isValidatedMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
 	return true;
 }
+
+/*const std::list <boost::shared_ptr <Move> > getPossibleMoves() const{
+	std::list <boost::shared_ptr <Move> > aList;
+
+	return aList;
+}*/
 
 }

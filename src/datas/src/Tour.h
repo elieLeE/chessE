@@ -18,7 +18,9 @@ public:
 	Tour(EColor iColor, Position iPosition);
 	virtual ~Tour();
 
-	virtual bool isValidatedMove(const game::EtatGame& iEtatGame, const Move iMove) const;
+	virtual bool isValidatedMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
+
+	//virtual const std::list <boost::shared_ptr <Move> > getPossibleMoves() const;
 };
 
 }

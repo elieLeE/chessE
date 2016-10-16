@@ -11,7 +11,7 @@
 namespace datas{
 
 Piece::Piece(EColor iColor, Position iPosition, ETypePiece iTypePiece, int iValue):
-		_color(iColor), _alive(true), _position(iPosition), _typePiece(iTypePiece), _value(iValue)
+		_alive(true), _color(iColor), _position(iPosition), _value(iValue), _typePiece(iTypePiece)
 {}
 
 Piece::~Piece()

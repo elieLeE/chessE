@@ -42,7 +42,7 @@ public:
 	/*
 	 * needed for IA and display possible move before play
 	 */
-	virtual const std::list <boost::shared_ptr <Move> > getPossibleMoves() const = 0;
+	//virtual const std::list <boost::shared_ptr <Move> > getPossibleMoves() const = 0;
 
 	EColor getColor() const;
 

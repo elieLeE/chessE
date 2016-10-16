@@ -17,9 +17,9 @@ JoueurIA::JoueurIA(EColor iColor, ETypePlayer iTypePlayer):Joueur(iColor, iTypeP
 JoueurIA::~JoueurIA()
 {}
 
-MoveCSPtr JoueurIA::nextMove(){
+MovePtr JoueurIA::nextMove(){
 	const game::EtatGame* aEtatGame = game::EtatGame::getInstance();
-	MoveCSPtr aMove;
+	MovePtr aMove;
 
 	do{
 		//aMove = game::nextMoveIA(aEtatGame);

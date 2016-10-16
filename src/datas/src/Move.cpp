@@ -10,7 +10,7 @@
 namespace datas{
 
 Move::Move(Position& iPositionStart, Position& iPositionEnd, ETypePiece iCapturedPiece, bool iPriseEnPassant):
-		_start(iPositionStart), _end(iPositionEnd), _capturedPiece(iCapturedPiece), _priseEnPassant(iPriseEnPassant)
+		_start(iPositionStart), _end(iPositionEnd), _priseEnPassant(iPriseEnPassant), _capturedPiece(iCapturedPiece)
 {}
 
 Move::~Move()

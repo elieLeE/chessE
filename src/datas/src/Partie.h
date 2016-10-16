@@ -29,7 +29,7 @@ private:
 	Partie(const Partie&);
 	Partie& operator=(const Partie&);
 
-	std::vector <MoveCSPtr >_moves;
+	std::vector <MovePtr >_moves;
 
 };
 

@@ -42,12 +42,9 @@ void Display::displayPositionGame(const game::EtatGame& iEtatGame){
 	_pDisplayWindow.get()->displayPositionGameWindow(iEtatGame);
 #else
 	_pDisplayTerminal.get()->displayPositionGameTerminal(iEtatGame);
+
 #endif
 }
-
-/*void Display::displayPositionGameTerminal(const game::EtatGame& iEtatGame){
-	std::cout << "displayPositionGameTerminal NOT YET IMPLEMENTED";
-}*/
 
 datas::MoveCSPtr Display::nextMove(){
 	std::cout << "Entrez votre movement" << std::endl;

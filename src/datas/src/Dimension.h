@@ -8,7 +8,7 @@
 #ifndef DIMENSION_H_
 #define DIMENSION_H_
 
-#define NBRE_LIGNE 8
-#define NBRE_COLONNE 8
+#define NBRE_LIGNE 		8
+#define NBRE_COLONNE 	8
 
 #endif /* DIMENSION_H_ */

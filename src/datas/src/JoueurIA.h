@@ -18,7 +18,7 @@ public:
 	JoueurIA(EColor iColor, ETypePlayer iTypePlayer);
 	virtual ~JoueurIA();
 
-	virtual MoveCSPtr nextMove();
+	virtual MovePtr nextMove();
 
 private:
 	JoueurIA(const JoueurIA&);

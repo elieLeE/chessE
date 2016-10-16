@@ -21,15 +21,20 @@ Position::Position(int iX, int iY){
 Position::~Position()
 {}
 
-const bool Position::operator==(const Position& iPosition) const {
+void Position::setPosition(int x, int y){
+	setX(x);
+	setY(y);
+}
+
+bool Position::operator==(const Position& iPosition) const {
 	return ((iPosition._x == _x) && (iPosition._y) == _y);
 }
 
-const bool Position::operator!=(const Position& iPosition) const {
+bool Position::operator!=(const Position& iPosition) const {
 	return !(*this == iPosition);
 }
 
-const bool Position::isValid() const{
+bool Position::isValid() const{
 	return ((_x >=0) && (_x<NBRE_LIGNE) && (_y>=0) && (_y < NBRE_COLONNE));
 }
 

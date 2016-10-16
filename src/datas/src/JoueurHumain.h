@@ -18,7 +18,7 @@ public:
 	JoueurHumain(EColor iColor, ETypePlayer iTypePlayer);
 	virtual ~JoueurHumain();
 
-	virtual MoveCSPtr nextMove();
+	virtual MovePtr nextMove();
 
 private:
 	JoueurHumain(const JoueurHumain&);

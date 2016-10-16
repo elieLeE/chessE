@@ -44,8 +44,8 @@ bool Pion::isValidatedMove(const game::EtatGame& iEtatGame, const Move& iMove) c
 		 * de la position courante de la piece et de son type.
 		 * verifier egalement qu'une autre piece de la meme couleur n'y est pas deja
 		 * */
-		PlateauCSPtr aPlateau = iEtatGame.getPlateau();
-		PieceCSPtr aPiece = aPlateau->at(iMove.getEndPosition().getX()).at(iMove.getEndPosition().getY());
+		PlateauPtr aPlateau = iEtatGame.getPlateau();
+		PiecePtr aPiece = aPlateau->at(iMove.getEndPosition().getX()).at(iMove.getEndPosition().getY());
 		//boost::shared_ptr<Piece> aPiece = aPlateau->at(iMove.getEndPosition().getX()).at(iMove.getEndPosition().getY());
 		int moreOrLess = _sensCroissant?1:-1;
 
@@ -128,5 +128,11 @@ bool Pion::isValidatedMove(const game::EtatGame& iEtatGame, const Move& iMove) c
 
 	return aBool;
 }
+
+/*const std::list <boost::shared_ptr <Move> > Pion::getPossibleMoves() const{
+	std::list <boost::shared_ptr <Move> > aList;
+
+	return aList;
+}*/
 
 }

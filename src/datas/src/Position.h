@@ -16,16 +16,18 @@ public:
 	Position(int iX, int iY);
 	virtual ~Position();
 
+	void setPosition(int x, int y);
+
 	int getX() const;
 	void setX(int iX);
 
 	int getY() const;
 	void setY(int iY);
 
-	const bool isValid() const;
+	bool isValid() const;
 
-	const bool operator==(const Position& iPosition) const ;
-	const bool operator!=(const Position& iPosition) const ;
+	bool operator==(const Position& iPosition) const ;
+	bool operator!=(const Position& iPosition) const ;
 
 private:
 	//Position& operator=(const Position&);

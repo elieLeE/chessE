@@ -8,7 +8,7 @@
 #$* : nom du fichier sans le suffixe
 
 CC=g++
-CFLAGS=#-std=c++11
+CFLAGS=-std=c++11 -Wextra -Wall #-Wno-reorder
 #-11 -g11 -m32 -fPIC -Wno-deprecated -pthread -m32#-std=c99 -Wextra -Wall# -ansi -pedantic
 LDFLAGS=
 EXEC_SRC=prog

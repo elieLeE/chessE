@@ -8,7 +8,7 @@
 #$* : nom du fichier sans le suffixe
 
 CC=g++
-CFLAGS=#-std=c99 -Wextra -Wall# -ansi -pedantic
+CFLAGS=-std=c++11 -Wextra -Wall# -ansi -pedantic
 LDFLAGS=
 EXEC=prog 
 SRC= $(wildcard *.cpp ~/Bureau/projetPerso/chessE/src/datas/src/*.cpp ~/Bureau/projetPerso/chessE/src/game/src/*.cpp ~/Bureau/projetPerso/chessE/src/gui/src/*.cpp) 

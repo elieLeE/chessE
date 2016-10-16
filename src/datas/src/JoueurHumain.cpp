@@ -17,7 +17,7 @@ JoueurHumain::JoueurHumain(EColor iColor, ETypePlayer iTypePlayer):Joueur(iColor
 JoueurHumain::~JoueurHumain()
 {}
 
-MoveCSPtr JoueurHumain::nextMove(){
+MovePtr JoueurHumain::nextMove(){
 	MoveCSPtr aMove;
 
 	do{

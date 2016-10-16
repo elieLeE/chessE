@@ -6,10 +6,18 @@
  */
 
 #include <iostream>
+
+#include "TestGuiTerminal.h"
+
 using namespace std;
+using namespace gui;
 
 int main() {
 	cout << "test unitaire gui" << endl;
+
+	TestGuiTerminal aTestGuiTerminal;
+
+	aTestGuiTerminal.startTests();
 
 	cout << "OK" << endl;
 
