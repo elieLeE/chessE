@@ -21,3 +21,6 @@ resultTest "game" $?
 echo 
 ./gui/test/./prog
 resultTest "gui" $?
+
+echo 
+echo "All tests OK"

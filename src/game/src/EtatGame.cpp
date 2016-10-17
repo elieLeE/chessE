@@ -18,8 +18,9 @@ namespace game{
 
 EtatGame* EtatGame::_instance = 0;
 
-EtatGame::EtatGame(): _possiblePriseEnPassant(false),
-		_plateau(new std::vector< std::vector< datas::PiecePtr> >(NBRE_LIGNE, std::vector< datas::PiecePtr>(NBRE_COLONNE, 0) ))
+EtatGame::EtatGame():
+		_possiblePriseEnPassant(false),
+		_plateau(std::vector< std::vector< datas::PiecePtr> >(NBRE_LIGNE, std::vector< datas::PiecePtr>(NBRE_COLONNE, 0) ))
 {}
 
 EtatGame::~EtatGame()
@@ -44,27 +45,27 @@ EtatGame* EtatGame::accessInstance() {
 	return _instance;
 }
 
-const datas::AlivePiecePtr& EtatGame::getAlivePiecesJ1() const{
-	return _alivePiecesJ1;
+const datas::AllPiece& EtatGame::getAllPiecesJ1() const{
+	return _allPiecesJ1;
 }
 
-void EtatGame::setAlivePiecesJ1(datas::AlivePiecePtr& iAllievePieces){
-	_alivePiecesJ1 = iAllievePieces;
+void EtatGame::setAllPiecesJ1(datas::AllPiece& iAllPieces){
+	_allPiecesJ1 = iAllPieces;
 }
 
-const datas::AlivePiecePtr& EtatGame::getAlivePiecesJ2() const{
-	return _alivePiecesJ2;
+const datas::AllPiece& EtatGame::getAllPiecesJ2() const{
+	return _allPiecesJ2;
 }
 
-void EtatGame::setAlivePiecesJ2(datas::AlivePiecePtr& iAllivePieces){
-	_alivePiecesJ2 = iAllivePieces;
+void EtatGame::setAllPiecesJ2(datas::AllPiece& iAllPieces){
+	_allPiecesJ2 = iAllPieces;
 }
 
-const datas::PlateauPtr& EtatGame::getPlateau() const{
+const datas::Plateau& EtatGame::getPlateau() const{
 	return _plateau;
 }
 
-void EtatGame::setPlateau(datas::PlateauPtr& iPlateau){
+void EtatGame::setPlateau(datas::Plateau& iPlateau){
 	_plateau = iPlateau;
 }
 
@@ -161,16 +162,11 @@ void EtatGame::setBegginingGameWithoutHandicap(){
 }
 
 const datas::PiecePtr& EtatGame::getPiece(int ligne, int col) const{
-	/*datas::Plateau* aPlateau = _plateau.get();
-	std::vector<datas::PiecePtr>* aVector = &(aPlateau->at(ligne));
-	datas::PiecePtr *aPiece = &(aVector->at(col));*/
-	//return *aPiece;
-	//_plateau->at(ligne).at(col)(new datas::Pion());
-	return _plateau->at(ligne).at(col);
+	return _plateau.at(ligne).at(col);
 }
 
 datas::PiecePtr& EtatGame::accessPiece(int ligne, int col){
-	return _plateau->at(ligne).at(col);
+	return _plateau.at(ligne).at(col);
 }
 
 } /* namespace game*/

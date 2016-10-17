@@ -21,7 +21,7 @@ int main() {
 
 	unitTestPosition.startTests();
 
-	cout << "OK" << endl;
+	cout << endl << "all OK" << endl;
 
 	//BOOST_ASSERT_MSG(false, "test");
 

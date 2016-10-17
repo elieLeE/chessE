@@ -19,8 +19,8 @@ namespace datas{
 
 	typedef boost::shared_ptr<datas::Piece> PiecePtr;
 
-	typedef std::vector<PiecePtr> AlivePiece;
-	typedef boost::shared_ptr<AlivePiece> AlivePiecePtr;
+	typedef std::vector<PiecePtr> AllPiece;
+	typedef boost::shared_ptr<AllPiece> AlivePiecePtr;
 
 	typedef std::vector<std::vector<PiecePtr> > Plateau;
 	typedef boost::shared_ptr<Plateau> PlateauPtr;

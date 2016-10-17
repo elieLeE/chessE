@@ -14,7 +14,8 @@ namespace datas {
 
 Joueur::Joueur(EColor iColor, ETypePlayer iTypePlayer):
 		_alivePiece(std::vector<boost::shared_ptr<Piece> >(0)),
-		_color(iColor), _typePlayer(iTypePlayer),
+		_color(iColor),
+		_typePlayer(iTypePlayer),
 		_points(INIT_TOTAL_POINTS)
 {
 	boost::shared_ptr<Piece> aPiece;
@@ -30,8 +31,19 @@ Joueur::~Joueur()
 {}
 
 bool Joueur::isValidatedMove(const game::EtatGame& iEtatGame, const Move &iMove){
-	PiecePtr aPiece = iEtatGame.getPlateau()->at(iMove.getStartPosition().getX()).at(iMove.getStartPosition().getY());
+	PiecePtr aPiece = iEtatGame.getPiece(iMove.getStartPosition().getX(), iMove.getStartPosition().getY());
 	return aPiece->isValidatedMove(iEtatGame, iMove);
+}
+
+MovePtr Joueur::newMove(){
+	MovePtr aMove = this->nextMove();
+
+	if(aMove->hasCapturePiece()){
+		game::EtatGame* aEtatGame = game::EtatGame::accessInstance();
+		aEtatGame->getPiece(aMove->getEndPosition().getX(), aMove->getEndPosition().getY())->setDead();
+	}
+
+	return aMove;
 }
 
 } /* namespace datas */

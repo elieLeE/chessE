@@ -11,7 +11,7 @@ using namespace std;
 int main() {
 	cout << "test unitaire game" << endl;
 
-	cout << "OK" << endl;
+	cout << endl << "all OK" << endl;
 
 	return 0;
 }

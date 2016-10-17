@@ -22,4 +22,17 @@ static datas::MovePtr nextMoveIA(EtatGame* iEtatGame){
 	return aMove;
 }
 
+/*
+ * call newMove de Joueur qui appelle nextMove !
+ * recupere le move et l'ajoute/l'effectue
+ * retourne le move associe ??
+ */
+void addMove(EtatGame* iEtatGame){
+
+}
+
+void removeMove(EtatGame* iEtatGame){
+
+}
+
 } /* namespace game*/

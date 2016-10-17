@@ -28,14 +28,14 @@ public:
 	const datas::PiecePtr& getPiece(int ligne, int col) const;
 	datas::PiecePtr& accessPiece(int ligne, int col);
 
-	const datas::AlivePiecePtr& getAlivePiecesJ1() const;
-	void setAlivePiecesJ1(datas::AlivePiecePtr& iAllivePieces);
+	const datas::AllPiece& getAllPiecesJ1() const;
+	void setAllPiecesJ1(datas::AllPiece& iAllPieces);
 
-	const datas::AlivePiecePtr& getAlivePiecesJ2() const;
-	void setAlivePiecesJ2(datas::AlivePiecePtr& iAllivePieces);
+	const datas::AllPiece& getAllPiecesJ2() const;
+	void setAllPiecesJ2(datas::AllPiece& iAllPieces);
 
-	const datas::PlateauPtr& getPlateau() const;
-	void setPlateau(datas::PlateauPtr& iPlateau);
+	const datas::Plateau& getPlateau() const;
+	void setPlateau(datas::Plateau& iPlateau);
 
 	bool getPossiblePriseEnPassant() const;
 	void setPossiblePriseEnPassant(bool iPossiblePriseEnPassant);
@@ -57,9 +57,9 @@ private:
 
 	bool _possiblePriseEnPassant;
 
-	datas::AlivePiecePtr _alivePiecesJ1;
-	datas::AlivePiecePtr _alivePiecesJ2;
-	datas::PlateauPtr _plateau;
+	datas::AllPiece _allPiecesJ1;
+	datas::AllPiece _allPiecesJ2;
+	datas::Plateau _plateau;
 
 
 

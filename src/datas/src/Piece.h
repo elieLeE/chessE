@@ -11,6 +11,7 @@
 #include <list>
 #include <iostream>
 #include <boost/shared_ptr.hpp>
+#include <math.h>
 
 //#include "../../game/src/EtatGame.h"
 #include "TypePiece.h"
@@ -30,7 +31,16 @@ public:
 	virtual ~Piece();
 
 	void movePiece(Position& iPosition);
+
+	/*
+	 * quand les utilisées ?
+	 * si dans nextMove => pas top niveau conception
+	 * si apres, dans la fonction appelante => devra etre refait pour IA.
+	 * => on passe par newMove => recupere le prochain movement donné par nextMove et
+	 * 		newMove ne fait que mettre la piece en etat.
+	 */
 	void setDead();
+	void setAlive();
 
 	/*
 	 * use when a new move is played
@@ -50,6 +60,8 @@ public:
 
 	const Position& getPosition() const;
 	Position& accessPosition();
+
+	int evaluateDistance(const Move& iMove) const;
 
 protected:
 	bool _alive;

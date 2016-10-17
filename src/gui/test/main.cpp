@@ -19,7 +19,7 @@ int main() {
 
 	aTestGuiTerminal.startTests();
 
-	cout << "OK" << endl;
+	cout <<endl << "all OK" << endl;
 
 	return 0;
 }

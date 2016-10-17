@@ -13,10 +13,10 @@ namespace datas{
 Position::Position()
 {}
 
-Position::Position(int iX, int iY){
-	_x = iX;
-	_y = iY;
-}
+Position::Position(int iX, int iY):
+		_x(iX),
+		_y(iY)
+{}
 
 Position::~Position()
 {}

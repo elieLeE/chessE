@@ -19,6 +19,7 @@ TestPosition::~TestPosition()
 {}
 
 void TestPosition::startTests(){
+	std::cout << "testPosition";
 	for(int i=0; i<NBRE_LIGNE; i++){
 		for(int j=0; j<NBRE_LIGNE; j++){
 			Position aPosition1(i, j);
@@ -26,6 +27,7 @@ void TestPosition::startTests(){
 			BOOST_ASSERT_MSG(aPosition1==aPosition2, "test Position");
 		}
 	}
+	std::cout << "	OK" << std::endl;
 }
 
 } /* namespace datas */

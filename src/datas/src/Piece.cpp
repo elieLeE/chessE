@@ -11,7 +11,11 @@
 namespace datas{
 
 Piece::Piece(EColor iColor, Position iPosition, ETypePiece iTypePiece, int iValue):
-		_alive(true), _color(iColor), _position(iPosition), _value(iValue), _typePiece(iTypePiece)
+		_alive(true),
+		_color(iColor),
+		_position(iPosition),
+		_value(iValue),
+		_typePiece(iTypePiece)
 {}
 
 Piece::~Piece()
@@ -23,6 +27,10 @@ void Piece::movePiece(Position& iPosition){
 
 void Piece::setDead(){
 	_alive = false;
+}
+
+void Piece::setAlive(){
+	_alive = true;
 }
 
 /*bool Piece::firstMoveValidation(Move& iMove){
@@ -55,5 +63,16 @@ const Position& Piece::getPosition() const{
 Position& Piece::accessPosition(){
 	return _position;
 }
+
+int Piece::evaluateDistance(const Move& iMove) const{
+	int x2 = std::abs(iMove.getEndPosition().getX() - iMove.getEndPosition().getX());
+	x2 = x2 * x2;
+
+	int y2 = std::abs(iMove.getEndPosition().getY() - iMove.getEndPosition().getY());
+	y2 = y2 * y2;
+
+	return (x2 + y2);
+}
+
 }
 

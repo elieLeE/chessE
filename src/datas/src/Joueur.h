@@ -30,6 +30,8 @@ public:
 	virtual MovePtr nextMove() = 0;
 	bool isValidatedMove(const game::EtatGame& iEtatGame, const Move &iMove);
 
+	MovePtr newMove();
+
 
 private:
 	Joueur(const Joueur&);

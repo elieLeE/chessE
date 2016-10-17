@@ -15,5 +15,8 @@ namespace game{
 
 	static datas::MovePtr nextMoveIA(EtatGame* iEtatGame);
 
+	static void addMove(EtatGame* iEtatGame);
+	static void removeMove(EtatGame* iEtatGame);
+
 } /* namespace game*/
 #endif /* IA_H_ */

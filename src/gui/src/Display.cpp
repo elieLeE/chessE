@@ -14,9 +14,11 @@ namespace gui{
 Display* Display::_display = 0;
 
 #if DISPLAY_WINDOW
-Display::Display():_pDisplayWindow(new DisplayWindow())
+Display::Display():
+		_pDisplayWindow(new DisplayWindow())
 #else
-Display::Display():_pDisplayTerminal(new DisplayTerminal())
+Display::Display():
+		_pDisplayTerminal(new DisplayTerminal())
 #endif
 {}
 
