@@ -23,7 +23,12 @@ public:
 
 	const Position& getEndPosition() const ;
 
-	bool hasCapturePiece();
+	bool hasCapturePiece() const;
+
+	int evaluateDistance() const;
+
+	bool getPriseEnPassant() const;
+	void setPriseEnPassant(bool iBool);
 
 
 private:
@@ -32,6 +37,7 @@ private:
 	//necessaire pour la prise en passant => meme si peux retrouver a partir de la position finale et d'un booleen
 	//les autres prises sont forcements a la position finale
 	//Position _capturedPiecePosition;
+
 	bool _priseEnPassant;
 	const ETypePiece _capturedPiece;
 

@@ -64,15 +64,5 @@ Position& Piece::accessPosition(){
 	return _position;
 }
 
-int Piece::evaluateDistance(const Move& iMove) const{
-	int x2 = std::abs(iMove.getEndPosition().getX() - iMove.getEndPosition().getX());
-	x2 = x2 * x2;
-
-	int y2 = std::abs(iMove.getEndPosition().getY() - iMove.getEndPosition().getY());
-	y2 = y2 * y2;
-
-	return (x2 + y2);
-}
-
 }
 

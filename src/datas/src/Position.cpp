@@ -7,6 +7,7 @@
 
 #include "Position.h"
 #include "../src/Dimension.h"
+#include <cmath>
 
 namespace datas{
 
@@ -52,6 +53,16 @@ int Position::getY() const{
 
 void Position::setY(int iY){
 	_y = iY;
+}
+
+int Position::evaluateDistance(const Position& iPosition) const{
+	int x2 = std::abs(iPosition.getX() - this->getX());
+	x2 = x2 * x2;
+
+	int y2 = std::abs(iPosition.getY() - this->getY());
+	y2 = y2 * y2;
+
+	return (x2 + y2);
 }
 
 }

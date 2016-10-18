@@ -5,6 +5,10 @@
  *      Author: le_e
  */
 
+#include <cmath>
+#include <memory>
+#include <iostream>
+
 #include "EtatGame.h"
 #include "../../datas/src/Pion.h"
 #include "../../datas/src/Tour.h"
@@ -13,6 +17,7 @@
 #include "../../datas/src/Roi.h"
 #include "../../datas/src/Dame.h"
 #include "../../datas/src/Dimension.h"
+
 
 namespace game{
 
@@ -84,81 +89,81 @@ void EtatGame::setBegginingGameWithoutHandicap(){
 	for(int i = 0; i<NBRE_COLONNE; i++){
 		aPosition.setPosition(1, i);
 		datas::Pion *aPionWhite = new datas::Pion(datas::WHITE, aPosition, true);
-		accessPiece(aPosition.getX(), aPosition.getY()).reset(aPionWhite);
+		accessPiece(aPosition).reset(aPionWhite);
 
 		aPosition.setPosition(6, i);
 		datas::Pion *aPionBlack = new datas::Pion(datas::BLACK, aPosition, false);
-		accessPiece(aPosition.getX(), aPosition.getY()).reset(aPionBlack);
+		accessPiece(aPosition).reset(aPionBlack);
 	}
 
 	//Tours
 	aPosition.setPosition(0, 0);
 	datas::Tour *aTourWhiteLeft = new datas::Tour(datas::WHITE, aPosition);
-	accessPiece(aPosition.getX(), aPosition.getY()).reset(aTourWhiteLeft);
+	accessPiece(aPosition).reset(aTourWhiteLeft);
 
 	aPosition.setPosition(0, 7);
 	datas::Tour *aTourWhiteRight = new datas::Tour(datas::WHITE, aPosition);
-	accessPiece(aPosition.getX(), aPosition.getY()).reset(aTourWhiteRight);
+	accessPiece(aPosition).reset(aTourWhiteRight);
 
 	aPosition.setPosition(7, 0);
 	datas::Tour *aTourBlackLeft = new datas::Tour(datas::BLACK, aPosition);
-	accessPiece(aPosition.getX(), aPosition.getY()).reset(aTourBlackLeft);
+	accessPiece(aPosition).reset(aTourBlackLeft);
 
 	aPosition.setPosition(7, 7);
 	datas::Tour *aTourBlackRight = new datas::Tour(datas::BLACK, aPosition);
-	accessPiece(aPosition.getX(), aPosition.getY()).reset(aTourBlackRight);
+	accessPiece(aPosition).reset(aTourBlackRight);
 
 	//Cavaliers
 	aPosition.setPosition(0, 1);
 	datas::Cavalier *aCavalierWhiteLeft = new datas::Cavalier(datas::WHITE, aPosition);
-	accessPiece(aPosition.getX(), aPosition.getY()).reset(aCavalierWhiteLeft);
+	accessPiece(aPosition).reset(aCavalierWhiteLeft);
 
 	aPosition.setPosition(0, 6);
 	datas::Cavalier *aCavalierWhiteRight = new datas::Cavalier(datas::WHITE, aPosition);
-	accessPiece(aPosition.getX(), aPosition.getY()).reset(aCavalierWhiteRight);
+	accessPiece(aPosition).reset(aCavalierWhiteRight);
 
 	aPosition.setPosition(7, 1);
 	datas::Cavalier *aCavalierBlackLeft = new datas::Cavalier(datas::BLACK, aPosition);
-	accessPiece(aPosition.getX(), aPosition.getY()).reset(aCavalierBlackLeft);
+	accessPiece(aPosition).reset(aCavalierBlackLeft);
 
 	aPosition.setPosition(7, 6);
 	datas::Cavalier *aCavalierBlackRight = new datas::Cavalier(datas::BLACK, aPosition);
-	accessPiece(aPosition.getX(), aPosition.getY()).reset(aCavalierBlackRight);
+	accessPiece(aPosition).reset(aCavalierBlackRight);
 
 	//Fou
 	aPosition.setPosition(0, 2);
 	datas::Fou *aFouWhiteLeft = new datas::Fou(datas::WHITE, aPosition);
-	accessPiece(aPosition.getX(), aPosition.getY()).reset(aFouWhiteLeft);
+	accessPiece(aPosition).reset(aFouWhiteLeft);
 
 	aPosition.setPosition(0, 5);
 	datas::Fou *aFouWhiteRight = new datas::Fou(datas::WHITE, aPosition);
-	accessPiece(aPosition.getX(), aPosition.getY()).reset(aFouWhiteRight);
+	accessPiece(aPosition).reset(aFouWhiteRight);
 
 	aPosition.setPosition(7, 2);
 	datas::Fou *aFouBlackLeft = new datas::Fou(datas::BLACK, aPosition);
-	accessPiece(aPosition.getX(), aPosition.getY()).reset(aFouBlackLeft);
+	accessPiece(aPosition).reset(aFouBlackLeft);
 
 	aPosition.setPosition(7, 5);
 	datas::Fou *aFouBlackRight = new datas::Fou(datas::BLACK, aPosition);
-	accessPiece(aPosition.getX(), aPosition.getY()).reset(aFouBlackRight);
+	accessPiece(aPosition).reset(aFouBlackRight);
 
 	//Dame
 	aPosition.setPosition(0, 3);
 	datas::Dame *aDameWhite = new datas::Dame(datas::WHITE, aPosition);
-	accessPiece(aPosition.getX(), aPosition.getY()).reset(aDameWhite);
+	accessPiece(aPosition).reset(aDameWhite);
 
 	aPosition.setPosition(7, 4);
 	datas::Dame *aDameBlack = new datas::Dame(datas::WHITE, aPosition);
-	accessPiece(aPosition.getX(), aPosition.getY()).reset(aDameBlack);
+	accessPiece(aPosition).reset(aDameBlack);
 
 	//Roi
 	aPosition.setPosition(0, 4);
 	datas::Roi *aRoiWhite = new datas::Roi(datas::BLACK, aPosition);
-	accessPiece(aPosition.getX(), aPosition.getY()).reset(aRoiWhite);
+	accessPiece(aPosition).reset(aRoiWhite);
 
 	aPosition.setPosition(7, 3);
 	datas::Roi *aRoiBlack = new datas::Roi(datas::BLACK, aPosition);
-	accessPiece(aPosition.getX(), aPosition.getY()).reset(aRoiBlack);
+	accessPiece(aPosition).reset(aRoiBlack);
 }
 
 const datas::PiecePtr& EtatGame::getPiece(int ligne, int col) const{
@@ -167,6 +172,46 @@ const datas::PiecePtr& EtatGame::getPiece(int ligne, int col) const{
 
 datas::PiecePtr& EtatGame::accessPiece(int ligne, int col){
 	return _plateau.at(ligne).at(col);
+}
+
+const datas::PiecePtr& EtatGame::getPiece(const datas::Position& iPosition) const{
+	return _plateau.at(iPosition.getX()).at(iPosition.getY());
+}
+
+datas::PiecePtr& EtatGame::accessPiece(const datas::Position& iPosition){
+	return _plateau.at(iPosition.getX()).at(iPosition.getY());
+}
+
+void EtatGame::setChangeMove(const datas::Move& iMove){
+	this->setPossiblePriseEnPassant(false);
+	datas::PiecePtr aPieceMove = this->getPiece(iMove.getStartPosition());
+	if(aPieceMove->getTypePiece() == datas::PION_TYPE){
+		if(std::abs(iMove.getStartPosition().getY() - iMove.getEndPosition().getY()) == 2){
+			this->setPossiblePriseEnPassant(true);
+		}
+	}
+
+	if(aPieceMove->getTypePiece() == datas::TOUR_TYPE){
+		//si les deux tours ont bougés ou le roi => plus de rock possible
+		//boost::shared_ptr<datas::Tour> aTour = std::dynamic_pointer_cast<datas::Tour>(aPieceMove);
+	}
+
+	//iMove.setPriseEnPassant(this->getPossiblePriseEnPassant());
+	//iMove.setPriseEnPassant(true);
+
+	if(iMove.hasCapturePiece()){
+		this->accessPiece(iMove.getEndPosition())->setDead();
+	}
+	this->accessPiece(iMove.getEndPosition()).reset(this->getPiece(iMove.getStartPosition()).get());
+	this->accessPiece(iMove.getStartPosition()) = 0;
+
+	//ou ??
+	/*this->accessPiece(iMove.getEndPosition()) = this->getPiece(iMove.getStartPosition()).get();
+	this->accessPiece(iMove.getStartPosition()) = 0;*/
+	//to study ==> non car on prends alors la valeur de la case du tableau
+	//on veux prednre vers quoi pointe
+
+	//this->getPiece(iMove.get)
 }
 
 } /* namespace game*/

@@ -37,7 +37,7 @@ bool Roi::isValidatedMove(const game::EtatGame& iEtatGame, const Move& iMove) co
 	}
 
 	// d > 0 car on a verifie precedement que les position start et end n'etaient pas egales
-	else if((evaluateDistance(iMove))>4){
+	else if(iMove.evaluateDistance()<4){
 		// rejeter une exception
 		std::cout << "position finale inatteignable pour le Roi" << std::endl;
 	}

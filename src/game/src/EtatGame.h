@@ -28,6 +28,9 @@ public:
 	const datas::PiecePtr& getPiece(int ligne, int col) const;
 	datas::PiecePtr& accessPiece(int ligne, int col);
 
+	const datas::PiecePtr& getPiece(const datas::Position& iPosition) const;
+	datas::PiecePtr& accessPiece(const datas::Position& iPosition);
+
 	const datas::AllPiece& getAllPiecesJ1() const;
 	void setAllPiecesJ1(datas::AllPiece& iAllPieces);
 
@@ -39,6 +42,8 @@ public:
 
 	bool getPossiblePriseEnPassant() const;
 	void setPossiblePriseEnPassant(bool iPossiblePriseEnPassant);
+
+	void setChangeMove(const datas::Move& iMove);
 
 	//supprime toutes les pieces
 	void reset();
@@ -56,12 +61,12 @@ private:
 	static EtatGame* _instance;
 
 	bool _possiblePriseEnPassant;
+	//utiliser enum + pour les deux joueurs
+	bool rockPossible;
 
 	datas::AllPiece _allPiecesJ1;
 	datas::AllPiece _allPiecesJ2;
 	datas::Plateau _plateau;
-
-
 
 	datas::MovePtr lastMove;
 

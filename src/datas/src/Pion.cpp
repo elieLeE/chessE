@@ -48,7 +48,7 @@ bool Pion::isValidatedMove(const game::EtatGame& iEtatGame, const Move& iMove) c
 		 * */
 		Plateau aPlateau = iEtatGame.getPlateau();
 		//PiecePtr aPiece = aPlateau->at(iMove.getEndPosition().getX()).at(iMove.getEndPosition().getY());
-		PiecePtr aPiece = iEtatGame.getPiece(iMove.getEndPosition().getX(), iMove.getEndPosition().getY());
+		PiecePtr aPiece = iEtatGame.getPiece(iMove.getEndPosition());
 		//boost::shared_ptr<Piece> aPiece = aPlateau->at(iMove.getEndPosition().getX()).at(iMove.getEndPosition().getY());
 		int moreOrLess = _sensCroissant?1:-1;
 

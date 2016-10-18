@@ -27,8 +27,19 @@ const Position& Move::getEndPosition() const{
 	return _end;
 }
 
-bool Move::hasCapturePiece(){
+bool Move::hasCapturePiece() const{
 	return !(_capturedPiece == NO_TYPE);
 }
 
+int Move::evaluateDistance() const{
+	return _start.evaluateDistance(_end);
+}
+
+bool Move::getPriseEnPassant() const{
+	return _priseEnPassant;
+}
+
+void Move::setPriseEnPassant(bool iBool){
+	_priseEnPassant = iBool;
+}
 }

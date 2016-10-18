@@ -31,11 +31,11 @@ Joueur::~Joueur()
 {}
 
 bool Joueur::isValidatedMove(const game::EtatGame& iEtatGame, const Move &iMove){
-	PiecePtr aPiece = iEtatGame.getPiece(iMove.getStartPosition().getX(), iMove.getStartPosition().getY());
+	PiecePtr aPiece = iEtatGame.getPiece(iMove.getStartPosition());
 	return aPiece->isValidatedMove(iEtatGame, iMove);
 }
 
-MovePtr Joueur::newMove(){
+/*MovePtr Joueur::newMove(){
 	MovePtr aMove = this->nextMove();
 
 	if(aMove->hasCapturePiece()){
@@ -44,6 +44,6 @@ MovePtr Joueur::newMove(){
 	}
 
 	return aMove;
-}
+}*/
 
 } /* namespace datas */

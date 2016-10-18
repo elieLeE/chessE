@@ -26,6 +26,8 @@ public:
 
 	bool isValid() const;
 
+	int evaluateDistance(const Position& iPosition) const;
+
 	bool operator==(const Position& iPosition) const ;
 	bool operator!=(const Position& iPosition) const ;
 

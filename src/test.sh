@@ -9,6 +9,12 @@ resultTest(){
     fi
 }
 
+if [ ! -f ./datas/test/./prog ] || [ ! -f ./game/test/./prog ] || [ ! -f ./gui/test/./prog ]
+then
+	echo "Compilez les tests !"
+	exit
+fi
+
 echo "lancement des test unitaires"
 echo
 ./datas/test/./prog
