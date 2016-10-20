@@ -15,10 +15,10 @@ namespace datas{
 
 class Cavalier : public Piece {
 public:
-	Cavalier(EColor iColor, Position iPosition);
+	Cavalier(const EColor iColor, Position iPosition);
 	virtual ~Cavalier();
 
-	virtual bool isValidatedMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
+	virtual bool isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
 };
 
 }

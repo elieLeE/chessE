@@ -23,7 +23,7 @@ MovePtr JoueurIA::nextMove(){
 
 	do{
 		//aMove = game::nextMoveIA(aEtatGame);
-	}while(isValidatedMove(*aEtatGame, *aMove));
+	}while(aMove->isValidateMove(*aEtatGame));
 
 	return aMove;
 }

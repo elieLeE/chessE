@@ -12,6 +12,8 @@
 
 #include "../../datas/src/Piece.h"
 #include "../../datas/src/Types.h"
+#include "../../datas/src/Tour.h"
+//#include <array>
 
 namespace game{
 
@@ -43,6 +45,9 @@ public:
 	bool getPossiblePriseEnPassant() const;
 	void setPossiblePriseEnPassant(bool iPossiblePriseEnPassant);
 
+	datas::Move& accessLastMove();
+	const datas::Move& getLastMove() const;
+
 	void setChangeMove(const datas::Move& iMove);
 
 	//supprime toutes les pieces
@@ -60,6 +65,8 @@ private:
 
 	static EtatGame* _instance;
 
+	bool tourAlreadyMoved[NBRE_TOURS] = {false};
+
 	bool _possiblePriseEnPassant;
 	//utiliser enum + pour les deux joueurs
 	bool rockPossible;
@@ -68,7 +75,7 @@ private:
 	datas::AllPiece _allPiecesJ2;
 	datas::Plateau _plateau;
 
-	datas::MovePtr lastMove;
+	datas::MovePtr _lastMove;
 
 };
 

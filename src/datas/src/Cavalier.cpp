@@ -11,14 +11,14 @@
 
 namespace datas {
 
-Cavalier::Cavalier(EColor iColor, Position iPosition):
+Cavalier::Cavalier(const EColor iColor, Position iPosition):
 		Piece(iColor, iPosition, CAVALIER_TYPE, CAVALIER_VALUE)
 {}
 
 Cavalier::~Cavalier()
 {}
 
-bool Cavalier::isValidatedMove(const game::EtatGame &iEtatGame, const Move& iMove) const{
+bool Cavalier::isValidateMove(const game::EtatGame &iEtatGame, const Move& iMove) const{
 	if(iMove.getStartPosition() != _position){
 		// rejeter une exception
 		std::cout << "position de depart du mouvement ne correspond pas a celle de la piece" << std::endl;

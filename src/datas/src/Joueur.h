@@ -28,7 +28,6 @@ public:
 	 * ne prends pas etat de la partie en paramatre => sera recupere via une instance
 	 */
 	virtual MovePtr nextMove() = 0;
-	bool isValidatedMove(const game::EtatGame& iEtatGame, const Move &iMove);
 
 	MovePtr newMove();
 

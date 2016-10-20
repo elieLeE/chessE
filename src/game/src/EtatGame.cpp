@@ -98,19 +98,19 @@ void EtatGame::setBegginingGameWithoutHandicap(){
 
 	//Tours
 	aPosition.setPosition(0, 0);
-	datas::Tour *aTourWhiteLeft = new datas::Tour(datas::WHITE, aPosition);
+	datas::Tour *aTourWhiteLeft = new datas::Tour(datas::WHITE, aPosition, datas::Tour::TOUR_1);
 	accessPiece(aPosition).reset(aTourWhiteLeft);
 
 	aPosition.setPosition(0, 7);
-	datas::Tour *aTourWhiteRight = new datas::Tour(datas::WHITE, aPosition);
+	datas::Tour *aTourWhiteRight = new datas::Tour(datas::WHITE, aPosition, datas::Tour::TOUR_2);
 	accessPiece(aPosition).reset(aTourWhiteRight);
 
 	aPosition.setPosition(7, 0);
-	datas::Tour *aTourBlackLeft = new datas::Tour(datas::BLACK, aPosition);
+	datas::Tour *aTourBlackLeft = new datas::Tour(datas::BLACK, aPosition, datas::Tour::TOUR_1);
 	accessPiece(aPosition).reset(aTourBlackLeft);
 
 	aPosition.setPosition(7, 7);
-	datas::Tour *aTourBlackRight = new datas::Tour(datas::BLACK, aPosition);
+	datas::Tour *aTourBlackRight = new datas::Tour(datas::BLACK, aPosition, datas::Tour::TOUR_2);
 	accessPiece(aPosition).reset(aTourBlackRight);
 
 	//Cavaliers
@@ -182,6 +182,19 @@ datas::PiecePtr& EtatGame::accessPiece(const datas::Position& iPosition){
 	return _plateau.at(iPosition.getX()).at(iPosition.getY());
 }
 
+datas::Move& EtatGame::accessLastMove(){
+	return *(_lastMove.get());
+}
+
+const datas::Move& EtatGame::getLastMove() const{
+	return *(_lastMove.get());
+}
+
+/*
+ * passer par un move non constant ?? => pas top niveau conception
+ * necessaire pour setter si move est un rock ou priseEnPassant
+ * peux pas le faire dans validMove (encore moins bien dans conception)
+ */
 void EtatGame::setChangeMove(const datas::Move& iMove){
 	this->setPossiblePriseEnPassant(false);
 	datas::PiecePtr aPieceMove = this->getPiece(iMove.getStartPosition());
@@ -194,6 +207,8 @@ void EtatGame::setChangeMove(const datas::Move& iMove){
 	if(aPieceMove->getTypePiece() == datas::TOUR_TYPE){
 		//si les deux tours ont bougés ou le roi => plus de rock possible
 		//boost::shared_ptr<datas::Tour> aTour = std::dynamic_pointer_cast<datas::Tour>(aPieceMove);
+		datas::Tour* aTour = dynamic_cast<datas::Tour*>(aPieceMove.get());
+		tourAlreadyMoved[aTour->getNumTour()] = true;
 	}
 
 	//iMove.setPriseEnPassant(this->getPossiblePriseEnPassant());
@@ -204,6 +219,10 @@ void EtatGame::setChangeMove(const datas::Move& iMove){
 	}
 	this->accessPiece(iMove.getEndPosition()).reset(this->getPiece(iMove.getStartPosition()).get());
 	this->accessPiece(iMove.getStartPosition()) = 0;
+	//etre sur que & d'une reference est bien l'addresse voulue
+	datas::Position aPosition1, aPosition2;
+	datas::Move aMove(aPosition1, aPosition2);
+	//this->accessLastMove() = aMove;
 
 	//ou ??
 	/*this->accessPiece(iMove.getEndPosition()) = this->getPiece(iMove.getStartPosition()).get();

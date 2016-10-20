@@ -35,6 +35,13 @@ bool Position::operator!=(const Position& iPosition) const {
 	return !(*this == iPosition);
 }
 
+bool Position::sameLigne(const Position& iPosition) const{
+	return (_x == iPosition.getX());
+}
+
+bool Position::sameCol(const Position& iPosition) const{
+	return (this->_y == iPosition.getY());
+}
 bool Position::isValid() const{
 	return ((_x >=0) && (_x<NBRE_LIGNE) && (_y>=0) && (_y < NBRE_COLONNE));
 }
@@ -43,6 +50,7 @@ int Position::getX() const{
 	return _x;
 }
 
+//add verification du parametre ??
 void Position::setX(int iX){
 	_x = iX;
 }

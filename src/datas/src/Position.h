@@ -28,6 +28,9 @@ public:
 
 	int evaluateDistance(const Position& iPosition) const;
 
+	bool sameCol(const Position& iPosition) const;
+	bool sameLigne(const Position& iPosition) const;
+
 	bool operator==(const Position& iPosition) const ;
 	bool operator!=(const Position& iPosition) const ;
 

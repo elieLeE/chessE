@@ -8,7 +8,6 @@
 #include "Joueur.h"
 #include "PieceValue.h"
 #include "Roi.h"
-#include "../../game/src/EtatGame.h"
 
 namespace datas {
 
@@ -29,11 +28,6 @@ Joueur::Joueur(EColor iColor, ETypePlayer iTypePlayer):
 
 Joueur::~Joueur()
 {}
-
-bool Joueur::isValidatedMove(const game::EtatGame& iEtatGame, const Move &iMove){
-	PiecePtr aPiece = iEtatGame.getPiece(iMove.getStartPosition());
-	return aPiece->isValidatedMove(iEtatGame, iMove);
-}
 
 /*MovePtr Joueur::newMove(){
 	MovePtr aMove = this->nextMove();

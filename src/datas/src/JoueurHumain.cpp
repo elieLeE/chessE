@@ -22,7 +22,7 @@ MovePtr JoueurHumain::nextMove(){
 
 	do{
 		aMove = gui::Display::nextMove();
-	}while(!isValidatedMove(*(game::EtatGame::getInstance()), *aMove));
+	}while(aMove->isValidateMove(*(game::EtatGame::getInstance())));
 
 	return aMove;
 }

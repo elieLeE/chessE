@@ -27,7 +27,7 @@ namespace datas{
 
 class Piece {
 public:
-	Piece(EColor iColor, Position iPosition, ETypePiece iTypePiece, int iValue);
+	Piece(const EColor iColor, Position iPosition, ETypePiece iTypePiece, const int iValue);
 	virtual ~Piece();
 
 	void movePiece(Position& iPosition);
@@ -45,7 +45,8 @@ public:
 	/*
 	 * use when a new move is played
 	 */
-	virtual bool isValidatedMove(const game::EtatGame& iEtatGame, const Move& iMove) const = 0;
+	virtual bool isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
+	//bool automaticValidationMove(const Move& iMove) const;
 
 	//bool firstMoveValidation(Move& iMove);
 

@@ -15,7 +15,9 @@ public:
 	TestPosition();
 	virtual ~TestPosition();
 
-	void startTests();
+	void startTests() const;
+
+	void testComparePosition() const;
 };
 
 } /* namespace datas */

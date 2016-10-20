@@ -11,13 +11,14 @@
 
 namespace datas{
 
-Fou::Fou(EColor iColor, Position iPosition):Piece(iColor, iPosition, FOU_TYPE, FOU_VALUE)
+Fou::Fou(const EColor iColor, Position iPosition):
+		Piece(iColor, iPosition, FOU_TYPE, FOU_VALUE)
 {}
 
 Fou::~Fou()
 {}
 
-bool Fou::isValidatedMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
+bool Fou::isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
 	return true;
 }
 

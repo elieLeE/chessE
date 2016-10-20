@@ -6,6 +6,7 @@
  */
 
 #include "Move.h"
+#include "../../game/src/EtatGame.h"
 
 namespace datas{
 
@@ -41,5 +42,10 @@ bool Move::getPriseEnPassant() const{
 
 void Move::setPriseEnPassant(bool iBool){
 	_priseEnPassant = iBool;
+}
+
+bool Move::isValidateMove(const game::EtatGame& iEtatGame) const{
+	PiecePtr aPiece = iEtatGame.getPiece(this->getStartPosition());
+	return aPiece->isValidateMove(iEtatGame, *this);
 }
 }

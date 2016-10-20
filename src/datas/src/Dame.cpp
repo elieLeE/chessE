@@ -13,13 +13,14 @@
 
 namespace datas{
 
-Dame::Dame(EColor iColor, Position iPosition):Piece(iColor, iPosition, DAME_TYPE, DAME_VALUE)
+Dame::Dame(const EColor iColor, Position iPosition):
+		Piece(iColor, iPosition, DAME_TYPE, DAME_VALUE)
 {}
 
 Dame::~Dame()
 {}
 
-bool Dame::isValidatedMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
+bool Dame::isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
 	return true;
 }
 

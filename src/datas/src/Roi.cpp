@@ -12,41 +12,45 @@
 
 namespace datas{
 
-Roi::Roi(EColor iColor, Position iPosition):Piece(iColor, iPosition, ROI_TYPE, ROI_VALUE)
+Roi::Roi(const EColor iColor, Position iPosition):
+		Piece(iColor, iPosition, ROI_TYPE, ROI_VALUE)
 {}
 
 Roi::~Roi()
 {}
 
-bool Roi::isValidatedMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
+bool Roi::isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
 	bool aBool = false;
 
-	if(iMove.getStartPosition() != _position){
-		// rejeter une exception
-		std::cout << "position de depart du mouvement ne correspond pas a celle de la piece" << std::endl;
+	//aBool = automaticValidationMove(iMove);
+
+	if(aBool){
+		int dist = iMove.evaluateDistance();
+		// d > 0 car on a verifie precedement que les position start et end n'etaient pas egales
+		if(dist>9){
+			// rejeter une exception
+			std::cout << "position finale inatteignable pour le Roi" << std::endl;
+		}
+		else if(dist == 9){
+			//ca doit etre 1 grand rock
+			if(iMove.getStartPosition().sameLigne(iMove.getEndPosition())){
+				//ok => grandrock
+				aBool = true;
+			}
+		}
+		else if(dist == 4){
+			//ca doit etre 1 petit rock
+			if(iMove.getStartPosition().sameLigne(iMove.getEndPosition())){
+				//ok => grandrock
+				aBool = true;
+			}
+		}
+		else {
+			//on verifie que le roi ne peux pas se faire prendre au prochain coup par une piece adverse
+		}
 	}
 
-	else if(!iMove.getEndPosition().isValid()){
-		// rejeter une exception
-		std::cout << "position finale du mouvement incorrecte" << std::endl;
-	}
-
-	else if(iMove.getEndPosition() == _position){
-		// rejeter une exception
-		std::cout << "position finale du mouvement correspond a la position initiale" << std::endl;
-	}
-
-	// d > 0 car on a verifie precedement que les position start et end n'etaient pas egales
-	else if(iMove.evaluateDistance()<4){
-		// rejeter une exception
-		std::cout << "position finale inatteignable pour le Roi" << std::endl;
-	}
-
-	else {
-		//on verifie que le roi ne peux pas se faire prendre au prochain coup par une piece adverse
-	}
-
-		return aBool;
+	return aBool;
 }
 
 const std::list <boost::shared_ptr <Move> > Roi::getPossibleMoves() const {

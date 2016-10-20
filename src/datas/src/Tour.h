@@ -13,14 +13,26 @@
 
 namespace datas{
 
+#define NBRE_TOURS 2
+
 class Tour : public Piece{
 public:
-	Tour(EColor iColor, Position iPosition);
+	typedef enum ENumTour{
+		TOUR_1,
+		TOUR_2
+	}ENumTour;
+
+	Tour(const EColor iColor, Position iPosition, const int iNumTour);
 	virtual ~Tour();
 
-	virtual bool isValidatedMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
+	virtual bool isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
 
 	//virtual const std::list <boost::shared_ptr <Move> > getPossibleMoves() const;
+
+	int getNumTour(void) const;
+
+private:
+	const int _numTour;
 };
 
 }

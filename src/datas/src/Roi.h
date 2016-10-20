@@ -18,7 +18,7 @@ public:
 	Roi(EColor iColor, Position iPosition);
 	virtual ~Roi();
 
-	virtual bool isValidatedMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
+	virtual bool isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
 	virtual const std::list <boost::shared_ptr <Move> >getPossibleMoves() const ;
 
 private:

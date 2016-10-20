@@ -11,6 +11,10 @@
 #include "Position.h"
 #include "TypePiece.h"
 
+namespace game{
+class EtatGame;
+}
+
 namespace datas{
 
 class Move {
@@ -30,6 +34,14 @@ public:
 	bool getPriseEnPassant() const;
 	void setPriseEnPassant(bool iBool);
 
+	bool isValidateMove(const game::EtatGame& iEtatGame) const;
+
+	//add prise en passant and remove bool priseEnPAssant
+	typedef enum ETypeMove{
+		NORMALLY_MOVE,
+		SMALL_ROCK,
+		BIG_ROCK
+	}ETypeMove;
 
 private:
 	Position _start;
@@ -40,7 +52,7 @@ private:
 
 	bool _priseEnPassant;
 	const ETypePiece _capturedPiece;
-
+	ETypeMove _typeMove;
 };
 
 }

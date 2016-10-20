@@ -13,7 +13,7 @@
 
 namespace datas{
 
-Pion::Pion(EColor iColor, Position iPosition, bool iSens):
+Pion::Pion(const EColor iColor, Position iPosition, const bool iSens):
 		Piece(iColor, iPosition, PION_TYPE, PION_VALUE),
 		_hasAlreadyMoved(false),
 		_sensCroissant(iSens)
@@ -22,25 +22,10 @@ Pion::Pion(EColor iColor, Position iPosition, bool iSens):
 Pion::~Pion()
 {}
 
-bool Pion::isValidatedMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
+bool Pion::isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
 	bool aBool = false;
 
-	if(iMove.getStartPosition() != _position){
-		// rejeter une exception
-		std::cout << "position de depart du mouvement ne correspond pas a celle de la piece" << std::endl;
-	}
-
-	else if(!iMove.getEndPosition().isValid()){
-		// rejeter une exception
-		std::cout << "position finale du mouvement incorrecte" << std::endl;
-	}
-
-	else if(iMove.getEndPosition() == _position){
-		// rejeter une exception
-		std::cout << "position finale du mouvement correspond a la position initiale" << std::endl;
-	}
-
-	else {
+	if(aBool){
 		/*
 		 * verifier que la position finale du movement est accessible a partir
 		 * de la position courante de la piece et de son type.

@@ -18,15 +18,20 @@ TestPosition::TestPosition()
 TestPosition::~TestPosition()
 {}
 
-void TestPosition::startTests(){
-	std::cout << "testPosition";
-	for(int i=0; i<NBRE_LIGNE; i++){
-		for(int j=0; j<NBRE_LIGNE; j++){
-			Position aPosition1(i, j);
-			Position aPosition2(i, j);
-			BOOST_ASSERT_MSG(aPosition1==aPosition2, "test Position");
-		}
-	}
+void TestPosition::startTests() const{
+	testComparePosition();
+}
+
+void TestPosition::testComparePosition() const {
+	std::cout << "testPosition - compare position";
+
+	Position aPosition1(2, 5);
+	Position aPosition2(2, 5);
+	BOOST_ASSERT_MSG(aPosition1==aPosition2, "test compare position egales");
+
+	aPosition2.setY(6);
+	BOOST_ASSERT_MSG(aPosition1!=aPosition2, "test compare position differentes");
+
 	std::cout << "	OK" << std::endl;
 }
 

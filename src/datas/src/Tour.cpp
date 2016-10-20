@@ -11,13 +11,19 @@
 
 namespace datas{
 
-Tour::Tour(EColor iColor, Position iPosition):Piece(iColor, iPosition, TOUR_TYPE, TOUR_VALUE)
+Tour::Tour(const EColor iColor, Position iPosition, const int iNumTour):
+		Piece(iColor, iPosition, TOUR_TYPE, TOUR_VALUE),
+		_numTour(iNumTour)
 {}
 
 Tour::~Tour()
 {}
 
-bool Tour::isValidatedMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
+int Tour::getNumTour(void) const{
+	return _numTour;
+}
+
+bool Tour::isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
 	return true;
 }
 
