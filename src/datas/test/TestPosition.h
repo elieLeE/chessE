@@ -17,7 +17,10 @@ public:
 
 	void startTests() const;
 
-	void testComparePosition() const;
+	void testComparePosition(void) const;
+	void testSame(void) const;
+	void testEvaluatePosition(void) const;
+
 };
 
 } /* namespace datas */
