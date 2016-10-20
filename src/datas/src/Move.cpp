@@ -45,7 +45,15 @@ void Move::setPriseEnPassant(bool iBool){
 }
 
 bool Move::isValidateMove(const game::EtatGame& iEtatGame) const{
-	PiecePtr aPiece = iEtatGame.getPiece(this->getStartPosition());
-	return aPiece->isValidateMove(iEtatGame, *this);
+	bool aBool = false;
+
+	if((this->getEndPosition().isValid()) && (this->getStartPosition() == this->getEndPosition())){
+		PiecePtr aPiece = iEtatGame.getPiece(this->getStartPosition());
+		if(aPiece.get()){
+			aBool = aPiece->isValidateMove(iEtatGame, *this);
+		}
+	}
+
+	return aBool;
 }
 }

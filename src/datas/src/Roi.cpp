@@ -24,28 +24,33 @@ bool Roi::isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) con
 
 	//aBool = automaticValidationMove(iMove);
 
-	if(aBool){
+	//aBool = (Piece*)this->isValidateMove(iEtatGame, iMove);
+
+	if(((Piece*)this)->isValidateMove(iEtatGame, iMove)){
 		int dist = iMove.evaluateDistance();
 		// d > 0 car on a verifie precedement que les position start et end n'etaient pas egales
-		if(dist>9){
-			// rejeter une exception
-			std::cout << "position finale inatteignable pour le Roi" << std::endl;
-		}
-		else if(dist == 9){
+		if(dist<=9){
+			if(dist == 9){
 			//ca doit etre 1 grand rock
-			if(iMove.getStartPosition().sameLigne(iMove.getEndPosition())){
-				//ok => grandrock
+				if(iMove.getStartPosition().sameLigne(iMove.getEndPosition())){
+					//ok => grandrock
+					aBool = true;
+				}
+			}
+			else if(dist == 4){
+				//ca doit etre 1 petit rock
+				if(iMove.getStartPosition().sameLigne(iMove.getEndPosition())){
+					//ok => grandrock
+					aBool = true;
+				}
+			}
+			//movement normal
+			else if(dist < 4){
 				aBool = true;
 			}
 		}
-		else if(dist == 4){
-			//ca doit etre 1 petit rock
-			if(iMove.getStartPosition().sameLigne(iMove.getEndPosition())){
-				//ok => grandrock
-				aBool = true;
-			}
-		}
-		else {
+
+		if(aBool){
 			//on verifie que le roi ne peux pas se faire prendre au prochain coup par une piece adverse
 		}
 	}

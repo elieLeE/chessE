@@ -25,7 +25,9 @@ Pion::~Pion()
 bool Pion::isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
 	bool aBool = false;
 
-	if(aBool){
+	//aBool = (Piece*)this->isValidateMove(iEtatGame, iMove);
+
+	if(((Piece*)this)->isValidateMove(iEtatGame, iMove)){
 		/*
 		 * verifier que la position finale du movement est accessible a partir
 		 * de la position courante de la piece et de son type.

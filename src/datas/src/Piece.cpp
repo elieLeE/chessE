@@ -67,20 +67,8 @@ Position& Piece::accessPosition(){
 bool Piece::isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
 	bool aBool = false;
 
-	if(iMove.getStartPosition() != _position){
-		// rejeter une exception
-		std::cout << "position de depart du mouvement ne correspond pas a celle de la piece" << std::endl;
-	}
-
-	else if(!iMove.getEndPosition().isValid()){
-		// rejeter une exception
-		std::cout << "position finale du mouvement incorrecte" << std::endl;
-	}
-
-	else if(iMove.getEndPosition() == _position){
-		// rejeter une exception
-		//_position = getEndPosition
-		std::cout << "position finale du mouvement correspond a la position initiale" << std::endl;
+	if(iMove.getStartPosition() == _position){
+		aBool = true;
 	}
 
 	return aBool;
