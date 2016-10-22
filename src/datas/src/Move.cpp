@@ -48,8 +48,9 @@ bool Move::isValidateMove(const game::EtatGame& iEtatGame) const{
 	bool aBool = false;
 
 	if((this->getEndPosition().isValid()) && (this->getStartPosition() == this->getEndPosition())){
-		PiecePtr aPiece = iEtatGame.getPiece(this->getStartPosition());
-		if(aPiece.get()){
+		//PiecePtr aPiece = iEtatGame.getCase(this->getStartPosition()).getPiece();
+		if(iEtatGame.getCase(this->getStartPosition()).hasPiece()){
+			const Piece* aPiece = &(iEtatGame.getCase(this->getStartPosition()).getPiece());
 			aBool = aPiece->isValidateMove(iEtatGame, *this);
 		}
 	}

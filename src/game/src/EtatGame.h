@@ -8,12 +8,14 @@
 #ifndef ETATGAME_H_
 #define ETATGAME_H_
 
-#include <vector>
+#include <array>
 
 #include "../../datas/src/Piece.h"
 #include "../../datas/src/Types.h"
 #include "../../datas/src/Tour.h"
-//#include <array>
+#include "../../datas/src/Position.h"
+#include "../../datas/src/Dimension.h"
+#include "../../datas/src/Case.h"
 
 namespace game{
 
@@ -27,11 +29,13 @@ public:
 
 	void initEtatGame();
 
-	const datas::PiecePtr& getPiece(int ligne, int col) const;
-	datas::PiecePtr& accessPiece(int ligne, int col);
+	void movePiece(datas::Position& iPositionStart, datas::Position& iPositionEnd);
 
-	const datas::PiecePtr& getPiece(const datas::Position& iPosition) const;
-	datas::PiecePtr& accessPiece(const datas::Position& iPosition);
+	const datas::Case& getCase(int ligne, int col) const;
+	datas::Case& accessCase(int ligne, int col);
+
+	const datas::Case& getCase(const datas::Position& iPosition) const;
+	datas::Case& accessCase(const datas::Position& iPosition);
 
 	const datas::AllPiece& getAllPiecesJ1() const;
 	void setAllPiecesJ1(datas::AllPiece& iAllPieces);
@@ -39,8 +43,8 @@ public:
 	const datas::AllPiece& getAllPiecesJ2() const;
 	void setAllPiecesJ2(datas::AllPiece& iAllPieces);
 
-	const datas::Plateau& getPlateau() const;
-	void setPlateau(datas::Plateau& iPlateau);
+	const datas::Echiquier& getEchiquier() const;
+	void setEchiquier(datas::Echiquier& iEchiquier);
 
 	bool getPossiblePriseEnPassant() const;
 	void setPossiblePriseEnPassant(bool iPossiblePriseEnPassant);
@@ -65,6 +69,9 @@ private:
 
 	static EtatGame* _instance;
 
+	//std::array<std::array<datas::Case, NBRE_LIGNE>, NBRE_COLONNE> echiquier;
+	datas::Echiquier _echiquier;
+
 	bool tourAlreadyMoved[NBRE_TOURS] = {false};
 
 	bool _possiblePriseEnPassant;
@@ -73,9 +80,11 @@ private:
 
 	datas::AllPiece _allPiecesJ1;
 	datas::AllPiece _allPiecesJ2;
-	datas::Plateau _plateau;
+	//datas::Plateau _plateau;
 
 	datas::MovePtr _lastMove;
+
+	bool _hasAlreadyPiece;
 
 };
 

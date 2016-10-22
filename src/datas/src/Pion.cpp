@@ -33,9 +33,9 @@ bool Pion::isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) co
 		 * de la position courante de la piece et de son type.
 		 * verifier egalement qu'une autre piece de la meme couleur n'y est pas deja
 		 * */
-		Plateau aPlateau = iEtatGame.getPlateau();
+		const Echiquier aEchiquier = iEtatGame.getEchiquier();
 		//PiecePtr aPiece = aPlateau->at(iMove.getEndPosition().getX()).at(iMove.getEndPosition().getY());
-		PiecePtr aPiece = iEtatGame.getPiece(iMove.getEndPosition());
+		const Piece *aPiece = &(iEtatGame.getCase(iMove.getEndPosition()).getPiece());
 		//boost::shared_ptr<Piece> aPiece = aPlateau->at(iMove.getEndPosition().getX()).at(iMove.getEndPosition().getY());
 		int moreOrLess = _sensCroissant?1:-1;
 
@@ -88,7 +88,7 @@ bool Pion::isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) co
 			//a gauche
 			//PieceCSPtr aSecondPiece = aPlateau->at(_position.getX()-1).at(_position.getY());
 			//boost::shared_ptr<Piece> aSecondPiece = aPlateau->at(_position.getX()-1).at(_position.getY());
-			PiecePtr aSecondPiece = iEtatGame.getPiece(_position.getX()-1, _position.getY());
+			const Piece* aSecondPiece = &(iEtatGame.getCase(_position.getX()-1, _position.getY()).getPiece());
 			if(aSecondPiece && (aSecondPiece->getTypePiece() == PION_TYPE) && (aSecondPiece->getColor() != getColor()) &&
 					((iMove.getEndPosition().getX()==_position.getX()-1) && (iMove.getEndPosition().getY() == _position.getY()+moreOrLess))){
 				//il ne doit y avoir aucune piece car le mouvement de l'autre joueur avec le pion doit etre celui juste avant
@@ -103,7 +103,7 @@ bool Pion::isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) co
 			//a droite
 			else {
 				//aSecondPiece = aPlateau->at(_position.getX()+1).at(_position.getY());
-				aSecondPiece = iEtatGame.getPiece(_position.getX()+1, _position.getY());
+				aSecondPiece = &(iEtatGame.getCase(_position.getX()+1, _position.getY()).getPiece());
 				if(aSecondPiece && (aSecondPiece->getTypePiece()==PION_TYPE) && (aSecondPiece->getColor() != getColor()) &&
 						((iMove.getEndPosition().getX()==_position.getX()+1) && (iMove.getEndPosition().getY() == _position.getY()+moreOrLess))){
 					if(!aPiece){

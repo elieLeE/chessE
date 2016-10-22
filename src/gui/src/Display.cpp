@@ -28,6 +28,10 @@ Display::~Display()
 const Display* Display::getInstance(){
 	if(!_display){
 		_display = new Display();
+		/*if(DISPLAY_WINDOW == TERMINAL_GUI){
+			//datas::Tour* aTour = dynamic_cast<datas::Tour*>(aPieceMove.get());
+			_display = new DisplayTerminal();
+		}*/
 	}
 	return _display;
 }
@@ -40,12 +44,12 @@ Display* Display::accessInstance(){
 }
 
 void Display::displayPositionGame(const game::EtatGame& iEtatGame){
-#if DISPLAY_WINDOW
+/*#if DISPLAY_WINDOW
 	_pDisplayWindow.get()->displayPositionGameWindow(iEtatGame);
 #else
 	_pDisplayTerminal.get()->displayPositionGameTerminal(iEtatGame);
-
-#endif
+#endif*/
+	std::cout << "rate" << std::endl;
 }
 
 datas::MoveCSPtr Display::nextMove(){
