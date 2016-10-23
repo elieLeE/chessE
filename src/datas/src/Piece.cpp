@@ -14,6 +14,7 @@ Piece::Piece(const EColor iColor, Position iPosition, ETypePiece iTypePiece, con
 		_alive(true),
 		_color(iColor),
 		_position(iPosition),
+		_numJ(iColor==WHITE?JOUEUR_1:JOUEUR_2),
 		_value(iValue),
 		_typePiece(iTypePiece)
 {}
@@ -54,6 +55,10 @@ EColor Piece::getColor() const{
 
 ETypePiece Piece::getTypePiece() const{
 	return _typePiece;
+}
+
+int Piece::getNumJoueur() const{
+	return _numJ;
 }
 
 const Position& Piece::getPosition() const{

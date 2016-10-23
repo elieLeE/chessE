@@ -10,6 +10,9 @@
 
 namespace datas{
 
+Move::Move()
+{}
+
 Move::Move(Position& iPositionStart, Position& iPositionEnd, ETypePiece iCapturedPiece, bool iPriseEnPassant):
 		_start(iPositionStart),
 		_end(iPositionEnd),
@@ -44,6 +47,21 @@ void Move::setPriseEnPassant(bool iBool){
 	_priseEnPassant = iBool;
 }
 
+ETypePiece Move::getHasCapturedPiece() const{
+	return _capturedPiece;
+}
+void Move::setHasCapturedPiece(ETypePiece iCapturedPiece){
+	_capturedPiece = iCapturedPiece;
+}
+
+ETypeMove Move::getTypeMove() const{
+	return _typeMove;
+}
+
+void Move::setTypeMove(ETypeMove iTypeMove){
+	_typeMove = iTypeMove;
+}
+
 bool Move::isValidateMove(const game::EtatGame& iEtatGame) const{
 	bool aBool = false;
 
@@ -56,5 +74,13 @@ bool Move::isValidateMove(const game::EtatGame& iEtatGame) const{
 	}
 
 	return aBool;
+}
+
+void Move::operator=(const Move& iMove){
+	_start = iMove.getStartPosition();
+	_end = iMove.getEndPosition();
+	_priseEnPassant = iMove.getPriseEnPassant();
+	_capturedPiece = iMove.getHasCapturedPiece();
+	_typeMove = iMove.getTypeMove();
 }
 }

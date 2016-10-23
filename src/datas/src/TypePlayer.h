@@ -10,13 +10,16 @@
 
 namespace datas{
 
+#define NBRE_JOUEURS 2
+
 typedef enum ETypePlayer{
 	HUMAN_PLAYER,
 	IA_PlAYER
 }ETypePlayer;
 
+//JOUEUR 1 = 0 !!
 typedef enum ENumPlayer{
-	JOUEUR_1 = 1,
+	JOUEUR_1 = 0,
 	JOUEUR_2
 }ENumPlayer;
 

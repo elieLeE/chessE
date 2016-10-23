@@ -16,6 +16,8 @@
 #include "../../datas/src/Position.h"
 #include "../../datas/src/Dimension.h"
 #include "../../datas/src/Case.h"
+#include "../../datas/src/Move.h"
+#include "../../datas/src/TypePlayer.h"
 
 namespace game{
 
@@ -29,7 +31,7 @@ public:
 
 	void initEtatGame();
 
-	void movePiece(datas::Position& iPositionStart, datas::Position& iPositionEnd);
+	void movePiece(const datas::Position& iPositionStart, const datas::Position& iPositionEnd);
 
 	const datas::Case& getCase(int ligne, int col) const;
 	datas::Case& accessCase(int ligne, int col);
@@ -47,7 +49,6 @@ public:
 	void setEchiquier(datas::Echiquier& iEchiquier);
 
 	bool getPossiblePriseEnPassant() const;
-	void setPossiblePriseEnPassant(bool iPossiblePriseEnPassant);
 
 	datas::Move& accessLastMove();
 	const datas::Move& getLastMove() const;
@@ -67,22 +68,25 @@ private:
 	EtatGame(const EtatGame&);
 	EtatGame& operator=(const EtatGame&);
 
+	void setPossiblePriseEnPassant(bool iPossiblePriseEnPassant);
+
 	static EtatGame* _instance;
 
 	//std::array<std::array<datas::Case, NBRE_LIGNE>, NBRE_COLONNE> echiquier;
 	datas::Echiquier _echiquier;
 
-	bool tourAlreadyMoved[NBRE_TOURS] = {false};
+	std::array <std::array<bool, 2>, 2> tourAlreadyMoved;
+	//std::array <bool, 2> _roiAlreadyMove;
 
 	bool _possiblePriseEnPassant;
 	//utiliser enum + pour les deux joueurs
-	bool rockPossible;
+	std::array <bool, 2> _rockPossible;
 
 	datas::AllPiece _allPiecesJ1;
 	datas::AllPiece _allPiecesJ2;
 	//datas::Plateau _plateau;
 
-	datas::MovePtr _lastMove;
+	datas::Move _lastMove;
 
 	bool _hasAlreadyPiece;
 

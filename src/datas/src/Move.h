@@ -10,6 +10,7 @@
 
 #include "Position.h"
 #include "TypePiece.h"
+#include "TypeMove.h"
 
 namespace game{
 class EtatGame;
@@ -19,12 +20,12 @@ namespace datas{
 
 class Move {
 public:
+	Move();
 	Move(Position& iPositionStart, Position& iPositionEnd,
 			ETypePiece iCapturedPiece = NO_TYPE, bool iPriseEnPassant = false);
 	virtual ~Move();
 
 	const Position& getStartPosition() const ;
-
 	const Position& getEndPosition() const ;
 
 	bool hasCapturePiece() const;
@@ -36,12 +37,15 @@ public:
 
 	bool isValidateMove(const game::EtatGame& iEtatGame) const;
 
+	ETypePiece getHasCapturedPiece() const;
+	void setHasCapturedPiece(ETypePiece iCapturedPiece);
+
+	ETypeMove getTypeMove() const;
+	void setTypeMove(ETypeMove iTypeMove);
+
+	void operator=(const Move& iMove);
+
 	//add prise en passant and remove bool priseEnPAssant
-	typedef enum ETypeMove{
-		NORMALLY_MOVE,
-		SMALL_ROCK,
-		BIG_ROCK
-	}ETypeMove;
 
 private:
 	Position _start;
@@ -51,7 +55,7 @@ private:
 	//Position _capturedPiecePosition;
 
 	bool _priseEnPassant;
-	const ETypePiece _capturedPiece;
+	ETypePiece _capturedPiece;
 	ETypeMove _typeMove;
 };
 

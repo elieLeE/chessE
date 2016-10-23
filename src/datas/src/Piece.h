@@ -59,6 +59,8 @@ public:
 
 	ETypePiece getTypePiece() const;
 
+	int getNumJoueur() const;
+
 	const Position& getPosition() const;
 	Position& accessPosition();
 
@@ -69,6 +71,7 @@ protected:
 	const EColor _color;
 	Position _position;
 
+	const int _numJ;
 	const int _value;
 	const ETypePiece _typePiece;
 

@@ -16,16 +16,14 @@
 #include "../../datas/src/Fou.h"
 #include "../../datas/src/Roi.h"
 #include "../../datas/src/Dame.h"
-#include "../../datas/src/Dimension.h"
-
 
 namespace game{
 
 EtatGame* EtatGame::_instance = 0;
 
 EtatGame::EtatGame():
-		_possiblePriseEnPassant(false)/*,
-		_plateau(std::vector< std::vector< datas::PiecePtr> >(NBRE_LIGNE, std::vector< datas::PiecePtr>(NBRE_COLONNE, 0) ))*/
+		_possiblePriseEnPassant(false),
+		_hasAlreadyPiece(false)
 {}
 
 EtatGame::~EtatGame()
@@ -164,30 +162,32 @@ void EtatGame::setBegginingGameWithoutHandicap(){
 	aPosition.setPosition(7, 3);
 	datas::Roi *aRoiBlack = new datas::Roi(datas::BLACK, aPosition);
 	accessCase(aPosition).setPiece(aRoiBlack);
+
+	_hasAlreadyPiece = true;
 }
 
 const datas::Case& EtatGame::getCase(int ligne, int col) const{
-	return _echiquier.at(ligne).at(col);
+	return _echiquier[ligne][col];
 }
 
 datas::Case& EtatGame::accessCase(int ligne, int col){
-	return _echiquier.at(ligne).at(col);
+	return _echiquier[ligne][col];
 }
 
 const datas::Case& EtatGame::getCase(const datas::Position& iPosition) const{
-	return _echiquier.at(iPosition.getX()).at(iPosition.getY());
+	return _echiquier[iPosition.getX()][iPosition.getY()];
 }
 
 datas::Case& EtatGame::accessCase(const datas::Position& iPosition){
-	return _echiquier.at(iPosition.getX()).at(iPosition.getY());
+	return _echiquier[iPosition.getX()][iPosition.getY()];
 }
 
 datas::Move& EtatGame::accessLastMove(){
-	return *(_lastMove.get());
+	return _lastMove;
 }
 
 const datas::Move& EtatGame::getLastMove() const{
-	return *(_lastMove.get());
+	return _lastMove;
 }
 
 /*
@@ -196,7 +196,7 @@ const datas::Move& EtatGame::getLastMove() const{
  * peux pas le faire dans validMove (encore moins bien dans conception)
  */
 void EtatGame::setChangeMove(const datas::Move& iMove){
-	this->setPossiblePriseEnPassant(false);
+	setPossiblePriseEnPassant(false);
 	const datas::Piece* aPieceMove = &(this->getCase(iMove.getStartPosition()).getPiece());
 	if(aPieceMove->getTypePiece() == datas::PION_TYPE){
 		if(std::abs(iMove.getStartPosition().getY() - iMove.getEndPosition().getY()) == 2){
@@ -204,25 +204,33 @@ void EtatGame::setChangeMove(const datas::Move& iMove){
 		}
 	}
 
-	if(aPieceMove->getTypePiece() == datas::TOUR_TYPE){
-		//si les deux tours ont bougés ou le roi => plus de rock possible
-		//boost::shared_ptr<datas::Tour> aTour = std::dynamic_pointer_cast<datas::Tour>(aPieceMove);
-		const datas::Tour* aTour = dynamic_cast<const datas::Tour*>(aPieceMove);
-		tourAlreadyMoved[aTour->getNumTour()] = true;
+	int numJ = aPieceMove->getNumJoueur();
+	if(_rockPossible[numJ]){
+		if(aPieceMove->getTypePiece() == datas::ROI_TYPE){
+			_rockPossible[numJ] = false;
+		}
+
+		if(aPieceMove->getTypePiece() == datas::TOUR_TYPE){
+			//si les deux tours ont bougés ou le roi => plus de rock possible
+			//boost::shared_ptr<datas::Tour> aTour = std::dynamic_pointer_cast<datas::Tour>(aPieceMove);
+			const datas::Tour* aTour = dynamic_cast<const datas::Tour*>(aPieceMove);
+			int numTour = aTour->getNumTour();
+			tourAlreadyMoved[numJ][numTour];
+			if(tourAlreadyMoved[numJ][(numTour+1)%2]){
+				_rockPossible[numJ] = false;
+			}
+		}
 	}
 
-	//iMove.setPriseEnPassant(this->getPossiblePriseEnPassant());
-	//iMove.setPriseEnPassant(true);
+	if(std::abs(iMove.getStartPosition().getX() - iMove.getEndPosition().getX())){
+		setPossiblePriseEnPassant(true);
+	}
 
 	if(iMove.hasCapturePiece()){
 		this->accessCase(iMove.getEndPosition()).accessPiece().setDead();
 	}
-	//this->accessCase(iMove.getEndPosition()).setPiece(*(this->getCase(iMove.getStartPosition()).getPiece()));
-	this->accessCase(iMove.getStartPosition()).resetPiece();
-	//etre sur que & d'une reference est bien l'addresse voulue
-	datas::Position aPosition1, aPosition2;
-	datas::Move aMove(aPosition1, aPosition2);
-	//this->accessLastMove() = aMove;
+
+	this->accessLastMove() = iMove;
 
 	//ou ??
 	/*this->accessPiece(iMove.getEndPosition()) = this->getPiece(iMove.getStartPosition()).get();
@@ -231,6 +239,12 @@ void EtatGame::setChangeMove(const datas::Move& iMove){
 	//on veux prednre vers quoi pointe
 
 	//this->getPiece(iMove.get)
+	movePiece(iMove.getStartPosition(), iMove.getEndPosition());
+}
+
+void EtatGame::movePiece(const datas::Position& iPositionStart, const datas::Position& iPositionEnd){
+	this->accessCase(iPositionEnd).setPiece(&(this->accessCase(iPositionStart).accessPiece()));
+	this->accessCase(iPositionStart).resetPiece();
 }
 
 } /* namespace game*/
