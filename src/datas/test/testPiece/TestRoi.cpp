@@ -39,12 +39,11 @@ void TestRoi::testEstMoveOKTheorique() const{
 	cout << "TestRoi - testEstMoveOKTheorique";
 
 	Position aPosition(2, 5);
-	game::EtatGame* aEtatGame = game::EtatGame::accessInstance();
+	game::EtatGame& aEtatGame = game::EtatGame::accessInstance();
 
-	game::EtatGame& aEtatGame2 = *(game::EtatGame::accessInstance());
 	Roi *aRoi = new Roi(WHITE, aPosition);
 
-	aEtatGame->setPieceCaseXY(aPosition, aRoi);
+	aEtatGame.setPieceCaseXY(aPosition, aRoi);
 	//aEtatGame->reset();
 
 	cout << "	OK" << endl;

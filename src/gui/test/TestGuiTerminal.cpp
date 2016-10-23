@@ -25,10 +25,12 @@ void TestGuiTerminal::startTests() const{
 
 void TestGuiTerminal::testDisplay() const{
 	DisplayTerminal aDisplayTerminal;
-	EtatGame *aEtatGame = game::EtatGame::accessInstance();
+	EtatGame& aEtatGame = game::EtatGame::accessInstance();
 
-	aEtatGame->setBegginingGameWithoutHandicap();
+	aEtatGame.setBegginingGameWithoutHandicap();
 
-	aDisplayTerminal.displayPositionGameTerminal(*aEtatGame);
+	aDisplayTerminal.displayPositionGameTerminal(aEtatGame);
+
+	aEtatGame.reset();
 }
 

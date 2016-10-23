@@ -19,11 +19,12 @@
 
 namespace game{
 
-EtatGame* EtatGame::_instance = 0;
+EtatGame EtatGame::_instance = EtatGame();
+//EtatGame* EtatGame::_instance = 0;
 
 EtatGame::EtatGame():
-		_possiblePriseEnPassant(false),
-		_hasAlreadyPiece(false)
+				_possiblePriseEnPassant(false),
+				_hasAlreadyPiece(false)
 {}
 
 EtatGame::~EtatGame()
@@ -38,29 +39,27 @@ void EtatGame::initEtatGame(){
 	}*/
 }
 
-const EtatGame* EtatGame::getInstance() {
-	_instance = new EtatGame();
+const EtatGame& EtatGame::getInstance() {
 	return _instance;
 }
 
-EtatGame* EtatGame::accessInstance() {
-	_instance = new EtatGame();
+EtatGame& EtatGame::accessInstance() {
 	return _instance;
 }
 
-const datas::AllPiece& EtatGame::getAllPiecesJ1() const{
+const datas::AllPiecePtr& EtatGame::getAllPiecesJ1() const{
 	return _allPiecesJoueurs[datas::JOUEUR_1];
 }
 
-void EtatGame::setAllPiecesJ1(datas::AllPiece& iAllPieces){
+void EtatGame::setAllPiecesJ1(datas::AllPiecePtr& iAllPieces){
 	_allPiecesJoueurs[datas::JOUEUR_1] = iAllPieces;
 }
 
-const datas::AllPiece& EtatGame::getAllPiecesJ2() const{
+const datas::AllPiecePtr& EtatGame::getAllPiecesJ2() const{
 	return _allPiecesJoueurs[datas::JOUEUR_2];
 }
 
-void EtatGame::setAllPiecesJ2(datas::AllPiece& iAllPieces){
+void EtatGame::setAllPiecesJ2(datas::AllPiecePtr& iAllPieces){
 	_allPiecesJoueurs[datas::JOUEUR_2] = iAllPieces;
 }
 
@@ -245,6 +244,27 @@ void EtatGame::setChangeMove(const datas::Move& iMove){
 void EtatGame::movePiece(const datas::Position& iPositionStart, const datas::Position& iPositionEnd){
 	this->accessCase(iPositionEnd).setPiece(&(this->accessCase(iPositionStart).accessPiece()));
 	this->accessCase(iPositionStart).resetPiece();
+}
+
+void EtatGame::setPieceCaseXY(datas::Position& iPosition, datas::Piece* iPiece){
+	accessCase(iPosition).setPiece(iPiece);
+	_hasAlreadyPiece = true;
+}
+
+void EtatGame::reset(){
+	std::cout << std::endl;
+	if(_hasAlreadyPiece){
+		std::cout << "reset" << std::endl;
+		_hasAlreadyPiece = false;
+		for(auto it = _allPiecesJoueurs.begin(); it != _allPiecesJoueurs.end(); ++it){
+			for(auto it2 = it->begin(); it2 != it->end(); ++it2){
+				it2->reset();
+			}
+		}
+	}
+	else{
+		std::cout << "not reset" << std::endl;
+	}
 }
 
 } /* namespace game*/

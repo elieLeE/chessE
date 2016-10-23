@@ -18,12 +18,12 @@ JoueurIA::~JoueurIA()
 {}
 
 MovePtr JoueurIA::nextMove(){
-	const game::EtatGame* aEtatGame = game::EtatGame::getInstance();
+	const game::EtatGame& aEtatGame = game::EtatGame::getInstance();
 	MovePtr aMove;
 
 	do{
 		//aMove = game::nextMoveIA(aEtatGame);
-	}while(aMove->isValidateMove(*aEtatGame));
+	}while(aMove->isValidateMove(aEtatGame));
 
 	return aMove;
 }

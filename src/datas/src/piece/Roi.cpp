@@ -61,9 +61,9 @@ bool Roi::estMoveOKTheorique(const Move& iMove) const{
 bool Roi::estMoveOKPratique(const Move& iMove) const{
 	bool aBool = true;
 	Position aPositionFinale = iMove.getEndPosition();
-	const game::EtatGame* aEtatGame = game::EtatGame::getInstance();
+	const game::EtatGame& aEtatGame = game::EtatGame::getInstance();
 
-	for( auto it = aEtatGame->getAllPiecesJ1().begin(); it != aEtatGame->getAllPiecesJ1().end(); ++it ){
+	for( auto it = aEtatGame.getAllPiecesJ1().begin(); it != aEtatGame.getAllPiecesJ1().end(); ++it ){
 		switch(it->get()->getTypePiece()){
 		if(it->get()->isAlive()){
 			case PION_TYPE:
@@ -110,12 +110,12 @@ bool Roi::cavalierPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Posit
 }
 
 bool Roi::fouPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionFou) const{
-	const Fou *aFou = dynamic_cast<const datas::Fou*>(&(game::EtatGame::getInstance()->getCase(iPositionFou).getPiece()));
+	const Fou *aFou = dynamic_cast<const datas::Fou*>(&(game::EtatGame::getInstance().getCase(iPositionFou).getPiece()));
 	return aFou->canAccessToCase(iPositionFinaleMove);
 }
 
 bool Roi::tourPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionTour) const{
-	const Tour *aTour = dynamic_cast<const datas::Tour*>(&(game::EtatGame::getInstance()->getCase(iPositionTour).getPiece()));
+	const Tour *aTour = dynamic_cast<const datas::Tour*>(&(game::EtatGame::getInstance().getCase(iPositionTour).getPiece()));
 	return aTour->canAccessToCase(iPositionFinaleMove);
 }
 

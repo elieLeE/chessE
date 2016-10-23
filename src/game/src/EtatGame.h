@@ -25,13 +25,14 @@ class EtatGame {
 public:
 	virtual ~EtatGame();
 
-	static const EtatGame* getInstance();
+	static const EtatGame& getInstance();
 	//utile ?? => pour _possiblePriseEnPassant ? => passer par 1 pointeur de booleen ??
-	static EtatGame* accessInstance();
+	static EtatGame& accessInstance();
 
 	void initEtatGame();
 
 	void movePiece(const datas::Position& iPositionStart, const datas::Position& iPositionEnd);
+	void setPieceCaseXY(datas::Position& iPosition, datas::Piece* iPiece);
 
 	const datas::Case& getCase(int ligne, int col) const;
 	datas::Case& accessCase(int ligne, int col);
@@ -39,11 +40,11 @@ public:
 	const datas::Case& getCase(const datas::Position& iPosition) const;
 	datas::Case& accessCase(const datas::Position& iPosition);
 
-	const datas::AllPiece& getAllPiecesJ1() const;
-	void setAllPiecesJ1(datas::AllPiece& iAllPieces);
+	const datas::AllPiecePtr& getAllPiecesJ1() const;
+	void setAllPiecesJ1(datas::AllPiecePtr& iAllPieces);
 
-	const datas::AllPiece& getAllPiecesJ2() const;
-	void setAllPiecesJ2(datas::AllPiece& iAllPieces);
+	const datas::AllPiecePtr& getAllPiecesJ2() const;
+	void setAllPiecesJ2(datas::AllPiecePtr& iAllPieces);
 
 	const datas::Echiquier& getEchiquier() const;
 	void setEchiquier(datas::Echiquier& iEchiquier);
@@ -70,7 +71,8 @@ private:
 
 	void setPossiblePriseEnPassant(bool iPossiblePriseEnPassant);
 
-	static EtatGame* _instance;
+	//static EtatGame* _instance;
+	static EtatGame _instance;
 
 	//std::array<std::array<datas::Case, NBRE_LIGNE>, NBRE_COLONNE> echiquier;
 	datas::Echiquier _echiquier;
@@ -81,7 +83,7 @@ private:
 	//utiliser enum + pour les deux joueurs
 	std::array <bool, NBRE_JOUEURS> _rockPossible;
 
-	std::array <datas::AllPiece, 2> _allPiecesJoueurs;
+	std::array <datas::AllPiecePtr, 2> _allPiecesJoueurs;
 
 	datas::Move _lastMove;
 
