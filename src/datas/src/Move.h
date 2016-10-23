@@ -22,7 +22,7 @@ class Move {
 public:
 	Move();
 	Move(Position& iPositionStart, Position& iPositionEnd,
-			ETypePiece iCapturedPiece = NO_TYPE, bool iPriseEnPassant = false);
+			ETypePiece iCapturedPiece = NO_TYPE, ETypeMove iTypeMove = NORMALLY_MOVE);
 	virtual ~Move();
 
 	const Position& getStartPosition() const ;
@@ -45,6 +45,8 @@ public:
 
 	void operator=(const Move& iMove);
 
+	void setMoveProperties();
+
 	//add prise en passant and remove bool priseEnPAssant
 
 private:
@@ -54,7 +56,6 @@ private:
 	//les autres prises sont forcements a la position finale
 	//Position _capturedPiecePosition;
 
-	bool _priseEnPassant;
 	ETypePiece _capturedPiece;
 	ETypeMove _typeMove;
 };

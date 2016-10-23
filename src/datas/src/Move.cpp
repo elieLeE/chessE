@@ -13,11 +13,11 @@ namespace datas{
 Move::Move()
 {}
 
-Move::Move(Position& iPositionStart, Position& iPositionEnd, ETypePiece iCapturedPiece, bool iPriseEnPassant):
+Move::Move(Position& iPositionStart, Position& iPositionEnd, ETypePiece iCapturedPiece, ETypeMove iTypeMove):
 		_start(iPositionStart),
 		_end(iPositionEnd),
-		_priseEnPassant(iPriseEnPassant),
-		_capturedPiece(iCapturedPiece)
+		_capturedPiece(iCapturedPiece),
+		_typeMove(iTypeMove)
 {}
 
 Move::~Move()
@@ -40,11 +40,7 @@ int Move::evaluateDistance() const{
 }
 
 bool Move::getPriseEnPassant() const{
-	return _priseEnPassant;
-}
-
-void Move::setPriseEnPassant(bool iBool){
-	_priseEnPassant = iBool;
+	return (_typeMove == PRISE_EN_PASSANT);
 }
 
 ETypePiece Move::getHasCapturedPiece() const{
@@ -76,10 +72,32 @@ bool Move::isValidateMove(const game::EtatGame& iEtatGame) const{
 	return aBool;
 }
 
+void Move::setMoveProperties(){
+	const game::EtatGame* aEtatGame = game::EtatGame::getInstance();
+	const Piece* aPiece = &(aEtatGame->getCase(_start).getPiece());
+
+	if((aPiece->getTypePiece() == PION_TYPE) &&
+			!_start.sameCol(_end) &&
+			!aEtatGame->getCase(_end).hasPiece()){
+		_typeMove = PRISE_EN_PASSANT;
+		_capturedPiece = PION_TYPE;
+	}
+	else if(!aEtatGame->getCase(_end).hasPiece()){
+		_capturedPiece = aEtatGame->getCase(_end).getPiece().getTypePiece();
+	}
+	else if(aPiece->getTypePiece() == ROI_TYPE){
+		if(_start.evaluateDistance(_end) == PETIT_ROCK){
+			_typeMove = PETIT_ROCK;
+		}
+		else if(_start.evaluateDistance(_end) == GRAND_ROCK){
+			_typeMove = GRAND_ROCK;
+		}
+	}
+}
+
 void Move::operator=(const Move& iMove){
 	_start = iMove.getStartPosition();
 	_end = iMove.getEndPosition();
-	_priseEnPassant = iMove.getPriseEnPassant();
 	_capturedPiece = iMove.getHasCapturedPiece();
 	_typeMove = iMove.getTypeMove();
 }
