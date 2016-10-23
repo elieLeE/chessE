@@ -12,6 +12,7 @@
 #include <boost/shared_ptr.hpp>
 #include <array>
 #include "Dimension.h"
+#include "PieceValue.h"
 
 namespace datas{
 	class Piece;
@@ -22,8 +23,8 @@ namespace datas{
 
 	typedef boost::shared_ptr<datas::Piece> PiecePtr;
 
-	typedef std::vector<PiecePtr> AllPiece;
-	typedef boost::shared_ptr<AllPiece> AlivePiecePtr;
+	typedef std::array<PiecePtr, NBRE_PIECE_INIT> AllPiece;
+	typedef boost::shared_ptr<AllPiece> AllPiecePtr;
 
 	typedef std::array<std::array<datas::Case, NBRE_LIGNE>, NBRE_COLONNE> Echiquier;
 	typedef boost::shared_ptr<Echiquier> PlateauPtr;

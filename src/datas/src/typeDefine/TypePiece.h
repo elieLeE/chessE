@@ -11,12 +11,12 @@
 namespace datas{
 
 typedef enum ETypePiece{
-	ROI_TYPE,
-	DAME_TYPE,
-	TOUR_TYPE,
+	PION_TYPE,
 	CAVALIER_TYPE,
 	FOU_TYPE,
-	PION_TYPE,
+	TOUR_TYPE,
+	DAME_TYPE,
+	ROI_TYPE,
 	NO_TYPE
 }ETypePiece;
 

@@ -19,6 +19,14 @@ public:
 	virtual ~Roi();
 
 	virtual bool isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
+	bool estMoveOKTheorique(const game::EtatGame& iEtatGame, const Move& iMove) const;
+	bool estMoveOKPratique(const game::EtatGame& iEtatGame, const Move& iMove) const;
+	bool pionPeuxTuerLeRoi(const Position& iposition) const;
+	bool cavalierPeuxTuerLeRoi(const Position& iposition) const;
+	bool fouPeuxTuerLeRoi(const Position& iposition) const;
+	bool tourPeuxTuerLeRoi(const Position& iposition) const;
+	bool damePeuxTuerLeRoi(const Position& iposition) const;
+
 	virtual const std::list <boost::shared_ptr <Move> >getPossibleMoves() const ;
 
 private:
