@@ -75,12 +75,11 @@ private:
 	//std::array<std::array<datas::Case, NBRE_LIGNE>, NBRE_COLONNE> echiquier;
 	datas::Echiquier _echiquier;
 
-	std::array <std::array<bool, 2>, 2> tourAlreadyMoved;
-	//std::array <bool, 2> _roiAlreadyMove;
+	std::array <std::array<bool, NBRE_JOUEURS>, NBRE_TOURS> tourAlreadyMoved;
 
 	bool _possiblePriseEnPassant;
 	//utiliser enum + pour les deux joueurs
-	std::array <bool, 2> _rockPossible;
+	std::array <bool, NBRE_JOUEURS> _rockPossible;
 
 	datas::AllPiece _allPiecesJ1;
 	datas::AllPiece _allPiecesJ2;
