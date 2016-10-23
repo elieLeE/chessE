@@ -42,6 +42,7 @@ public:
 	 */
 	void setDead();
 	void setAlive();
+	bool isAlive() const;
 
 	/*
 	 * use when a new move is played

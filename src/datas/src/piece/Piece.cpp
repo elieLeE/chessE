@@ -34,6 +34,10 @@ void Piece::setAlive(){
 	_alive = true;
 }
 
+bool Piece::isAlive() const{
+	return _alive;
+}
+
 EColor Piece::getColor() const{
 	return _color;
 }

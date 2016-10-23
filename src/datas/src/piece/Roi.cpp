@@ -60,28 +60,33 @@ bool Roi::estMoveOKPratique(const game::EtatGame& iEtatGame, const Move& iMove) 
 	bool aBool = true;
 	for( auto it = iEtatGame.getAllPiecesJ1().begin(); it != iEtatGame.getAllPiecesJ1().end(); ++it ){
 		switch(it->get()->getTypePiece()){
-		case PION_TYPE:
-			aBool = pionPeuxTuerLeRoi(it->get()->getPosition());
-			break;
+		if(it->get()->isAlive()){
+			case PION_TYPE:
+				aBool = pionPeuxTuerLeRoi(it->get()->getPosition());
+				break;
 
-		case CAVALIER_TYPE:
-			aBool = cavalierPeuxTuerLeRoi(it->get()->getPosition());
-			break;
+			case CAVALIER_TYPE:
+				aBool = cavalierPeuxTuerLeRoi(it->get()->getPosition());
+				break;
 
-		case FOU_TYPE:
-			aBool = fouPeuxTuerLeRoi(it->get()->getPosition());
-			break;
+			case FOU_TYPE:
+				aBool = fouPeuxTuerLeRoi(it->get()->getPosition());
+				break;
 
-		case TOUR_TYPE:
-			aBool = tourPeuxTuerLeRoi(it->get()->getPosition());
-			break;
+			case TOUR_TYPE:
+				aBool = tourPeuxTuerLeRoi(it->get()->getPosition());
+				break;
 
-		case DAME_TYPE:
-			aBool = damePeuxTuerLeRoi(it->get()->getPosition());
-			break;
-		}
-		if(!aBool){
-			break;
+			case DAME_TYPE:
+				aBool = damePeuxTuerLeRoi(it->get()->getPosition());
+				break;
+
+			case ROI_TYPE:
+				break;
+			}
+			if(!aBool){
+				break;
+			}
 		}
 	}
 	return aBool;
