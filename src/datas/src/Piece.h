@@ -18,6 +18,7 @@
 #include "Color.h"
 #include "Position.h"
 #include "Move.h"
+#include "TypePlayer.h"
 
 namespace game{
 class EtatGame;
@@ -71,7 +72,7 @@ protected:
 	const EColor _color;
 	Position _position;
 
-	const int _numJ;
+	const ENumPlayer _numJ;
 	const int _value;
 	const ETypePiece _typePiece;
 

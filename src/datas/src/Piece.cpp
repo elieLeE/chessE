@@ -34,21 +34,6 @@ void Piece::setAlive(){
 	_alive = true;
 }
 
-/*bool Piece::firstMoveValidation(Move& iMove){
-	if(iMove.getStartPosition() != _position){
-		// rejeter une exception
-		std::cout << "position de depart du mouvement ne correspond pas a celle de la piece" << std::endl;
-	}
-
-	else if(iMove.getEndPosition().isValid()){
-		// rejeter une exception
-		std::cout << "position finale du mouvement incorrecte" << std::endl;
-	}
-	else if{
-		iM
-	}
-}*/
-
 EColor Piece::getColor() const{
 	return _color;
 }
