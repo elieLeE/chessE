@@ -18,7 +18,7 @@ public:
 	Pion(const EColor iColor, Position iPosition, const bool iSens);
 	virtual ~Pion();
 
-	virtual bool isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
+	virtual bool isValideMove(const Move& iMove) const;
 
 	//virtual const std::list <boost::shared_ptr <Move> > getPossibleMoves() const;
 

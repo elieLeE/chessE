@@ -22,8 +22,6 @@ int main() {
 
 	cout << endl << "all OK" << endl;
 
-	//BOOST_ASSERT_MSG(false, "test");
-
 	return 0;
 }
 

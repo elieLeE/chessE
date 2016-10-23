@@ -25,7 +25,7 @@ public:
 	Tour(const EColor iColor, Position iPosition, const int iNumTour);
 	virtual ~Tour();
 
-	virtual bool isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
+	virtual bool isValideMove(const Move& iMove) const;
 
 	bool canAccessToCase(const Position& iPosition) const;
 

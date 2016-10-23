@@ -58,8 +58,8 @@ Position& Piece::accessPosition(){
 	return _position;
 }
 
-bool Piece::isValideMove(const Position& iPosition) const{
-	return (iPosition == _position);
+bool Piece::isValideMove(const Move& iMove) const{
+	return (iMove.getStartPosition() == _position);
 }
 
 }

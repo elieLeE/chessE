@@ -15,17 +15,30 @@ then
 	exit
 fi
 
+opt=
+if [ $# == 1 ]
+then
+    echo "1 argument"
+    if [ $1 == -v ] || [ $1 == -valgrind ]
+    then
+	echo "avec valgrind"
+	opt=valgrind --leak-check=full --show-leak-kinds=all
+    fi
+fi
+echo $1
+echo $opt
+
 echo "lancement des test unitaires"
 echo
-./datas/test/./prog
+$opt ./datas/test/./prog
 resultTest "datas" $?
 
 echo 
-./game/test/./prog
+$opt ./game/test/./prog $opt
 resultTest "game" $? 
 
 echo 
-./gui/test/./prog
+$opt ./gui/test/./prog $opt
 resultTest "gui" $?
 
 echo 

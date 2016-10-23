@@ -23,8 +23,7 @@ namespace datas{
 
 	typedef boost::shared_ptr<datas::Piece> PiecePtr;
 
-	typedef std::array<PiecePtr, NBRE_PIECE_INIT> AllPiece;
-	typedef boost::shared_ptr<AllPiece> AllPiecePtr;
+	typedef std::array<PiecePtr, NBRE_PIECE_INIT> AllPiecePtr;
 
 	typedef std::array<std::array<datas::Case, NBRE_LIGNE>, NBRE_COLONNE> Echiquier;
 	typedef boost::shared_ptr<Echiquier> PlateauPtr;

@@ -22,20 +22,21 @@ Pion::Pion(const EColor iColor, Position iPosition, const bool iSens):
 Pion::~Pion()
 {}
 
-bool Pion::isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
+bool Pion::isValideMove(const Move& iMove) const{
 	bool aBool = false;
 
 	//aBool = (Piece*)this->isValidateMove(iEtatGame, iMove);
 
-	if(((Piece*)this)->isValideMove(iEtatGame, iMove)){
+	if(((Piece*)this)->isValideMove(iMove)){
 		/*
 		 * verifier que la position finale du movement est accessible a partir
 		 * de la position courante de la piece et de son type.
 		 * verifier egalement qu'une autre piece de la meme couleur n'y est pas deja
 		 * */
-		const Echiquier aEchiquier = iEtatGame.getEchiquier();
+		const game::EtatGame* aEtatGame = game::EtatGame::getInstance();
+		const Echiquier aEchiquier = aEtatGame->getEchiquier();
 		//PiecePtr aPiece = aPlateau->at(iMove.getEndPosition().getX()).at(iMove.getEndPosition().getY());
-		const Piece *aPiece = &(iEtatGame.getCase(iMove.getEndPosition()).getPiece());
+		const Piece *aPiece = &(aEtatGame->getCase(iMove.getEndPosition()).getPiece());
 		//boost::shared_ptr<Piece> aPiece = aPlateau->at(iMove.getEndPosition().getX()).at(iMove.getEndPosition().getY());
 		int moreOrLess = _sensCroissant?1:-1;
 
@@ -84,11 +85,11 @@ bool Pion::isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) cons
 		}
 
 		//prise en passant
-		else if(!_hasAlreadyMoved && iEtatGame.getPossiblePriseEnPassant()){
+		else if(!_hasAlreadyMoved && aEtatGame->getPossiblePriseEnPassant()){
 			//a gauche
 			//PieceCSPtr aSecondPiece = aPlateau->at(_position.getX()-1).at(_position.getY());
 			//boost::shared_ptr<Piece> aSecondPiece = aPlateau->at(_position.getX()-1).at(_position.getY());
-			const Piece* aSecondPiece = &(iEtatGame.getCase(_position.getX()-1, _position.getY()).getPiece());
+			const Piece* aSecondPiece = &(aEtatGame->getCase(_position.getX()-1, _position.getY()).getPiece());
 			if(aSecondPiece && (aSecondPiece->getTypePiece() == PION_TYPE) && (aSecondPiece->getColor() != getColor()) &&
 					((iMove.getEndPosition().getX()==_position.getX()-1) && (iMove.getEndPosition().getY() == _position.getY()+moreOrLess))){
 				//il ne doit y avoir aucune piece car le mouvement de l'autre joueur avec le pion doit etre celui juste avant
@@ -103,7 +104,7 @@ bool Pion::isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) cons
 			//a droite
 			else {
 				//aSecondPiece = aPlateau->at(_position.getX()+1).at(_position.getY());
-				aSecondPiece = &(iEtatGame.getCase(_position.getX()+1, _position.getY()).getPiece());
+				aSecondPiece = &(aEtatGame->getCase(_position.getX()+1, _position.getY()).getPiece());
 				if(aSecondPiece && (aSecondPiece->getTypePiece()==PION_TYPE) && (aSecondPiece->getColor() != getColor()) &&
 						((iMove.getEndPosition().getX()==_position.getX()+1) && (iMove.getEndPosition().getY() == _position.getY()+moreOrLess))){
 					if(!aPiece){

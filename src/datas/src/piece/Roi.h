@@ -20,10 +20,10 @@ public:
 	Roi(EColor iColor, Position iPosition);
 	virtual ~Roi();
 
-	virtual bool isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
+	virtual bool isValideMove(const Move& iMove) const;
 
-	bool estMoveOKTheorique(const game::EtatGame& iEtatGame, const Move& iMove) const;
-	bool estMoveOKPratique(const game::EtatGame& iEtatGame, const Move& iMove) const;
+	bool estMoveOKTheorique(const Move& iMove) const;
+	bool estMoveOKPratique(const Move& iMove) const;
 	bool pionPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionPion) const;
 	bool cavalierPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionCavalier) const;
 	bool fouPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionFou) const;

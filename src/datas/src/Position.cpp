@@ -73,4 +73,10 @@ int Position::evaluateDistance(const Position& iPosition) const{
 	return (x2 + y2);
 }
 
+EColor Position::getColorCase() const{
+	int sum = getX() + getY();
+
+	return (sum%2==0?WHITE:BLACK);
+}
+
 }

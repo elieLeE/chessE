@@ -18,7 +18,9 @@ public:
 	Dame(const EColor iColor, Position iPosition);
 	virtual ~Dame();
 
-	virtual bool isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
+	virtual bool isValideMove(const Move& iMove) const;
+
+	bool canAccessToCase(const Position& iPosition) const;
 };
 
 }

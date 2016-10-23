@@ -8,6 +8,8 @@
 #ifndef POSITION_H_
 #define POSITION_H_
 
+#include "typeDefine/Color.h"
+
 namespace datas {
 
 class Position {
@@ -30,6 +32,8 @@ public:
 
 	bool sameCol(const Position& iPosition) const;
 	bool sameLigne(const Position& iPosition) const;
+
+	EColor getColorCase() const;
 
 	bool operator==(const Position& iPosition) const ;
 	bool operator!=(const Position& iPosition) const ;

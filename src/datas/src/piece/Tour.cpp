@@ -9,6 +9,8 @@
 #include "../typeDefine/TypePiece.h"
 #include "../typeDefine/PieceValue.h"
 #include "../Position.h"
+#include <cmath>
+#include "../../../game/src/EtatGame.h"
 
 namespace datas{
 
@@ -24,15 +26,38 @@ int Tour::getNumTour(void) const{
 	return _numTour;
 }
 
-bool Tour::isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
+bool Tour::isValideMove(const Move& iMove) const{
 	return true;
 }
 
 bool Tour::canAccessToCase(const Position& iPosition) const{
-	bool aBool = false;
+	bool aBool = true;
 
 	if(iPosition.sameLigne(_position)){
+		int aDebut = std::min(iPosition.getY(), _position.getY());
+		int aEnd = std::max(iPosition.getY(), _position.getY());
+		int aLigne = _position.getX();
+		const game::EtatGame* aGame = game::EtatGame::getInstance();
 
+		for(int i=aDebut+1; i<aEnd; i++){
+			if(aGame->getCase(aLigne, i).hasPiece()){
+				aBool = false;
+				break;
+			}
+		}
+	}
+	else if(iPosition.sameCol(_position)){
+		int aDebut = std::min(iPosition.getX(), _position.getX());
+		int aEnd = std::max(iPosition.getX(), _position.getX());
+		int aCol = _position.getY();
+		const game::EtatGame* aGame = game::EtatGame::getInstance();
+
+		for(int i=aDebut+1; i<aEnd; i++){
+			if(aGame->getCase(i, aCol).hasPiece()){
+				aBool = false;
+				break;
+			}
+		}
 	}
 
 	return aBool;

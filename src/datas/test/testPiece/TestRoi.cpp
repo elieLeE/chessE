@@ -8,6 +8,9 @@
 #include <iostream>
 
 #include "TestRoi.h"
+#include "../../src/piece/Roi.h"
+#include "../../src/typeDefine/Color.h"
+#include "../../../game/src/EtatGame.h"
 
 using namespace std;
 
@@ -27,13 +30,24 @@ void TestRoi::startTests(){
 }
 
 void TestRoi::testIsValidaMove() const{
-	cout << "TestRoi - isValideMove";
+	cout << "TestRoi - testIsValidaMove";
 
-	cout << "	OK" << endl;
+	cout << "	TO IMPLEMENT" << endl;
 }
 
 void TestRoi::testEstMoveOKTheorique() const{
+	cout << "TestRoi - testEstMoveOKTheorique";
 
+	Position aPosition(2, 5);
+	game::EtatGame* aEtatGame = game::EtatGame::accessInstance();
+
+	game::EtatGame& aEtatGame2 = *(game::EtatGame::accessInstance());
+	Roi *aRoi = new Roi(WHITE, aPosition);
+
+	aEtatGame->setPieceCaseXY(aPosition, aRoi);
+	//aEtatGame->reset();
+
+	cout << "	OK" << endl;
 }
 
 } /* namespace datas */

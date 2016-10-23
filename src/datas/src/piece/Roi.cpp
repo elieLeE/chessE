@@ -21,19 +21,17 @@ Roi::Roi(const EColor iColor, Position iPosition):
 Roi::~Roi()
 {}
 
-bool Roi::isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
-	return (estMoveOKTheorique(iEtatGame, iMove) &&
-			estMoveOKPratique(iEtatGame, iMove));
+bool Roi::isValideMove(const Move& iMove) const{
+	return (estMoveOKTheorique(iMove) &&
+			estMoveOKPratique(iMove));
 }
 
 //verifie que le movement est possible pour un Roi dans 1 cas general.
 //ne verifie pas qu'il puisse mourir en jouant ainsi
-bool Roi::estMoveOKTheorique(const game::EtatGame& iEtatGame, const Move& iMove) const{
+bool Roi::estMoveOKTheorique(const Move& iMove) const{
 	bool aBool = false;
 
-	//aBool = this->isValideMove(iMove.getStartPosition());
-
-	if(((Piece*)this)->isValideMove(iMove.getStartPosition())){
+	if(((Piece*)this)->isValideMove(iMove)){
 		int dist = iMove.evaluateDistance();
 		// d > 0 car on a verifie precedement que les position start et end n'etaient pas egales
 		//movement normal
@@ -60,35 +58,36 @@ bool Roi::estMoveOKTheorique(const game::EtatGame& iEtatGame, const Move& iMove)
 }
 
 //verifie que le Roi ne peux pas etre pris au coup suivant => validation pratique
-bool Roi::estMoveOKPratique(const game::EtatGame& iEtatGame, const Move& iMove) const{
+bool Roi::estMoveOKPratique(const Move& iMove) const{
 	bool aBool = true;
 	Position aPositionFinale = iMove.getEndPosition();
+	const game::EtatGame* aEtatGame = game::EtatGame::getInstance();
 
-	for( auto it = iEtatGame.getAllPiecesJ1().begin(); it != iEtatGame.getAllPiecesJ1().end(); ++it ){
+	for( auto it = aEtatGame->getAllPiecesJ1().begin(); it != aEtatGame->getAllPiecesJ1().end(); ++it ){
 		switch(it->get()->getTypePiece()){
 		if(it->get()->isAlive()){
 			case PION_TYPE:
-				aBool = pionPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
+				aBool = !pionPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
 				break;
 
 			case CAVALIER_TYPE:
-				aBool = cavalierPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
+				aBool = !cavalierPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
 				break;
 
 			case FOU_TYPE:
-				aBool = fouPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
+				aBool = !fouPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
 				break;
 
 			case TOUR_TYPE:
-				aBool = tourPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
+				aBool = !tourPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
 				break;
 
 			case DAME_TYPE:
-				aBool = damePeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
+				aBool = !damePeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
 				break;
 
 			case ROI_TYPE:
-				aBool = secondRoiColle(aPositionFinale, it->get()->getPosition());
+				aBool = !secondRoiColle(aPositionFinale, it->get()->getPosition());
 				break;
 
 			case NO_TYPE:

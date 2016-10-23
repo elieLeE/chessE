@@ -47,8 +47,8 @@ public:
 	/*
 	 * use when a new move is played
 	 */
-	virtual bool isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) const = 0;
-	bool isValideMove(const Position& iPosition) const;
+	//virtual bool isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) const = 0;
+	virtual bool isValideMove(const Move& iMove) const;
 	//bool automaticValidationMove(const Move& iMove) const;
 
 	//bool firstMoveValidation(Move& iMove);
