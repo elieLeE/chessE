@@ -18,7 +18,7 @@ public:
 	Dame(const EColor iColor, Position iPosition);
 	virtual ~Dame();
 
-	virtual bool isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
+	virtual bool isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
 };
 
 }

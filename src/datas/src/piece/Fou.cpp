@@ -18,7 +18,11 @@ Fou::Fou(const EColor iColor, Position iPosition):
 Fou::~Fou()
 {}
 
-bool Fou::isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
+bool Fou::isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
+	return true;
+}
+
+bool Fou::canAccessToCase(const Position& iPosition) const{
 	return true;
 }
 

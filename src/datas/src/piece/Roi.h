@@ -13,19 +13,23 @@
 
 namespace datas{
 
+class Tour;
+
 class Roi : public Piece{
 public:
 	Roi(EColor iColor, Position iPosition);
 	virtual ~Roi();
 
-	virtual bool isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
+	virtual bool isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
+
 	bool estMoveOKTheorique(const game::EtatGame& iEtatGame, const Move& iMove) const;
 	bool estMoveOKPratique(const game::EtatGame& iEtatGame, const Move& iMove) const;
-	bool pionPeuxTuerLeRoi(const Position& iposition) const;
-	bool cavalierPeuxTuerLeRoi(const Position& iposition) const;
-	bool fouPeuxTuerLeRoi(const Position& iposition) const;
-	bool tourPeuxTuerLeRoi(const Position& iposition) const;
-	bool damePeuxTuerLeRoi(const Position& iposition) const;
+	bool pionPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionPion) const;
+	bool cavalierPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionCavalier) const;
+	bool fouPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionFou) const;
+	bool tourPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionTour) const;
+	bool damePeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionDame) const;
+	bool secondRoiColle(const Position& iPositionFinaleMove, const Position& iPositionRoi) const;
 
 	virtual const std::list <boost::shared_ptr <Move> >getPossibleMoves() const ;
 

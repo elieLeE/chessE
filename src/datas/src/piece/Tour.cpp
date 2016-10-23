@@ -8,6 +8,7 @@
 #include "Tour.h"
 #include "../typeDefine/TypePiece.h"
 #include "../typeDefine/PieceValue.h"
+#include "../Position.h"
 
 namespace datas{
 
@@ -23,8 +24,18 @@ int Tour::getNumTour(void) const{
 	return _numTour;
 }
 
-bool Tour::isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
+bool Tour::isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
 	return true;
+}
+
+bool Tour::canAccessToCase(const Position& iPosition) const{
+	bool aBool = false;
+
+	if(iPosition.sameLigne(_position)){
+
+	}
+
+	return aBool;
 }
 
 /*const std::list <boost::shared_ptr <Move> > getPossibleMoves() const{

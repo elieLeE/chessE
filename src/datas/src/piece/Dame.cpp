@@ -20,7 +20,7 @@ Dame::Dame(const EColor iColor, Position iPosition):
 Dame::~Dame()
 {}
 
-bool Dame::isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
+bool Dame::isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
 	return true;
 }
 

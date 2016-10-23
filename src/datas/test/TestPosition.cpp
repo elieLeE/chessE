@@ -18,10 +18,12 @@ TestPosition::TestPosition()
 TestPosition::~TestPosition()
 {}
 
-void TestPosition::startTests() const{
-	testComparePosition();
-	testSame();
-	testEvaluatePosition();
+void TestPosition::startTests(){
+	TestPosition aTestPosition;
+
+	aTestPosition.testComparePosition();
+	aTestPosition.testSame();
+	aTestPosition.testEvaluatePosition();
 }
 
 void TestPosition::testComparePosition() const {
@@ -52,7 +54,6 @@ void TestPosition::testSame(void) const{
 
 	Position aPosition1(2, 5);
 	Position aPosition2(2, 6);
-
 	BOOST_ASSERT_MSG(aPosition1.sameLigne(aPosition2), "test compare sameLigne");
 
 	aPosition2.setPosition(3, 5);

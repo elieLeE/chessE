@@ -58,14 +58,8 @@ Position& Piece::accessPosition(){
 	return _position;
 }
 
-bool Piece::isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const{
-	bool aBool = false;
-
-	if(iMove.getStartPosition() == _position){
-		aBool = true;
-	}
-
-	return aBool;
+bool Piece::isValideMove(const Position& iPosition) const{
+	return (iPosition == _position);
 }
 
 }

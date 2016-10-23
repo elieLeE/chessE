@@ -6,10 +6,10 @@
  */
 
 #include <iostream>
+#include <boost/assert.hpp>
 
 #include "TestPosition.h"
-
-#include <boost/assert.hpp>
+#include "testPiece/TestRoi.h"
 
 using namespace std;
 using namespace datas;
@@ -17,9 +17,8 @@ using namespace datas;
 int main() {
 	cout << "test unitaire datas" << endl;
 
-	TestPosition unitTestPosition;
-
-	unitTestPosition.startTests();
+	TestPosition::startTests();
+	TestRoi::startTests();
 
 	cout << endl << "all OK" << endl;
 

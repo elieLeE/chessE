@@ -15,7 +15,7 @@ public:
 	TestPosition();
 	virtual ~TestPosition();
 
-	void startTests() const;
+	static void startTests();
 
 	void testComparePosition(void) const;
 	void testSame(void) const;

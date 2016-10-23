@@ -65,7 +65,7 @@ bool Move::isValidateMove(const game::EtatGame& iEtatGame) const{
 		//PiecePtr aPiece = iEtatGame.getCase(this->getStartPosition()).getPiece();
 		if(iEtatGame.getCase(this->getStartPosition()).hasPiece()){
 			const Piece* aPiece = &(iEtatGame.getCase(this->getStartPosition()).getPiece());
-			aBool = aPiece->isValidateMove(iEtatGame, *this);
+			aBool = aPiece->isValideMove(iEtatGame, *this);
 		}
 	}
 
@@ -73,8 +73,10 @@ bool Move::isValidateMove(const game::EtatGame& iEtatGame) const{
 }
 
 void Move::setMoveProperties(){
-	const game::EtatGame* aEtatGame = game::EtatGame::getInstance();
-	const Piece* aPiece = &(aEtatGame->getCase(_start).getPiece());
+	game::EtatGame* aEtatGame = game::EtatGame::accessInstance();
+	Piece* aPiece = &(aEtatGame->accessCase(_start).accessPiece());
+
+	aPiece->movePiece(_end);
 
 	if((aPiece->getTypePiece() == PION_TYPE) &&
 			!_start.sameCol(_end) &&

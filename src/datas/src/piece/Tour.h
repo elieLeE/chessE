@@ -25,7 +25,9 @@ public:
 	Tour(const EColor iColor, Position iPosition, const int iNumTour);
 	virtual ~Tour();
 
-	virtual bool isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
+	virtual bool isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
+
+	bool canAccessToCase(const Position& iPosition) const;
 
 	//virtual const std::list <boost::shared_ptr <Move> > getPossibleMoves() const;
 

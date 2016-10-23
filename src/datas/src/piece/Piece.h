@@ -47,7 +47,8 @@ public:
 	/*
 	 * use when a new move is played
 	 */
-	virtual bool isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
+	virtual bool isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) const = 0;
+	bool isValideMove(const Position& iPosition) const;
 	//bool automaticValidationMove(const Move& iMove) const;
 
 	//bool firstMoveValidation(Move& iMove);
@@ -65,8 +66,6 @@ public:
 
 	const Position& getPosition() const;
 	Position& accessPosition();
-
-	int evaluateDistance(const Move& iMove) const;
 
 protected:
 	bool _alive;

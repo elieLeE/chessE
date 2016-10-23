@@ -18,7 +18,7 @@ Cavalier::Cavalier(const EColor iColor, Position iPosition):
 Cavalier::~Cavalier()
 {}
 
-bool Cavalier::isValidateMove(const game::EtatGame &iEtatGame, const Move& iMove) const{
+bool Cavalier::isValideMove(const game::EtatGame &iEtatGame, const Move& iMove) const{
 	if(iMove.getStartPosition() != _position){
 		// rejeter une exception
 		std::cout << "position de depart du mouvement ne correspond pas a celle de la piece" << std::endl;
