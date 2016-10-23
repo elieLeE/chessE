@@ -15,7 +15,7 @@
 namespace datas{
 
 Roi::Roi(const EColor iColor, Position iPosition):
-		Piece(iColor, iPosition, ROI_TYPE, ROI_VALUE)
+				Piece(iColor, iPosition, ROI_TYPE, ROI_VALUE)
 {}
 
 Roi::~Roi()
@@ -31,22 +31,22 @@ bool Roi::isValideMove(const Move& iMove) const{
 bool Roi::estMoveOKTheorique(const Move& iMove) const{
 	bool aBool = false;
 
-	if(((Piece*)this)->isValideMove(iMove)){
+	if(Piece::isValideMove(iMove)){
 		int dist = iMove.evaluateDistance();
 		// d > 0 car on a verifie precedement que les position start et end n'etaient pas egales
 		//movement normal
 		if(dist < 4){
 			aBool = true;
 		}
-		else if(dist == 9){
-			//ca doit etre 1 grand rock
+		else if(dist == 4){
+			//ca doit etre 1 petit rock
 			if(iMove.getStartPosition().sameLigne(iMove.getEndPosition())){
 				//ok => grandrock
 				aBool = true;
 			}
 		}
-		else if(dist == 4){
-			//ca doit etre 1 petit rock
+		else if(dist == 9){
+			//ca doit etre 1 grand rock
 			if(iMove.getStartPosition().sameLigne(iMove.getEndPosition())){
 				//ok => grandrock
 				aBool = true;
@@ -66,41 +66,42 @@ bool Roi::estMoveOKPratique(const Move& iMove) const{
 	for( auto it = aEtatGame.getAllPiecesJ1().begin(); it != aEtatGame.getAllPiecesJ1().end(); ++it ){
 		switch(it->get()->getTypePiece()){
 		if(it->get()->isAlive()){
-			case PION_TYPE:
-				aBool = !pionPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
-				break;
+		case PION_TYPE:
+			aBool = !pionPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
+			break;
 
-			case CAVALIER_TYPE:
-				aBool = !cavalierPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
-				break;
+		case CAVALIER_TYPE:
+			aBool = !cavalierPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
+			break;
 
-			case FOU_TYPE:
-				aBool = !fouPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
-				break;
+		case FOU_TYPE:
+			aBool = !fouPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
+			break;
 
-			case TOUR_TYPE:
-				aBool = !tourPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
-				break;
+		case TOUR_TYPE:
+			aBool = !tourPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
+			break;
 
-			case DAME_TYPE:
-				aBool = !damePeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
-				break;
+		case DAME_TYPE:
+			aBool = !damePeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
+			break;
 
-			case ROI_TYPE:
-				aBool = !secondRoiColle(aPositionFinale, it->get()->getPosition());
-				break;
+		case ROI_TYPE:
+			aBool = !secondRoiColle(aPositionFinale, it->get()->getPosition());
+			break;
 
-			case NO_TYPE:
-				break;
-			}
-			if(!aBool){
-				break;
-			}
+		case NO_TYPE:
+			break;
+		}
+		if(!aBool){
+			break;
+		}
 		}
 	}
 	return aBool;
 }
 
+//TODO => a ameliorer ==> verifier piece couleur differente et pion dans le bon sens
 bool Roi::pionPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionPion) const{
 	return (iPositionFinaleMove.evaluateDistance(iPositionPion) == 2);
 }

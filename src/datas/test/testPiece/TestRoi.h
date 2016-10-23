@@ -24,12 +24,12 @@ public:
 	void testEstMoveOKTheorique() const;
 	void testEstMoveOKPratique() const;
 
-	bool testPionPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionPion) const;
-	bool testCavalierPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionCavalier) const;
-	bool testFouPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionFou) const;
-	bool testTourPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionTour) const;
-	bool testDamePeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionDame) const;
-	bool testSecondRoiColle(const Position& iPositionFinaleMove, const Position& iPositionRoi) const;
+	void testPionPeuxTuerLeRoi() const;
+	void testCavalierPeuxTuerLeRoi() const;
+	void testFouPeuxTuerLeRoi() const;
+	void testTourPeuxTuerLeRoi() const;
+	void testDamePeuxTuerLeRoi() const;
+	void testSecondRoiColle() const;
 
 };
 

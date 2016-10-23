@@ -26,7 +26,10 @@ public:
 	virtual ~Move();
 
 	const Position& getStartPosition() const ;
+	void setPositionStart(Position& iPosition);
+
 	const Position& getEndPosition() const ;
+	void setPositionEnd(Position& iPosition);
 
 	bool hasCapturePiece() const;
 

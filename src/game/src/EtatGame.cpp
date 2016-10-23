@@ -252,18 +252,13 @@ void EtatGame::setPieceCaseXY(datas::Position& iPosition, datas::Piece* iPiece){
 }
 
 void EtatGame::reset(){
-	std::cout << std::endl;
 	if(_hasAlreadyPiece){
-		std::cout << "reset" << std::endl;
 		_hasAlreadyPiece = false;
 		for(auto it = _allPiecesJoueurs.begin(); it != _allPiecesJoueurs.end(); ++it){
 			for(auto it2 = it->begin(); it2 != it->end(); ++it2){
 				it2->reset();
 			}
 		}
-	}
-	else{
-		std::cout << "not reset" << std::endl;
 	}
 }
 

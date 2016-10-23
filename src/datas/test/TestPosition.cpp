@@ -5,9 +5,10 @@
  *      Author: le_e
  */
 
+#include <boost/assert.hpp>
+
 #include "TestPosition.h"
 #include "../src/typeDefine/Dimension.h"
-#include "boost/assert.hpp"
 #include "../src/Position.h"
 
 namespace datas {

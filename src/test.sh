@@ -30,15 +30,18 @@ echo $opt
 
 echo "lancement des test unitaires"
 echo
-$opt ./datas/test/./prog
+#$opt ./datas/test/./prog
+./datas/test/./prog
 resultTest "datas" $?
 
 echo 
-$opt ./game/test/./prog $opt
+#$opt ./game/test/./prog $opt
+./datas/test/./prog
 resultTest "game" $? 
 
 echo 
-$opt ./gui/test/./prog $opt
+#$opt ./gui/test/./prog $opt
+./datas/test/./prog
 resultTest "gui" $?
 
 echo 

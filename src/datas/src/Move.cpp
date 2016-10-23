@@ -27,8 +27,16 @@ const Position& Move::getStartPosition() const{
 	return _start;
 }
 
+void Move::setPositionStart(Position& iPosition){
+	_start = iPosition;
+}
+
 const Position& Move::getEndPosition() const{
 	return _end;
+}
+
+void Move::setPositionEnd(Position& iPosition){
+	_end = iPosition;
 }
 
 bool Move::hasCapturePiece() const{
