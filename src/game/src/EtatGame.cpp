@@ -49,19 +49,19 @@ EtatGame* EtatGame::accessInstance() {
 }
 
 const datas::AllPiece& EtatGame::getAllPiecesJ1() const{
-	return _allPiecesJ1;
+	return _allPiecesJoueurs[datas::JOUEUR_1];
 }
 
 void EtatGame::setAllPiecesJ1(datas::AllPiece& iAllPieces){
-	_allPiecesJ1 = iAllPieces;
+	_allPiecesJoueurs[datas::JOUEUR_1] = iAllPieces;
 }
 
 const datas::AllPiece& EtatGame::getAllPiecesJ2() const{
-	return _allPiecesJ2;
+	return _allPiecesJoueurs[datas::JOUEUR_2];
 }
 
 void EtatGame::setAllPiecesJ2(datas::AllPiece& iAllPieces){
-	_allPiecesJ2 = iAllPieces;
+	_allPiecesJoueurs[datas::JOUEUR_2] = iAllPieces;
 }
 
 const datas::Echiquier& EtatGame::getEchiquier() const{
@@ -215,8 +215,8 @@ void EtatGame::setChangeMove(const datas::Move& iMove){
 			//boost::shared_ptr<datas::Tour> aTour = std::dynamic_pointer_cast<datas::Tour>(aPieceMove);
 			const datas::Tour* aTour = dynamic_cast<const datas::Tour*>(aPieceMove);
 			int numTour = aTour->getNumTour();
-			tourAlreadyMoved[numJ][numTour];
-			if(tourAlreadyMoved[numJ][(numTour+1)%2]){
+			_tourAlreadyMoved[numJ][numTour];
+			if(_tourAlreadyMoved[numJ][(numTour+1)%2]){
 				_rockPossible[numJ] = false;
 			}
 		}
