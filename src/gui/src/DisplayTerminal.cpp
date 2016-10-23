@@ -9,7 +9,7 @@
 
 #include "../../game/src/EtatGame.h"
 #include "DisplayTerminal.h"
-#include "../../datas/src/Dimension.h"
+#include "../../datas/src/typeDefine/Dimension.h"
 #include "ColorDisplay.h"
 
 namespace gui {

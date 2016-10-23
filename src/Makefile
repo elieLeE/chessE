@@ -13,7 +13,7 @@ CFLAGS=-std=c++11 -Wextra -Wall #-Wno-reorder
 LDFLAGS=
 EXEC_SRC=prog
 EXEC_TST=test
-SRC=$(wildcard *.cpp datas/src/*.cpp gui/src/*.cpp game/src/*.cpp)
+SRC=$(wildcard *.cpp datas/src/*.cpp datas/src/piece/*.cpp datas/src/typeDefine/*.cpp gui/src/*.cpp game/src/*.cpp)
 TST=$(wildcard datas/test/*.cpp game/test/*.cpp gui/test/*.cpp)
 OBJ_SRC=$(SRC:.cpp=.o)
 OBJ_TST=$(TST:.cpp=.o) #$(OBJ_SRC)

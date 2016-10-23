@@ -6,8 +6,8 @@
  */
 
 #include "Cavalier.h"
-#include "TypePiece.h"
-#include "PieceValue.h"
+#include "../typeDefine/TypePiece.h"
+#include "../typeDefine/PieceValue.h"
 
 namespace datas {
 

@@ -6,7 +6,7 @@
  */
 
 #include "TestPosition.h"
-#include "../src/Dimension.h"
+#include "../src/typeDefine/Dimension.h"
 #include "boost/assert.hpp"
 #include "../src/Position.h"
 

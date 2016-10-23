@@ -9,7 +9,7 @@
 #define PION_H_
 
 #include "Piece.h"
-#include "Move.h"
+#include "../Move.h"
 
 namespace datas{
 

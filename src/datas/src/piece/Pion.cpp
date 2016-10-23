@@ -6,10 +6,10 @@
  */
 
 #include "Pion.h"
-#include "TypePiece.h"
-#include "PieceValue.h"
-#include "../../game/src/EtatGame.h"
-#include "Types.h"
+#include "../typeDefine/TypePiece.h"
+#include "../typeDefine/PieceValue.h"
+#include "../../../game/src/EtatGame.h"
+#include "../typeDefine/Types.h"
 
 namespace datas{
 

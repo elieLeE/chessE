@@ -11,11 +11,11 @@
 #include <boost/shared_ptr.hpp>
 #include <vector>
 
-#include "Piece.h"
-#include "Color.h"
-#include "TypePlayer.h"
+#include "piece/Piece.h"
+#include "typeDefine/Color.h"
+#include "typeDefine/TypePlayer.h"
 #include "Move.h"
-#include "Types.h"
+#include "typeDefine/Types.h"
 
 namespace datas {
 

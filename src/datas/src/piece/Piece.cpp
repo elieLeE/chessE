@@ -6,7 +6,7 @@
  */
 
 #include "Piece.h"
-#include "../../game/src/EtatGame.h"
+#include "../../../game/src/EtatGame.h"
 
 namespace datas{
 

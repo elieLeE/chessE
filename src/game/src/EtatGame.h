@@ -10,14 +10,14 @@
 
 #include <array>
 
-#include "../../datas/src/Piece.h"
-#include "../../datas/src/Types.h"
-#include "../../datas/src/Tour.h"
+#include "../../datas/src/piece/Piece.h"
+#include "../../datas/src/typeDefine/Types.h"
+#include "../../datas/src/piece/Tour.h"
 #include "../../datas/src/Position.h"
-#include "../../datas/src/Dimension.h"
+#include "../../datas/src/typeDefine/Dimension.h"
 #include "../../datas/src/Case.h"
 #include "../../datas/src/Move.h"
-#include "../../datas/src/TypePlayer.h"
+#include "../../datas/src/typeDefine/TypePlayer.h"
 
 namespace game{
 

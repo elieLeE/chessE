@@ -10,12 +10,12 @@
 #include <iostream>
 
 #include "EtatGame.h"
-#include "../../datas/src/Pion.h"
-#include "../../datas/src/Tour.h"
-#include "../../datas/src/Cavalier.h"
-#include "../../datas/src/Fou.h"
-#include "../../datas/src/Roi.h"
-#include "../../datas/src/Dame.h"
+#include "../../datas/src/piece/Pion.h"
+#include "../../datas/src/piece/Tour.h"
+#include "../../datas/src/piece/Cavalier.h"
+#include "../../datas/src/piece/Fou.h"
+#include "../../datas/src/piece/Roi.h"
+#include "../../datas/src/piece/Dame.h"
 
 namespace game{
 

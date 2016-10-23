@@ -6,8 +6,8 @@
  */
 
 #include "Dame.h"
-#include "TypePiece.h"
-#include "PieceValue.h"
+#include "../typeDefine/TypePiece.h"
+#include "../typeDefine/PieceValue.h"
 #include "Tour.h"
 #include "Fou.h"
 

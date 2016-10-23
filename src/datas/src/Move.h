@@ -9,8 +9,8 @@
 #define MOVE_H_
 
 #include "Position.h"
-#include "TypePiece.h"
-#include "TypeMove.h"
+#include "typeDefine/TypePiece.h"
+#include "typeDefine/TypeMove.h"
 
 namespace game{
 class EtatGame;

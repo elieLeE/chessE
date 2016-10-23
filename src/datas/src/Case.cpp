@@ -6,7 +6,6 @@
  */
 
 #include "Case.h"
-#include "Roi.h"
 
 namespace datas {
 

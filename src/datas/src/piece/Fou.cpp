@@ -6,8 +6,8 @@
  */
 
 #include "Fou.h"
-#include "PieceValue.h"
-#include "TypePiece.h"
+#include "../typeDefine/PieceValue.h"
+#include "../typeDefine/TypePiece.h"
 
 namespace datas{
 

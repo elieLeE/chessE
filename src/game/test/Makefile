@@ -11,7 +11,7 @@ CC=g++
 CFLAGS=-std=c++11 -Wextra -Wall# -ansi -pedantic
 LDFLAGS=
 EXEC=prog
-SRC= $(wildcard *.cpp ~/Bureau/projetPerso/chessE/src/datas/src/*.cpp ~/Bureau/projetPerso/chessE/src/game/src/*.cpp ~/Bureau/projetPerso/chessE/src/gui/src/*.cpp) 
+SRC= $(wildcard *.cpp ~/Bureau/projetPerso/chessE/src/datas/src/*.cpp ~/Bureau/projetPerso/chessE/src/datas/src/piece/*.cpp ~/Bureau/projetPerso/chessE/src/game/src/*.cpp ~/Bureau/projetPerso/chessE/src/gui/src/*.cpp) 
 OBJ= $(SRC:.cpp=.o)
 
 all: $(EXEC)

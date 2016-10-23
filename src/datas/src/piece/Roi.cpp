@@ -6,9 +6,9 @@
  */
 
 #include "Roi.h"
-#include "TypePiece.h"
-#include "PieceValue.h"
-#include "../../game/src/EtatGame.h"
+#include "../typeDefine/TypePiece.h"
+#include "../typeDefine/PieceValue.h"
+#include "../../../game/src/EtatGame.h"
 
 namespace datas{
 

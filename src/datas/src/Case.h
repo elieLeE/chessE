@@ -8,7 +8,8 @@
 #ifndef CASE_H_
 #define CASE_H_
 
-#include "Types.h"
+#include "typeDefine/Types.h"
+#include "piece/Piece.h"
 
 namespace datas {
 

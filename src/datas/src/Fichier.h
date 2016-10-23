@@ -11,8 +11,8 @@
 #include <string>
 #include <fstream>
 
-#include "TypePiece.h"
-#include "TypePlayer.h"
+#include "typeDefine/TypePiece.h"
+#include "typeDefine/TypePlayer.h"
 #include "Move.h"
 
 namespace datas {

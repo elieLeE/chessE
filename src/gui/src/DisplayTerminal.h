@@ -9,9 +9,9 @@
 #define DISPLAYTERMINAL_H_
 
 #include "../../game/src/EtatGame.h"
-#include "../../datas/src/Types.h"
-#include "../../datas/src/TypePiece.h"
-#include "../../datas/src/Color.h"
+#include "../../datas/src/typeDefine/Types.h"
+#include "../../datas/src/typeDefine/TypePiece.h"
+#include "../../datas/src/typeDefine/Color.h"
 
 namespace gui{
 

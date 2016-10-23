@@ -1,26 +1,26 @@
 /*
- * Fou.h
+ * Dame.h
  *
  *  Created on: 17 sept. 2016
  *      Author: le_e
  */
 
-#ifndef FOU_H_
-#define FOU_H_
+#ifndef DAME_H_
+#define DAME_H_
 
 #include "Piece.h"
-#include "Move.h"
+#include "../Move.h"
 
 namespace datas{
 
-class Fou : public Piece{
+class Dame : public Piece{
 public:
-	Fou(const EColor iColor, Position iPosition);
-	virtual ~Fou();
+	Dame(const EColor iColor, Position iPosition);
+	virtual ~Dame();
 
 	virtual bool isValidateMove(const game::EtatGame& iEtatGame, const Move& iMove) const;
 };
 
 }
 
-#endif /* FOU_H_ */
+#endif /* DAME_H_ */

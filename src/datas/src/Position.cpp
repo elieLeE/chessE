@@ -6,7 +6,7 @@
  */
 
 #include "Position.h"
-#include "../src/Dimension.h"
+#include "typeDefine/Dimension.h"
 #include <cmath>
 
 namespace datas{

@@ -12,7 +12,7 @@
 #include <vector>
 
 #include "Move.h"
-#include "Types.h"
+#include "typeDefine/Types.h"
 
 namespace datas {
 

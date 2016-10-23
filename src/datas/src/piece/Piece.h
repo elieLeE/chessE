@@ -14,11 +14,11 @@
 #include <math.h>
 
 //#include "../../game/src/EtatGame.h"
-#include "TypePiece.h"
-#include "Color.h"
-#include "Position.h"
-#include "Move.h"
-#include "TypePlayer.h"
+#include "../typeDefine/TypePiece.h"
+#include "../typeDefine/Color.h"
+#include "../Position.h"
+#include "../Move.h"
+#include "../typeDefine/TypePlayer.h"
 
 namespace game{
 class EtatGame;
