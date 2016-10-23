@@ -19,7 +19,11 @@ TestGuiTerminal::TestGuiTerminal()
 TestGuiTerminal::~TestGuiTerminal()
 {}
 
-void TestGuiTerminal::startTests(){
+void TestGuiTerminal::startTests() const{
+	testDisplay();
+}
+
+void TestGuiTerminal::testDisplay() const{
 	DisplayTerminal aDisplayTerminal;
 	EtatGame *aEtatGame = game::EtatGame::accessInstance();
 

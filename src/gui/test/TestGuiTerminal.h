@@ -15,7 +15,9 @@ public:
 	TestGuiTerminal();
 	virtual ~TestGuiTerminal();
 
-	void startTests();
+	void startTests() const;
+
+	void testDisplay() const;
 };
 
 } /* namespace gui */
