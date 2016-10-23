@@ -32,6 +32,13 @@ public:
 	void initEtatGame();
 
 	void movePiece(const datas::Position& iPositionStart, const datas::Position& iPositionEnd);
+
+	//a etudier mais a priori pas une bonne chose => serait 1 pb de conception
+	/*const datas::PiecePtr& getPieceCaseXY(datas::Position& iPosition) const;
+	datas::PiecePtr& accessPieceCaseXY(datas::Position& iPosition);
+	bool hasPieceCaseXY(datas::Position& iPosition) const;*/
+
+	//indispensable car sinon, ne sait pas si a deja des pieces ou pas
 	void setPieceCaseXY(datas::Position& iPosition, datas::Piece* iPiece);
 
 	const datas::Case& getCase(int ligne, int col) const;

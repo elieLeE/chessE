@@ -29,7 +29,7 @@ void DisplayTerminal::displayPositionGameTerminal(const game::EtatGame& iEtatGam
 		for(int j=0; j<NBRE_COLONNE; j++){
 			std::cout << " ";
 			if(iEtatGame.getCase(i, j).hasPiece()){
-				const datas::Piece *aPiece = &(iEtatGame.getCase(i, j).getPiece());
+				const datas::Piece *aPiece = iEtatGame.getCase(i, j).getPiece().get();
 				aTypePiece = aPiece->getTypePiece();
 				aColor = aPiece->getColor();
 			}

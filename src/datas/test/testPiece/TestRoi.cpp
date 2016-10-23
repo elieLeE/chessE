@@ -44,7 +44,6 @@ void TestRoi::testEstMoveOKTheorique() const{
 	Roi *aRoi = new Roi(WHITE, aPosition);
 
 	aEtatGame.setPieceCaseXY(aPosition, aRoi);
-	//aEtatGame->reset();
 
 	cout << "	OK" << endl;
 }

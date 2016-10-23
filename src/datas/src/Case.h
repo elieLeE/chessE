@@ -20,8 +20,8 @@ public:
 
 	bool hasPiece() const;
 
-	const Piece& getPiece() const;
-	Piece& accessPiece();
+	const PiecePtr& getPiece() const;
+	PiecePtr& accessPiece();
 
 	void setPiece(Piece* iPiece);
 	void resetPiece();

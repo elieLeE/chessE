@@ -196,7 +196,7 @@ const datas::Move& EtatGame::getLastMove() const{
  */
 void EtatGame::setChangeMove(const datas::Move& iMove){
 	setPossiblePriseEnPassant(false);
-	const datas::Piece* aPieceMove = &(this->getCase(iMove.getStartPosition()).getPiece());
+	const datas::Piece* aPieceMove = this->getCase(iMove.getStartPosition()).getPiece().get();
 	if(aPieceMove->getTypePiece() == datas::PION_TYPE){
 		if(std::abs(iMove.getStartPosition().getY() - iMove.getEndPosition().getY()) == 2){
 			this->setPossiblePriseEnPassant(true);
@@ -226,7 +226,7 @@ void EtatGame::setChangeMove(const datas::Move& iMove){
 	}
 
 	if(iMove.hasCapturePiece()){
-		this->accessCase(iMove.getEndPosition()).accessPiece().setDead();
+		this->accessCase(iMove.getEndPosition()).accessPiece()->setDead();
 	}
 
 	this->accessLastMove() = iMove;
@@ -242,7 +242,7 @@ void EtatGame::setChangeMove(const datas::Move& iMove){
 }
 
 void EtatGame::movePiece(const datas::Position& iPositionStart, const datas::Position& iPositionEnd){
-	this->accessCase(iPositionEnd).setPiece(&(this->accessCase(iPositionStart).accessPiece()));
+	this->accessCase(iPositionEnd).setPiece(this->accessCase(iPositionStart).accessPiece().get());
 	this->accessCase(iPositionStart).resetPiece();
 }
 

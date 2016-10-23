@@ -64,7 +64,7 @@ bool Move::isValidateMove(const game::EtatGame& iEtatGame) const{
 	if((this->getEndPosition().isValid()) && (this->getStartPosition() == this->getEndPosition())){
 		//PiecePtr aPiece = iEtatGame.getCase(this->getStartPosition()).getPiece();
 		if(iEtatGame.getCase(this->getStartPosition()).hasPiece()){
-			const Piece* aPiece = &(iEtatGame.getCase(this->getStartPosition()).getPiece());
+			const Piece* aPiece = iEtatGame.getCase(this->getStartPosition()).getPiece().get();
 			aBool = aPiece->isValideMove(*this);
 		}
 	}
@@ -74,7 +74,7 @@ bool Move::isValidateMove(const game::EtatGame& iEtatGame) const{
 
 void Move::setMoveProperties(){
 	game::EtatGame& aEtatGame = game::EtatGame::accessInstance();
-	Piece* aPiece = &(aEtatGame.accessCase(_start).accessPiece());
+	Piece* aPiece = aEtatGame.accessCase(_start).accessPiece().get();
 
 	aPiece->movePiece(_end);
 
@@ -85,7 +85,7 @@ void Move::setMoveProperties(){
 		_capturedPiece = PION_TYPE;
 	}
 	else if(!aEtatGame.getCase(_end).hasPiece()){
-		_capturedPiece = aEtatGame.getCase(_end).getPiece().getTypePiece();
+		_capturedPiece = aEtatGame.getCase(_end).getPiece().get()->getTypePiece();
 	}
 	else if(aPiece->getTypePiece() == ROI_TYPE){
 		if(_start.evaluateDistance(_end) == PETIT_ROCK){

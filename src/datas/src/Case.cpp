@@ -19,12 +19,12 @@ bool Case::hasPiece() const{
 	return (_piece?true:false);
 }
 
-const Piece& Case::getPiece() const{
-	return *(_piece.get());
+const PiecePtr& Case::getPiece() const{
+	return _piece;
 }
 
-Piece& Case::accessPiece(){
-	return *(_piece.get());
+PiecePtr& Case::accessPiece(){
+	return _piece;
 }
 
 void Case::setPiece(Piece *iPiece){

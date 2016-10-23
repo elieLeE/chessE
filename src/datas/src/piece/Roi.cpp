@@ -110,12 +110,12 @@ bool Roi::cavalierPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Posit
 }
 
 bool Roi::fouPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionFou) const{
-	const Fou *aFou = dynamic_cast<const datas::Fou*>(&(game::EtatGame::getInstance().getCase(iPositionFou).getPiece()));
+	const Fou *aFou = dynamic_cast<const datas::Fou*>(game::EtatGame::getInstance().getCase(iPositionFou).getPiece().get());
 	return aFou->canAccessToCase(iPositionFinaleMove);
 }
 
 bool Roi::tourPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionTour) const{
-	const Tour *aTour = dynamic_cast<const datas::Tour*>(&(game::EtatGame::getInstance().getCase(iPositionTour).getPiece()));
+	const Tour *aTour = dynamic_cast<const datas::Tour*>(game::EtatGame::getInstance().getCase(iPositionTour).getPiece().get());
 	return aTour->canAccessToCase(iPositionFinaleMove);
 }
 
