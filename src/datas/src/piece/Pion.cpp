@@ -8,7 +8,7 @@
 #include "Pion.h"
 #include "../typeDefine/TypePiece.h"
 #include "../typeDefine/PieceValue.h"
-#include "../../../game/src/EtatGame.h"
+#include "../../../game/src/Echiquier.h"
 #include "../typeDefine/Types.h"
 
 namespace datas{
@@ -25,7 +25,7 @@ Pion::~Pion()
 bool Pion::isValideMove(const Move& iMove) const{
 	bool aBool = false;
 
-	//aBool = (Piece*)this->isValidateMove(iEtatGame, iMove);
+	//aBool = (Piece*)this->isValidateMove(iEchiquier, iMove);
 
 	if(((Piece*)this)->isValideMove(iMove)){
 		/*
@@ -33,10 +33,9 @@ bool Pion::isValideMove(const Move& iMove) const{
 		 * de la position courante de la piece et de son type.
 		 * verifier egalement qu'une autre piece de la meme couleur n'y est pas deja
 		 * */
-		const game::EtatGame& aEtatGame = game::EtatGame::getInstance();
-		const Echiquier& aEchiquier = aEtatGame.getEchiquier();
+		const game::Echiquier& aEchiquier = game::Echiquier::getInstance();
 		//PiecePtr aPiece = aPlateau->at(iMove.getEndPosition().getX()).at(iMove.getEndPosition().getY());
-		const PiecePtr& aPiece = aEtatGame.getCase(iMove.getEndPosition()).getPiece();
+		const PiecePtr& aPiece = aEchiquier.getCase(iMove.getEndPosition()).getPiece();
 		//boost::shared_ptr<Piece> aPiece = aPlateau->at(iMove.getEndPosition().getX()).at(iMove.getEndPosition().getY());
 		int moreOrLess = _sensCroissant?1:-1;
 
@@ -85,11 +84,11 @@ bool Pion::isValideMove(const Move& iMove) const{
 		}
 
 		//prise en passant
-		else if(!_hasAlreadyMoved && aEtatGame.getPossiblePriseEnPassant()){
+		else if(!_hasAlreadyMoved && aEchiquier.getPossiblePriseEnPassant()){
 			//a gauche
 			//PieceCSPtr aSecondPiece = aPlateau->at(_position.getX()-1).at(_position.getY());
 			//boost::shared_ptr<Piece> aSecondPiece = aPlateau->at(_position.getX()-1).at(_position.getY());
-			const PiecePtr& aSecondPiece = aEtatGame.getCase(_position.getX()-1, _position.getY()).getPiece();
+			const PiecePtr& aSecondPiece = aEchiquier.getCase(_position.getX()-1, _position.getY()).getPiece();
 			if(aSecondPiece && (aSecondPiece->getTypePiece() == PION_TYPE) && (aSecondPiece->getColor() != getColor()) &&
 					((iMove.getEndPosition().getX()==_position.getX()-1) && (iMove.getEndPosition().getY() == _position.getY()+moreOrLess))){
 				//il ne doit y avoir aucune piece car le mouvement de l'autre joueur avec le pion doit etre celui juste avant
@@ -104,7 +103,7 @@ bool Pion::isValideMove(const Move& iMove) const{
 			//a droite
 			else {
 				//aSecondPiece = aPlateau->at(_position.getX()+1).at(_position.getY());
-				const PiecePtr& aSecondPiece2 = aEtatGame.getCase(_position.getX()+1, _position.getY()).getPiece();
+				const PiecePtr& aSecondPiece2 = aEchiquier.getCase(_position.getX()+1, _position.getY()).getPiece();
 				if(aSecondPiece && (aSecondPiece->getTypePiece()==PION_TYPE) && (aSecondPiece->getColor() != getColor()) &&
 						((iMove.getEndPosition().getX()==_position.getX()+1) && (iMove.getEndPosition().getY() == _position.getY()+moreOrLess))){
 					if(!aPiece){

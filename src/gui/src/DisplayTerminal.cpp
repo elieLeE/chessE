@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-#include "../../game/src/EtatGame.h"
+#include "../../game/src/Echiquier.h"
 #include "DisplayTerminal.h"
 #include "../../datas/src/typeDefine/Dimension.h"
 #include "ColorDisplay.h"
@@ -20,7 +20,7 @@ DisplayTerminal::DisplayTerminal()
 DisplayTerminal::~DisplayTerminal()
 {}
 
-void DisplayTerminal::displayPositionGameTerminal(const game::EtatGame& iEtatGame){
+void DisplayTerminal::displayPositionGameTerminal(const game::Echiquier& iEchiquier){
 	datas::ETypePiece aTypePiece;
 	datas::EColor aColor;
 
@@ -28,8 +28,8 @@ void DisplayTerminal::displayPositionGameTerminal(const game::EtatGame& iEtatGam
 		std::cout << " " << i << "|";
 		for(int j=0; j<NBRE_COLONNE; j++){
 			std::cout << " ";
-			if(iEtatGame.getCase(i, j).hasPiece()){
-				const datas::Piece *aPiece = iEtatGame.getCase(i, j).getPiece().get();
+			if(iEchiquier.getCase(i, j).hasPiece()){
+				const datas::Piece *aPiece = iEchiquier.getCase(i, j).getPiece().get();
 				aTypePiece = aPiece->getTypePiece();
 				aColor = aPiece->getColor();
 			}

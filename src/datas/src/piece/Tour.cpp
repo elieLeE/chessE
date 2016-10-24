@@ -10,7 +10,7 @@
 #include "../typeDefine/PieceValue.h"
 #include "../Position.h"
 #include <cmath>
-#include "../../../game/src/EtatGame.h"
+#include "../../../game/src/Echiquier.h"
 
 namespace datas{
 
@@ -37,7 +37,7 @@ bool Tour::canAccessToCase(const Position& iPosition) const{
 		int aDebut = std::min(iPosition.getY(), _position.getY());
 		int aEnd = std::max(iPosition.getY(), _position.getY());
 		int aLigne = _position.getX();
-		const game::EtatGame& aGame = game::EtatGame::getInstance();
+		const game::Echiquier& aGame = game::Echiquier::getInstance();
 
 		for(int i=aDebut+1; i<aEnd; i++){
 			if(aGame.getCase(aLigne, i).hasPiece()){
@@ -50,7 +50,7 @@ bool Tour::canAccessToCase(const Position& iPosition) const{
 		int aDebut = std::min(iPosition.getX(), _position.getX());
 		int aEnd = std::max(iPosition.getX(), _position.getX());
 		int aCol = _position.getY();
-		const game::EtatGame& aGame = game::EtatGame::getInstance();
+		const game::Echiquier& aGame = game::Echiquier::getInstance();
 
 		for(int i=aDebut+1; i<aEnd; i++){
 			if(aGame.getCase(i, aCol).hasPiece()){

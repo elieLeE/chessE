@@ -13,7 +13,7 @@
 #include "typeDefine/TypeMove.h"
 
 namespace game{
-class EtatGame;
+class Echiquier;
 }
 
 namespace datas{
@@ -38,7 +38,7 @@ public:
 	bool getPriseEnPassant() const;
 	void setPriseEnPassant(bool iBool);
 
-	bool isValidateMove(const game::EtatGame& iEtatGame) const;
+	bool isValidateMove(const game::Echiquier& iEchiquier) const;
 
 	ETypePiece getHasCapturedPiece() const;
 	void setHasCapturedPiece(ETypePiece iCapturedPiece);

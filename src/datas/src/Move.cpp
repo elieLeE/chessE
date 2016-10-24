@@ -6,7 +6,7 @@
  */
 
 #include "Move.h"
-#include "../../game/src/EtatGame.h"
+#include "../../game/src/Echiquier.h"
 
 namespace datas{
 
@@ -66,13 +66,13 @@ void Move::setTypeMove(ETypeMove iTypeMove){
 	_typeMove = iTypeMove;
 }
 
-bool Move::isValidateMove(const game::EtatGame& iEtatGame) const{
+bool Move::isValidateMove(const game::Echiquier& iEchiquier) const{
 	bool aBool = false;
 
 	if((this->getEndPosition().isValid()) && (this->getStartPosition() == this->getEndPosition())){
-		//PiecePtr aPiece = iEtatGame.getCase(this->getStartPosition()).getPiece();
-		if(iEtatGame.getCase(this->getStartPosition()).hasPiece()){
-			const Piece* aPiece = iEtatGame.getCase(this->getStartPosition()).getPiece().get();
+		//PiecePtr aPiece = iEchiquier.getCase(this->getStartPosition()).getPiece();
+		if(iEchiquier.getCase(this->getStartPosition()).hasPiece()){
+			const Piece* aPiece = iEchiquier.getCase(this->getStartPosition()).getPiece().get();
 			aBool = aPiece->isValideMove(*this);
 		}
 	}
@@ -81,19 +81,19 @@ bool Move::isValidateMove(const game::EtatGame& iEtatGame) const{
 }
 
 void Move::setMoveProperties(){
-	game::EtatGame& aEtatGame = game::EtatGame::accessInstance();
-	Piece* aPiece = aEtatGame.accessCase(_start).accessPiece().get();
+	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
+	Piece* aPiece = aEchiquier.accessCase(_start).accessPiece().get();
 
 	aPiece->movePiece(_end);
 
 	if((aPiece->getTypePiece() == PION_TYPE) &&
 			!_start.sameCol(_end) &&
-			!aEtatGame.getCase(_end).hasPiece()){
+			!aEchiquier.getCase(_end).hasPiece()){
 		_typeMove = PRISE_EN_PASSANT;
 		_capturedPiece = PION_TYPE;
 	}
-	else if(!aEtatGame.getCase(_end).hasPiece()){
-		_capturedPiece = aEtatGame.getCase(_end).getPiece().get()->getTypePiece();
+	else if(!aEchiquier.getCase(_end).hasPiece()){
+		_capturedPiece = aEchiquier.getCase(_end).getPiece().get()->getTypePiece();
 	}
 	else if(aPiece->getTypePiece() == ROI_TYPE){
 		if(_start.evaluateDistance(_end) == PETIT_ROCK){

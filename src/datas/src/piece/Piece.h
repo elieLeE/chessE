@@ -13,7 +13,7 @@
 #include <boost/shared_ptr.hpp>
 #include <math.h>
 
-//#include "../../game/src/EtatGame.h"
+//#include "../../game/src/Echiquier.h"
 #include "../typeDefine/TypePiece.h"
 #include "../typeDefine/Color.h"
 #include "../Position.h"
@@ -21,7 +21,7 @@
 #include "../typeDefine/TypePlayer.h"
 
 namespace game{
-class EtatGame;
+class Echiquier;
 }
 
 namespace datas{
@@ -47,7 +47,7 @@ public:
 	/*
 	 * use when a new move is played
 	 */
-	//virtual bool isValideMove(const game::EtatGame& iEtatGame, const Move& iMove) const = 0;
+	//virtual bool isValideMove(const game::Echiquier& iEchiquier, const Move& iMove) const = 0;
 	virtual bool isValideMove(const Move& iMove) const;
 	//bool automaticValidationMove(const Move& iMove) const;
 

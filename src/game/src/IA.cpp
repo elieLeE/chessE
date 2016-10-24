@@ -11,7 +11,7 @@
 namespace game{
 
 //algorithme => minmax en attendant mieux...!
-static datas::MovePtr nextMoveIA(EtatGame* iEtatGame){
+static datas::MovePtr nextMoveIA(Echiquier* iEchiquier){
 	datas::Position aPositionStart(4, 2);
 	datas::Position aPositionEnd(4, 4);
 
@@ -27,11 +27,11 @@ static datas::MovePtr nextMoveIA(EtatGame* iEtatGame){
  * recupere le move et l'ajoute/l'effectue
  * retourne le move associe ??
  */
-void addMove(EtatGame* iEtatGame){
+void addMove(Echiquier* iEchiquier){
 
 }
 
-void removeMove(EtatGame* iEtatGame){
+void removeMove(Echiquier* iEchiquier){
 
 }
 

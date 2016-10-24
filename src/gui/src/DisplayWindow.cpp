@@ -5,7 +5,7 @@
  *      Author: le_e
  */
 
-#include "../../game/src/EtatGame.h"
+#include "../../game/src/Echiquier.h"
 #include "DisplayWindow.h"
 
 namespace gui {
@@ -16,7 +16,7 @@ DisplayWindow::DisplayWindow()
 DisplayWindow::~DisplayWindow()
 {}
 
-void DisplayWindow::displayPositionGameWindow(const game::EtatGame& iEtatGame){
+void DisplayWindow::displayPositionGameWindow(const game::Echiquier& iEchiquier){
 	//cout << "displayPositionGameTerminal NOT YET IMPLEMENTED";
 }
 

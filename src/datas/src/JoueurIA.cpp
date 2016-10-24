@@ -6,7 +6,7 @@
  */
 
 #include "JoueurIA.h"
-#include "../../game/src/EtatGame.h"
+#include "../../game/src/Echiquier.h"
 #include "../../game/src/IA.h"
 
 namespace datas {
@@ -18,12 +18,12 @@ JoueurIA::~JoueurIA()
 {}
 
 MovePtr JoueurIA::nextMove(){
-	const game::EtatGame& aEtatGame = game::EtatGame::getInstance();
+	const game::Echiquier& aEchiquier = game::Echiquier::getInstance();
 	MovePtr aMove;
 
 	do{
-		//aMove = game::nextMoveIA(aEtatGame);
-	}while(aMove->isValidateMove(aEtatGame));
+		//aMove = game::nextMoveIA(aEchiquier);
+	}while(aMove->isValidateMove(aEchiquier));
 
 	return aMove;
 }

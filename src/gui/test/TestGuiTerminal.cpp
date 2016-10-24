@@ -7,7 +7,7 @@
 
 #include "TestGuiTerminal.h"
 #include "../src/DisplayTerminal.h"
-#include "../../game/src/EtatGame.h"
+#include "../../game/src/Echiquier.h"
 
 using namespace gui;
 using namespace game;
@@ -25,12 +25,12 @@ void TestGuiTerminal::startTests() const{
 
 void TestGuiTerminal::testDisplay() const{
 	DisplayTerminal aDisplayTerminal;
-	EtatGame& aEtatGame = game::EtatGame::accessInstance();
+	Echiquier& aEchiquier = game::Echiquier::accessInstance();
 
-	aEtatGame.setBegginingGameWithoutHandicap();
+	aEchiquier.setBegginingGameWithoutHandicap();
 
-	aDisplayTerminal.displayPositionGameTerminal(aEtatGame);
+	aDisplayTerminal.displayPositionGameTerminal(aEchiquier);
 
-	aEtatGame.reset();
+	aEchiquier.reset();
 }
 

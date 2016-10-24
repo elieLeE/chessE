@@ -12,7 +12,7 @@
 #include "../../src/piece/Roi.h"
 #include "../../src/piece/Pion.h"
 #include "../../src/typeDefine/Color.h"
-#include "../../../game/src/EtatGame.h"
+#include "../../../game/src/Echiquier.h"
 
 #include "../../../gui/src/DisplayTerminal.h"
 
@@ -45,12 +45,12 @@ void TestRoi::testEstMoveOKTheorique() const{
 
 	Position aPositionStart(2, 5);
 	Position aPositionEnd(3, 5);
-	game::EtatGame& aEtatGame = game::EtatGame::accessInstance();
-	aEtatGame.reset();
+	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
+	aEchiquier.reset();
 
 	Roi *aRoi = new Roi(WHITE, aPositionStart);
 
-	aEtatGame.setPieceCaseXY(aPositionStart, aRoi);
+	aEchiquier.setPieceCaseXY(aPositionStart, aRoi);
 	Move aMove(aPositionStart, aPositionEnd);
 	BOOST_ASSERT_MSG(aRoi->estMoveOKTheorique(aMove), "test move theorique - move normal");
 
@@ -73,14 +73,14 @@ void TestRoi::testPionPeuxTuerLeRoi() const{
 
 	Position aPositionRoi(2, 5);
 	Position aPositionPion(3, 4);
-	game::EtatGame& aEtatGame = game::EtatGame::accessInstance();
-	aEtatGame.reset();
+	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
+	aEchiquier.reset();
 
 	Roi *aRoi = new Roi(WHITE, aPositionRoi);
-	aEtatGame.setPieceCaseXY(aPositionRoi, aRoi);
+	aEchiquier.setPieceCaseXY(aPositionRoi, aRoi);
 
 	Pion* aPion = new Pion(BLACK, aPositionPion, false);
-	aEtatGame.setPieceCaseXY(aPositionPion, aPion);
+	aEchiquier.setPieceCaseXY(aPositionPion, aPion);
 
 	BOOST_ASSERT_MSG(aRoi->pionPeuxTuerLeRoi(aPositionRoi, aPositionPion), "test move theorique - grand rock");
 

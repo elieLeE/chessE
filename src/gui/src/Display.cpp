@@ -43,11 +43,11 @@ Display* Display::accessInstance(){
 	return _display;
 }
 
-void Display::displayPositionGame(const game::EtatGame& iEtatGame){
+void Display::displayPositionGame(const game::Echiquier& iEchiquier){
 /*#if DISPLAY_WINDOW
-	_pDisplayWindow.get()->displayPositionGameWindow(iEtatGame);
+	_pDisplayWindow.get()->displayPositionGameWindow(iEchiquier);
 #else
-	_pDisplayTerminal.get()->displayPositionGameTerminal(iEtatGame);
+	_pDisplayTerminal.get()->displayPositionGameTerminal(iEchiquier);
 #endif*/
 	std::cout << "rate" << std::endl;
 }

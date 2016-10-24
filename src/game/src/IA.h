@@ -8,15 +8,15 @@
 #ifndef IA_H_
 #define IA_H_
 
-#include "EtatGame.h"
+#include "Echiquier.h"
 #include "../../datas/src/Move.h"
 
 namespace game{
 
-	static datas::MovePtr nextMoveIA(EtatGame* iEtatGame);
+	static datas::MovePtr nextMoveIA(Echiquier* iEchiquier);
 
-	static void addMove(EtatGame* iEtatGame);
-	static void removeMove(EtatGame* iEtatGame);
+	static void addMove(Echiquier* iEchiquier);
+	static void removeMove(Echiquier* iEchiquier);
 
 } /* namespace game*/
 #endif /* IA_H_ */

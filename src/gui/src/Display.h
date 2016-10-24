@@ -11,7 +11,7 @@
 //#include "../../datas/src/Types.h"
 #include <boost/shared_ptr.hpp>
 
-#include "../../game/src/EtatGame.h"
+#include "../../game/src/Echiquier.h"
 #include "DisplayTerminal.h"
 #include "DisplayWindow.h"
 #include "DefienGui.h"
@@ -31,13 +31,13 @@ public:
 	static Display* accessInstance();
 
 	/*
-	 * en argument => etatGame ou lastMove
-	 * pour terminal => etatGame ==> masi peut-être recupere directement + necessaire que pour les tests a terme
-	 * pour window => lastMove ==> mais peut-être recupere via EtatGame
+	 * en argument => Echiquier ou lastMove
+	 * pour terminal => Echiquier ==> masi peut-être recupere directement + necessaire que pour les tests a terme
+	 * pour window => lastMove ==> mais peut-être recupere via Echiquier
 	 */
-	//void updateDisplay(const game::EtatGame& iEtatGame);
+	//void updateDisplay(const game::Echiquier& iEchiquier);
 
-	void displayPositionGame(const game::EtatGame& iEtatGame);
+	void displayPositionGame(const game::Echiquier& iEchiquier);
 
 	static datas::MoveCSPtr nextMove();
 	//static boost::shared_ptr<datas::Move> nextMove();

@@ -33,8 +33,8 @@ Joueur::~Joueur()
 	MovePtr aMove = this->nextMove();
 
 	if(aMove->hasCapturePiece()){
-		game::EtatGame* aEtatGame = game::EtatGame::accessInstance();
-		aEtatGame->getPiece(aMove->getEndPosition().getX(), aMove->getEndPosition().getY())->setDead();
+		game::Echiquier* aEchiquier = game::Echiquier::accessInstance();
+		aEchiquier->getPiece(aMove->getEndPosition().getX(), aMove->getEndPosition().getY())->setDead();
 	}
 
 	return aMove;

@@ -6,7 +6,7 @@
  */
 
 #include "JoueurHumain.h"
-#include "../../game/src/EtatGame.h"
+#include "../../game/src/Echiquier.h"
 #include "../../gui/src/Display.h"
 
 namespace datas {
@@ -22,7 +22,7 @@ MovePtr JoueurHumain::nextMove(){
 
 	do{
 		aMove = gui::Display::nextMove();
-	}while(aMove->isValidateMove((game::EtatGame::getInstance())));
+	}while(aMove->isValidateMove((game::Echiquier::getInstance())));
 
 	return aMove;
 }

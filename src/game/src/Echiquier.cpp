@@ -1,5 +1,5 @@
 /*
- * EtatGame.cpp
+ * Echiquier.cpp
  *
  *  Created on: 20 sept. 2016
  *      Author: le_e
@@ -9,7 +9,7 @@
 #include <memory>
 #include <iostream>
 
-#include "EtatGame.h"
+#include "Echiquier.h"
 #include "../../datas/src/piece/Pion.h"
 #include "../../datas/src/piece/Tour.h"
 #include "../../datas/src/piece/Cavalier.h"
@@ -19,18 +19,18 @@
 
 namespace game{
 
-EtatGame EtatGame::_instance = EtatGame();
-//EtatGame* EtatGame::_instance = 0;
+Echiquier Echiquier::_instance = Echiquier();
+//Echiquier* Echiquier::_instance = 0;
 
-EtatGame::EtatGame():
+Echiquier::Echiquier():
 				_possiblePriseEnPassant(false),
 				_hasAlreadyPiece(false)
 {}
 
-EtatGame::~EtatGame()
+Echiquier::~Echiquier()
 {}
 
-void EtatGame::initEtatGame(){
+void Echiquier::initEchiquier(){
 	/*std::
 	for(int i=0; i<NBRE_LIGNE; i++){
 		for(int j=0; j<NBRE_LIGNE; j++){
@@ -39,47 +39,39 @@ void EtatGame::initEtatGame(){
 	}*/
 }
 
-const EtatGame& EtatGame::getInstance() {
+const Echiquier& Echiquier::getInstance() {
 	return _instance;
 }
 
-EtatGame& EtatGame::accessInstance() {
+Echiquier& Echiquier::accessInstance() {
 	return _instance;
 }
 
-const datas::AllPiecePtr& EtatGame::getAllPiecesJ1() const{
+const datas::AllPiecePtr& Echiquier::getAllPiecesJ1() const{
 	return _allPiecesJoueurs[datas::JOUEUR_1];
 }
 
-void EtatGame::setAllPiecesJ1(datas::AllPiecePtr& iAllPieces){
+void Echiquier::setAllPiecesJ1(datas::AllPiecePtr& iAllPieces){
 	_allPiecesJoueurs[datas::JOUEUR_1] = iAllPieces;
 }
 
-const datas::AllPiecePtr& EtatGame::getAllPiecesJ2() const{
+const datas::AllPiecePtr& Echiquier::getAllPiecesJ2() const{
 	return _allPiecesJoueurs[datas::JOUEUR_2];
 }
 
-void EtatGame::setAllPiecesJ2(datas::AllPiecePtr& iAllPieces){
+void Echiquier::setAllPiecesJ2(datas::AllPiecePtr& iAllPieces){
 	_allPiecesJoueurs[datas::JOUEUR_2] = iAllPieces;
 }
 
-const datas::Echiquier& EtatGame::getEchiquier() const{
-	return _echiquier;
-}
-
-void EtatGame::setEchiquier(datas::Echiquier& iEchiquier){
-	_echiquier = iEchiquier;
-}
-
-bool EtatGame::getPossiblePriseEnPassant() const{
+bool Echiquier::getPossiblePriseEnPassant() const{
 	return _possiblePriseEnPassant;
 }
 
-void EtatGame::setPossiblePriseEnPassant(bool iPossiblePriseEnPassant){
+void Echiquier::setPossiblePriseEnPassant(bool iPossiblePriseEnPassant){
 	_possiblePriseEnPassant = iPossiblePriseEnPassant;
 }
 
-void EtatGame::setBegginingGameWithoutHandicap(){
+void Echiquier::setBegginingGameWithoutHandicap(){
 	datas::Position aPosition;
 
 	//Pions
@@ -165,27 +157,27 @@ void EtatGame::setBegginingGameWithoutHandicap(){
 	_hasAlreadyPiece = true;
 }
 
-const datas::Case& EtatGame::getCase(int ligne, int col) const{
+const datas::Case& Echiquier::getCase(int ligne, int col) const{
 	return _echiquier[ligne][col];
 }
 
-datas::Case& EtatGame::accessCase(int ligne, int col){
+datas::Case& Echiquier::accessCase(int ligne, int col){
 	return _echiquier[ligne][col];
 }
 
-const datas::Case& EtatGame::getCase(const datas::Position& iPosition) const{
+const datas::Case& Echiquier::getCase(const datas::Position& iPosition) const{
 	return _echiquier[iPosition.getX()][iPosition.getY()];
 }
 
-datas::Case& EtatGame::accessCase(const datas::Position& iPosition){
+datas::Case& Echiquier::accessCase(const datas::Position& iPosition){
 	return _echiquier[iPosition.getX()][iPosition.getY()];
 }
 
-datas::Move& EtatGame::accessLastMove(){
+datas::Move& Echiquier::accessLastMove(){
 	return _lastMove;
 }
 
-const datas::Move& EtatGame::getLastMove() const{
+const datas::Move& Echiquier::getLastMove() const{
 	return _lastMove;
 }
 
@@ -194,7 +186,7 @@ const datas::Move& EtatGame::getLastMove() const{
  * necessaire pour setter si move est un rock ou priseEnPassant
  * peux pas le faire dans validMove (encore moins bien dans conception)
  */
-void EtatGame::setChangeMove(const datas::Move& iMove){
+void Echiquier::setChangeMove(const datas::Move& iMove){
 	setPossiblePriseEnPassant(false);
 	const datas::Piece* aPieceMove = this->getCase(iMove.getStartPosition()).getPiece().get();
 	if(aPieceMove->getTypePiece() == datas::PION_TYPE){
@@ -241,17 +233,17 @@ void EtatGame::setChangeMove(const datas::Move& iMove){
 	movePiece(iMove.getStartPosition(), iMove.getEndPosition());
 }
 
-void EtatGame::movePiece(const datas::Position& iPositionStart, const datas::Position& iPositionEnd){
+void Echiquier::movePiece(const datas::Position& iPositionStart, const datas::Position& iPositionEnd){
 	this->accessCase(iPositionEnd).setPiece(this->accessCase(iPositionStart).accessPiece().get());
 	this->accessCase(iPositionStart).resetPiece();
 }
 
-void EtatGame::setPieceCaseXY(datas::Position& iPosition, datas::Piece* iPiece){
+void Echiquier::setPieceCaseXY(datas::Position& iPosition, datas::Piece* iPiece){
 	accessCase(iPosition).setPiece(iPiece);
 	_hasAlreadyPiece = true;
 }
 
-void EtatGame::reset(){
+void Echiquier::reset(){
 	if(_hasAlreadyPiece){
 		_hasAlreadyPiece = false;
 		for(auto it = _allPiecesJoueurs.begin(); it != _allPiecesJoueurs.end(); ++it){

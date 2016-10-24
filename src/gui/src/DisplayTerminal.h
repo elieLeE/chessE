@@ -8,7 +8,7 @@
 #ifndef DISPLAYTERMINAL_H_
 #define DISPLAYTERMINAL_H_
 
-#include "../../game/src/EtatGame.h"
+#include "../../game/src/Echiquier.h"
 #include "../../datas/src/typeDefine/Types.h"
 #include "../../datas/src/typeDefine/TypePiece.h"
 #include "../../datas/src/typeDefine/Color.h"
@@ -20,9 +20,9 @@ public:
 	DisplayTerminal();
 	virtual ~DisplayTerminal();
 
-	//void updateDisplay(const game::EtatGame& iEtatGame, const Move& iMove);
+	//void updateDisplay(const game::Echiquier& iEchiquier, const Move& iMove);
 
-	void displayPositionGameTerminal(const game::EtatGame& iEtatGame);
+	void displayPositionGameTerminal(const game::Echiquier& iEchiquier);
 	void displayPiece(const datas::ETypePiece iTypePiece, const datas::EColor iColor);
 	std::string getSymbol(const datas::ETypePiece iTypePiece);
 	std::string getColor(int color);

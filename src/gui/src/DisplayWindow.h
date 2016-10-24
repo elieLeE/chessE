@@ -15,9 +15,9 @@ public:
 	DisplayWindow();
 	virtual ~DisplayWindow();
 
-	//void updateDisplay(const game::EtatGame& iEtatGame, const Move& iMove);
+	//void updateDisplay(const game::Echiquier& iEchiquier, const Move& iMove);
 
-	void displayPositionGameWindow(const game::EtatGame& iEtatGame);
+	void displayPositionGameWindow(const game::Echiquier& iEchiquier);
 
 	//static datas::MoveCSPtr nextMove();
 	//static boost::shared_ptr<datas::Move> nextMove();

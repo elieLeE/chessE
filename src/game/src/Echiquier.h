@@ -1,12 +1,12 @@
 /*
- * EtatGame.h
+ * Echiquier.h
  *
  *  Created on: 20 sept. 2016
  *      Author: le_e
  */
 
-#ifndef ETATGAME_H_
-#define ETATGAME_H_
+#ifndef Echiquier_H_
+#define Echiquier_H_
 
 #include <array>
 
@@ -21,15 +21,15 @@
 
 namespace game{
 
-class EtatGame {
+class Echiquier{
 public:
-	virtual ~EtatGame();
+	virtual ~Echiquier();
 
-	static const EtatGame& getInstance();
+	static const Echiquier& getInstance();
 	//utile ?? => pour _possiblePriseEnPassant ? => passer par 1 pointeur de booleen ??
-	static EtatGame& accessInstance();
+	static Echiquier& accessInstance();
 
-	void initEtatGame();
+	void initEchiquier();
 
 	void movePiece(const datas::Position& iPositionStart, const datas::Position& iPositionEnd);
 
@@ -72,14 +72,14 @@ public:
 
 
 private:
-	EtatGame();
-	EtatGame(const EtatGame&);
-	EtatGame& operator=(const EtatGame&);
+	Echiquier();
+	Echiquier(const Echiquier&);
+	Echiquier& operator=(const Echiquier&);
 
 	void setPossiblePriseEnPassant(bool iPossiblePriseEnPassant);
 
-	//static EtatGame* _instance;
-	static EtatGame _instance;
+	//static Echiquier* _instance;
+	static Echiquier _instance;
 
 	//std::array<std::array<datas::Case, NBRE_LIGNE>, NBRE_COLONNE> echiquier;
 	datas::Echiquier _echiquier;
@@ -99,4 +99,4 @@ private:
 };
 
 } /* namespace game*/
-#endif /* ETATGAME_H_ */
+#endif /* Echiquier_H_ */
