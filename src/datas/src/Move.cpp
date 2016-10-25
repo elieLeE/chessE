@@ -84,8 +84,6 @@ void Move::setMoveProperties(){
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 	Piece* aPiece = aEchiquier.accessCase(_start).accessPiece().get();
 
-	aPiece->movePiece(_end);
-
 	if((aPiece->getTypePiece() == PION_TYPE) &&
 			!_start.sameCol(_end) &&
 			!aEchiquier.getCase(_end).hasPiece()){

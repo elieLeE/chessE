@@ -22,7 +22,7 @@ Piece::Piece(const EColor iColor, Position iPosition, ETypePiece iTypePiece, con
 Piece::~Piece()
 {}
 
-void Piece::movePiece(Position& iPosition){
+void Piece::movePiece(const Position& iPosition){
 	_position = iPosition;
 }
 

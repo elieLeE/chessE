@@ -20,6 +20,8 @@ public:
 
 	virtual bool isValideMove(const Move& iMove) const;
 
+	virtual void movePiece(const Position& iPosition);
+
 	//virtual const std::list <boost::shared_ptr <Move> > getPossibleMoves() const;
 
 private:

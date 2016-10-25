@@ -14,3 +14,12 @@ Game::Game() {}
 Game::~Game() {}
 
 } /* namespace game */
+
+/*
+ * deroulement d'une partie
+ * 		recuperage du prochain movement (validation faite par classe joueur)
+ * 		setChangeMove
+ * 		setMoveProperties
+ * 		movePiece de Echiquier
+ *
+ */

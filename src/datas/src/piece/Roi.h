@@ -22,6 +22,8 @@ public:
 
 	virtual bool isValideMove(const Move& iMove) const;
 
+	virtual void movePiece(const Position& iPosition);
+
 	bool estMoveOKTheorique(const Move& iMove) const;
 	bool estMoveOKPratique(const Move& iMove) const;
 	bool pionPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionPion) const;
@@ -34,8 +36,7 @@ public:
 	virtual const std::list <boost::shared_ptr <Move> >getPossibleMoves() const ;
 
 private:
-	Roi(const Roi&);
-	Roi& operator=(const Roi&);
+	bool _hasAlreadyMoved;
 };
 
 }

@@ -31,7 +31,7 @@ public:
 	Piece(const EColor iColor, Position iPosition, ETypePiece iTypePiece, const int iValue);
 	virtual ~Piece();
 
-	void movePiece(Position& iPosition);
+	virtual void movePiece(const Position& iPosition);
 
 	/*
 	 * quand les utilisées ?

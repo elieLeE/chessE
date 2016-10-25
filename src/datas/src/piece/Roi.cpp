@@ -26,6 +26,11 @@ bool Roi::isValideMove(const Move& iMove) const{
 			estMoveOKPratique(iMove));
 }
 
+void Roi::movePiece(const Position& iPosition){
+	Piece::movePiece(iPosition);
+	_hasAlreadyMoved = true;
+}
+
 //verifie que le movement est possible pour un Roi dans 1 cas general.
 //ne verifie pas qu'il puisse mourir en jouant ainsi
 bool Roi::estMoveOKTheorique(const Move& iMove) const{

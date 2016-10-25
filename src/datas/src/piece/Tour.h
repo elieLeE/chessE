@@ -22,10 +22,12 @@ public:
 		TOUR_2
 	}ENumTour;
 
-	Tour(const EColor iColor, Position iPosition, const int iNumTour);
+	Tour(const EColor iColor, Position iPosition);
 	virtual ~Tour();
 
 	virtual bool isValideMove(const Move& iMove) const;
+
+	virtual void movePiece(const Position& iPosition);
 
 	bool canAccessToCase(const Position& iPosition) const;
 
@@ -34,7 +36,7 @@ public:
 	int getNumTour(void) const;
 
 private:
-	const int _numTour;
+	bool _hasAlreadyMoved;
 };
 
 }

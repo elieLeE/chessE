@@ -87,4 +87,13 @@ void TestRoi::testPionPeuxTuerLeRoi() const{
 	cout << "	OK" << endl;
 }
 
+void TestRoi::test(){
+	Position aPosition(0, 0);
+	Roi aRoi(WHITE, aPosition);
+
+	aPosition.setPosition(1, 1);
+	aRoi.movePiece(aPosition);
+
+}
+
 } /* namespace datas */

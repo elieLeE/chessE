@@ -22,6 +22,11 @@ Pion::Pion(const EColor iColor, Position iPosition, const bool iSens):
 Pion::~Pion()
 {}
 
+void Pion::movePiece(const Position& iPosition){
+	Piece::movePiece(iPosition);
+	_hasAlreadyMoved = true;
+}
+
 bool Pion::isValideMove(const Move& iMove) const{
 	bool aBool = false;
 

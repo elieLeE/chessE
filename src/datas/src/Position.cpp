@@ -28,14 +28,6 @@ void Position::setPosition(int x, int y){
 	setY(y);
 }
 
-bool Position::operator==(const Position& iPosition) const {
-	return ((iPosition._x == _x) && (iPosition._y) == _y);
-}
-
-bool Position::operator!=(const Position& iPosition) const {
-	return !(*this == iPosition);
-}
-
 bool Position::sameLigne(const Position& iPosition) const{
 	return (_x == iPosition.getX());
 }
@@ -78,6 +70,19 @@ EColor Position::getColorCase() const{
 	int sum = getX() + getY();
 
 	return (sum%2==0?WHITE:BLACK);
+}
+
+bool Position::operator==(const Position& iPosition) const {
+	return ((iPosition._x == _x) && (iPosition._y) == _y);
+}
+
+bool Position::operator!=(const Position& iPosition) const {
+	return !(*this == iPosition);
+}
+
+void Position::operator=(const Position& iPosition){
+	setX(iPosition.getX());
+	setY(iPosition.getY());
 }
 
 std::ostream& Position::toStream(std::ostream& aStream) const{

@@ -40,6 +40,7 @@ public:
 
 	bool operator==(const Position& iPosition) const ;
 	bool operator!=(const Position& iPosition) const ;
+	void operator=(const Position& iPosition);
 
 private:
 	//Position& operator=(const Position&);

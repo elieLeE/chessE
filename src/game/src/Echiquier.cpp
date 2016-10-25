@@ -87,19 +87,19 @@ void Echiquier::setBegginingGameWithoutHandicap(){
 
 	//Tours
 	aPosition.setPosition(0, 0);
-	datas::Tour *aTourWhiteLeft = new datas::Tour(datas::WHITE, aPosition, datas::Tour::TOUR_1);
+	datas::Tour *aTourWhiteLeft = new datas::Tour(datas::WHITE, aPosition);
 	accessCase(aPosition).setPiece(aTourWhiteLeft);
 
 	aPosition.setPosition(0, 7);
-	datas::Tour *aTourWhiteRight = new datas::Tour(datas::WHITE, aPosition, datas::Tour::TOUR_2);
+	datas::Tour *aTourWhiteRight = new datas::Tour(datas::WHITE, aPosition);
 	accessCase(aPosition).setPiece(aTourWhiteRight);
 
 	aPosition.setPosition(7, 0);
-	datas::Tour *aTourBlackLeft = new datas::Tour(datas::BLACK, aPosition, datas::Tour::TOUR_1);
+	datas::Tour *aTourBlackLeft = new datas::Tour(datas::BLACK, aPosition);
 	accessCase(aPosition).setPiece(aTourBlackLeft);
 
 	aPosition.setPosition(7, 7);
-	datas::Tour *aTourBlackRight = new datas::Tour(datas::BLACK, aPosition, datas::Tour::TOUR_2);
+	datas::Tour *aTourBlackRight = new datas::Tour(datas::BLACK, aPosition);
 	accessCase(aPosition).setPiece(aTourBlackRight);
 
 	//Cavaliers
@@ -195,24 +195,6 @@ void Echiquier::setChangeMove(const datas::Move& iMove){
 		}
 	}
 
-	int numJ = aPieceMove->getNumJoueur();
-	if(_rockPossible[numJ]){
-		if(aPieceMove->getTypePiece() == datas::ROI_TYPE){
-			_rockPossible[numJ] = false;
-		}
-
-		if(aPieceMove->getTypePiece() == datas::TOUR_TYPE){
-			//si les deux tours ont bougés ou le roi => plus de rock possible
-			//boost::shared_ptr<datas::Tour> aTour = std::dynamic_pointer_cast<datas::Tour>(aPieceMove);
-			const datas::Tour* aTour = dynamic_cast<const datas::Tour*>(aPieceMove);
-			int numTour = aTour->getNumTour();
-			_tourAlreadyMoved[numJ][numTour];
-			if(_tourAlreadyMoved[numJ][(numTour+1)%2]){
-				_rockPossible[numJ] = false;
-			}
-		}
-	}
-
 	if(std::abs(iMove.getStartPosition().getX() - iMove.getEndPosition().getX())){
 		setPossiblePriseEnPassant(true);
 	}
@@ -230,11 +212,11 @@ void Echiquier::setChangeMove(const datas::Move& iMove){
 	//on veux prednre vers quoi pointe
 
 	//this->getPiece(iMove.get)
-	movePiece(iMove.getStartPosition(), iMove.getEndPosition());
+	//movePiece(iMove.getStartPosition(), iMove.getEndPosition());
 }
 
 void Echiquier::movePiece(const datas::Position& iPositionStart, const datas::Position& iPositionEnd){
-	this->accessCase(iPositionEnd).setPiece(this->accessCase(iPositionStart).accessPiece().get());
+	this->accessCase(iPositionEnd).accessPiece()->movePiece(iPositionEnd);
 	this->accessCase(iPositionStart).resetPiece();
 }
 

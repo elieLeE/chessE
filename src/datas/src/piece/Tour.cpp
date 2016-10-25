@@ -14,20 +14,20 @@
 
 namespace datas{
 
-Tour::Tour(const EColor iColor, Position iPosition, const int iNumTour):
-		Piece(iColor, iPosition, TOUR_TYPE, TOUR_VALUE),
-		_numTour(iNumTour)
+Tour::Tour(const EColor iColor, Position iPosition):
+		Piece(iColor, iPosition, TOUR_TYPE, TOUR_VALUE)
 {}
 
 Tour::~Tour()
 {}
 
-int Tour::getNumTour(void) const{
-	return _numTour;
-}
-
 bool Tour::isValideMove(const Move& iMove) const{
 	return true;
+}
+
+void Tour::movePiece(const 	Position& iPosition){
+	Piece::movePiece(iPosition);
+	_hasAlreadyMoved = true;
 }
 
 bool Tour::canAccessToCase(const Position& iPosition) const{
