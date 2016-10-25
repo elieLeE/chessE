@@ -9,6 +9,7 @@
 #define POSITION_H_
 
 #include "typeDefine/Color.h"
+#include <iostream>
 
 namespace datas {
 
@@ -34,6 +35,8 @@ public:
 	bool sameLigne(const Position& iPosition) const;
 
 	EColor getColorCase() const;
+
+	std::ostream& toStream(std::ostream& aStream) const;
 
 	bool operator==(const Position& iPosition) const ;
 	bool operator!=(const Position& iPosition) const ;

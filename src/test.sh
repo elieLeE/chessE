@@ -36,12 +36,12 @@ resultTest "datas" $?
 
 echo 
 #$opt ./game/test/./prog $opt
-./datas/test/./prog
+./game/test/./prog
 resultTest "game" $? 
 
 echo 
 #$opt ./gui/test/./prog $opt
-./datas/test/./prog
+./gui/test/./prog
 resultTest "gui" $?
 
 echo 

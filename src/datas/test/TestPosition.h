@@ -20,6 +20,7 @@ public:
 	void testComparePosition(void) const;
 	void testSame(void) const;
 	void testEvaluatePosition(void) const;
+	void testToStream(void) const;
 
 };
 

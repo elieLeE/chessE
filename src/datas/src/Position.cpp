@@ -8,6 +8,7 @@
 #include "Position.h"
 #include "typeDefine/Dimension.h"
 #include <cmath>
+#include <fstream>
 
 namespace datas{
 
@@ -77,6 +78,12 @@ EColor Position::getColorCase() const{
 	int sum = getX() + getY();
 
 	return (sum%2==0?WHITE:BLACK);
+}
+
+std::ostream& Position::toStream(std::ostream& aStream) const{
+	//std::cout << std::endl << "x : " << getX() << ", y : " << getY() << std::endl;
+	aStream << getX() << " " << getY();
+	return aStream;
 }
 
 }

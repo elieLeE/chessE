@@ -6,6 +6,7 @@
  */
 
 #include <boost/assert.hpp>
+#include <sstream>
 
 #include "TestPosition.h"
 #include "../src/typeDefine/Dimension.h"
@@ -25,6 +26,8 @@ void TestPosition::startTests(){
 	aTestPosition.testComparePosition();
 	aTestPosition.testSame();
 	aTestPosition.testEvaluatePosition();
+	aTestPosition.testToStream();
+	std::cout << std::endl;
 }
 
 void TestPosition::testComparePosition() const {
@@ -71,6 +74,22 @@ void TestPosition::testEvaluatePosition(void) const{
 
 	int dist = 5;
 	BOOST_ASSERT_MSG(aPosition1.evaluateDistance(aPosition2) == dist, "testPosition evaluatePosition");
+
+	std::cout << "	OK" << std::endl;
+}
+
+void TestPosition::testToStream(void) const{
+	std::cout << "testPosition - toStream";
+	Position aPosition(2, 5);
+
+
+	std::ostream aStream(0);
+	std::stringbuf aStr;
+	aStream.rdbuf(&aStr);
+
+	aPosition.toStream(aStream);
+
+	BOOST_ASSERT_MSG(aStr.str().compare("2 5") == 0, "testPosition evaluatePosition");
 
 	std::cout << "	OK" << std::endl;
 }
