@@ -63,6 +63,10 @@ bool Tour::canAccessToCase(const Position& iPosition) const{
 	return aBool;
 }
 
+bool Tour::getHasAlreadyMoved() const{
+	return _hasAlreadyMoved;
+}
+
 /*const std::list <boost::shared_ptr <Move> > getPossibleMoves() const{
 	std::list <boost::shared_ptr <Move> > aList;
 

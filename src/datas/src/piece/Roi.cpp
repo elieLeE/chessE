@@ -4,6 +4,7 @@
  *  Created on: 17 sept. 2016
  *      Author: le_e
  */
+#include <cmath>
 
 #include "Roi.h"
 #include "../typeDefine/TypePiece.h"
@@ -15,7 +16,8 @@
 namespace datas{
 
 Roi::Roi(const EColor iColor, Position iPosition):
-				Piece(iColor, iPosition, ROI_TYPE, ROI_VALUE)
+			Piece(iColor, iPosition, ROI_TYPE, ROI_VALUE),
+			_hasAlreadyMoved(false)
 {}
 
 Roi::~Roi()
@@ -34,26 +36,37 @@ void Roi::movePiece(const Position& iPosition){
 //verifie que le movement est possible pour un Roi dans 1 cas general.
 //ne verifie pas qu'il puisse mourir en jouant ainsi
 bool Roi::estMoveOKTheorique(const Move& iMove) const{
-	bool aBool = false;
+	return estNormalMove(iMove) ||
+			estPetitRock(iMove) ||
+			estGrandRock(iMove);
+}
 
-	if(Piece::isValideMove(iMove)){
-		int dist = iMove.evaluateDistance();
-		// d > 0 car on a verifie precedement que les position start et end n'etaient pas egales
-		//movement normal
-		if(dist < 4){
-			aBool = true;
-		}
-		else if(dist == 4){
-			//ca doit etre 1 petit rock
-			if(iMove.getStartPosition().sameLigne(iMove.getEndPosition())){
-				//ok => grandrock
-				aBool = true;
-			}
-		}
-		else if(dist == 9){
-			//ca doit etre 1 grand rock
-			if(iMove.getStartPosition().sameLigne(iMove.getEndPosition())){
-				//ok => grandrock
+bool Roi::estNormalMove(const Move& iMove) const{
+	return (iMove.evaluateDistance() < 4);
+}
+
+bool Roi::estPetitRock(const Move& iMove) const{
+	return estRock(iMove, PETIT_ROCK);
+}
+
+bool Roi::estGrandRock(const Move& iMove) const{
+	return estRock(iMove, GRAND_ROCK);
+}
+
+bool Roi::estRock(const Move& iMove, ETypeMove iTypeMove) const{
+	bool aBool = false;
+	int diffExpected = (iTypeMove==PETIT_ROCK?3:4);
+
+	if(iMove.getStartPosition().sameLigne(iMove.getEndPosition()) &&
+			(iMove.getStartPosition().diffCol(iMove.getEndPosition()) == diffExpected) &&
+			(!_hasAlreadyMoved)){
+		int x = _position.getX();
+		int y = (iTypeMove==PETIT_ROCK?(x==0?7:0):(x==0?0:7));
+		const PiecePtr aPiece = game::Echiquier::getInstance().getCase(x, y).getPiece();
+
+		if(aPiece && (aPiece->getTypePiece()==TOUR_TYPE)){
+			const Tour* aTour = dynamic_cast<const Tour*>(aPiece.get());
+			if(!aTour->getHasAlreadyMoved()){
 				aBool = true;
 			}
 		}

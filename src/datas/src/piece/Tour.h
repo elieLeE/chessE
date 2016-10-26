@@ -33,7 +33,7 @@ public:
 
 	//virtual const std::list <boost::shared_ptr <Move> > getPossibleMoves() const;
 
-	int getNumTour(void) const;
+	bool getHasAlreadyMoved() const;
 
 private:
 	bool _hasAlreadyMoved;

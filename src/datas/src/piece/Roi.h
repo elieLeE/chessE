@@ -26,6 +26,12 @@ public:
 
 	bool estMoveOKTheorique(const Move& iMove) const;
 	bool estMoveOKPratique(const Move& iMove) const;
+
+	bool estNormalMove(const Move& iMove) const;
+	bool estPetitRock(const Move& iMove) const;
+	bool estGrandRock(const Move& iMove) const;
+	bool estRock(const Move& iMove, ETypeMove iTypeMove) const;
+
 	bool pionPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionPion) const;
 	bool cavalierPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionCavalier) const;
 	bool fouPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionFou) const;
@@ -35,8 +41,10 @@ public:
 
 	virtual const std::list <boost::shared_ptr <Move> >getPossibleMoves() const ;
 
-private:
 	bool _hasAlreadyMoved;
+
+private:
+
 };
 
 }

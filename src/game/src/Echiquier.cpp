@@ -220,8 +220,13 @@ void Echiquier::movePiece(const datas::Position& iPositionStart, const datas::Po
 	this->accessCase(iPositionStart).resetPiece();
 }
 
-void Echiquier::setPieceCaseXY(datas::Position& iPosition, datas::Piece* iPiece){
+void Echiquier::setPieceCaseXY(const datas::Position& iPosition, datas::Piece* iPiece){
 	accessCase(iPosition).setPiece(iPiece);
+	_hasAlreadyPiece = true;
+}
+
+void Echiquier::setPieceCaseXY(const int x, const int y, datas::Piece* iPiece){
+	accessCase(x, y).setPiece(iPiece);
 	_hasAlreadyPiece = true;
 }
 
