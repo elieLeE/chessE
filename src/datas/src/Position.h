@@ -34,6 +34,9 @@ public:
 	bool sameCol(const Position& iPosition) const;
 	bool sameLigne(const Position& iPosition) const;
 
+	int diffLigne(const Position& iPosition) const;
+	int diffCol(const Position& iPosition) const;
+
 	EColor getColorCase() const;
 
 	std::ostream& toStream(std::ostream& aStream) const;

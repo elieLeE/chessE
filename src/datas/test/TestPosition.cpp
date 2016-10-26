@@ -26,6 +26,7 @@ void TestPosition::startTests(){
 	aTestPosition.testComparePosition();
 	aTestPosition.testSame();
 	aTestPosition.testEvaluatePosition();
+	aTestPosition.testDiffs();
 	aTestPosition.testToStream();
 	std::cout << std::endl;
 }
@@ -74,6 +75,18 @@ void TestPosition::testEvaluatePosition(void) const{
 
 	int dist = 5;
 	BOOST_ASSERT_MSG(aPosition1.evaluateDistance(aPosition2) == dist, "testPosition evaluatePosition");
+
+	std::cout << "	OK" << std::endl;
+}
+
+void TestPosition::testDiffs(void) const{
+	std::cout << "testPosition - testDiffs";
+
+	Position aPosition1(2, 5);
+	Position aPosition2(4, 6);
+
+	BOOST_ASSERT_MSG(aPosition1.diffLigne(aPosition2) == 2, "testPosition evaluatePosition");
+	BOOST_ASSERT_MSG(aPosition1.diffCol(aPosition2) == 1, "testPosition evaluatePosition");
 
 	std::cout << "	OK" << std::endl;
 }

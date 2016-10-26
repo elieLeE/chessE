@@ -35,6 +35,15 @@ bool Position::sameLigne(const Position& iPosition) const{
 bool Position::sameCol(const Position& iPosition) const{
 	return (this->_y == iPosition.getY());
 }
+
+int Position::diffLigne(const Position& iPosition) const{
+	return std::abs(getX() - iPosition.getX());
+}
+
+int Position::diffCol(const Position& iPosition) const{
+	return std::abs(getY() - iPosition.getY());
+}
+
 bool Position::isValid() const{
 	return ((_x >=0) && (_x<NBRE_LIGNE) && (_y>=0) && (_y < NBRE_COLONNE));
 }
