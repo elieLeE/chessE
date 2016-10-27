@@ -11,10 +11,11 @@
 namespace datas{
 
 typedef enum ETypeMove{
-	NORMALLY_MOVE = 0,
+	NORMAL_MOVE = 0,
 	PRISE_EN_PASSANT,
 	PETIT_ROCK = 4,
-	GRAND_ROCK = 9
+	GRAND_ROCK = 9,
+	INCORRECT_MOVE
 }ETypeMove;
 
 }

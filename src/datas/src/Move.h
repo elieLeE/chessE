@@ -22,7 +22,7 @@ class Move {
 public:
 	Move();
 	Move(Position& iPositionStart, Position& iPositionEnd,
-			ETypePiece iCapturedPiece = NO_TYPE, ETypeMove iTypeMove = NORMALLY_MOVE);
+			ETypePiece iCapturedPiece = NO_TYPE, ETypeMove iTypeMove = NORMAL_MOVE);
 	virtual ~Move();
 
 	const Position& getStartPosition() const ;
