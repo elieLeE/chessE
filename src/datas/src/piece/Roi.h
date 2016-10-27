@@ -24,13 +24,16 @@ public:
 
 	virtual void movePiece(const Position& iPosition);
 
-	bool estMoveOKTheorique(const Move& iMove) const;
-	bool estMoveOKPratique(const Move& iMove) const;
+	ETypeMove estMoveOKTheorique(const Move& iMove) const;
+	bool estMoveOKPratique(const Move& iMove, const ETypeMove iTypeMove) const;
 
-	bool estNormalMove(const Move& iMove) const;
-	bool estPetitRock(const Move& iMove) const;
-	bool estGrandRock(const Move& iMove) const;
-	bool estRock(const Move& iMove, ETypeMove iTypeMove) const;
+	bool estNormalMoveTheorique(const Move& iMove) const;
+	bool estPetitRockTheorique(const Move& iMove) const;
+	bool estGrandRockTheorique(const Move& iMove) const;
+	bool estRockTheorique(const Move& iMove, ETypeMove iTypeMove) const;
+
+	bool estNormalMovePratique(const Move& iMove) const;
+	bool estRockPratique(const Move& iMove, ETypeMove iTypeMove) const;
 
 	bool pionPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionPion) const;
 	bool cavalierPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionCavalier) const;

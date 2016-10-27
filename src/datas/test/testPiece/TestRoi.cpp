@@ -54,18 +54,8 @@ void TestRoi::testEstMoveOKTheorique() const{
 
 	aEchiquier.setPieceCaseXY(aPositionStart, aRoi);
 	Move aMove(aPositionStart, aPositionEnd);
-	BOOST_ASSERT_MSG(aRoi->estMoveOKTheorique(aMove), "test move theorique - normal move");
-
-	/*aPositionStart.setPosition(0, 4);
-	aPositionEnd.setPosition(0, 7);
-	aMove.setPositionStart(aPositionStart);
-	aMove.setPositionEnd(aPositionEnd);
-	aRoi->accessPosition() = aPositionStart;
-	BOOST_ASSERT_MSG(aRoi->estMoveOKTheorique(aMove), "test move theorique - petit rock");
-
-	aPositionEnd.setPosition(0, 0);
-	aMove.setPositionEnd(aPositionEnd);
-	BOOST_ASSERT_MSG(aRoi->estMoveOKTheorique(aMove), "test move theorique - grand rock");*/
+	std::cout << "moveTheorique : " << aRoi->estMoveOKTheorique(aMove) << std::endl;
+	BOOST_ASSERT_MSG(aRoi->estMoveOKTheorique(aMove)==NORMAL_MOVE, "test move theorique - normal move");
 
 	cout << "	OK" << endl;
 }
@@ -74,38 +64,40 @@ void TestRoi::testEstPetitRock() const{
 	cout << "TestRoi - testEstPetitRock";
 
 	Position aPositionStart(0, 4);
-	Position aPositionEnd(0, 7);
+	Position aPositionTour(0, 7);
+	Position aPositionEnd(0, 6);
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 
 	Roi *aRoi = new Roi(WHITE, aPositionStart);
-	Tour *aTour1 = new Tour(WHITE, aPositionEnd);
+	Tour *aTour1 = new Tour(WHITE, aPositionTour);
 	Move aMove(aPositionStart, aPositionEnd);
 
 	aEchiquier.setPieceCaseXY(aPositionStart, aRoi);
-	aEchiquier.setPieceCaseXY(aPositionEnd, aTour1);
+	aEchiquier.setPieceCaseXY(aPositionTour, aTour1);
 
-	BOOST_ASSERT_MSG(aRoi->estMoveOKTheorique(aMove), "test petit rock");
+	BOOST_ASSERT_MSG(aRoi->estMoveOKTheorique(aMove)==PETIT_ROCK, "test petit rock");
 
-	cout << "OK" << std::endl;
+	cout << "	OK" << std::endl;
 }
 
 void TestRoi::testEstGrandRock() const{
 	cout << "TestRoi - testEstGrandRock";
 
 	Position aPositionStart(0, 4);
-	Position aPositionEnd(0, 0);
+	Position aPositionEnd(0, 1);
+	Position aPositionTour(0, 0);
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 
 	Roi *aRoi = new Roi(WHITE, aPositionStart);
-	Tour *aTour1 = new Tour(WHITE, aPositionEnd);
+	Tour *aTour1 = new Tour(WHITE, aPositionTour);
 	Move aMove(aPositionStart, aPositionEnd);
 
 	aEchiquier.setPieceCaseXY(aPositionStart, aRoi);
-	aEchiquier.setPieceCaseXY(aPositionEnd, aTour1);
+	aEchiquier.setPieceCaseXY(aPositionTour, aTour1);
 
-	BOOST_ASSERT_MSG(aRoi->estMoveOKTheorique(aMove), "test move theorique - grand rock");
+	BOOST_ASSERT_MSG(aRoi->estMoveOKTheorique(aMove)==GRAND_ROCK, "test move theorique - grand rock");
 
-	cout << "OK" << std::endl;
+	cout << "	OK" << std::endl;
 }
 
 void TestRoi::testPionPeuxTuerLeRoi() const{

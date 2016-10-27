@@ -16,46 +16,50 @@
 namespace datas{
 
 Roi::Roi(const EColor iColor, Position iPosition):
-			Piece(iColor, iPosition, ROI_TYPE, ROI_VALUE),
-			_hasAlreadyMoved(false)
+							Piece(iColor, iPosition, ROI_TYPE, ROI_VALUE),
+							_hasAlreadyMoved(false)
 {}
 
 Roi::~Roi()
 {}
-
-bool Roi::isValideMove(const Move& iMove) const{
-	return (estMoveOKTheorique(iMove) &&
-			estMoveOKPratique(iMove));
-}
 
 void Roi::movePiece(const Position& iPosition){
 	Piece::movePiece(iPosition);
 	_hasAlreadyMoved = true;
 }
 
-//verifie que le movement est possible pour un Roi dans 1 cas general.
-//ne verifie pas qu'il puisse mourir en jouant ainsi
-bool Roi::estMoveOKTheorique(const Move& iMove) const{
-	return estNormalMove(iMove) ||
-			estPetitRock(iMove) ||
-			estGrandRock(iMove);
+bool Roi::isValideMove(const Move& iMove) const{
+	ETypeMove aTypeMove = estMoveOKTheorique(iMove);
+	return estMoveOKPratique(iMove, aTypeMove);
 }
 
-bool Roi::estNormalMove(const Move& iMove) const{
+//verifie que le movement est possible pour un Roi dans 1 cas general.
+//ne verifie pas qu'il puisse mourir en jouant ainsi
+ETypeMove Roi::estMoveOKTheorique(const Move& iMove) const{
+	ETypeMove aTypeMove = INCORRECT_MOVE;
+
+	aTypeMove=estNormalMoveTheorique(iMove)?NORMAL_MOVE:INCORRECT_MOVE;
+	aTypeMove=(aTypeMove!=INCORRECT_MOVE)?aTypeMove:estPetitRockTheorique(iMove)?PETIT_ROCK:INCORRECT_MOVE;
+	aTypeMove=(aTypeMove!=INCORRECT_MOVE)?aTypeMove:estGrandRockTheorique(iMove)?GRAND_ROCK:INCORRECT_MOVE;
+
+	return aTypeMove;
+}
+
+bool Roi::estNormalMoveTheorique(const Move& iMove) const{
 	return (iMove.evaluateDistance() < 4);
 }
 
-bool Roi::estPetitRock(const Move& iMove) const{
-	return estRock(iMove, PETIT_ROCK);
+bool Roi::estPetitRockTheorique(const Move& iMove) const{
+	return estRockTheorique(iMove, PETIT_ROCK);
 }
 
-bool Roi::estGrandRock(const Move& iMove) const{
-	return estRock(iMove, GRAND_ROCK);
+bool Roi::estGrandRockTheorique(const Move& iMove) const{
+	return estRockTheorique(iMove, GRAND_ROCK);
 }
 
-bool Roi::estRock(const Move& iMove, ETypeMove iTypeMove) const{
+bool Roi::estRockTheorique(const Move& iMove, ETypeMove iTypeMove) const{
 	bool aBool = false;
-	int diffExpected = (iTypeMove==PETIT_ROCK?3:4);
+	int diffExpected = (iTypeMove==PETIT_ROCK?2:3);
 
 	if(iMove.getStartPosition().sameLigne(iMove.getEndPosition()) &&
 			(iMove.getStartPosition().diffCol(iMove.getEndPosition()) == diffExpected) &&
@@ -76,47 +80,102 @@ bool Roi::estRock(const Move& iMove, ETypeMove iTypeMove) const{
 }
 
 //verifie que le Roi ne peux pas etre pris au coup suivant => validation pratique
-bool Roi::estMoveOKPratique(const Move& iMove) const{
+bool Roi::estMoveOKPratique(const Move& iMove, const ETypeMove iTypeMove) const{
+	bool aBool = false;
+
+	switch(iTypeMove){
+	case NORMAL_MOVE:
+		aBool = estNormalMovePratique(iMove);
+		break;
+
+	case PETIT_ROCK:
+		aBool = estRockPratique(iMove, PETIT_ROCK);
+		break;
+
+	case GRAND_ROCK:
+		aBool = estRockPratique(iMove, GRAND_ROCK);
+		break;
+
+	case PRISE_EN_PASSANT:
+	case INCORRECT_MOVE:
+		break;
+	}
+
+	return aBool;
+}
+
+bool Roi::estNormalMovePratique(const Move& iMove) const{
 	bool aBool = true;
 	Position aPositionFinale = iMove.getEndPosition();
 	const game::Echiquier& aEchiquier = game::Echiquier::getInstance();
 
 	for( auto it = aEchiquier.getAllPiecesJ1().begin(); it != aEchiquier.getAllPiecesJ1().end(); ++it ){
-		switch(it->get()->getTypePiece()){
 		if(it->get()->isAlive()){
-		case PION_TYPE:
-			aBool = !pionPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
-			break;
+			switch(it->get()->getTypePiece()){
 
-		case CAVALIER_TYPE:
-			aBool = !cavalierPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
-			break;
+			case PION_TYPE:
+				aBool = !pionPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
+				break;
 
-		case FOU_TYPE:
-			aBool = !fouPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
-			break;
+			case CAVALIER_TYPE:
+				aBool = !cavalierPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
+				break;
 
-		case TOUR_TYPE:
-			aBool = !tourPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
-			break;
+			case FOU_TYPE:
+				aBool = !fouPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
+				break;
 
-		case DAME_TYPE:
-			aBool = !damePeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
-			break;
+			case TOUR_TYPE:
+				aBool = !tourPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
+				break;
 
-		case ROI_TYPE:
-			aBool = !secondRoiColle(aPositionFinale, it->get()->getPosition());
-			break;
+			case DAME_TYPE:
+				aBool = !damePeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
+				break;
 
-		case NO_TYPE:
-			break;
-		}
-		if(!aBool){
-			break;
-		}
+			case ROI_TYPE:
+				aBool = !secondRoiColle(aPositionFinale, it->get()->getPosition());
+				break;
+
+			case NO_TYPE:
+				break;
+			}
+			if(!aBool){
+				break;
+			}
 		}
 	}
 	return aBool;
+}
+
+bool Roi::estRockPratique(const Move& iMove, ETypeMove iTypeMove) const{
+	bool aBool = true;
+
+	int x = _position.getX();
+	int y = (iTypeMove==PETIT_ROCK?(x==0?6:1):(x==0?1:6));
+	int deb = std::min(y, _position.getY());
+	int end = std::max(y, _position.getY());
+	Position aPosition(x, end);
+	Move aMove(aPosition, aPosition);
+
+	for(int i=deb; i<=end; i++){
+		if(game::Echiquier::getInstance().getCase(x, i).hasPiece()){
+			aBool = false;
+			break;
+		}
+	}
+
+	if(aBool){
+		for(int i=deb; i<=end; i++){
+			aPosition.setY(y);
+			if(estNormalMovePratique(aMove)){
+				aBool = false;
+				break;
+			}
+		}
+	}
+
+	return false;
 }
 
 //TODO => a ameliorer ==> verifier piece couleur differente et pion dans le bon sens
