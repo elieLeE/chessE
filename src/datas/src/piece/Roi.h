@@ -35,6 +35,7 @@ public:
 	bool estNormalMovePratique(const Move& iMove) const;
 	bool estRockPratique(const Move& iMove, ETypeMove iTypeMove) const;
 
+	bool canBeKilled(const Position& iPosition) const;
 	bool pionPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionPion) const;
 	bool cavalierPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionCavalier) const;
 	bool fouPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionFou) const;

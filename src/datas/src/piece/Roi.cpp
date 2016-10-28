@@ -105,47 +105,7 @@ bool Roi::estMoveOKPratique(const Move& iMove, const ETypeMove iTypeMove) const{
 }
 
 bool Roi::estNormalMovePratique(const Move& iMove) const{
-	bool aBool = true;
-	Position aPositionFinale = iMove.getEndPosition();
-	const game::Echiquier& aEchiquier = game::Echiquier::getInstance();
-
-	for( auto it = aEchiquier.getAllPiecesJ1().begin(); it != aEchiquier.getAllPiecesJ1().end(); ++it ){
-		if(it->get()->isAlive()){
-			switch(it->get()->getTypePiece()){
-
-			case PION_TYPE:
-				aBool = !pionPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
-				break;
-
-			case CAVALIER_TYPE:
-				aBool = !cavalierPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
-				break;
-
-			case FOU_TYPE:
-				aBool = !fouPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
-				break;
-
-			case TOUR_TYPE:
-				aBool = !tourPeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
-				break;
-
-			case DAME_TYPE:
-				aBool = !damePeuxTuerLeRoi(aPositionFinale, it->get()->getPosition());
-				break;
-
-			case ROI_TYPE:
-				aBool = !secondRoiColle(aPositionFinale, it->get()->getPosition());
-				break;
-
-			case NO_TYPE:
-				break;
-			}
-			if(!aBool){
-				break;
-			}
-		}
-	}
-	return aBool;
+	return canBeKilled(iMove.getEndPosition());
 }
 
 bool Roi::estRockPratique(const Move& iMove, ETypeMove iTypeMove) const{
@@ -156,26 +116,60 @@ bool Roi::estRockPratique(const Move& iMove, ETypeMove iTypeMove) const{
 	int deb = std::min(y, _position.getY());
 	int end = std::max(y, _position.getY());
 	Position aPosition(x, end);
-	Move aMove(aPosition, aPosition);
 
-	for(int i=deb; i<=end; i++){
-		if(game::Echiquier::getInstance().getCase(x, i).hasPiece()){
-			aBool = false;
-			break;
-		}
+	for(int i=deb; (i<=end) && aBool; i++){
+		aBool = aBool && !game::Echiquier::getInstance().getCase(x, i).hasPiece();
 	}
 
 	if(aBool){
-		for(int i=deb; i<=end; i++){
+		for(int i=deb; (i<=end) && aBool; i++){
 			aPosition.setY(y);
-			if(estNormalMovePratique(aMove)){
-				aBool = false;
-				break;
-			}
+			aBool = aBool && !canBeKilled(aPosition);
 		}
 	}
 
 	return false;
+}
+
+bool Roi::canBeKilled(const Position& iPosition) const{
+	bool aBool = true;
+		//Position aPositionFinale = iMove.getEndPosition();
+		const game::Echiquier& aEchiquier = game::Echiquier::getInstance();
+
+		for( auto it = aEchiquier.getAllPiecesJ1().begin(); aBool && (it != aEchiquier.getAllPiecesJ1().end()) ; ++it ){
+			if(it->get()->isAlive()){
+				switch(it->get()->getTypePiece()){
+
+				case PION_TYPE:
+					aBool = !pionPeuxTuerLeRoi(iPosition, it->get()->getPosition());
+					break;
+
+				case CAVALIER_TYPE:
+					aBool = !cavalierPeuxTuerLeRoi(iPosition, it->get()->getPosition());
+					break;
+
+				case FOU_TYPE:
+					aBool = !fouPeuxTuerLeRoi(iPosition, it->get()->getPosition());
+					break;
+
+				case TOUR_TYPE:
+					aBool = !tourPeuxTuerLeRoi(iPosition, it->get()->getPosition());
+					break;
+
+				case DAME_TYPE:
+					aBool = !damePeuxTuerLeRoi(iPosition, it->get()->getPosition());
+					break;
+
+				case ROI_TYPE:
+					aBool = !secondRoiColle(iPosition, it->get()->getPosition());
+					break;
+
+				case NO_TYPE:
+					break;
+				}
+			}
+		}
+		return aBool;
 }
 
 //TODO => a ameliorer ==> verifier piece couleur differente et pion dans le bon sens
