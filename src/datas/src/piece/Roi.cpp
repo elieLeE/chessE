@@ -10,8 +10,6 @@
 #include "../typeDefine/TypePiece.h"
 #include "../typeDefine/PieceValue.h"
 #include "../../../game/src/Echiquier.h"
-#include "Tour.h"
-#include "Fou.h"
 
 namespace datas{
 

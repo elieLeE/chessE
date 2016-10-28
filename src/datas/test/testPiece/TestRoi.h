@@ -35,8 +35,6 @@ public:
 	void testDamePeuxTuerLeRoi() const;
 	void testSecondRoiColle() const;
 
-	void test();
-
 };
 
 } /* namespace datas */

@@ -34,6 +34,7 @@ void TestRoi::startTests(){
 	aTestRoi.testPionPeuxTuerLeRoi();
 	aTestRoi.testEstPetitRock();
 	aTestRoi.testEstGrandRock();
+	std::cout << std::endl;
 }
 
 void TestRoi::testIsValidaMove() const{
@@ -120,15 +121,6 @@ void TestRoi::testPionPeuxTuerLeRoi() const{
 	BOOST_ASSERT_MSG(aRoi->pionPeuxTuerLeRoi(aPositionRoi, aPositionPion), "test grand rock");
 
 	cout << "	OK" << endl;
-}
-
-void TestRoi::test(){
-	Position aPosition(0, 0);
-	Roi aRoi(WHITE, aPosition);
-
-	aPosition.setPosition(1, 1);
-	aRoi.movePiece(aPosition);
-
 }
 
 } /* namespace datas */

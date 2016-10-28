@@ -13,7 +13,6 @@
 #include <boost/shared_ptr.hpp>
 #include <math.h>
 
-//#include "../../game/src/Echiquier.h"
 #include "../typeDefine/TypePiece.h"
 #include "../typeDefine/Color.h"
 #include "../Position.h"
