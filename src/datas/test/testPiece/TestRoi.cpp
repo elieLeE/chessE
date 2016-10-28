@@ -26,7 +26,7 @@ TestRoi::TestRoi()
 TestRoi::~TestRoi()
 {}
 
-void TestRoi::startTests(){
+void TestRoi::startTests(void){
 	TestRoi aTestRoi;
 
 	aTestRoi.testEstMoveOKTheorique();
@@ -37,13 +37,13 @@ void TestRoi::startTests(){
 	std::cout << std::endl;
 }
 
-void TestRoi::testIsValidaMove() const{
+void TestRoi::testIsValidaMove(void) const{
 	cout << "TestRoi - testIsValidaMove";
 
 	cout << "	TO IMPLEMENT" << endl;
 }
 
-void TestRoi::testEstMoveOKTheorique() const{
+void TestRoi::testEstMoveOKTheorique(void) const{
 	cout << "TestRoi - testEstMoveOKTheorique";
 
 	Position aPositionStart(2, 5);
@@ -60,7 +60,7 @@ void TestRoi::testEstMoveOKTheorique() const{
 	cout << "	OK" << endl;
 }
 
-void TestRoi::testEstPetitRock() const{
+void TestRoi::testEstPetitRock(void) const{
 	cout << "TestRoi - testEstPetitRock";
 
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
@@ -82,7 +82,7 @@ void TestRoi::testEstPetitRock() const{
 	cout << "	OK" << std::endl;
 }
 
-void TestRoi::testEstGrandRock() const{
+void TestRoi::testEstGrandRock(void) const{
 	cout << "TestRoi - testEstGrandRock";
 
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
@@ -104,7 +104,7 @@ void TestRoi::testEstGrandRock() const{
 	cout << "	OK" << std::endl;
 }
 
-void TestRoi::testPionPeuxTuerLeRoi() const{
+void TestRoi::testPionPeuxTuerLeRoi(void) const{
 	cout << "TestRoi - testPionPeuxTuerLeRoi";
 
 	Position aPositionRoi(2, 5);
