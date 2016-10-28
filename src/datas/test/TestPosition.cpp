@@ -32,7 +32,7 @@ void TestPosition::startTests(){
 }
 
 void TestPosition::testComparePosition() const {
-	std::cout << "testPosition - compare position";
+	std::cout << "TestPosition - compare position";
 
 	Position aPosition1(2, 5);
 	Position aPosition2(2, 5);
@@ -55,7 +55,7 @@ void TestPosition::testComparePosition() const {
 }
 
 void TestPosition::testSame(void) const{
-	std::cout << "testPosition - same";
+	std::cout << "TestPosition - same";
 
 	Position aPosition1(2, 5);
 	Position aPosition2(2, 6);
@@ -68,7 +68,7 @@ void TestPosition::testSame(void) const{
 }
 
 void TestPosition::testEvaluatePosition(void) const{
-	std::cout << "testPosition - evaluate position";
+	std::cout << "TestPosition - evaluate position";
 
 	Position aPosition1(2, 5);
 	Position aPosition2(4, 6);
@@ -80,7 +80,7 @@ void TestPosition::testEvaluatePosition(void) const{
 }
 
 void TestPosition::testDiffs(void) const{
-	std::cout << "testPosition - testDiffs";
+	std::cout << "TestPosition - testDiffs";
 
 	Position aPosition1(2, 5);
 	Position aPosition2(4, 6);
@@ -92,7 +92,7 @@ void TestPosition::testDiffs(void) const{
 }
 
 void TestPosition::testToStream(void) const{
-	std::cout << "testPosition - toStream";
+	std::cout << "TestPosition - toStream";
 	Position aPosition(2, 5);
 
 
