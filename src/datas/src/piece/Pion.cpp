@@ -126,6 +126,10 @@ bool Pion::isValideMove(const Move& iMove) const{
 	return aBool;
 }
 
+bool Pion::canAccessCase(const Position& iPosition) const{
+	return (_position.evaluateDistance(iPosition) == 2);
+}
+
 /*const std::list <boost::shared_ptr <Move> > Pion::getPossibleMoves() const{
 	std::list <boost::shared_ptr <Move> > aList;
 

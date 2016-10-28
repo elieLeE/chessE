@@ -30,7 +30,7 @@ void Tour::movePiece(const 	Position& iPosition){
 	_hasAlreadyMoved = true;
 }
 
-bool Tour::canAccessToCase(const Position& iPosition) const{
+bool Tour::canAccessCase(const Position& iPosition) const{
 	bool aBool = true;
 
 	if(iPosition.sameLigne(_position)){

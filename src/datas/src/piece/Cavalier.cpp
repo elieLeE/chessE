@@ -41,4 +41,8 @@ bool Cavalier::isValideMove(const Move& iMove) const{
 	return true;
 }
 
+bool Cavalier::canAccessCase(const Position& iPosition) const{
+	return (_position.evaluateDistance(iPosition) == 5);
+}
+
 }

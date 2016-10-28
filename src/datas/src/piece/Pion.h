@@ -22,6 +22,8 @@ public:
 
 	virtual void movePiece(const Position& iPosition);
 
+	virtual bool canAccessCase(const Position& iPosition) const;
+
 	//virtual const std::list <boost::shared_ptr <Move> > getPossibleMoves() const;
 
 private:

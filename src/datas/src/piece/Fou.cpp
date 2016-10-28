@@ -26,7 +26,7 @@ bool Fou::isValideMove(const Move& iMove) const{
 	return true;
 }
 
-bool Fou::canAccessToCase(const Position& iPosition) const{
+bool Fou::canAccessCase(const Position& iPosition) const{
 	bool aBool = true;
 
 	if(_position.getColorCase() == iPosition.getColorCase()){

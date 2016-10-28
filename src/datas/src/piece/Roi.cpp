@@ -16,8 +16,8 @@
 namespace datas{
 
 Roi::Roi(const EColor iColor, Position iPosition):
-							Piece(iColor, iPosition, ROI_TYPE, ROI_VALUE),
-							_hasAlreadyMoved(false)
+									Piece(iColor, iPosition, ROI_TYPE, ROI_VALUE),
+									_hasAlreadyMoved(false)
 {}
 
 Roi::~Roi()
@@ -46,7 +46,7 @@ ETypeMove Roi::estMoveOKTheorique(const Move& iMove) const{
 }
 
 bool Roi::estNormalMoveTheorique(const Move& iMove) const{
-	return (iMove.evaluateDistance() < 4);
+	return canAccessCase(iMove.getEndPosition());
 }
 
 bool Roi::estPetitRockTheorique(const Move& iMove) const{
@@ -123,7 +123,7 @@ bool Roi::estRockPratique(const Move& iMove, ETypeMove iTypeMove) const{
 
 	if(aBool){
 		for(int i=deb; (i<=end) && aBool; i++){
-			aPosition.setY(y);
+			aPosition.setY(i);
 			aBool = aBool && !canBeKilled(aPosition);
 		}
 	}
@@ -133,43 +133,15 @@ bool Roi::estRockPratique(const Move& iMove, ETypeMove iTypeMove) const{
 
 bool Roi::canBeKilled(const Position& iPosition) const{
 	bool aBool = true;
-		//Position aPositionFinale = iMove.getEndPosition();
-		const game::Echiquier& aEchiquier = game::Echiquier::getInstance();
+	const game::Echiquier& aEchiquier = game::Echiquier::getInstance();
 
-		for( auto it = aEchiquier.getAllPiecesJ1().begin(); aBool && (it != aEchiquier.getAllPiecesJ1().end()) ; ++it ){
-			if(it->get()->isAlive()){
-				switch(it->get()->getTypePiece()){
-
-				case PION_TYPE:
-					aBool = !pionPeuxTuerLeRoi(iPosition, it->get()->getPosition());
-					break;
-
-				case CAVALIER_TYPE:
-					aBool = !cavalierPeuxTuerLeRoi(iPosition, it->get()->getPosition());
-					break;
-
-				case FOU_TYPE:
-					aBool = !fouPeuxTuerLeRoi(iPosition, it->get()->getPosition());
-					break;
-
-				case TOUR_TYPE:
-					aBool = !tourPeuxTuerLeRoi(iPosition, it->get()->getPosition());
-					break;
-
-				case DAME_TYPE:
-					aBool = !damePeuxTuerLeRoi(iPosition, it->get()->getPosition());
-					break;
-
-				case ROI_TYPE:
-					aBool = !secondRoiColle(iPosition, it->get()->getPosition());
-					break;
-
-				case NO_TYPE:
-					break;
-				}
-			}
+	for( auto it = aEchiquier.getAllPiecesJ1().begin(); aBool && (it != aEchiquier.getAllPiecesJ1().end()) ; ++it ){
+		if(it->get()->isAlive()){
+			aBool = aBool && it->get()->canAccessCase(iPosition);
 		}
-		return aBool;
+	}
+
+	return aBool;
 }
 
 //TODO => a ameliorer ==> verifier piece couleur differente et pion dans le bon sens
@@ -177,27 +149,8 @@ bool Roi::pionPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position&
 	return (iPositionFinaleMove.evaluateDistance(iPositionPion) == 2);
 }
 
-bool Roi::cavalierPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionCavalier) const{
-	return (iPositionFinaleMove.evaluateDistance(iPositionCavalier) == 5);
-}
-
-bool Roi::fouPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionFou) const{
-	const Fou *aFou = dynamic_cast<const datas::Fou*>(game::Echiquier::getInstance().getCase(iPositionFou).getPiece().get());
-	return aFou->canAccessToCase(iPositionFinaleMove);
-}
-
-bool Roi::tourPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionTour) const{
-	const Tour *aTour = dynamic_cast<const datas::Tour*>(game::Echiquier::getInstance().getCase(iPositionTour).getPiece().get());
-	return aTour->canAccessToCase(iPositionFinaleMove);
-}
-
-bool Roi::damePeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionDame) const{
-	return (fouPeuxTuerLeRoi(iPositionFinaleMove, iPositionDame) &&
-			tourPeuxTuerLeRoi(iPositionFinaleMove, iPositionDame));
-}
-
-bool Roi::secondRoiColle(const Position& iPositionFinaleMove, const Position& iPositionRoi) const{
-	return (iPositionFinaleMove.evaluateDistance(iPositionRoi) <= 2);
+bool Roi::canAccessCase(const Position& iPosition) const{
+	return (_position.evaluateDistance(iPosition) < 2);
 }
 
 const std::list <boost::shared_ptr <Move> > Roi::getPossibleMoves() const {

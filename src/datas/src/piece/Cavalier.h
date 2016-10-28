@@ -19,6 +19,7 @@ public:
 	virtual ~Cavalier();
 
 	virtual bool isValideMove(const Move& iMove) const;
+	virtual bool canAccessCase(const Position& iPosition) const;
 };
 
 }

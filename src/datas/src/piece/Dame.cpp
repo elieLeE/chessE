@@ -24,8 +24,9 @@ bool Dame::isValideMove(const Move& iMove) const{
 	return true;
 }
 
-bool Dame::canAccessToCase(const Position& iPosition) const{
+bool Dame::canAccessCase(const Position& iPosition) const{
 	return true;
 }
+
 }
 

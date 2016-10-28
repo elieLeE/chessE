@@ -20,7 +20,7 @@ public:
 
 	virtual bool isValideMove(const Move& iMove) const;
 
-	bool canAccessToCase(const Position& iPosition) const;
+	virtual bool canAccessCase(const Position& iPosition) const;
 };
 
 }
