@@ -23,8 +23,31 @@ void TestTour::startTests(void){
 
 	aTestTour.testCanAccess();
 	aTestTour.testMovePiece();
+	aTestTour.testIsValideMove();
 
 	std::cout << std::endl;
+}
+
+void TestTour::testIsValideMove(void) const{
+	cout << "TestTour - testIsValideMove";
+
+	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
+	aEchiquier.reset();
+
+	Position aPositionStart(2, 5);
+	Position aPositionEnd(7, 5);
+	Move aMove(aPositionStart, aPositionEnd);
+	Tour *atour = new Tour(WHITE, aPositionStart);
+
+	BOOST_ASSERT_MSG(atour->isValideMove(aMove), "testTour MovePiece - hasNotMoved");
+
+	aMove.setPositionStart(aPositionEnd);
+	aMove.setPositionEnd(aPositionStart);
+	BOOST_ASSERT_MSG(!atour->isValideMove(aMove), "testTour MovePiece - hasMoved");
+
+	delete atour;
+
+	cout << "	OK" << std::endl;
 }
 
 void TestTour::testCanAccess(void)const{

@@ -22,7 +22,8 @@ Tour::~Tour()
 {}
 
 bool Tour::isValideMove(const Move& iMove) const{
-	return true;
+	return Piece::isValideMove(iMove) &&
+			canAccessCase(iMove.getEndPosition());
 }
 
 void Tour::movePiece(const 	Position& iPosition){
