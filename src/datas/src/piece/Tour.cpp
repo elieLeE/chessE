@@ -31,7 +31,7 @@ void Tour::movePiece(const 	Position& iPosition){
 }
 
 bool Tour::canAccessCase(const Position& iPosition) const{
-	bool aBool = true;
+	bool aBool = false;
 
 	if(iPosition.sameLigne(_position)){
 		int aDebut = std::min(iPosition.getY(), _position.getY());
@@ -39,11 +39,9 @@ bool Tour::canAccessCase(const Position& iPosition) const{
 		int aLigne = _position.getX();
 		const game::Echiquier& aGame = game::Echiquier::getInstance();
 
-		for(int i=aDebut+1; i<aEnd; i++){
-			if(aGame.getCase(aLigne, i).hasPiece()){
-				aBool = false;
-				break;
-			}
+		aBool = true;
+		for(int j=aDebut+1; aBool && (j<aEnd); ++j){
+			aBool= aBool && (!aGame.getCase(aLigne, j).hasPiece());
 		}
 	}
 	else if(iPosition.sameCol(_position)){
@@ -52,11 +50,9 @@ bool Tour::canAccessCase(const Position& iPosition) const{
 		int aCol = _position.getY();
 		const game::Echiquier& aGame = game::Echiquier::getInstance();
 
-		for(int i=aDebut+1; i<aEnd; i++){
-			if(aGame.getCase(i, aCol).hasPiece()){
-				aBool = false;
-				break;
-			}
+		aBool = true;
+		for(int i=aDebut+1; aBool && (i<aEnd); ++i){
+			aBool = aBool && (!aGame.getCase(i, aCol).hasPiece());
 		}
 	}
 

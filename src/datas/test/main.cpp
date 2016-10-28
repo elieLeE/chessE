@@ -9,7 +9,9 @@
 #include <boost/assert.hpp>
 
 #include "TestPosition.h"
+
 #include "testPiece/TestRoi.h"
+#include "testPiece/TestTour.h"
 
 using namespace std;
 using namespace datas;
@@ -19,6 +21,7 @@ int main() {
 
 	TestPosition::startTests();
 	TestRoi::startTests();
+	TestTour::startTests();
 
 	cout << endl << "all OK" << endl;
 
