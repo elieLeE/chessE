@@ -121,11 +121,9 @@ bool Roi::estRockPratique(const Move& iMove, ETypeMove iTypeMove) const{
 		aBool = aBool && !game::Echiquier::getInstance().getCase(x, i).hasPiece();
 	}
 
-	if(aBool){
-		for(int i=deb; (i<=end) && aBool; i++){
-			aPosition.setY(i);
-			aBool = aBool && !canBeKilled(aPosition);
-		}
+	for(int i=deb; aBool && (i<=end); i++){
+		aPosition.setY(i);
+		aBool = aBool && !canBeKilled(aPosition);
 	}
 
 	return false;
