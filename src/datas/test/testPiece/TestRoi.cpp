@@ -17,8 +17,7 @@
 #include "../../../gui/src/DisplayTerminal.h"
 
 using namespace std;
-
-namespace datas {
+using namespace datas;
 
 TestRoi::TestRoi()
 {}
@@ -34,6 +33,7 @@ void TestRoi::startTests(void){
 	aTestRoi.testPionPeuxTuerLeRoi();
 	aTestRoi.testEstPetitRock();
 	aTestRoi.testEstGrandRock();
+
 	std::cout << std::endl;
 }
 
@@ -122,5 +122,3 @@ void TestRoi::testPionPeuxTuerLeRoi(void) const{
 
 	cout << "	OK" << endl;
 }
-
-} /* namespace datas */

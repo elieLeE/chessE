@@ -37,15 +37,15 @@ void TestTour::testIsValideMove(void) const{
 	Position aPositionStart(2, 5);
 	Position aPositionEnd(7, 5);
 	Move aMove(aPositionStart, aPositionEnd);
-	Tour *atour = new Tour(WHITE, aPositionStart);
+	Tour *aTour = new Tour(WHITE, aPositionStart);
 
-	BOOST_ASSERT_MSG(atour->isValideMove(aMove), "testTour MovePiece - hasNotMoved");
+	BOOST_ASSERT_MSG(aTour->isValideMove(aMove), "TestTour MovePiece - valide move");
 
 	aMove.setPositionStart(aPositionEnd);
 	aMove.setPositionEnd(aPositionStart);
-	BOOST_ASSERT_MSG(!atour->isValideMove(aMove), "testTour MovePiece - hasMoved");
+	BOOST_ASSERT_MSG(!aTour->isValideMove(aMove), "TestTour MovePiece - not valide move");
 
-	delete atour;
+	delete aTour;
 
 	cout << "	OK" << std::endl;
 }
@@ -60,17 +60,17 @@ void TestTour::testCanAccess(void)const{
 	Position aPositionEnd(7, 5);
 	Tour *atour = new Tour(WHITE, aPositionStart);
 
-	BOOST_ASSERT_MSG(atour->canAccessCase(aPositionEnd), "testTour canAccess - test sameLigne");
+	BOOST_ASSERT_MSG(atour->canAccessCase(aPositionEnd), "TestTour canAccess - test sameLigne");
 
 	aPositionEnd.setPosition(7, 5);
-	BOOST_ASSERT_MSG(atour->canAccessCase(aPositionEnd), "testTour canAccess - test sameCol");
+	BOOST_ASSERT_MSG(atour->canAccessCase(aPositionEnd), "TestTour canAccess - test sameCol");
 
 	aPositionEnd.setPosition(7, 3);
-	BOOST_ASSERT_MSG(!atour->canAccessCase(aPositionEnd), "testTour canAccess - cannot access");
+	BOOST_ASSERT_MSG(!atour->canAccessCase(aPositionEnd), "TestTour canAccess - cannot access");
 
 	delete atour;
 
-	cout << "	OK" << std::endl;;
+	cout << "	OK" << std::endl;
 }
 
 void TestTour::testMovePiece(void) const{
@@ -83,10 +83,10 @@ void TestTour::testMovePiece(void) const{
 	Position aPositionEnd(7, 5);
 	Tour *atour = new Tour(WHITE, aPositionStart);
 
-	BOOST_ASSERT_MSG(!atour->getHasAlreadyMoved(), "testTour MovePiece - hasNotMoved");
+	BOOST_ASSERT_MSG(!atour->getHasAlreadyMoved(), "TestTour MovePiece - hasNotMoved");
 
 	atour->movePiece(aPositionEnd);
-	BOOST_ASSERT_MSG(atour->getHasAlreadyMoved(), "testTour MovePiece - hasMoved");
+	BOOST_ASSERT_MSG(atour->getHasAlreadyMoved(), "TestTour MovePiece - hasMoved");
 
 	delete atour;
 
