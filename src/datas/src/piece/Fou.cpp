@@ -23,7 +23,8 @@ Fou::~Fou()
 {}
 
 bool Fou::isValideMove(const Move& iMove) const{
-	return true;
+	return Piece::isValideMove(iMove) &&
+			canAccessCase(iMove.getEndPosition());
 }
 
 bool Fou::canAccessCase(const Position& iPosition) const{
