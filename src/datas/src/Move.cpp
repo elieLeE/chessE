@@ -13,7 +13,7 @@ namespace datas{
 Move::Move()
 {}
 
-Move::Move(Position& iPositionStart, Position& iPositionEnd, ETypePiece iCapturedPiece, ETypeMove iTypeMove):
+Move::Move(const Position& iPositionStart, const Position& iPositionEnd, ETypePiece iCapturedPiece, ETypeMove iTypeMove):
 		_start(iPositionStart),
 		_end(iPositionEnd),
 		_capturedPiece(iCapturedPiece),
@@ -27,7 +27,7 @@ const Position& Move::getStartPosition() const{
 	return _start;
 }
 
-void Move::setPositionStart(Position& iPosition){
+void Move::setPositionStart(const Position& iPosition){
 	_start = iPosition;
 }
 
@@ -35,7 +35,7 @@ const Position& Move::getEndPosition() const{
 	return _end;
 }
 
-void Move::setPositionEnd(Position& iPosition){
+void Move::setPositionEnd(const Position& iPosition){
 	_end = iPosition;
 }
 

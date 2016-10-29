@@ -21,15 +21,15 @@ namespace datas{
 class Move {
 public:
 	Move();
-	Move(Position& iPositionStart, Position& iPositionEnd,
+	Move(const Position& iPositionStart, const Position& iPositionEnd,
 			ETypePiece iCapturedPiece = NO_TYPE, ETypeMove iTypeMove = NORMAL_MOVE);
 	virtual ~Move();
 
 	const Position& getStartPosition() const ;
-	void setPositionStart(Position& iPosition);
+	void setPositionStart(const Position& iPosition);
 
 	const Position& getEndPosition() const ;
-	void setPositionEnd(Position& iPosition);
+	void setPositionEnd(const Position& iPosition);
 
 	bool hasCapturePiece() const;
 
