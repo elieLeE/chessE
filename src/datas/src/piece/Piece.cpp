@@ -59,7 +59,16 @@ Position& Piece::accessPosition(){
 }
 
 bool Piece::isValideMove(const Move& iMove) const{
-	return (iMove.getStartPosition() == _position);
+	return (iMove.getStartPosition() == _position) &&
+			canTakeCase(iMove.getEndPosition());
+}
+
+bool Piece::canTakeCase(const Position& iPosition) const{
+	const game::Echiquier& aEchiquier = game::Echiquier::getInstance();
+
+	//si on va a l'etape 2, c qu'on a une piece
+	return (!aEchiquier.getCase(iPosition).hasPiece()) ||
+			(aEchiquier.getCase(iPosition).getPiece()->getColor() != _color);
 }
 
 }
