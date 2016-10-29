@@ -8,6 +8,7 @@
 #include "Dame.h"
 #include "../typeDefine/TypePiece.h"
 #include "../typeDefine/PieceValue.h"
+#include "../Move.h"
 #include "Tour.h"
 #include "Fou.h"
 
@@ -21,11 +22,19 @@ Dame::~Dame()
 {}
 
 bool Dame::isValideMove(const Move& iMove) const{
-	return true;
+	return Piece::isValideMove(iMove) &&
+			canAccessCase(iMove.getEndPosition());
 }
 
 bool Dame::canAccessCase(const Position& iPosition) const{
-	return true;
+	Tour aTour(_color, _position);
+	Fou aFou(_color, _position);
+	Move aMove;
+	aMove.setPositionStart(_position);
+	aMove.setPositionEnd(iPosition);
+
+	return aTour.isValideMove(aMove) &&
+			aFou.isValideMove(aMove);
 }
 
 }
