@@ -23,8 +23,8 @@ Echiquier Echiquier::_instance = Echiquier();
 //Echiquier* Echiquier::_instance = 0;
 
 Echiquier::Echiquier():
-				_possiblePriseEnPassant(false),
-				_hasAlreadyPiece(false)
+						_possiblePriseEnPassant(false),
+						_hasAlreadyPiece(false)
 {}
 
 Echiquier::~Echiquier()
@@ -216,18 +216,28 @@ void Echiquier::setChangeMove(const datas::Move& iMove){
 }
 
 void Echiquier::movePiece(const datas::Position& iPositionStart, const datas::Position& iPositionEnd){
-	this->accessCase(iPositionEnd).accessPiece()->movePiece(iPositionEnd);
-	this->accessCase(iPositionStart).resetPiece();
+	if(getCase(iPositionStart).hasPiece()){
+		removePiece(iPositionEnd);
+		datas::Piece* aPiece = accessCase(iPositionStart).accessPiece().get();
+		aPiece->movePiece(iPositionEnd);
+		setPiece(aPiece);
+		removePiece(iPositionStart);
+	}
 }
 
-void Echiquier::setPieceCaseXY(const datas::Position& iPosition, datas::Piece* iPiece){
-	accessCase(iPosition).setPiece(iPiece);
+void Echiquier::setPiece(datas::Piece* iPiece){
+	accessCase(iPiece->getPosition()).setPiece(iPiece);
+}
+
+void Echiquier::addPiece(datas::Piece* iPiece){
+	setPiece(iPiece);
 	_hasAlreadyPiece = true;
 }
 
-void Echiquier::setPieceCaseXY(const int x, const int y, datas::Piece* iPiece){
-	accessCase(x, y).setPiece(iPiece);
-	_hasAlreadyPiece = true;
+void Echiquier::removePiece(const datas::Position& iPosition){
+	if(getCase(iPosition).hasPiece()){
+		accessCase(iPosition).accessPiece().reset();
+	}
 }
 
 void Echiquier::reset(){
@@ -238,6 +248,7 @@ void Echiquier::reset(){
 				it2->reset();
 			}
 		}
+		_hasAlreadyPiece = false;
 	}
 }
 

@@ -39,8 +39,9 @@ public:
 	bool hasPieceCaseXY(datas::Position& iPosition) const;*/
 
 	//indispensable car sinon, ne sait pas si a deja des pieces ou pas
-	void setPieceCaseXY(const datas::Position& iPosition, datas::Piece* iPiece);
-	void setPieceCaseXY(const int x, const int y, datas::Piece* iPiece);
+	void addPiece(datas::Piece* iPiece);
+	void removePiece(const datas::Position& iPosition);
+	void setPiece(datas::Piece* iPiece);
 
 	const datas::Case& getCase(int ligne, int col) const;
 	datas::Case& accessCase(int ligne, int col);
