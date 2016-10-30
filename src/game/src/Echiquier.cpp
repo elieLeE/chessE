@@ -23,8 +23,8 @@ Echiquier Echiquier::_instance = Echiquier();
 //Echiquier* Echiquier::_instance = 0;
 
 Echiquier::Echiquier():
-						_possiblePriseEnPassant(false),
-						_hasAlreadyPiece(false)
+								_possiblePriseEnPassant(false),
+								_hasAlreadyPiece(false)
 {}
 
 Echiquier::~Echiquier()
@@ -243,12 +243,18 @@ void Echiquier::removePiece(const datas::Position& iPosition){
 void Echiquier::reset(){
 	if(_hasAlreadyPiece){
 		_hasAlreadyPiece = false;
-		for(auto it = _allPiecesJoueurs.begin(); it != _allPiecesJoueurs.end(); ++it){
+		/*for(auto it = _allPiecesJoueurs.begin(); it != _allPiecesJoueurs.end(); ++it){
 			for(auto it2 = it->begin(); it2 != it->end(); ++it2){
 				it2->reset();
 			}
+		}*/
+		for(auto it = _echiquier.begin(); it != _echiquier.end(); ++it){
+			for(auto it2 = it->begin(); it2 != it->end(); ++it2){
+				if(it2->hasPiece()){
+					it2->resetPiece();
+				}
+			}
 		}
-		_hasAlreadyPiece = false;
 	}
 }
 
