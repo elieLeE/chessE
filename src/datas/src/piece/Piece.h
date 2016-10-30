@@ -71,7 +71,6 @@ protected:
 	bool _alive;
 	const EColor _color;
 	Position _position;
-
 	const ENumPlayer _numJ;
 	const int _value;
 	const ETypePiece _typePiece;

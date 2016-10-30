@@ -53,7 +53,7 @@ void TestRoi::testEstMoveOKTheorique(void) const{
 
 	Roi *aRoi = new Roi(WHITE, aPositionStart);
 
-	aEchiquier.setPieceCaseXY(aPositionStart, aRoi);
+	aEchiquier.addPiece(aRoi);
 	Move aMove(aPositionStart, aPositionEnd);
 	BOOST_ASSERT_MSG(aRoi->estMoveOKTheorique(aMove)==NORMAL_MOVE, "test move theorique - normal move");
 
@@ -74,8 +74,8 @@ void TestRoi::testEstPetitRock(void) const{
 	Tour *aTour1 = new Tour(WHITE, aPositionTour);
 	Move aMove(aPositionStart, aPositionEnd);
 
-	aEchiquier.setPieceCaseXY(aPositionStart, aRoi);
-	aEchiquier.setPieceCaseXY(aPositionTour, aTour1);
+	aEchiquier.addPiece(aRoi);
+	aEchiquier.addPiece(aTour1);
 
 	BOOST_ASSERT_MSG(aRoi->estMoveOKTheorique(aMove)==PETIT_ROCK, "test petit rock");
 
@@ -96,8 +96,8 @@ void TestRoi::testEstGrandRock(void) const{
 	Tour *aTour1 = new Tour(WHITE, aPositionTour);
 	Move aMove(aPositionStart, aPositionEnd);
 
-	aEchiquier.setPieceCaseXY(aPositionStart, aRoi);
-	aEchiquier.setPieceCaseXY(aPositionTour, aTour1);
+	aEchiquier.addPiece(aRoi);
+	aEchiquier.addPiece(aTour1);
 
 	BOOST_ASSERT_MSG(aRoi->estMoveOKTheorique(aMove)==GRAND_ROCK, "test move theorique - grand rock");
 
@@ -113,10 +113,10 @@ void TestRoi::testPionPeuxTuerLeRoi(void) const{
 	aEchiquier.reset();
 
 	Roi *aRoi = new Roi(WHITE, aPositionRoi);
-	aEchiquier.setPieceCaseXY(aPositionRoi, aRoi);
+	aEchiquier.addPiece(aRoi);
 
 	Pion* aPion = new Pion(BLACK, aPositionPion, false);
-	aEchiquier.setPieceCaseXY(aPositionPion, aPion);
+	aEchiquier.addPiece(aPion);
 
 	BOOST_ASSERT_MSG(aRoi->pionPeuxTuerLeRoi(aPositionRoi, aPositionPion), "test grand rock");
 
