@@ -6,10 +6,16 @@
  */
 
 #include <iostream>
+
+#include "TestEchiquier.h"
+
 using namespace std;
+using namespace game;
 
 int main() {
 	cout << "test unitaire game" << endl;
+
+	TestEchiquier::startTest();
 
 	cout << endl << "all OK" << endl;
 
