@@ -17,6 +17,7 @@ public:
 
 	static void startTests(void);
 
+	void testIsValideMove(void) const;
 	void testCanAccess(void) const;
 };
 
