@@ -38,9 +38,7 @@ $(EXEC_SRC): $(OBJ_SRC)
 
 $(EXEC_TST): $(OBJ_TST)
 	cd $(projet)/datas/test; 	make -f Makefile
-	echo
 	cd $(projet)/game/test;		make -f Makefile
-	echo
 	cd $(projet)/gui/test;		make -f Makefile
 
 .PHONY: cleanSimple clean 
