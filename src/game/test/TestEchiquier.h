@@ -8,9 +8,11 @@
 #ifndef TESTECHIQUIER_H_
 #define TESTECHIQUIER_H_
 
+#include "../../common/UnitTest.h"
+
 namespace game{
 
-class TestEchiquier {
+class TestEchiquier : common::UnitTest{
 public:
 	TestEchiquier();
 	virtual ~TestEchiquier();
@@ -18,7 +20,11 @@ public:
 	static void startTest(void);
 
 	void testMovePiece(void) const;
+	void testAddPiece(void);
+	void testRemovePiece(void);
 };
+
+void test();
 
 } /* namespace datas */
 #endif /* TESTECHIQUIER_H_ */
