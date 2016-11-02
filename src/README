@@ -3,3 +3,6 @@ Makefile 	=> avoir 1 makefile qui compile chaque fichier .cpp => .cpp to .o
 		=> permet ainsi de compiler les tests car sinon trois quatre mains differents...
 
 TO DO
+
+erreur de segmentation a corriger
+    => apparement avec les reset des shared_ptr. To implement !
