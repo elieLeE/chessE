@@ -216,12 +216,12 @@ void Echiquier::setChangeMove(const datas::Move& iMove){
 }
 
 void Echiquier::movePiece(const datas::Position& iPositionStart, const datas::Position& iPositionEnd){
-	if(getCase(iPositionStart).hasPiece()){
-		removePiece(iPositionEnd);
-		datas::Piece* aPiece = accessCase(iPositionStart).accessPiece().get();
+	removePiece(iPositionEnd);
+	datas::PiecePtr aPiece = accessCase(iPositionStart).accessPiece();
+	if(aPiece){
 		aPiece->movePiece(iPositionEnd);
-		setPiece(aPiece);
-		removePiece(iPositionStart);
+		setPiece(aPiece.get());
+		accessCase(iPositionStart).resetPiece();
 	}
 }
 
@@ -236,7 +236,7 @@ void Echiquier::addPiece(datas::Piece* iPiece){
 
 void Echiquier::removePiece(const datas::Position& iPosition){
 	if(getCase(iPosition).hasPiece()){
-		accessCase(iPosition).accessPiece().reset();
+		accessCase(iPosition).accessPiece()->setDead();
 	}
 }
 
