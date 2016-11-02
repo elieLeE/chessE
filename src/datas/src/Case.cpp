@@ -16,7 +16,7 @@ Case::~Case()
 {}
 
 bool Case::hasPiece() const{
-	return (_piece?true:false);
+	return (_piece && _piece->isAlive());
 }
 
 const PiecePtr& Case::getPiece() const{

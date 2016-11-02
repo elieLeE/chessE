@@ -29,9 +29,7 @@ bool Dame::isValideMove(const Move& iMove) const{
 bool Dame::canAccessCase(const Position& iPosition) const{
 	Tour aTour(_color, _position);
 	Fou aFou(_color, _position);
-	Move aMove;
-	aMove.setPositionStart(_position);
-	aMove.setPositionEnd(iPosition);
+	Move aMove(_position, iPosition);
 
 	return aTour.isValideMove(aMove) &&
 			aFou.isValideMove(aMove);
