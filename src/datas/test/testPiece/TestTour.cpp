@@ -54,7 +54,6 @@ void TestTour::testIsValideMove(void) const{
 
 	//test avec tour de couleur differente deja sur la case de depart => move OK
 	Tour *aTour3 = new Tour(BLACK, aPositionEnd);
-	aEchiquier.removePiece(aTour2->getPosition());
 	aEchiquier.addPiece(aTour3);
 	BOOST_ASSERT_MSG(!aTour->isValideMove(aMove), "TestTour MovePiece - not valide move");
 
@@ -91,22 +90,9 @@ void TestTour::testCanAccess(void)const{
 	BOOST_ASSERT_MSG(!aTour->canAccessCase(aPositionEnd), "TestTour canAccess - cannot access, piece sur le chemin, ligne");
 
 
-	/*aEchiquier.removePiece(aTour2->getPosition());
-	aEchiquier.removePiece(aTour2->getPosition());
-	Tour *aTour4 = new Tour(WHITE, aTour2->getPosition());
-	aEchiquier.addPiece(aTour4);
-	aEchiquier.removePiece(aTour2->getPosition());*/
-
 	aPositionEnd.setPosition(2, 1);
 	Tour *aTour3 = new Tour(WHITE, Position(2, 4));
 	aEchiquier.addPiece(aTour3);
-	//aEchiquier.movePiece(aTour2->getPosition(), Position(2, 4));
-	if(aEchiquier.getCase(Position(2, 4)).hasPiece()){
-		cout << endl << "hasPiece" << endl;
-	}
-	else{
-		cout << endl << "hasNotPiece" << endl;
-	}
 	BOOST_ASSERT_MSG(!aTour->canAccessCase(aPositionEnd), "TestTour canAccess - cannot access, piece sur le chemin, ligne");
 
 	delete aTour;
