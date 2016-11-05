@@ -51,11 +51,11 @@ void TestRoi::testEstMoveOKTheorique(void) const{
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 	aEchiquier.reset();
 
-	PiecePtr aRoi(new Roi(WHITE, aPositionStart));
+	Roi* aRoi(new Roi(WHITE, aPositionStart));
 
 	aEchiquier.addPiece(aRoi);
 	Move aMove(aPositionStart, aPositionEnd);
-	BOOST_ASSERT_MSG(((Roi*)aRoi.get())->estMoveOKTheorique(aMove)==NORMAL_MOVE, "test move theorique - normal move");
+	BOOST_ASSERT_MSG(aRoi->estMoveOKTheorique(aMove)==NORMAL_MOVE, "test move theorique - normal move");
 
 	cout << "	OK" << endl;
 }
@@ -70,14 +70,14 @@ void TestRoi::testEstPetitRock(void) const{
 	Position aPositionTour(0, 7);
 	Position aPositionEnd(0, 6);
 
-	PiecePtr aRoi(new Roi(WHITE, aPositionStart));
-	PiecePtr aTour1(new Tour(WHITE, aPositionTour));
+	Roi* aRoi(new Roi(WHITE, aPositionStart));
+	Tour* aTour1(new Tour(WHITE, aPositionTour));
 	Move aMove(aPositionStart, aPositionEnd);
 
 	aEchiquier.addPiece(aRoi);
 	aEchiquier.addPiece(aTour1);
 
-	BOOST_ASSERT_MSG(((Roi*)aRoi.get())->estMoveOKTheorique(aMove)==PETIT_ROCK, "test petit rock");
+	BOOST_ASSERT_MSG(aRoi->estMoveOKTheorique(aMove)==PETIT_ROCK, "test petit rock");
 
 	cout << "	OK" << std::endl;
 }
@@ -92,14 +92,14 @@ void TestRoi::testEstGrandRock(void) const{
 	Position aPositionEnd(0, 1);
 	Position aPositionTour(0, 0);
 
-	PiecePtr aRoi(new Roi(WHITE, aPositionStart));
-	PiecePtr aTour1(new Tour(WHITE, aPositionTour));
+	Roi* aRoi(new Roi(WHITE, aPositionStart));
+	Tour* aTour1(new Tour(WHITE, aPositionTour));
 	Move aMove(aPositionStart, aPositionEnd);
 
 	aEchiquier.addPiece(aRoi);
 	aEchiquier.addPiece(aTour1);
 
-	BOOST_ASSERT_MSG(((Roi*)aRoi.get())->estMoveOKTheorique(aMove)==GRAND_ROCK, "test move theorique - grand rock");
+	BOOST_ASSERT_MSG(aRoi->estMoveOKTheorique(aMove)==GRAND_ROCK, "test move theorique - grand rock");
 
 	cout << "	OK" << std::endl;
 }
@@ -112,13 +112,13 @@ void TestRoi::testPionPeuxTuerLeRoi(void) const{
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 	aEchiquier.reset();
 
-	PiecePtr aRoi(new Roi(WHITE, aPositionRoi));
+	Roi* aRoi(new Roi(WHITE, aPositionRoi));
 	aEchiquier.addPiece(aRoi);
 
-	PiecePtr aPion(new Pion(BLACK, aPositionPion, false));
+	Pion* aPion(new Pion(BLACK, aPositionPion, false));
 	aEchiquier.addPiece(aPion);
 
-	BOOST_ASSERT_MSG(((Roi*)aRoi.get())->pionPeuxTuerLeRoi(aPositionRoi, aPositionPion), "test grand rock");
+	BOOST_ASSERT_MSG(aRoi->pionPeuxTuerLeRoi(aPositionRoi, aPositionPion), "test grand rock");
 
 	cout << "	OK" << endl;
 }

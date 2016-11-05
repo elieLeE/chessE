@@ -51,16 +51,8 @@ const datas::AllPiecePtr& Echiquier::getAllPiecesJ1() const{
 	return _allPiecesJoueurs[datas::JOUEUR_1];
 }
 
-void Echiquier::setAllPiecesJ1(datas::AllPiecePtr& iAllPieces){
-	_allPiecesJoueurs[datas::JOUEUR_1] = iAllPieces;
-}
-
 const datas::AllPiecePtr& Echiquier::getAllPiecesJ2() const{
 	return _allPiecesJoueurs[datas::JOUEUR_2];
-}
-
-void Echiquier::setAllPiecesJ2(datas::AllPiecePtr& iAllPieces){
-	_allPiecesJoueurs[datas::JOUEUR_2] = iAllPieces;
 }
 
 bool Echiquier::getPossiblePriseEnPassant() const{
@@ -221,12 +213,17 @@ void Echiquier::movePiece(const datas::Position& iPositionStart, const datas::Po
 	if(aPiece){
 		aPiece->movePiece(iPositionEnd);
 		setPiece(aPiece);
-		aPiece.reset();
 	}
 }
 
 void Echiquier::setPiece(datas::PiecePtr& iPiece){
-	accessCase(iPiece->getPosition()).accessPiece() = iPiece;
+	accessCase(iPiece->getPosition()).accessPiece() = std::move(iPiece);
+
+}
+
+void Echiquier::addPiece(datas::Piece* iPiece){
+	datas::PiecePtr aPiecePtr(iPiece);
+	addPiece(aPiecePtr);
 }
 
 void Echiquier::addPiece(datas::PiecePtr& iPiece){

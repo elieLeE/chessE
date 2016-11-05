@@ -19,20 +19,6 @@ int main() {
 
 	TestEchiquier::startTest();
 
-	/*boost::shared_ptr<int> x (new int(5));
-	boost::shared_ptr<int> y;
-
-	if(x){
-		y = x;
-		x.reset();
-	}
-	if(!x.get()){
-	    cout << "ok" << endl;
-	}
-	if(y.get()){
-	    cout << "ok" << endl;
-	}*/
-
 	cout << endl << "all OK" << endl;
 
 	return 0;

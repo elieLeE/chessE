@@ -11,6 +11,7 @@
 #include <iostream>
 #include <boost/shared_ptr.hpp>
 #include <array>
+#include <memory>
 #include "Dimension.h"
 #include "PieceValue.h"
 
@@ -21,7 +22,7 @@ namespace datas{
 
 	typedef boost::shared_ptr<Move> MovePtr;
 
-	typedef boost::shared_ptr<datas::Piece> PiecePtr;
+	typedef std::unique_ptr<datas::Piece> PiecePtr;
 
 	typedef std::array<PiecePtr, NBRE_PIECE_INIT> AllPiecePtr;
 

@@ -55,7 +55,7 @@ void TestEchiquier::testRemovePiece(void){
 	aEchiquier->reset();
 
 	Position aPosition(2, 3);
-	PiecePtr aTour(new Tour(WHITE, aPosition));
+	Tour* aTour(new Tour(WHITE, aPosition));
 
 	aEchiquier->addPiece(aTour);
 	BOOST_ASSERT_MSG(aEchiquier->getCase(aPosition).hasPiece(), "TestEchiquier addPiece - hasPiece");

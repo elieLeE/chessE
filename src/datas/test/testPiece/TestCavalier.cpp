@@ -65,8 +65,9 @@ void TestCavalier::testIsValideMove(void) const{
 	Position aPositionEnd(4, 4);
 	//Move aMove(Position(aPositionStart.getX()+1, aPositionStart.getY()), aPositionEnd);
 	Move aMove(aPositionStart, aPositionEnd);
-	PiecePtr aCavalier(new Cavalier(WHITE, aPositionStart));
-	PiecePtr aCavalier2(new Cavalier(WHITE, aPositionEnd));
+
+	Cavalier* aCavalier = new Cavalier(WHITE, aPositionStart);
+	Cavalier* aCavalier2 = new Cavalier(WHITE, aPositionEnd);
 
 	aEchiquier.addPiece(aCavalier);
 	aEchiquier.addPiece(aCavalier2);

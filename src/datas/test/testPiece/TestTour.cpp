@@ -37,7 +37,7 @@ void TestTour::testIsValideMove(void) const{
 	Position aPositionStart(2, 5);
 	Position aPositionEnd(7, 5);
 	Move aMove(aPositionStart, aPositionEnd);
-	Tour *aTour = new Tour(WHITE, aPositionStart);
+	Tour *aTour(new Tour(WHITE, aPositionStart));
 
 	//test move OK
 	BOOST_ASSERT_MSG(aTour->isValideMove(aMove), "TestTour MovePiece - valide move");
@@ -70,7 +70,8 @@ void TestTour::testCanAccess(void)const{
 
 	Position aPositionStart(2, 5);
 	Position aPositionEnd(2, 7);
-	PiecePtr aTour(new Tour(WHITE, aPositionStart));
+	Tour* aTour(new Tour(WHITE, aPositionStart));
+	aEchiquier.addPiece(aTour);
 
 	//test canAccessCase ok => suivant la ligne
 	BOOST_ASSERT_MSG(aTour->canAccessCase(aPositionEnd), "TestTour canAccess - test sameLigne");
@@ -85,12 +86,12 @@ void TestTour::testCanAccess(void)const{
 
 	//test canAccessCase not ok => piece sur le chemin (noire ou blanche)
 	aPositionEnd.setPosition(7, 5);
-	PiecePtr aTour2(new Tour(WHITE, Position(5, 5)));
+	Tour* aTour2(new Tour(WHITE, Position(5, 5)));
 	aEchiquier.addPiece(aTour2);
 	BOOST_ASSERT_MSG(!aTour->canAccessCase(aPositionEnd), "TestTour canAccess - cannot access, piece sur le chemin, ligne");
 
 	aPositionEnd.setPosition(2, 1);
-	PiecePtr aTour3(new Tour(WHITE, Position(2, 4)));
+	Tour* aTour3(new Tour(WHITE, Position(2, 4)));
 	aEchiquier.addPiece(aTour3);
 	BOOST_ASSERT_MSG(!aTour->canAccessCase(aPositionEnd), "TestTour canAccess - cannot access, piece sur le chemin, ligne");
 
