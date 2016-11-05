@@ -8,7 +8,7 @@
 #$* : nom du fichier sans le suffixe
 
 CC=g++
-CFLAGS=-std=c++11 -Wextra -Wall# -ansi -pedantic
+CFLAGS=-std=c++11 -Wextra -Wall -g# -ansi -pedantic
 LDFLAGS=
 EXEC=prog
 projet=../../
