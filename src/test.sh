@@ -16,32 +16,46 @@ then
 fi
 
 opt=
-if [ $# == 1 ]
-then
-    echo "1 argument"
-    if [ $1 == -v ] || [ $1 == -valgrind ]
-    then
-	echo "avec valgrind"
-	opt=valgrind --leak-check=full --show-leak-kinds=all
-    fi
-fi
-echo $1
-echo $opt
 
 echo "lancement des test unitaires"
 echo
 #$opt ./datas/test/./prog
-./datas/test/./prog
+
+if [ $? = 1 ] 
+then
+	if [ $1 = -v ] || [ $1 = -valgrind ]
+	then
+		valgrind ./datas/test/./prog
+	fi
+else
+	./datas/test/./prog
+fi
 resultTest "datas" $?
 
 echo 
 #$opt ./game/test/./prog $opt
-./game/test/./prog
+if [ $? = 1 ]
+then
+	if [ $1 = -v ] || [ $1 = -valgrind ]
+	then
+		valgrind ./game/test/./prog
+	fi
+else
+	./game/test/./prog
+fi
 resultTest "game" $? 
 
 echo 
 #$opt ./gui/test/./prog $opt
-./gui/test/./prog
+if [ $? = 1 ]
+then
+	if [ $1 = -v ] || [ $1 = -valgrind ]
+	then
+		valgrind ./gui/test/./prog
+	fi
+else
+	./gui/test/./prog
+fi
 resultTest "gui" $?
 
 echo 
