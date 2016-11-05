@@ -26,7 +26,6 @@ namespace datas{
 	typedef std::array<PiecePtr, NBRE_PIECE_INIT> AllPiecePtr;
 
 	typedef std::array<std::array<datas::Case, NBRE_LIGNE>, NBRE_COLONNE> Echiquier;
-	typedef boost::shared_ptr<Echiquier> PlateauPtr;
 }
 
 #endif /* TYPES_H_ */

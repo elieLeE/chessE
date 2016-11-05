@@ -24,7 +24,5 @@ public:
 	void testRemovePiece(void);
 };
 
-void test();
-
 } /* namespace datas */
 #endif /* TESTECHIQUIER_H_ */

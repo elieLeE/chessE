@@ -23,8 +23,8 @@ Echiquier Echiquier::_instance = Echiquier();
 //Echiquier* Echiquier::_instance = 0;
 
 Echiquier::Echiquier():
-								_possiblePriseEnPassant(false),
-								_hasAlreadyPiece(false)
+										_possiblePriseEnPassant(false),
+										_hasAlreadyPiece(false)
 {}
 
 Echiquier::~Echiquier()
@@ -77,82 +77,82 @@ void Echiquier::setBegginingGameWithoutHandicap(){
 	//Pions
 	for(int i = 0; i<NBRE_COLONNE; i++){
 		aPosition.setPosition(1, i);
-		datas::Pion *aPionWhite = new datas::Pion(datas::WHITE, aPosition, true);
-		accessCase(aPosition).setPiece(aPionWhite);
+		datas::PiecePtr aPionWhite(new datas::Pion(datas::WHITE, aPosition, true));
+		setPiece(aPionWhite);
 
 		aPosition.setPosition(6, i);
-		datas::Pion *aPionBlack = new datas::Pion(datas::BLACK, aPosition, false);
-		accessCase(aPosition).setPiece(aPionBlack);
+		datas::PiecePtr aPionBlack(new datas::Pion(datas::BLACK, aPosition, false));
+		setPiece(aPionBlack);
 	}
 
 	//Tours
 	aPosition.setPosition(0, 0);
-	datas::Tour *aTourWhiteLeft = new datas::Tour(datas::WHITE, aPosition);
-	accessCase(aPosition).setPiece(aTourWhiteLeft);
+	datas::PiecePtr aTourWhiteLeft(new datas::Tour(datas::WHITE, aPosition));
+	setPiece(aTourWhiteLeft);
 
 	aPosition.setPosition(0, 7);
-	datas::Tour *aTourWhiteRight = new datas::Tour(datas::WHITE, aPosition);
-	accessCase(aPosition).setPiece(aTourWhiteRight);
+	datas::PiecePtr aTourWhiteRight(new datas::Tour(datas::WHITE, aPosition));
+	setPiece(aTourWhiteRight);
 
 	aPosition.setPosition(7, 0);
-	datas::Tour *aTourBlackLeft = new datas::Tour(datas::BLACK, aPosition);
-	accessCase(aPosition).setPiece(aTourBlackLeft);
+	datas::PiecePtr aTourBlackLeft(new datas::Tour(datas::BLACK, aPosition));
+	setPiece(aTourBlackLeft);
 
 	aPosition.setPosition(7, 7);
-	datas::Tour *aTourBlackRight = new datas::Tour(datas::BLACK, aPosition);
-	accessCase(aPosition).setPiece(aTourBlackRight);
+	datas::PiecePtr aTourBlackRight(new datas::Tour(datas::BLACK, aPosition));
+	setPiece(aTourBlackRight);
 
 	//Cavaliers
 	aPosition.setPosition(0, 1);
-	datas::Cavalier *aCavalierWhiteLeft = new datas::Cavalier(datas::WHITE, aPosition);
-	accessCase(aPosition).setPiece(aCavalierWhiteLeft);
+	datas::PiecePtr aCavalierWhiteLeft(new datas::Cavalier(datas::WHITE, aPosition));
+	setPiece(aCavalierWhiteLeft);
 
 	aPosition.setPosition(0, 6);
-	datas::Cavalier *aCavalierWhiteRight = new datas::Cavalier(datas::WHITE, aPosition);
-	accessCase(aPosition).setPiece(aCavalierWhiteRight);
+	datas::PiecePtr aCavalierWhiteRight(new datas::Cavalier(datas::WHITE, aPosition));
+	setPiece(aCavalierWhiteRight);
 
 	aPosition.setPosition(7, 1);
-	datas::Cavalier *aCavalierBlackLeft = new datas::Cavalier(datas::BLACK, aPosition);
-	accessCase(aPosition).setPiece(aCavalierBlackLeft);
+	datas::PiecePtr aCavalierBlackLeft(new datas::Cavalier(datas::BLACK, aPosition));
+	setPiece(aCavalierBlackLeft);
 
 	aPosition.setPosition(7, 6);
-	datas::Cavalier *aCavalierBlackRight = new datas::Cavalier(datas::BLACK, aPosition);
-	accessCase(aPosition).setPiece(aCavalierBlackRight);
+	datas::PiecePtr aCavalierBlackRight(new datas::Cavalier(datas::BLACK, aPosition));
+	setPiece(aCavalierBlackRight);
 
 	//Fou
 	aPosition.setPosition(0, 2);
-	datas::Fou *aFouWhiteLeft = new datas::Fou(datas::WHITE, aPosition);
-	accessCase(aPosition).setPiece(aFouWhiteLeft);
+	datas::PiecePtr aFouWhiteLeft(new datas::Fou(datas::WHITE, aPosition));
+	setPiece(aFouWhiteLeft);
 
 	aPosition.setPosition(0, 5);
-	datas::Fou *aFouWhiteRight = new datas::Fou(datas::WHITE, aPosition);
-	accessCase(aPosition).setPiece(aFouWhiteRight);
+	datas::PiecePtr aFouWhiteRight(new datas::Fou(datas::WHITE, aPosition));
+	setPiece(aFouWhiteRight);
 
 	aPosition.setPosition(7, 2);
-	datas::Fou *aFouBlackLeft = new datas::Fou(datas::BLACK, aPosition);
-	accessCase(aPosition).setPiece(aFouBlackLeft);
+	datas::PiecePtr aFouBlackLeft(new datas::Fou(datas::BLACK, aPosition));
+	setPiece(aFouBlackLeft);
 
 	aPosition.setPosition(7, 5);
-	datas::Fou *aFouBlackRight = new datas::Fou(datas::BLACK, aPosition);
-	accessCase(aPosition).setPiece(aFouBlackRight);
+	datas::PiecePtr aFouBlackRight(new datas::Fou(datas::BLACK, aPosition));
+	setPiece(aFouBlackRight);
 
 	//Dame
 	aPosition.setPosition(0, 3);
-	datas::Dame *aDameWhite = new datas::Dame(datas::WHITE, aPosition);
-	accessCase(aPosition).setPiece(aDameWhite);
+	datas::PiecePtr aDameWhite(new datas::Dame(datas::WHITE, aPosition));
+	setPiece(aDameWhite);
 
 	aPosition.setPosition(7, 4);
-	datas::Dame *aDameBlack = new datas::Dame(datas::WHITE, aPosition);
-	accessCase(aPosition).setPiece(aDameBlack);
+	datas::PiecePtr aDameBlack(new datas::Dame(datas::WHITE, aPosition));
+	setPiece(aDameBlack);
 
 	//Roi
 	aPosition.setPosition(0, 4);
-	datas::Roi *aRoiWhite = new datas::Roi(datas::BLACK, aPosition);
-	accessCase(aPosition).setPiece(aRoiWhite);
+	datas::PiecePtr aRoiWhite(new datas::Roi(datas::BLACK, aPosition));
+	setPiece(aRoiWhite);
 
 	aPosition.setPosition(7, 3);
-	datas::Roi *aRoiBlack = new datas::Roi(datas::BLACK, aPosition);
-	accessCase(aPosition).setPiece(aRoiBlack);
+	datas::PiecePtr aRoiBlack(new datas::Roi(datas::BLACK, aPosition));
+	setPiece(aRoiBlack);
 
 	_hasAlreadyPiece = true;
 }
@@ -216,25 +216,33 @@ void Echiquier::setChangeMove(const datas::Move& iMove){
 }
 
 void Echiquier::movePiece(const datas::Position& iPositionStart, const datas::Position& iPositionEnd){
-	removePiece(iPositionEnd);
-	datas::PiecePtr aPiece = accessCase(iPositionStart).accessPiece();
+	killPiece(iPositionEnd);
+	datas::PiecePtr& aPiece = accessCase(iPositionStart).accessPiece();
 	if(aPiece){
 		aPiece->movePiece(iPositionEnd);
-		setPiece(aPiece.get());
-		accessCase(iPositionStart).resetPiece();
+		setPiece(aPiece);
+		aPiece.reset();
 	}
 }
 
-void Echiquier::setPiece(datas::Piece* iPiece){
-	accessCase(iPiece->getPosition()).setPiece(iPiece);
+void Echiquier::setPiece(datas::PiecePtr& iPiece){
+	accessCase(iPiece->getPosition()).accessPiece() = iPiece;
 }
 
-void Echiquier::addPiece(datas::Piece* iPiece){
+void Echiquier::addPiece(datas::PiecePtr& iPiece){
 	setPiece(iPiece);
 	_hasAlreadyPiece = true;
+	//addPiece iPiece in allPiece du joueur
 }
 
-void Echiquier::removePiece(const datas::Position& iPosition){
+void Echiquier::revivePiece(const datas::Position& iPosition){
+	//pas excatement => prendre la derniere piece ajoute dans la liste des pieces morte de la case
+	if(getCase(iPosition).hasPiece()){
+		accessCase(iPosition).accessPiece()->setDead();
+	}
+}
+
+void Echiquier::killPiece(const datas::Position& iPosition){
 	if(getCase(iPosition).hasPiece()){
 		accessCase(iPosition).accessPiece()->setDead();
 	}
