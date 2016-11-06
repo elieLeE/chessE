@@ -79,11 +79,67 @@ void TestPiece::testAliveDead(void) const {
 void TestPiece::testIsValideMove(void) const{
 	cout << "TestPiece - testIsValideMove";
 
-	cout << "	TO IMPLMENT" << endl;
+	aEchiquier->reset();
+
+	Position aPositionStart(2, 2);
+	Position aPositionEnd(4, 2);
+	Piece* aTour(new Tour(WHITE, aPositionStart));
+	Move aMove(aPositionStart, aPositionEnd);
+
+	aEchiquier->addPiece(aTour);
+
+	BOOST_ASSERT_MSG(aTour->isValideMove(aMove), "TestPiece isValideMove - valid");
+
+	aMove.setPositionStart(aPositionEnd);
+	BOOST_ASSERT_MSG(!aTour->isValideMove(aMove), "TestPiece isValideMove - valid");
+
+	aMove.setPositionStart(aPositionStart);
+	BOOST_ASSERT_MSG(aTour->isValideMove(aMove), "TestPiece isValideMove - valid/no piece");
+
+	Tour *aTour2(new Tour(BLACK, aPositionEnd));
+	aEchiquier->addPiece(aTour2);
+	BOOST_ASSERT_MSG(aTour->isValideMove(aMove), "TestPiece isValideMove - valid/piece different color");
+
+	aTour2->setDead();
+	BOOST_ASSERT_MSG(aTour->isValideMove(aMove), "TestPiece isValideMove - valid/piece dead");
+
+	Tour *aTour3(new Tour(WHITE, aPositionEnd));
+	aEchiquier->addPiece(aTour3);
+	BOOST_ASSERT_MSG(!aTour->isValideMove(aMove), "TestPiece isValideMove - not valid/piece same color");
+
+	aTour3->setDead();
+	BOOST_ASSERT_MSG(aTour->isValideMove(aMove), "TestPiece isValideMove - valid/piece same color but dead");
+
+	cout << "	OK" << endl;
 }
 
 void TestPiece::testCanTakeCase() const{
 	cout << "TestPiece - testCanTakeCase";
 
-	cout << "	TO IMPLMENT" << endl;
+	aEchiquier->reset();
+
+	Position aPositionStart(2, 2);
+	Position aPositionEnd(4, 2);
+	Piece* aTour(new Tour(WHITE, aPositionStart));
+	Move aMove(aPositionStart, aPositionEnd);
+
+	aEchiquier->addPiece(aTour);
+
+	BOOST_ASSERT_MSG(aTour->canTakeCase(aMove.getEndPosition()), "TestPiece canTakeCase - valid/no piece");
+
+	Tour *aTour2(new Tour(BLACK, aPositionEnd));
+	aEchiquier->addPiece(aTour2);
+	BOOST_ASSERT_MSG(aTour->canTakeCase(aMove.getEndPosition()), "TestPiece canTakeCase - valid/piece different color");
+
+	aTour2->setDead();
+	BOOST_ASSERT_MSG(aTour->canTakeCase(aMove.getEndPosition()), "TestPiece canTakeCase - valid/piece dead");
+
+	Tour *aTour3(new Tour(WHITE, aPositionEnd));
+	aEchiquier->addPiece(aTour3);
+	BOOST_ASSERT_MSG(!aTour->canTakeCase(aMove.getEndPosition()), "TestPiece canTakeCase - not valid/piece same color");
+
+	aTour3->setDead();
+	BOOST_ASSERT_MSG(aTour->canTakeCase(aMove.getEndPosition()), "TestPiece canTakeCase - valid/piece same color but dead");
+
+	cout << "	OK" << endl;
 }
