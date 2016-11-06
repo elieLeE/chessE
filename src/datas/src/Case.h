@@ -30,7 +30,6 @@ private:
 	PiecePtr _piece;
 	//add liste de piede morte capture dans cette case => pour les retour en arrieres)
 	// A etudiier !
-	static int a, b;
 };
 
 } /* namespace datas */

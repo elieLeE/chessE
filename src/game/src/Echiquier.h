@@ -53,17 +53,14 @@ public:
 	datas::Case& accessCase(const datas::Position& iPosition);
 
 	const datas::AllPiecePtr& getAllPiecesJ1() const;
-	void setAllPiecesJ1(datas::AllPiecePtr& iAllPieces);
+	//a terme a partager entre classe joueur et cette classe => avec deux shared_ptr...
+	//void setAllPiecesJ1(datas::AllPiecePtr& iAllPieces);
 
 	const datas::AllPiecePtr& getAllPiecesJ2() const;
-	void setAllPiecesJ2(datas::AllPiecePtr& iAllPieces);
-
-	const datas::Echiquier& getEchiquier() const;
-	void setEchiquier(datas::Echiquier& iEchiquier);
+	//void setAllPiecesJ2(datas::AllPiecePtr& iAllPieces);
 
 	bool getPossiblePriseEnPassant() const;
 
-	datas::Move& accessLastMove();
 	const datas::Move& getLastMove() const;
 
 	void setChangeMove(const datas::Move& iMove);
@@ -81,19 +78,11 @@ private:
 	Echiquier(const Echiquier&);
 	Echiquier& operator=(const Echiquier&);
 
-	void setPossiblePriseEnPassant(bool iPossiblePriseEnPassant);
-
-	//static Echiquier* _instance;
 	static Echiquier _instance;
 
-	//std::array<std::array<datas::Case, NBRE_LIGNE>, NBRE_COLONNE> echiquier;
 	datas::Echiquier _echiquier;
 
-	std::array <std::array<bool, NBRE_JOUEURS>, NBRE_TOURS> _tourAlreadyMoved;
-
 	bool _possiblePriseEnPassant;
-	//utiliser enum + pour les deux joueurs
-	std::array <bool, NBRE_JOUEURS> _rockPossible;
 
 	std::array <datas::AllPiecePtr, 2> _allPiecesJoueurs;
 

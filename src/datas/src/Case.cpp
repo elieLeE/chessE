@@ -10,9 +10,6 @@
 
 namespace datas {
 
-int Case::a = 1;
-int Case::b = 1;
-
 Case::Case()
 {}
 

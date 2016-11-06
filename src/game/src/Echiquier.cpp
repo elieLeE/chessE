@@ -52,10 +52,6 @@ bool Echiquier::getPossiblePriseEnPassant() const{
 	return _possiblePriseEnPassant;
 }
 
-void Echiquier::setPossiblePriseEnPassant(bool iPossiblePriseEnPassant){
-	_possiblePriseEnPassant = iPossiblePriseEnPassant;
-}
-
 const datas::Case& Echiquier::getCase(int ligne, int col) const{
 	return _echiquier[ligne][col];
 }
@@ -72,10 +68,6 @@ datas::Case& Echiquier::accessCase(const datas::Position& iPosition){
 	return _echiquier[iPosition.getX()][iPosition.getY()];
 }
 
-datas::Move& Echiquier::accessLastMove(){
-	return _lastMove;
-}
-
 const datas::Move& Echiquier::getLastMove() const{
 	return _lastMove;
 }
@@ -86,23 +78,23 @@ const datas::Move& Echiquier::getLastMove() const{
  * peux pas le faire dans validMove (encore moins bien dans conception)
  */
 void Echiquier::setChangeMove(const datas::Move& iMove){
-	setPossiblePriseEnPassant(false);
-	const datas::Piece* aPieceMove = this->getCase(iMove.getStartPosition()).getPiece().get();
-	if(aPieceMove->getTypePiece() == datas::PION_TYPE){
-		if(std::abs(iMove.getStartPosition().getY() - iMove.getEndPosition().getY()) == 2){
-			this->setPossiblePriseEnPassant(true);
+	_possiblePriseEnPassant = false;
+	const datas::PiecePtr& aPieceMove = this->getCase(iMove.getStartPosition()).getPiece();
+
+	if(aPieceMove){
+		if(aPieceMove->getTypePiece() == datas::PION_TYPE){
+			if(std::abs(iMove.getStartPosition().getX() - iMove.getEndPosition().getX()) == 2){
+				_possiblePriseEnPassant = true;
+			}
 		}
+		_lastMove = iMove;
+	}
+	else{
+		//erreur ou debug
+		std::cout << "Echiquier::setChangeMove - incorrecte Move" << std::endl;
 	}
 
-	if(std::abs(iMove.getStartPosition().getX() - iMove.getEndPosition().getX())){
-		setPossiblePriseEnPassant(true);
-	}
 
-	if(iMove.hasCapturePiece()){
-		this->accessCase(iMove.getEndPosition()).accessPiece()->setDead();
-	}
-
-	this->accessLastMove() = iMove;
 
 	//ou ??
 	/*this->accessPiece(iMove.getEndPosition()) = this->getPiece(iMove.getStartPosition()).get();
@@ -141,8 +133,9 @@ void Echiquier::addPiece(datas::PiecePtr& iPiece){
 
 void Echiquier::revivePiece(const datas::Position& iPosition){
 	//pas excatement => prendre la derniere piece ajoute dans la liste des pieces morte de la case
-	if(getCase(iPosition).hasPiece()){
-		accessCase(iPosition).accessPiece()->setDead();
+	//ne peux faire hasPiece => car test _piece && _piece.isAlive... => pour l'instant on garde comme ça.
+	if(getCase(iPosition).getPiece()){
+		accessCase(iPosition).accessPiece()->setAlive();
 	}
 }
 

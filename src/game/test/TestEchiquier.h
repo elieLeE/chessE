@@ -20,8 +20,10 @@ public:
 	static void startTest(void);
 
 	void testMovePiece(void) const;
-	void testAddPiece(void);
-	void testRemovePiece(void);
+	void testAddPiece(void) const;
+	void testKillAndRevivePiece(void) const;
+	void testReset(void) const;
+	void testSetChangeMove(void) const;
 };
 
 } /* namespace datas */
