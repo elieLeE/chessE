@@ -46,12 +46,9 @@ public:
 	/*
 	 * use when a new move is played
 	 */
-	//virtual bool isValideMove(const game::Echiquier& iEchiquier, const Move& iMove) const = 0;
 	virtual bool isValideMove(const Move& iMove) const;
 	virtual bool canAccessCase(const Position& iPosition) const = 0;
 	bool canTakeCase(const Position& iPosition) const;
-
-	//bool firstMoveValidation(Move& iMove);
 
 	/*
 	 * needed for IA and display possible move before play
