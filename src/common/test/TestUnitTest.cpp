@@ -20,9 +20,8 @@ TestUnitTest::~TestUnitTest()
 {}
 
 void TestUnitTest::startTests(){
-	UnitTest<TestUnitTest> unitT;
+	UnitTest<TestUnitTest> unitT("TestUnitTest");
 
-	unitT.setNameClasse("TestUnitTest");
 	unitT.addMethod("testA", &common::TestUnitTest::testA);
 	unitT.addMethod("testB", &common::TestUnitTest::testB);
 	unitT.addMethod("testC", &common::TestUnitTest::testC);

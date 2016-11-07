@@ -11,17 +11,13 @@
 namespace common{
 
 template<typename T>
-UnitTest<T>::UnitTest()
+UnitTest<T>::UnitTest(std::string aStr):
+	_nameClasse(aStr)
 {}
 
 template<typename T>
 UnitTest<T>::~UnitTest()
 {}
-
-template<typename T>
-void UnitTest<T>::setNameClasse(std::string aStr){
-	_nameClasse.assign(aStr);
-}
 
 template<typename T>
 void UnitTest<T>::addMethod(std::string iStr, void (T::*iPtr)(void)){

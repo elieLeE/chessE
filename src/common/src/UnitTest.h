@@ -19,12 +19,9 @@ namespace common{
 template<typename T>
 class UnitTest {
 public:
-	UnitTest();
+	UnitTest(std::string aStr);
 	virtual ~UnitTest();
 
-	void setNameClasse(std::string aStr);
-
-	//void setPtr(void (T::*ptr)(void));
 	void addMethod(std::string, void (T::*ptr)(void));
 	void luanchMethods(void);
 
