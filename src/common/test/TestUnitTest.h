@@ -17,9 +17,9 @@ public:
 
 	static void startTests();
 
-	void testA(void);
-	void testB(void);
-	void testC(void);
+	void testA(void) const;
+	void testB(void) const;
+	void testC(void) const;
 };
 
 } /* namespace datas */

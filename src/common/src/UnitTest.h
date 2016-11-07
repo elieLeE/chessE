@@ -22,14 +22,18 @@ public:
 	UnitTest(std::string aStr);
 	virtual ~UnitTest();
 
-	void addMethod(std::string, void (T::*ptr)(void));
+	void addMethod(std::string, void (T::*ptr)(void) const, bool isImplement = true);
 	void luanchMethods(void);
 
 private:
 	T _instance;
 	std::string _nameClasse;
-	std::list<std::pair<std::string, void (T::*)(void)> > _list;
+
+	typedef std::pair<void (T::*)(void) const, bool> subType;
+	typedef std::pair<std::string, subType> typeListUnitTest;
+	std::list<typeListUnitTest> _list;
 };
+
 
 } /* namespace common */
 
