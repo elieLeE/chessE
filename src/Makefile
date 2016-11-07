@@ -40,11 +40,16 @@ $(EXEC_TST): $(OBJ_TST)
 	cd $(projet)/datas/test; 	make -f Makefile
 	cd $(projet)/game/test;		make -f Makefile
 	cd $(projet)/gui/test;		make -f Makefile
+	cd $(projet)/common/test; 	make -f Makefile
 
 .PHONY: cleanSimple clean 
 
 cleanSimple:
 	rm -rf $(OBJ_SRC)
+	cd $(projet)/datas/test; 	make -f Makefile clean
+	cd $(projet)/game/test; 	make -f Makefile clean
+	cd $(projet)/gui/test; 	make -f Makefile clean
+	cd $(projet)/common/test; 	make -f Makefile clean
 
 clean: cleanSimple
 	rm -rf $(EXEC_SRC) $(EXEC_TST)	
