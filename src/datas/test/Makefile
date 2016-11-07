@@ -13,7 +13,7 @@ LDFLAGS=
 EXEC=prog 
 projet=../../
 toExclude=main.cpp
-SRC=$(shell find $(projet) -name "*.cpp" -not -path "../../main.cpp" -not -path "*game/test*" -not -path "*gui/test*")
+SRC=$(shell find $(projet) -name "*.cpp" -not -path "../../main.cpp" -not -path "*game/test*" -not -path "*gui/test*" -not -path "*common/test*" -not -path "*common/src/UnitTest.cpp")
 #SRC=$(shell find $(projet) -name "*.cpp" -not -path "../../main.cpp" -not -path "*game/test*" -not -path "*gui/test*") 
 OBJ= $(SRC:.cpp=.o)
 

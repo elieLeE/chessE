@@ -12,7 +12,7 @@ CFLAGS=-std=c++11 -Wextra -Wall# -ansi -pedantic
 LDFLAGS=
 EXEC=prog
 projet=../../ 
-SRC=$(shell find $(projet) -name "*.cpp" -not -path "../../main.cpp" -not -path "*datas/test*" -not -path "*game/test*") 
+SRC=$(shell find $(projet) -name "*.cpp" -not -path "../../main.cpp" -not -path "*datas/test*" -not -path "*game/test*" -not -path "*common/test*" -not -path "*common/src/UnitTest.cpp") 
 OBJ= $(SRC:.cpp=.o)
 
 all: $(EXEC)

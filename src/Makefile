@@ -15,7 +15,7 @@ LDFLAGS=
 CODE:=$(shell pwd)
 SRCDIR=$(CODE)/src
 OBJDIR=../bin
-SRC=$(shell find . -name "*.cpp" -not -path "*test*")
+SRC=$(shell find . -name "*.cpp" -not -path "*test*" -not -path "*common/src/UnitTest.cpp")
 OBJ_SRC=$(SRC:.cpp=.o)
 
 EXEC_SRC=prog
