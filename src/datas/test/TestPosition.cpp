@@ -55,7 +55,7 @@ void TestPosition::testComparePosition() const {
 }
 
 void TestPosition::testSame(void) const{
-	std::cout << "TestPosition - same";
+	std::cout << "TestPosition - sameLigne/sameCol";
 
 	Position aPosition1(2, 5);
 	Position aPosition2(2, 6);

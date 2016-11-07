@@ -82,7 +82,7 @@ bool Move::isValidateMove(const game::Echiquier& iEchiquier) const{
 
 void Move::setMoveProperties(){
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
-	Piece* aPiece = aEchiquier.accessCase(_start).accessPiece().get();
+	PiecePtr& aPiece = aEchiquier.accessCase(_start).accessPiece();
 
 	if((aPiece->getTypePiece() == PION_TYPE) &&
 			!_start.sameCol(_end) &&
@@ -101,6 +101,7 @@ void Move::setMoveProperties(){
 			_typeMove = GRAND_ROCK;
 		}
 	}
+	aEchiquier.setChangeMove(*this);
 }
 
 void Move::operator=(const Move& iMove){

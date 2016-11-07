@@ -40,8 +40,11 @@ public:
 
 	//indispensable car sinon, ne sait pas si a deja des pieces ou pas
 	void addPiece(datas::Piece* iPiece);
-	void removePiece(const datas::Position& iPosition);
-	void setPiece(datas::Piece* iPiece);
+	void addPiece(datas::PiecePtr& iPiece);
+	void setPiece(datas::PiecePtr& iPiece);
+
+	void killPiece(const datas::Position& iPosition);
+	void revivePiece(const datas::Position& iPosition);
 
 	const datas::Case& getCase(int ligne, int col) const;
 	datas::Case& accessCase(int ligne, int col);
@@ -50,17 +53,14 @@ public:
 	datas::Case& accessCase(const datas::Position& iPosition);
 
 	const datas::AllPiecePtr& getAllPiecesJ1() const;
-	void setAllPiecesJ1(datas::AllPiecePtr& iAllPieces);
+	//a terme a partager entre classe joueur et cette classe => avec deux shared_ptr...
+	//void setAllPiecesJ1(datas::AllPiecePtr& iAllPieces);
 
 	const datas::AllPiecePtr& getAllPiecesJ2() const;
-	void setAllPiecesJ2(datas::AllPiecePtr& iAllPieces);
-
-	const datas::Echiquier& getEchiquier() const;
-	void setEchiquier(datas::Echiquier& iEchiquier);
+	//void setAllPiecesJ2(datas::AllPiecePtr& iAllPieces);
 
 	bool getPossiblePriseEnPassant() const;
 
-	datas::Move& accessLastMove();
 	const datas::Move& getLastMove() const;
 
 	void setChangeMove(const datas::Move& iMove);
@@ -78,19 +78,11 @@ private:
 	Echiquier(const Echiquier&);
 	Echiquier& operator=(const Echiquier&);
 
-	void setPossiblePriseEnPassant(bool iPossiblePriseEnPassant);
-
-	//static Echiquier* _instance;
 	static Echiquier _instance;
 
-	//std::array<std::array<datas::Case, NBRE_LIGNE>, NBRE_COLONNE> echiquier;
 	datas::Echiquier _echiquier;
 
-	std::array <std::array<bool, NBRE_JOUEURS>, NBRE_TOURS> _tourAlreadyMoved;
-
 	bool _possiblePriseEnPassant;
-	//utiliser enum + pour les deux joueurs
-	std::array <bool, NBRE_JOUEURS> _rockPossible;
 
 	std::array <datas::AllPiecePtr, 2> _allPiecesJoueurs;
 

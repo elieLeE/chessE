@@ -10,6 +10,7 @@
 
 #include "TestPosition.h"
 
+#include "testPiece/TestPiece.h"
 #include "testPiece/TestCavalier.h"
 #include "testPiece/TestDame.h"
 #include "testPiece/TestFou.h"
@@ -21,13 +22,13 @@ using namespace std;
 using namespace datas;
 
 int main() {
-	cout << "test unitaire datas" << endl;
+	cout << "test unitaire datas" << endl << endl;
 
 	TestPosition::startTests();
 
+	TestPiece::startTests();
 	TestCavalier::startTests();
 	TestDame::startTests();
-	TestFou::startTests();
 	TestFou::startTests();
 	TestRoi::startTests();
 	TestTour::startTests();

@@ -64,7 +64,7 @@ bool Roi::estRockTheorique(const Move& iMove, ETypeMove iTypeMove) const{
 			(!_hasAlreadyMoved)){
 		int x = _position.getX();
 		int y = (iTypeMove==PETIT_ROCK?(x==0?7:0):(x==0?0:7));
-		const PiecePtr aPiece = game::Echiquier::getInstance().getCase(x, y).getPiece();
+		const PiecePtr& aPiece = game::Echiquier::getInstance().getCase(x, y).getPiece();
 
 		if(aPiece && (aPiece->getTypePiece()==TOUR_TYPE)){
 			const Tour* aTour = dynamic_cast<const Tour*>(aPiece.get());

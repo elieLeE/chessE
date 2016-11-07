@@ -65,6 +65,7 @@ void TestCavalier::testIsValideMove(void) const{
 	Position aPositionEnd(4, 4);
 	//Move aMove(Position(aPositionStart.getX()+1, aPositionStart.getY()), aPositionEnd);
 	Move aMove(aPositionStart, aPositionEnd);
+
 	Cavalier* aCavalier = new Cavalier(WHITE, aPositionStart);
 	Cavalier* aCavalier2 = new Cavalier(WHITE, aPositionEnd);
 
@@ -80,7 +81,7 @@ void TestCavalier::testIsValideMove(void) const{
 	BOOST_ASSERT_MSG(!aCavalier->isValideMove(aMove), "TestCavalier MovePiece - not valide move");
 
 	//test avec piece de couleur differente deja dans la case d'arrive ==> move valide
-	Cavalier* aCavalier3 = new Cavalier(BLACK, aPositionEnd);
+	PiecePtr aCavalier3(new Cavalier(BLACK, aPositionEnd));
 	aEchiquier.addPiece(aCavalier3);
 	BOOST_ASSERT_MSG(aCavalier->isValideMove(aMove), "TestCavalier MovePiece - valide move");
 

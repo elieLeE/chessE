@@ -17,11 +17,6 @@ namespace datas{
 
 class Tour : public Piece{
 public:
-	typedef enum ENumTour{
-		TOUR_1,
-		TOUR_2
-	}ENumTour;
-
 	Tour(const EColor iColor, Position iPosition);
 	virtual ~Tour();
 

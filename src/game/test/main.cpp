@@ -6,6 +6,8 @@
  */
 
 #include <iostream>
+#include <boost/shared_ptr.hpp>
+#include <memory>
 
 #include "TestEchiquier.h"
 

@@ -28,6 +28,8 @@ public:
 
 private:
 	PiecePtr _piece;
+	//add liste de piede morte capture dans cette case => pour les retour en arrieres)
+	// A etudiier !
 };
 
 } /* namespace datas */
