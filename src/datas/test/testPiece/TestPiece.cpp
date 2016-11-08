@@ -8,12 +8,14 @@
  */
 #include <iostream>
 
+#include "../../../common/src/UnitTest.h"
 #include "../../../game/src/Echiquier.h"
 #include "../../src/piece/Tour.h"
 #include "TestPiece.h"
 
 using namespace std;
 using namespace datas;
+using namespace common;
 
 TestPiece::TestPiece()
 {}
@@ -31,11 +33,20 @@ void TestPiece::startTests(void){
 	aTestPiece.testCanTakeCase();
 
 	std::cout << std::endl;
+
+	UnitTest<TestPiece> unitT("TestPiece");
+
+	unitT.addMethod("testSimple", &datas::TestPiece::testSimple);
+	unitT.addMethod("testMovePiece", &datas::TestPiece::testMovePiece);
+	unitT.addMethod("testAliveDead", &datas::TestPiece::testAliveDead);
+	unitT.addMethod("testIsValideMove", &datas::TestPiece::testIsValideMove);
+	unitT.addMethod("testCanTakeCase", &datas::TestPiece::testCanTakeCase);
+
+	unitT.luanchMethods();
+
 }
 
-void TestPiece::testSimple(void){
-	cout << "TestPiece - testSimple";
-
+void TestPiece::testSimple(void) const{
 	Position aPosition(2, 2);
 	Tour aTour(WHITE, aPosition);
 
@@ -43,13 +54,9 @@ void TestPiece::testSimple(void){
 	BOOST_ASSERT_MSG(aTour.getTypePiece() == TOUR_TYPE, "TestPiece simple - typePiece");
 	BOOST_ASSERT_MSG(aTour.getNumJoueur() == JOUEUR_1, "TestPiece simple - numJoueur");
 	BOOST_ASSERT_MSG(aTour.getPosition() == aPosition, "TestPiece simple - position");
-
-	cout << "	Ok" << endl;
 }
 
 void TestPiece::testMovePiece(void) const{
-	cout << "TestPiece - testMovePiece";
-
 	Position aPositionStart(2, 2);
 	Position aPositionEnd(6, 2);
 	Tour aTour(WHITE, aPositionStart);
@@ -58,13 +65,9 @@ void TestPiece::testMovePiece(void) const{
 
 	aTour.movePiece(aPositionEnd);
 	BOOST_ASSERT_MSG(aTour.getPosition() == aPositionEnd, "TestPiece simple - after Move");
-
-	cout << "	OK" << endl;
 }
 
 void TestPiece::testAliveDead(void) const {
-	cout << "TestPiece - testAliveDead";
-
 	Position aPosition(2, 2);
 	Tour aTour(WHITE, aPosition);
 
@@ -75,15 +78,10 @@ void TestPiece::testAliveDead(void) const {
 
 	aTour.setAlive();
 	BOOST_ASSERT_MSG(aTour.isAlive(), "TestPiece simple - alive/revive");
-
-	cout << "	OK" << endl;
 }
 
 void TestPiece::testIsValideMove(void) const{
-	cout << "TestPiece - testIsValideMove";
-
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
-	aEchiquier.reset();
 
 	Position aPositionStart(2, 2);
 	Position aPositionEnd(4, 2);
@@ -113,15 +111,10 @@ void TestPiece::testIsValideMove(void) const{
 
 	aTour3->setDead();
 	BOOST_ASSERT_MSG(aTour->isValideMove(aMove), "TestPiece isValideMove - valid/piece same color but dead");
-
-	cout << "	OK" << endl;
 }
 
 void TestPiece::testCanTakeCase() const{
-	cout << "TestPiece - testCanTakeCase";
-
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
-	aEchiquier.reset();
 
 	Position aPositionStart(2, 2);
 	Position aPositionEnd(4, 2);
@@ -145,6 +138,4 @@ void TestPiece::testCanTakeCase() const{
 
 	aTour3->setDead();
 	BOOST_ASSERT_MSG(aTour->canTakeCase(aMove.getEndPosition()), "TestPiece canTakeCase - valid/piece same color but dead");
-
-	cout << "	OK" << endl;
 }

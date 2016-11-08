@@ -6,10 +6,12 @@
  */
 #include <iostream>
 
+#include "../../../common/src/UnitTest.h"
 #include "TestDame.h"
 
 using namespace std;
 using namespace datas;
+using namespace common;
 
 TestDame::TestDame()
 {}
@@ -18,15 +20,12 @@ TestDame::~TestDame()
 {}
 
 void TestDame::startTests(void){
-	TestDame aTestDame;
+	UnitTest<TestDame> unitT("TestDame");
 
-	aTestDame.testIsValideMove();
+	unitT.addMethod("testIsValideMove", &datas::TestDame::testIsValideMove, false);
 
-	cout << endl;
+	unitT.luanchMethods();
 }
 
 void TestDame::testIsValideMove(void) const{
-	cout << "TestDame - testIsValideMove";
-
-	cout << "	TO IMPLMENT" << endl;
 }

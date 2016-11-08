@@ -6,30 +6,26 @@
  */
 #include <iostream>
 
+#include "../../../common/src/UnitTest.h"
 #include "TestFou.h"
 
 using namespace std;
 using namespace datas;
+using namespace common;
 
-TestFou::TestFou() {
-	// TODO Auto-generated constructor stub
+TestFou::TestFou()
+{}
 
-}
-
-TestFou::~TestFou() {
-	// TODO Auto-generated destructor stub
-}
+TestFou::~TestFou()
+{}
 
 void TestFou::startTests(void){
-	TestFou aTestFou;
+	UnitTest<TestFou> unitT("TestFou");
 
-	aTestFou.testIsValideMove();
+	unitT.addMethod("testIsValideMove", &datas::TestFou::testIsValideMove, false);
 
-	cout << endl;
+	unitT.luanchMethods();
 }
 
 void TestFou::testIsValideMove(void) const{
-	cout << "TestFou - testIsValideMove";
-
-	cout << "	TO IMPLMENT" << endl;
 }

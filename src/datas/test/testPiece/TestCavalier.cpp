@@ -6,12 +6,14 @@
  */
 #include <boost/assert.hpp>
 
+#include "../../../common/src/UnitTest.h"
 #include "TestCavalier.h"
 #include "../../src/piece/Cavalier.h"
 #include "../../../game/src/Echiquier.h"
 
 using namespace std;
 using namespace datas;
+using namespace common;
 
 TestCavalier::TestCavalier()
 {}
@@ -20,17 +22,15 @@ TestCavalier::~TestCavalier()
 {}
 
 void TestCavalier::startTests(void){
-	TestCavalier aTourCavalier;
+	UnitTest<TestCavalier> unitT("TestCavalier");
 
-	aTourCavalier.testCanAccess();
-	aTourCavalier.testIsValideMove();
+	unitT.addMethod("testCanAccess", &datas::TestCavalier::testCanAccess);
+	unitT.addMethod("testIsValideMove", &datas::TestCavalier::testIsValideMove);
 
-	std::cout << std::endl;
+	unitT.luanchMethods();
 }
 
 void TestCavalier::testCanAccess(void) const{
-	cout << "TestCavalier - testCanAccess";
-
 	Position aPositionStart(2, 5);
 	Position aPositionEnd(4, 4);
 	Move aMove(aPositionStart, aPositionEnd);
@@ -51,15 +51,10 @@ void TestCavalier::testCanAccess(void) const{
 	aMove.setPositionEnd(aPositionEnd);
 	BOOST_ASSERT_MSG(!aCavalier.canAccessCase(aPositionEnd), "TestCavalier canAccess - cannot access");
 	BOOST_ASSERT_MSG(!aCavalier.isValideMove(aMove), "TestCavalier MovePiece - not valide move");
-
-	cout << "	OK" << endl;
 }
 
 void TestCavalier::testIsValideMove(void) const{
-	cout << "TestCavalier - testIsValideMove";
-
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
-	aEchiquier.reset();
 
 	Position aPositionStart(2, 5);
 	Position aPositionEnd(4, 4);
@@ -84,6 +79,4 @@ void TestCavalier::testIsValideMove(void) const{
 	PiecePtr aCavalier3(new Cavalier(BLACK, aPositionEnd));
 	aEchiquier.addPiece(aCavalier3);
 	BOOST_ASSERT_MSG(aCavalier->isValideMove(aMove), "TestCavalier MovePiece - valide move");
-
-	cout << "	OK" << endl;
 }

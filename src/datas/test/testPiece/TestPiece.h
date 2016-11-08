@@ -17,7 +17,7 @@ public:
 
 	static void startTests(void);
 
-	void testSimple(void);
+	void testSimple(void) const;
 	void testMovePiece(void) const;
 	void testAliveDead(void) const ;
 	void testIsValideMove(void) const;
