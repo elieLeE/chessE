@@ -8,7 +8,7 @@
 #ifndef GAME_H_
 #define GAME_H_
 
-#include "../../datas/src/Joueur.h"
+#include "../../datas/src/joueur/Joueur.h"
 //#include <array>
 
 namespace game {

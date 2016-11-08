@@ -6,8 +6,8 @@
  */
 
 #include "Joueur.h"
-#include "typeDefine/PieceValue.h"
-#include "piece/Roi.h"
+#include "../typeDefine/PieceValue.h"
+#include "../piece/Roi.h"
 
 namespace datas {
 

@@ -6,8 +6,8 @@
  */
 
 #include "JoueurHumain.h"
-#include "../../game/src/Echiquier.h"
-#include "../../gui/src/Display.h"
+#include "../../../game/src/Echiquier.h"
+#include "../../../gui/src/Display.h"
 
 namespace datas {
 
