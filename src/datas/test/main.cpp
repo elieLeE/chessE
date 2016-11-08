@@ -18,6 +18,10 @@
 #include "testPiece/TestRoi.h"
 #include "testPiece/TestTour.h"
 
+#include "testJoueur/TestJoueur.h"
+#include "testJoueur/testJoueurIA.h"
+#include "testJoueur/TestJoueurHumain.h"
+
 using namespace std;
 using namespace datas;
 
@@ -33,6 +37,10 @@ int main() {
 	TestPion::startTests();
 	TestRoi::startTests();
 	TestTour::startTests();
+
+	TestJoueur::startTests();
+	TestJoueurHumain::startTests();
+	testJoueurIA::startTests();
 
 	cout << endl << "all OK" << endl;
 
