@@ -27,7 +27,7 @@ void TestTour::startTests(void){
 	unitT.addMethod("testMovePiece", &datas::TestTour::testMovePiece);
 	unitT.addMethod("testIsValideMove", &datas::TestTour::testIsValideMove);
 
-	unitT.luanchMethods();
+	unitT.launchMethods();
 }
 
 void TestTour::testIsValideMove(void) const{

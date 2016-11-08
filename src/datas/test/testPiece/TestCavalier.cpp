@@ -27,7 +27,7 @@ void TestCavalier::startTests(void){
 	unitT.addMethod("testCanAccess", &datas::TestCavalier::testCanAccess);
 	unitT.addMethod("testIsValideMove", &datas::TestCavalier::testIsValideMove);
 
-	unitT.luanchMethods();
+	unitT.launchMethods();
 }
 
 void TestCavalier::testCanAccess(void) const{

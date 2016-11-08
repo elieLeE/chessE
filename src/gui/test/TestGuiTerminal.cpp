@@ -25,7 +25,7 @@ void TestGuiTerminal::startTests() const{
 
 	unitT.addMethod("testDisplay\n", &gui::TestGuiTerminal::testDisplay);
 
-	unitT.luanchMethods();
+	unitT.launchMethods();
 }
 
 void TestGuiTerminal::testDisplay() const{

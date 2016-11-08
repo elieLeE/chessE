@@ -31,7 +31,7 @@ void TestPosition::startTests(){
 	unitT.addMethod("testDiffs", &datas::TestPosition::testDiffs);
 	unitT.addMethod("testToStream", &datas::TestPosition::testToStream);
 
-	unitT.luanchMethods();
+	unitT.launchMethods();
 }
 
 void TestPosition::testComparePosition() const {

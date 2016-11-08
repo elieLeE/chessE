@@ -20,23 +20,23 @@ UnitTest<T>::~UnitTest()
 {}
 
 template<typename T>
-void UnitTest<T>::addMethod(std::string iStr, void (T::*iPtr)(void) const, bool isImplement){
+void UnitTest<T>::addMethod(std::string iStr, void (T::*iPtr)(void) const, bool iIsImplement){
 	if(iPtr){
-		typeListUnitTest aPair(iStr, subType(iPtr, isImplement));
-		_list.push_back(aPair);
+		typeListUnitT aStruct = {iStr, iPtr, iIsImplement};
+		_aList.push_back(aStruct);
 	}
 }
 
 template<typename T>
-void UnitTest<T>::luanchMethods(void){
+void UnitTest<T>::launchMethods(void){
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 
 	std::cout << _nameClasse << std::endl;
-	for(typeListUnitTest aValue : _list){
+	for(typeListUnitT aValue : _aList){
 		aEchiquier.reset();
-		std::cout << "	" << aValue.first;
-		if(aValue.second.second){
-			(_instance.*(aValue.second.first))();
+		std::cout << "	" << aValue.str;
+		if(aValue.isImplemented){
+			(_instance.*(aValue.ptr))();
 			std::cout << "	=> OK" << std::endl;
 		}
 		else{

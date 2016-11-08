@@ -33,7 +33,7 @@ void TestEchiquier::startTest(){
 	unitT.addMethod("testReset", &game::TestEchiquier::testReset);
 	unitT.addMethod("testSetChangeMove", &game::TestEchiquier::testSetChangeMove);
 
-	unitT.luanchMethods();
+	unitT.launchMethods();
 }
 
 void TestEchiquier::testAddPiece(void) const{

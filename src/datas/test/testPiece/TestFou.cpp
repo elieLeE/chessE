@@ -24,7 +24,7 @@ void TestFou::startTests(void){
 
 	unitT.addMethod("testIsValideMove", &datas::TestFou::testIsValideMove, false);
 
-	unitT.luanchMethods();
+	unitT.launchMethods();
 }
 
 void TestFou::testIsValideMove(void) const{

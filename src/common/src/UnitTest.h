@@ -23,15 +23,18 @@ public:
 	virtual ~UnitTest();
 
 	void addMethod(std::string, void (T::*ptr)(void) const, bool isImplement = true);
-	void luanchMethods(void);
+	void launchMethods(void);
 
 private:
 	T _instance;
 	std::string _nameClasse;
 
-	typedef std::pair<void (T::*)(void) const, bool> subType;
-	typedef std::pair<std::string, subType> typeListUnitTest;
-	std::list<typeListUnitTest> _list;
+	struct typeListUnitT{
+		std::string str;
+		void (T::*ptr)(void) const;
+		bool isImplemented;
+	};
+	std::list<typeListUnitT> _aList;
 };
 
 

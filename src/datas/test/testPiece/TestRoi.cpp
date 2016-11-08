@@ -35,7 +35,7 @@ void TestRoi::startTests(void){
 	unitT.addMethod("testEstPetitRock", &datas::TestRoi::testEstPetitRock);
 	unitT.addMethod("testEstGrandRock", &datas::TestRoi::testEstGrandRock);
 
-	unitT.luanchMethods();
+	unitT.launchMethods();
 }
 
 void TestRoi::testIsValidaMove(void) const{

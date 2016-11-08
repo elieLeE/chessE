@@ -24,7 +24,7 @@ void TestDame::startTests(void){
 
 	unitT.addMethod("testIsValideMove", &datas::TestDame::testIsValideMove, false);
 
-	unitT.luanchMethods();
+	unitT.launchMethods();
 }
 
 void TestDame::testIsValideMove(void) const{

@@ -32,7 +32,7 @@ void TestPiece::startTests(void){
 	unitT.addMethod("testIsValideMove", &datas::TestPiece::testIsValideMove);
 	unitT.addMethod("testCanTakeCase", &datas::TestPiece::testCanTakeCase);
 
-	unitT.luanchMethods();
+	unitT.launchMethods();
 
 }
 

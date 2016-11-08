@@ -24,7 +24,7 @@ void TestPion::startTests(void){
 
 	unitT.addMethod("testIsValideMove", &datas::TestPion::testIsValideMove, false);
 
-	unitT.luanchMethods();
+	unitT.launchMethods();
 }
 
 void TestPion::testIsValideMove(void) const{

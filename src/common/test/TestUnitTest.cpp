@@ -26,7 +26,7 @@ void TestUnitTest::startTests(){
 	unitT.addMethod("testB", &common::TestUnitTest::testB, true);
 	unitT.addMethod("test => OK", &common::TestUnitTest::testC, false);
 
-	unitT.luanchMethods();
+	unitT.launchMethods();
 }
 
 void TestUnitTest::testA(void) const{
