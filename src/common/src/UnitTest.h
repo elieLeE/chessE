@@ -34,7 +34,7 @@ private:
 		void (T::*ptr)(void) const;
 		bool isImplemented;
 	};
-	std::list<typeListUnitT> _aList;
+	std::list<typeListUnitT> _list;
 };
 
 

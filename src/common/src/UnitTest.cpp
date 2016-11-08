@@ -22,15 +22,20 @@ UnitTest<T>::~UnitTest()
 template<typename T>
 void UnitTest<T>::addMethod(std::string iStr, void (T::*iPtr)(void) const, bool iIsImplement){
 	typeListUnitT aStruct = {iStr, iPtr, iIsImplement};
-	_aList.push_back(aStruct);
+	_list.push_back(aStruct);
 }
 
 template<typename T>
 void UnitTest<T>::launchMethods(void){
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 
+	if(_list.size() == 0){
+		std::cout << _nameClasse << " => TO IMPLEMENT" << std::endl;
+		return;
+	}
+
 	std::cout << _nameClasse << std::endl;
-	for(typeListUnitT aValue : _aList){
+	for(typeListUnitT aValue : _list){
 		aEchiquier.reset();
 		std::cout << "	" << aValue.str;
 		if(aValue.isImplemented && aValue.ptr){
