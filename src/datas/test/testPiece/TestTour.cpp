@@ -8,9 +8,11 @@
 #include "TestTour.h"
 #include "../../src/piece/Tour.h"
 #include "../../../game/src/Echiquier.h"
+#include "../../../common/src/UnitTest.h"
 
 using namespace std;
 using namespace datas;
+using namespace common;
 
 TestTour::TestTour()
 {}
@@ -19,20 +21,17 @@ TestTour::~TestTour()
 {}
 
 void TestTour::startTests(void){
-	TestTour aTestTour;
+	UnitTest<TestTour> unitT("TestTour");
 
-	aTestTour.testCanAccess();
-	aTestTour.testMovePiece();
-	aTestTour.testIsValideMove();
+	unitT.addMethod("testCanAccess", &datas::TestTour::testCanAccess);
+	unitT.addMethod("testMovePiece", &datas::TestTour::testMovePiece);
+	unitT.addMethod("testIsValideMove", &datas::TestTour::testIsValideMove);
 
-	std::cout << std::endl;
+	unitT.luanchMethods();
 }
 
 void TestTour::testIsValideMove(void) const{
-	cout << "TestTour - testIsValideMove";
-
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
-	aEchiquier.reset();
 
 	Position aPositionStart(2, 5);
 	Position aPositionEnd(7, 5);
@@ -58,15 +57,10 @@ void TestTour::testIsValideMove(void) const{
 	BOOST_ASSERT_MSG(!aTour->isValideMove(aMove), "TestTour MovePiece - not valide move");
 
 	delete aTour;
-
-	cout << "	OK" << std::endl;
 }
 
 void TestTour::testCanAccess(void)const{
-	cout << "TestTour - testCanAccess";
-
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
-	aEchiquier.reset();
 
 	Position aPositionStart(2, 5);
 	Position aPositionEnd(2, 7);
@@ -94,16 +88,9 @@ void TestTour::testCanAccess(void)const{
 	Tour* aTour3(new Tour(WHITE, Position(2, 4)));
 	aEchiquier.addPiece(aTour3);
 	BOOST_ASSERT_MSG(!aTour->canAccessCase(aPositionEnd), "TestTour canAccess - cannot access, piece sur le chemin, ligne");
-
-	cout << "	OK" << std::endl;
 }
 
 void TestTour::testMovePiece(void) const{
-	cout << "TestTour - testMovePiece";
-
-	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
-	aEchiquier.reset();
-
 	Position aPositionStart(2, 5);
 	Position aPositionEnd(7, 5);
 	Tour *atour = new Tour(WHITE, aPositionStart);
@@ -114,6 +101,4 @@ void TestTour::testMovePiece(void) const{
 	BOOST_ASSERT_MSG(atour->getHasAlreadyMoved(), "TestTour MovePiece - hasMoved");
 
 	delete atour;
-
-	cout << "	OK" << std::endl;
 }

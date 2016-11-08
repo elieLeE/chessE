@@ -24,16 +24,6 @@ TestPiece::~TestPiece()
 {}
 
 void TestPiece::startTests(void){
-	TestPiece aTestPiece;
-
-	aTestPiece.testSimple();
-	aTestPiece.testMovePiece();
-	aTestPiece.testAliveDead();
-	aTestPiece.testIsValideMove();
-	aTestPiece.testCanTakeCase();
-
-	std::cout << std::endl;
-
 	UnitTest<TestPiece> unitT("TestPiece");
 
 	unitT.addMethod("testSimple", &datas::TestPiece::testSimple);

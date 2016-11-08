@@ -8,10 +8,11 @@
 #include "TestGuiTerminal.h"
 #include "../src/DisplayTerminal.h"
 #include "../../game/src/Echiquier.h"
+#include "../../common/src/UnitTest.h"
 
 using namespace gui;
 using namespace game;
-
+using namespace common;
 
 TestGuiTerminal::TestGuiTerminal()
 {}
@@ -20,7 +21,11 @@ TestGuiTerminal::~TestGuiTerminal()
 {}
 
 void TestGuiTerminal::startTests() const{
-	testDisplay();
+	UnitTest<TestGuiTerminal> unitT("TestGuiTerminal");
+
+	unitT.addMethod("testDisplay\n", &gui::TestGuiTerminal::testDisplay);
+
+	unitT.luanchMethods();
 }
 
 void TestGuiTerminal::testDisplay() const{
@@ -32,5 +37,7 @@ void TestGuiTerminal::testDisplay() const{
 	aDisplayTerminal.displayPositionGameTerminal(aEchiquier);
 
 	aEchiquier.reset();
+
+
 }
 

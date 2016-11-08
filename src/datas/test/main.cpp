@@ -26,10 +26,11 @@ int main() {
 
 	TestPosition::startTests();
 
-	TestPiece::startTests();
 	TestCavalier::startTests();
 	TestDame::startTests();
 	TestFou::startTests();
+	TestPiece::startTests();
+	TestPion::startTests();
 	TestRoi::startTests();
 	TestTour::startTests();
 

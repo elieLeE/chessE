@@ -11,10 +11,12 @@
 #include "../../datas/src/Position.h"
 #include "../../datas/src/piece/Tour.h"
 #include "../../datas/src/piece/Pion.h"
+#include "../../common/src/UnitTest.h"
 
 using namespace std;
 using namespace game;
 using namespace datas;
+using namespace common;
 
 TestEchiquier::TestEchiquier()
 {}
@@ -23,22 +25,19 @@ TestEchiquier::~TestEchiquier()
 {}
 
 void TestEchiquier::startTest(){
-	TestEchiquier aTestEchiquier;
+	UnitTest<TestEchiquier> unitT("TestEchiquier");
 
-	aTestEchiquier.testAddPiece();
-	aTestEchiquier.testKillAndRevivePiece();
-	aTestEchiquier.testMovePiece();
-	aTestEchiquier.testReset();
-	aTestEchiquier.testSetChangeMove();
+	unitT.addMethod("testAddPiece", &game::TestEchiquier::testAddPiece);
+	unitT.addMethod("testKillAndRevivePiece", &game::TestEchiquier::testKillAndRevivePiece);
+	unitT.addMethod("testMovePiece", &game::TestEchiquier::testMovePiece);
+	unitT.addMethod("testReset", &game::TestEchiquier::testReset);
+	unitT.addMethod("testSetChangeMove", &game::TestEchiquier::testSetChangeMove);
 
-	cout << endl;
+	unitT.luanchMethods();
 }
 
 void TestEchiquier::testAddPiece(void) const{
-	cout << "TestEchiquier - testAddPiece";
-
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
-	aEchiquier.reset();
 
 	Position aPosition(2, 5);
 	Tour *aTour = new Tour(WHITE, aPosition);
@@ -46,16 +45,11 @@ void TestEchiquier::testAddPiece(void) const{
 
 	BOOST_ASSERT_MSG(aEchiquier.getCase(aPosition).hasPiece(), "TestEchiquier addPiece - hasPiece");
 	BOOST_ASSERT_MSG(!aEchiquier.getCase(Position(aPosition).getX()+1, aPosition.getY()).hasPiece(), "TestEchiquier addPiece - hasNotPiece");
-
-	cout << "	OK" << endl;
 }
 
 //egalement RevicePiece
 void TestEchiquier::testKillAndRevivePiece(void) const{
-	cout << "TestEchiquier - testKillAndRevivePiece";
-
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
-	aEchiquier.reset();
 
 	Position aPosition(2, 3);
 	Tour* aTour(new Tour(WHITE, aPosition));
@@ -69,15 +63,10 @@ void TestEchiquier::testKillAndRevivePiece(void) const{
 
 	aEchiquier.revivePiece(aPosition);
 	BOOST_ASSERT_MSG(aEchiquier.getCase(aPosition).hasPiece(), "TestEchiquier killAndRevivePiece - revivePiece");
-
-	cout << "	OK" << endl;
 }
 
 void TestEchiquier::testMovePiece(void) const{
-	cout << "TestEchiquier - testMovePiece";
-
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
-	aEchiquier.reset();
 
 	Position aPositionStart(2, 2);
 	Position aPositionEnd(2, 7);
@@ -89,15 +78,11 @@ void TestEchiquier::testMovePiece(void) const{
 	aEchiquier.movePiece(aPositionStart, aPositionEnd);
 	BOOST_ASSERT_MSG(aEchiquier.getCase(aPositionEnd).hasPiece(), "TestEchiquier movePiece - hasPiece");
 	BOOST_ASSERT_MSG(!aEchiquier.getCase(aPositionStart).hasPiece(), "TestEchiquier movePiece - hasNotPiece");
-
-	cout << "	=> OK" << endl;
 }
 
 void TestEchiquier::testReset(void) const{
-	cout << "TestEchiquier - testReset";
-
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
-	aEchiquier.reset();
+
 	aEchiquier.setBegginingGameWithoutHandicap();
 	aEchiquier.reset();
 
@@ -108,15 +93,10 @@ void TestEchiquier::testReset(void) const{
 			BOOST_ASSERT_MSG(!aEchiquier.getCase(aPos).hasPiece(), aStr.c_str());
 		}
 	}
-
-	cout << "	OK" << endl;
 }
 
 void TestEchiquier::testSetChangeMove(void) const{
-	cout << "TestEchiquier - testSetChangeMove";
-
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
-	aEchiquier.reset();
 
 	Position aPositionStart(1, 5);
 	Position aPositionEnd(2, 5);
@@ -137,6 +117,4 @@ void TestEchiquier::testSetChangeMove(void) const{
 	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getEndPosition() == aMove.getEndPosition(), "TestEchiquier setChangeMove - endPosition");
 	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getTypeMove() == aMove.getTypeMove(), "TestEchiquier setChangeMove - typeMove");
 	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getHasCapturedPiece() == aMove.getHasCapturedPiece(), "TestEchiquier setChangeMove - hasCapturedPiece");
-
-	cout << "	OK";
 }

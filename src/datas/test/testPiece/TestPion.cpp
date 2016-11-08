@@ -6,10 +6,12 @@
  */
 #include <iostream>
 
+#include "../../../common/src/UnitTest.h"
 #include "TestPion.h"
 
 using namespace std;
 using namespace datas;
+using namespace common;
 
 TestPion::TestPion()
 {}
@@ -18,15 +20,12 @@ TestPion::~TestPion()
 {}
 
 void TestPion::startTests(void){
-	TestPion aTestPion;
+	UnitTest<TestPion> unitT("TestPion");
 
-	aTestPion.testIsValideMove();
+	unitT.addMethod("testIsValideMove", &datas::TestPion::testIsValideMove, false);
 
-	cout << endl;
+	unitT.luanchMethods();
 }
 
 void TestPion::testIsValideMove(void) const{
-	cout << "TestPion - testIsValideMove";
-
-	cout << "	TO IMPLMENT" << endl;
 }
