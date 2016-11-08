@@ -12,7 +12,7 @@ namespace common{
 
 template<typename T>
 UnitTest<T>::UnitTest(std::string aStr):
-	_nameClasse(aStr)
+_nameClasse(aStr)
 {}
 
 template<typename T>
@@ -21,10 +21,8 @@ UnitTest<T>::~UnitTest()
 
 template<typename T>
 void UnitTest<T>::addMethod(std::string iStr, void (T::*iPtr)(void) const, bool iIsImplement){
-	if(iPtr){
-		typeListUnitT aStruct = {iStr, iPtr, iIsImplement};
-		_aList.push_back(aStruct);
-	}
+	typeListUnitT aStruct = {iStr, iPtr, iIsImplement};
+	_aList.push_back(aStruct);
 }
 
 template<typename T>
@@ -35,7 +33,7 @@ void UnitTest<T>::launchMethods(void){
 	for(typeListUnitT aValue : _aList){
 		aEchiquier.reset();
 		std::cout << "	" << aValue.str;
-		if(aValue.isImplemented){
+		if(aValue.isImplemented && aValue.ptr){
 			(_instance.*(aValue.ptr))();
 			std::cout << "	=> OK" << std::endl;
 		}
