@@ -22,9 +22,12 @@ TestUnitTest::~TestUnitTest()
 void TestUnitTest::startTests(){
 	UnitTest<TestUnitTest> unitT("TestUnitTest");
 
+	unitT.launchMethods();
+
 	unitT.addMethod("testA", &common::TestUnitTest::testA);
 	unitT.addMethod("testB", &common::TestUnitTest::testB, true);
-	unitT.addMethod("test => OK", &common::TestUnitTest::testC, false);
+	unitT.addMethod("testC => OK", &common::TestUnitTest::testC, false);
+	unitT.addMethod("testD => OK", 0, false);
 
 	unitT.launchMethods();
 }
