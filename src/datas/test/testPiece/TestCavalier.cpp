@@ -37,14 +37,14 @@ void TestCavalier::testCanAccess(void) const{
 	Cavalier aCavalier(WHITE, aPositionStart);
 
 	//test mouvement OK
-	BOOST_ASSERT_MSG(aCavalier.canAccessCase(aPositionEnd), "TestCavalier canAccess - test sameLigne");
-	BOOST_ASSERT_MSG(aCavalier.isValideMove(aMove), "TestCavalier MovePiece - valide move");
+	BOOST_ASSERT_MSG(aCavalier.canAccessCase(aPositionEnd), "TestCavalier canAccess - test position 1");
+	BOOST_ASSERT_MSG(aCavalier.isValideMove(aMove), "TestCavalier MovePiece - test position 1");
 
 	//test mouvement OK
 	aPositionEnd.setPosition(0, 6);
 	aMove.setPositionEnd(aPositionEnd);
-	BOOST_ASSERT_MSG(aCavalier.canAccessCase(aPositionEnd), "TestCavalier canAccess - test sameCol");
-	BOOST_ASSERT_MSG(aCavalier.isValideMove(aMove), "TestCavalier MovePiece - valide move");
+	BOOST_ASSERT_MSG(aCavalier.canAccessCase(aPositionEnd), "TestCavalier canAccess - test position 2");
+	BOOST_ASSERT_MSG(aCavalier.isValideMove(aMove), "TestCavalier MovePiece - test position 2");
 
 	//test mouvement not OK
 	aPositionEnd.setPosition(7, 3);
@@ -68,12 +68,13 @@ void TestCavalier::testIsValideMove(void) const{
 	aEchiquier.addPiece(aCavalier2);
 
 	//test avec position de depart du mouvement differente de la position de la piece ==> rejet
-	BOOST_ASSERT_MSG(!aCavalier->isValideMove(aMove), "TestCavalier MovePiece - not valide move");
+	BOOST_ASSERT_MSG(!aCavalier->isValideMove(aMove), "TestCavalier MovePiece - not valide move/incorrect start position");
 
 	aMove.setPositionStart(aPositionStart);
 
 	//test avec piece de meme couleur deja dans la case d'arrive ==> move non valide
-	BOOST_ASSERT_MSG(!aCavalier->isValideMove(aMove), "TestCavalier MovePiece - not valide move");
+	BOOST_ASSERT_MSG(aCavalier->canAccessCase(aMove.getEndPosition()), "TestCavalier MovePiece - canAccesCase/case already occupied by another piece same color ");
+	BOOST_ASSERT_MSG(!aCavalier->isValideMove(aMove), "TestCavalier MovePiece - not valide move/case already occupied by another piece same color ");
 
 	//test avec piece de couleur differente deja dans la case d'arrive ==> move valide
 	PiecePtr aCavalier3(new Cavalier(BLACK, aPositionEnd));
