@@ -9,7 +9,7 @@ resultTest(){
     fi
 }
 
-if [ ! -f ./datas/test/./prog ] || [ ! -f ./game/test/./prog ] || [ ! -f ./gui/test/./prog ] || [ ! -f ./common/test/./prog ]
+if [ ! -f ./datas/test/prog ] || [ ! -f ./game/test/prog ] || [ ! -f ./gui/test/prog ] || [ ! -f ./common/test/prog ]
 then
 	echo "Compilez les tests !"
 	exit
@@ -20,7 +20,7 @@ opt=
 echo "lancement des test unitaires"
 echo
 #$opt ./common/test/./prog
-./common/test/./prog
+./common/test/prog
 resultTest "common" $?
 
 echo
@@ -30,10 +30,10 @@ if [ $? = 1 ]
 then
 	if [ $1 = -v ] || [ $1 = -valgrind ]
 	then
-		valgrind ./datas/test/./prog
+		valgrind ./datas/test/prog
 	fi
 else
-	./datas/test/./prog
+	./datas/test/prog
 fi
 resultTest "datas" $?
 
@@ -43,10 +43,10 @@ if [ $? = 1 ]
 then
 	if [ $1 = -v ] || [ $1 = -valgrind ]
 	then
-		valgrind ./game/test/./prog
+		valgrind ./game/test/prog
 	fi
 else
-	./game/test/./prog
+	./game/test/prog
 fi
 resultTest "game" $? 
 
@@ -56,10 +56,10 @@ if [ $? = 1 ]
 then
 	if [ $1 = -v ] || [ $1 = -valgrind ]
 	then
-		valgrind ./gui/test/./prog
+		valgrind ./gui/test/prog
 	fi
 else
-	./gui/test/./prog
+	./gui/test/prog
 fi
 resultTest "gui" $?
 
