@@ -40,16 +40,15 @@ public:
 
 	bool isValidateMove(const game::Echiquier& iEchiquier) const;
 
-	ETypePiece getTypeCapturedPiece() const;
-	void setTypeCapturedPiece(ETypePiece iCapturedPiece);
+	ETypePiece getHasCapturedPiece() const;
+	void setHasCapturedPiece(ETypePiece iCapturedPiece);
 
 	ETypeMove getTypeMove() const;
 	void setTypeMove(ETypeMove iTypeMove);
 
 	void operator=(const Move& iMove);
 
-	void setChangeMove();
-	void setMoveProperties(game::Echiquier &iEchiquier);
+	void setMoveProperties();
 
 	//add prise en passant and remove bool priseEnPAssant
 

@@ -51,10 +51,10 @@ bool Move::getPriseEnPassant() const{
 	return (_typeMove == PRISE_EN_PASSANT);
 }
 
-ETypePiece Move::getTypeCapturedPiece() const{
+ETypePiece Move::getHasCapturedPiece() const{
 	return _capturedPiece;
 }
-void Move::setTypeCapturedPiece(ETypePiece iCapturedPiece){
+void Move::setHasCapturedPiece(ETypePiece iCapturedPiece){
 	_capturedPiece = iCapturedPiece;
 }
 
@@ -80,27 +80,18 @@ bool Move::isValidateMove(const game::Echiquier& iEchiquier) const{
 	return aBool;
 }
 
-void Move::setChangeMove(){
+void Move::setMoveProperties(){
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
-
-	setMoveProperties(aEchiquier);
-	aEchiquier.setChangeMove(*this);
-}
-
-void Move::setMoveProperties(game::Echiquier& iEchiquier){
-	PiecePtr& aPiece = iEchiquier.accessCase(_start).accessPiece();
-
-	_capturedPiece = NO_TYPE;
-	_typeMove = NORMAL_MOVE;
+	PiecePtr& aPiece = aEchiquier.accessCase(_start).accessPiece();
 
 	if((aPiece->getTypePiece() == PION_TYPE) &&
 			!_start.sameCol(_end) &&
-			!iEchiquier.getCase(_end).hasPiece()){
+			!aEchiquier.getCase(_end).hasPiece()){
 		_typeMove = PRISE_EN_PASSANT;
 		_capturedPiece = PION_TYPE;
 	}
-	else if(!iEchiquier.getCase(_end).hasPiece()){
-		_capturedPiece = iEchiquier.getCase(_end).getPiece().get()->getTypePiece();
+	else if(!aEchiquier.getCase(_end).hasPiece()){
+		_capturedPiece = aEchiquier.getCase(_end).getPiece().get()->getTypePiece();
 	}
 	else if(aPiece->getTypePiece() == ROI_TYPE){
 		if(_start.evaluateDistance(_end) == PETIT_ROCK){
@@ -110,13 +101,13 @@ void Move::setMoveProperties(game::Echiquier& iEchiquier){
 			_typeMove = GRAND_ROCK;
 		}
 	}
-	iEchiquier.setChangeMove(*this);
+	aEchiquier.setChangeMove(*this);
 }
 
 void Move::operator=(const Move& iMove){
 	_start = iMove.getStartPosition();
 	_end = iMove.getEndPosition();
-	_capturedPiece = iMove.getTypeCapturedPiece();
+	_capturedPiece = iMove.getHasCapturedPiece();
 	_typeMove = iMove.getTypeMove();
 }
 }
