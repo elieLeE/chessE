@@ -28,19 +28,20 @@ bool Fou::isValideMove(const Move& iMove) const{
 }
 
 bool Fou::canAccessCase(const Position& iPosition) const{
-	bool aBool = true;
+	bool aBool = false;
 
 	if(_position.getColorCase() == iPosition.getColorCase()){
 		aBool = true;
 		int addLigne = (_position.getX()<iPosition.getX()?1:-1);
 		int addCol = (_position.getY()<iPosition.getY()?1:-1);
-		const game::Echiquier& aGame = game::Echiquier::getInstance();
+		int diffLigne = _position.diffLigne(iPosition);
+		int diffCol = _position.diffCol(iPosition);
+		const game::Echiquier& aEchiquier = game::Echiquier::getInstance();
 
-		for(int i=_position.getX()+addLigne, j=_position.getY(); (i<NBRE_LIGNE) && (i>=0); i=i+addLigne, j=j+addCol){
-			if(aGame.getCase(i, j).hasPiece()){
-				aBool = false;
-				break;
-			}
+		aBool = (diffLigne == diffCol);
+
+		for(int i=_position.getX()+addLigne, j=_position.getY()+addCol, n=0; (n<diffLigne-1) && aBool; i=i+addLigne, j=j+addCol, n++){
+			aBool = !aEchiquier.getCase(i, j).hasPiece();
 		}
 	}
 
