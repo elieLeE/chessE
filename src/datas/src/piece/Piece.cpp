@@ -11,12 +11,12 @@
 namespace datas{
 
 Piece::Piece(const EColor iColor, Position iPosition, ETypePiece iTypePiece, const int iValue):
-		_alive(true),
-		_color(iColor),
-		_position(iPosition),
-		_numJ(iColor==WHITE?JOUEUR_1:JOUEUR_2),
-		_value(iValue),
-		_typePiece(iTypePiece)
+				_alive(true),
+				_color(iColor),
+				_position(iPosition),
+				_numJ(iColor==WHITE?JOUEUR_1:JOUEUR_2),
+				_value(iValue),
+				_typePiece(iTypePiece)
 {}
 
 Piece::~Piece()
