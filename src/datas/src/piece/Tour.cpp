@@ -12,6 +12,8 @@
 #include <cmath>
 #include "../../../game/src/Echiquier.h"
 
+#include "../../../common/src/DisplayType.h"
+
 namespace datas{
 
 Tour::Tour(const EColor iColor, Position iPosition):
@@ -42,7 +44,7 @@ bool Tour::canAccessCase(const Position& iPosition) const{
 
 		aBool = true;
 		for(int j=aDebut+1; aBool && (j<aEnd); ++j){
-			aBool= aBool && (!aGame.getCase(aLigne, j).hasPiece());
+			aBool= !aGame.getCase(aLigne, j).hasPiece();
 		}
 	}
 	else if(iPosition.sameCol(_position)){
@@ -53,7 +55,7 @@ bool Tour::canAccessCase(const Position& iPosition) const{
 
 		aBool = true;
 		for(int i=aDebut+1; aBool && (i<aEnd); ++i){
-			aBool = aBool && (!aGame.getCase(i, aCol).hasPiece());
+			aBool = !aGame.getCase(i, aCol).hasPiece();
 		}
 	}
 
