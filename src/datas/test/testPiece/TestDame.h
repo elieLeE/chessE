@@ -17,7 +17,8 @@ public:
 
 	static void startTests(void);
 
-	void testIsValideMove(void) const;
+	void testCanAccessCaseMoveTypeTour(void) const;
+	void testCanAccessCaseMoveTypeFou(void) const;
 };
 
 } /* namespace datas */
