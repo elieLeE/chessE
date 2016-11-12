@@ -11,5 +11,6 @@
 #include <string>
 
 //static std::string operator bool();
+std::string boolToString(bool iBool);
 
 #endif /* DISPLAYTYPE_H_ */

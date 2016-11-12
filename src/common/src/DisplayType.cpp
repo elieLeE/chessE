@@ -7,8 +7,8 @@
 
 #include "DisplayType.h"
 
-/*static std::string operator bool(){
-	std::string aStr("true");
+std::string boolToString(bool iBool){
+	std::string aStr(iBool?"true":"false");
 	return aStr;
-}*/
+}
 
