@@ -56,8 +56,7 @@ void TestDame::testCanAccessCaseMoveTypeTour(void) const{
 	BOOST_ASSERT_MSG(!aDame->canAccessCase(aPositionEnd), "TestDame/TypeTour canAccess - piece sur le chemin, ligne");
 
 	aPositionEnd.setPosition(2, 1);
-	Dame* aDame3(new Dame(WHITE, Position(2, 4)));
-	aEchiquier.addPiece(aDame3);
+	aDame2->movePiece(aPositionEnd);
 	BOOST_ASSERT_MSG(!aDame->canAccessCase(aPositionEnd), "TestDame/TypeTour canAccess - piece sur le chemin, col");
 
 	aPositionStart.setPosition(6, 0);
@@ -66,15 +65,12 @@ void TestDame::testCanAccessCaseMoveTypeTour(void) const{
 	aMove.setPositionEnd(aPositionEnd);
 	aDame->movePiece(aPositionStart);
 
-	Dame *aDame4(new Dame(WHITE, aPositionEnd));
-	aEchiquier.addPiece(aDame4);
+	aDame2->movePiece(aPositionEnd);
 	BOOST_ASSERT_MSG(!aDame->isValideMove(aMove), "TestDame/TypeTour - same color");
 
 	//test avec tour de couleur differente deja sur la case de depart => move OK
-	Dame *aDame5(new Dame(BLACK, aPositionEnd));
-	aEchiquier.addPiece(aDame5);
-	Tour *aTour(new Tour(BLACK, aPositionStart));
-	BOOST_ASSERT_MSG(aTour->canAccessCase(aMove.getEndPosition()), "TestDameTour - test avec tour - different color");
+	Dame *aDame3(new Dame(BLACK, aPositionEnd));
+	aEchiquier.addPiece(aDame3);
 	BOOST_ASSERT_MSG(aDame->isValideMove(aMove), "TestDame/TypeTour - different color");
 }
 
