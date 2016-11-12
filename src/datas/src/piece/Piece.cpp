@@ -23,6 +23,7 @@ Piece::~Piece()
 {}
 
 void Piece::movePiece(const Position& iPosition){
+	game::Echiquier::accessInstance().movePiece(_position, iPosition);
 	_position = iPosition;
 }
 

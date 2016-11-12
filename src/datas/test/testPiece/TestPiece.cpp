@@ -49,12 +49,19 @@ void TestPiece::testSimple(void) const{
 void TestPiece::testMovePiece(void) const{
 	Position aPositionStart(2, 2);
 	Position aPositionEnd(6, 2);
-	Tour aTour(WHITE, aPositionStart);
+	Tour* aTour(new Tour(WHITE, aPositionStart));
 
-	BOOST_ASSERT_MSG(aTour.getPosition() == aPositionStart, "TestPiece simple - before Move");
+	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
+	aEchiquier.addPiece(aTour);
 
-	aTour.movePiece(aPositionEnd);
-	BOOST_ASSERT_MSG(aTour.getPosition() == aPositionEnd, "TestPiece simple - after Move");
+	BOOST_ASSERT_MSG(aTour->getPosition() == aPositionStart, "TestPiece move - before Move");
+	BOOST_ASSERT_MSG(aEchiquier.getCase(aPositionStart).hasPiece(), "TestPiece move - before move/verif case pos initiale");
+	BOOST_ASSERT_MSG(!aEchiquier.getCase(aPositionEnd).hasPiece(), "TestPiece move - before move/verif case pas finale");
+
+	aTour->movePiece(aPositionEnd);
+	BOOST_ASSERT_MSG(aTour->getPosition() == aPositionEnd, "TestPiece simple - after Move");
+	BOOST_ASSERT_MSG(!aEchiquier.getCase(aPositionStart).hasPiece(), "TestPiece move - after move/verif case pos initiale");
+	BOOST_ASSERT_MSG(aEchiquier.getCase(aPositionEnd).hasPiece(), "TestPiece move - after move/verif case pas finale");
 }
 
 void TestPiece::testAliveDead(void) const {
