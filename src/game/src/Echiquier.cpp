@@ -110,13 +110,12 @@ void Echiquier::movePiece(const datas::Position& iPositionStart, const datas::Po
 	killPiece(iPositionEnd);
 	datas::PiecePtr& aPiece = accessCase(iPositionStart).accessPiece();
 	if(aPiece){
-		aPiece->movePiece(iPositionEnd);
-		setPiece(aPiece);
+		setPiece(aPiece, iPositionEnd);
 	}
 }
 
-void Echiquier::setPiece(datas::PiecePtr& iPiece){
-	accessCase(iPiece->getPosition()).accessPiece() = std::move(iPiece);
+void Echiquier::setPiece(datas::PiecePtr& iPiece, const datas::Position& iPosition){
+	accessCase(iPosition).accessPiece() = std::move(iPiece);
 
 }
 
@@ -126,7 +125,7 @@ void Echiquier::addPiece(datas::Piece* iPiece){
 }
 
 void Echiquier::addPiece(datas::PiecePtr& iPiece){
-	setPiece(iPiece);
+	setPiece(iPiece, iPiece->getPosition());
 	_hasAlreadyPiece = true;
 	//addPiece iPiece in allPiece du joueur
 }

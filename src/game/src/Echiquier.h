@@ -41,7 +41,7 @@ public:
 	//indispensable car sinon, ne sait pas si a deja des pieces ou pas
 	void addPiece(datas::Piece* iPiece);
 	void addPiece(datas::PiecePtr& iPiece);
-	void setPiece(datas::PiecePtr& iPiece);
+	void setPiece(datas::PiecePtr& iPiece, const datas::Position& iPosition);
 
 	void killPiece(const datas::Position& iPosition);
 	void revivePiece(const datas::Position& iPosition);

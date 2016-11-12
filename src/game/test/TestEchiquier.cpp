@@ -76,6 +76,7 @@ void TestEchiquier::testMovePiece(void) const{
 	BOOST_ASSERT_MSG(aEchiquier.getCase(aPositionStart).hasPiece(), "TestEchiquier addPiece - hasPiece");
 
 	aEchiquier.movePiece(aPositionStart, aPositionEnd);
+	BOOST_ASSERT_MSG(aEchiquier.getCase(aPositionEnd).getPosition() == aPositionStart, "TestEchiquier movePiece - position == positionStart");
 	BOOST_ASSERT_MSG(aEchiquier.getCase(aPositionEnd).hasPiece(), "TestEchiquier movePiece - hasPiece");
 	BOOST_ASSERT_MSG(!aEchiquier.getCase(aPositionStart).hasPiece(), "TestEchiquier movePiece - hasNotPiece");
 }
