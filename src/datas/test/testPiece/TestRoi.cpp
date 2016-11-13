@@ -6,6 +6,7 @@
  */
 
 #include <iostream>
+#include <sstream>
 #include <boost/assert.hpp>
 
 #include "../../../common/src/UnitTest.h"
@@ -34,6 +35,7 @@ void TestRoi::startTests(void){
 	unitT.addMethod("testPionPeuxTuerLeRoi", &datas::TestRoi::testPionPeuxTuerLeRoi);
 	unitT.addMethod("testEstPetitRock", &datas::TestRoi::testEstPetitRock);
 	unitT.addMethod("testEstGrandRock", &datas::TestRoi::testEstGrandRock);
+	unitT.addMethod("testToStream", &datas::TestRoi::testToStream);
 
 	unitT.launchMethods();
 }
@@ -100,4 +102,25 @@ void TestRoi::testPionPeuxTuerLeRoi(void) const{
 	aEchiquier.addPiece(aPion);
 
 	BOOST_ASSERT_MSG(aRoi->pionPeuxTuerLeRoi(aPositionRoi, aPositionPion), "test grand rock");
+}
+
+void TestRoi::testToStream(void) const{
+	ostream aStream(0);
+	stringbuf aStr;
+	aStream.rdbuf(&aStr);
+
+	Position aPosition(5, 5);
+	Roi aRoi(WHITE, aPosition);
+
+	aStream << aRoi;
+
+	string aExpected("type : Roi\n"
+			"pos : (5, 5)\n"
+			"color : WHITE\n"
+			"numJ : JOUEUR_1\n"
+			"alive ? true\n"
+			"value : 100\n"
+			"already moved ? false\n");
+
+	BOOST_ASSERT_MSG(aStr.str().compare(aExpected) == 0, "testRoi toStream");
 }

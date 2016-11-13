@@ -35,6 +35,8 @@ public:
 	void testDamePeuxTuerLeRoi(void) const;
 	void testSecondRoiColle(void) const;
 
+	void testToStream(void) const;
+
 };
 
 } /* namespace datas */

@@ -47,11 +47,15 @@ public:
 
 	virtual const std::list <boost::shared_ptr <Move> >getPossibleMoves() const ;
 
-	bool _hasAlreadyMoved;
+	bool getHasAlreadyMoved(void) const;
 
 private:
 
+	bool _hasAlreadyMoved;
+
 };
+
+std::ostream& operator<<(std::ostream& os, const Roi& iRoi);
 
 }
 

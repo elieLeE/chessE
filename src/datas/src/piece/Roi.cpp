@@ -10,6 +10,7 @@
 #include "../typeDefine/TypePiece.h"
 #include "../typeDefine/PieceValue.h"
 #include "../../../game/src/Echiquier.h"
+#include "../../../common/src/DisplayType.h"
 
 namespace datas{
 
@@ -153,6 +154,17 @@ const std::list <boost::shared_ptr <Move> > Roi::getPossibleMoves() const {
 	std::list<boost::shared_ptr<Move> >aList;
 
 	return aList;
+}
+
+bool Roi::getHasAlreadyMoved(void) const{
+	return _hasAlreadyMoved;
+}
+
+std::ostream& operator<<(std::ostream& os, const Roi& iRoi){
+	os << *((Piece*)&iRoi) <<
+			"already moved ? " << boolToString(iRoi.getHasAlreadyMoved()) << std::endl;
+
+	return os;
 }
 
 }

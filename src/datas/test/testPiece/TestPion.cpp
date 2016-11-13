@@ -39,8 +39,6 @@ void TestPion::testToStream(void) const{
 	stringbuf aStr;
 	aStream.rdbuf(&aStr);
 
-	cout << endl;
-
 	Position aPosition(5, 5);
 	Pion aPion(WHITE, aPosition, true);
 
@@ -55,5 +53,5 @@ void TestPion::testToStream(void) const{
 			"sens croissant ? true\n"
 			"already moved ? false\n");
 
-	BOOST_ASSERT_MSG(aStr.str().compare(aExpected) == 0, "testPiece toStream");
+	BOOST_ASSERT_MSG(aStr.str().compare(aExpected) == 0, "testPion toStream");
 }
