@@ -8,6 +8,8 @@
 #ifndef ETYPEPIECE_H_
 #define ETYPEPIECE_H_
 
+#include <ostream>
+
 namespace datas{
 
 typedef enum ETypePiece{
@@ -19,6 +21,8 @@ typedef enum ETypePiece{
 	ROI_TYPE,
 	NO_TYPE
 }ETypePiece;
+
+std::ostream& operator<<(std::ostream& os, const ETypePiece iTypePiece);
 
 }
 

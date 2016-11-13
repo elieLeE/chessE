@@ -8,12 +8,16 @@
 #ifndef COLOR_H_
 #define COLOR_H_
 
+#include <ostream>
+
 namespace datas{
 
 typedef enum EColor {
 	WHITE,
 	BLACK
 }EColor;
+
+std::ostream& operator<<(std::ostream& os, const EColor iColor);
 
 }
 

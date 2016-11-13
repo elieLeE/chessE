@@ -8,6 +8,8 @@
 #ifndef TYPEPLAYER_H_
 #define TYPEPLAYER_H_
 
+#include <ostream>
+
 namespace datas{
 
 #define NBRE_JOUEURS 2
@@ -22,6 +24,9 @@ typedef enum ENumPlayer{
 	JOUEUR_1 = 0,
 	JOUEUR_2
 }ENumPlayer;
+
+std::ostream& operator<<(std::ostream& os, const ETypePlayer iTypePlayer);
+std::ostream& operator<<(std::ostream& os, const ENumPlayer iNumPlayer);
 
 }
 
