@@ -34,6 +34,8 @@ private:
 	bool _hasAlreadyMoved;
 };
 
+std::ostream& operator<<(std::ostream& os, const Tour& iTour);
+
 }
 
 #endif /* TOUR_H_ */

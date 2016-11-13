@@ -20,6 +20,7 @@ public:
 	void testIsValideMove(void) const;
 	void testCanAccess(void) const;
 	void testMovePiece(void) const;
+	void testToStream(void) const;
 };
 
 } /* namespace datas */

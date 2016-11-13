@@ -10,6 +10,9 @@
 #include "../../../game/src/Echiquier.h"
 #include "../../../common/src/UnitTest.h"
 
+#include <ostream>
+#include <sstream>
+
 using namespace std;
 using namespace datas;
 using namespace common;
@@ -26,6 +29,7 @@ void TestTour::startTests(void){
 	unitT.addMethod("testCanAccess", &datas::TestTour::testCanAccess);
 	unitT.addMethod("testMovePiece", &datas::TestTour::testMovePiece);
 	unitT.addMethod("testIsValideMove", &datas::TestTour::testIsValideMove);
+	unitT.addMethod("testToStream", &datas::TestTour::testToStream);
 
 	unitT.launchMethods();
 }
@@ -93,12 +97,33 @@ void TestTour::testCanAccess(void)const{
 void TestTour::testMovePiece(void) const{
 	Position aPositionStart(2, 5);
 	Position aPositionEnd(7, 5);
-	Tour *atour = new Tour(WHITE, aPositionStart);
+	Tour *aTour = new Tour(WHITE, aPositionStart);
 
-	BOOST_ASSERT_MSG(!atour->getHasAlreadyMoved(), "TestTour MovePiece - hasNotMoved");
+	BOOST_ASSERT_MSG(!aTour->getHasAlreadyMoved(), "TestTour MovePiece - hasNotMoved");
 
-	atour->movePiece(aPositionEnd);
-	BOOST_ASSERT_MSG(atour->getHasAlreadyMoved(), "TestTour MovePiece - hasMoved");
+	aTour->movePiece(aPositionEnd);
+	BOOST_ASSERT_MSG(aTour->getHasAlreadyMoved(), "TestTour MovePiece - hasMoved");
 
-	delete atour;
+	delete aTour;
+}
+
+void TestTour::testToStream(void) const{
+	ostream aStream(0);
+	stringbuf aStr;
+	aStream.rdbuf(&aStr);
+
+	Position aPosition(5, 5);
+	Tour aTour(WHITE, aPosition);
+
+	aStream << aTour;
+
+	string aExpected("type : Tour\n"
+			"pos : (5, 5)\n"
+			"color : WHITE\n"
+			"numJ : JOUEUR_1\n"
+			"alive ? true\n"
+			"value : 5\n"
+			"already moved ? false\n");
+
+	BOOST_ASSERT_MSG(aStr.str().compare(aExpected) == 0, "testTour toStream");
 }

@@ -17,7 +17,8 @@
 namespace datas{
 
 Tour::Tour(const EColor iColor, Position iPosition):
-				Piece(iColor, iPosition, TOUR_TYPE, TOUR_VALUE)
+						Piece(iColor, iPosition, TOUR_TYPE, TOUR_VALUE),
+						_hasAlreadyMoved(false)
 {}
 
 Tour::~Tour()
@@ -71,5 +72,12 @@ bool Tour::getHasAlreadyMoved() const{
 
 	return aList;
 }*/
+
+std::ostream& operator<<(std::ostream& os, const Tour& iTour){
+	os << *((Piece*)&iTour) <<
+			"already moved ? " << boolToString(iTour.getHasAlreadyMoved()) << std::endl;
+
+	return os;
+}
 
 }
