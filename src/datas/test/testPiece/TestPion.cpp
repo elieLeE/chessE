@@ -5,9 +5,11 @@
  *      Author: le_e
  */
 #include <iostream>
+#include <sstream>
 
 #include "../../../common/src/UnitTest.h"
 #include "TestPion.h"
+#include "../../src/piece/Pion.h"
 
 using namespace std;
 using namespace datas;
@@ -23,9 +25,35 @@ void TestPion::startTests(void){
 	UnitTest<TestPion> unitT("TestPion");
 
 	unitT.addMethod("testIsValideMove", &datas::TestPion::testIsValideMove, false);
+	unitT.addMethod("testToStream", &datas::TestPion::testToStream);
 
 	unitT.launchMethods();
 }
 
 void TestPion::testIsValideMove(void) const{
+
+}
+
+void TestPion::testToStream(void) const{
+	ostream aStream(0);
+	stringbuf aStr;
+	aStream.rdbuf(&aStr);
+
+	cout << endl;
+
+	Position aPosition(5, 5);
+	Pion aPion(WHITE, aPosition, true);
+
+	aStream << aPion;
+
+	string aExpected("type : Pion\n"
+			"pos : (5, 5)\n"
+			"color : WHITE\n"
+			"numJ : JOUEUR_1\n"
+			"alive ? true\n"
+			"value : 1\n"
+			"sens croissant ? true\n"
+			"already moved ? false\n");
+
+	BOOST_ASSERT_MSG(aStr.str().compare(aExpected) == 0, "testPiece toStream");
 }

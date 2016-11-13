@@ -10,6 +10,7 @@
 #include "../typeDefine/PieceValue.h"
 #include "../../../game/src/Echiquier.h"
 #include "../typeDefine/Types.h"
+#include "../../../common/src/DisplayType.h"
 
 namespace datas{
 
@@ -126,8 +127,17 @@ bool Pion::isValideMove(const Move& iMove) const{
 	return aBool;
 }
 
+//add canAccessAndKill qui doit etre appele par Roi
 bool Pion::canAccessCase(const Position& iPosition) const{
 	return (_position.evaluateDistance(iPosition) == 2);
+}
+
+bool Pion::getHasAlreadyMoved(void) const{
+	return _hasAlreadyMoved;
+}
+
+bool Pion::getSensCroissant(void) const{
+	return _sensCroissant;
 }
 
 /*const std::list <boost::shared_ptr <Move> > Pion::getPossibleMoves() const{
@@ -135,5 +145,13 @@ bool Pion::canAccessCase(const Position& iPosition) const{
 
 	return aList;
 }*/
+
+std::ostream& operator<<(std::ostream& os, const Pion& iPion){
+	os << *((Piece*)&iPion) <<
+			"sens croissant ? " << boolToString(iPion.getSensCroissant()) << std::endl <<
+			"already moved ? " << boolToString(iPion.getHasAlreadyMoved()) << std::endl;
+
+	return os;
+}
 
 }

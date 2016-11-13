@@ -24,6 +24,9 @@ public:
 
 	virtual bool canAccessCase(const Position& iPosition) const;
 
+	bool getHasAlreadyMoved(void) const;
+	bool getSensCroissant(void) const;
+
 	//virtual const std::list <boost::shared_ptr <Move> > getPossibleMoves() const;
 
 private:
@@ -34,6 +37,8 @@ private:
 	 */
 	bool _sensCroissant;
 };
+
+std::ostream& operator<<(std::ostream& os, const Pion& iPion);
 
 }
 

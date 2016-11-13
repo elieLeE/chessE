@@ -18,6 +18,7 @@ public:
 	static void startTests(void);
 
 	void testIsValideMove(void) const;
+	void testToStream(void) const;
 };
 
 } /* namespace datas */
