@@ -11,4 +11,3 @@ std::string boolToString(bool iBool){
 	std::string aStr(iBool?"true":"false");
 	return aStr;
 }
-

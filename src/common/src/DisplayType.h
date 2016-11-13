@@ -9,6 +9,7 @@
 #define DISPLAYTYPE_H_
 
 #include <string>
+#include <ostream>
 
 //static std::string operator bool();
 std::string boolToString(bool iBool);
