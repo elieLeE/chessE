@@ -23,7 +23,7 @@ public:
 	const PiecePtr& getPiece() const;
 	PiecePtr& accessPiece();
 
-	void setPiece(Piece* iPiece);
+	void setPiece(PiecePtr& iPiece);
 	void resetPiece();
 
 private:

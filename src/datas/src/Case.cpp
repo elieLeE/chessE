@@ -34,8 +34,8 @@ PiecePtr& Case::accessPiece(){
 	return _piece;
 }
 
-void Case::setPiece(Piece *iPiece){
-	_piece.reset(iPiece);
+void Case::setPiece(PiecePtr& iPiece){
+	_piece = std::move(iPiece);
 }
 
 void Case::resetPiece(){

@@ -9,6 +9,7 @@
 #include <boost/assert.hpp>
 
 #include "TestPosition.h"
+#include "TestCase.h"
 
 #include "testPiece/TestPiece.h"
 #include "testPiece/TestCavalier.h"
@@ -31,6 +32,7 @@ int main() {
 	cout << "test unitaire datas" << endl << endl;
 
 	TestPosition::startTests();
+	TestCase::startTest();
 
 	TestCavalier::startTests();
 	TestDame::startTests();
