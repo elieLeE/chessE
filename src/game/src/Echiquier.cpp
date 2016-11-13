@@ -116,7 +116,6 @@ void Echiquier::movePiece(const datas::Position& iPositionStart, const datas::Po
 
 void Echiquier::setPiece(datas::PiecePtr& iPiece, const datas::Position& iPosition){
 	accessCase(iPosition).accessPiece() = std::move(iPiece);
-
 }
 
 void Echiquier::addPiece(datas::Piece* iPiece){

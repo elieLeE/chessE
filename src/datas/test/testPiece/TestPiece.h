@@ -22,6 +22,7 @@ public:
 	void testAliveDead(void) const ;
 	void testIsValideMove(void) const;
 	void testCanTakeCase() const;
+	void testToStream(void) const;
 };
 
 } /* namespace datas */

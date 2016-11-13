@@ -59,7 +59,9 @@ public:
 
 	ETypePiece getTypePiece() const;
 
-	int getNumJoueur() const;
+	ENumPlayer getNumJoueur() const;
+
+	int getValue() const;
 
 	const Position& getPosition() const;
 	Position& accessPosition();
@@ -77,6 +79,8 @@ private:
 	Piece& operator=(const Piece&);
 
 };
+
+std::ostream& operator<<(std::ostream& os, const Piece& iPiece);
 
 }
 #endif /* PIECES_H_ */

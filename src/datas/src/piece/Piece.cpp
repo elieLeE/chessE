@@ -8,15 +8,17 @@
 #include "Piece.h"
 #include "../../../game/src/Echiquier.h"
 
+#include "../../../common/src/DisplayType.h"
+
 namespace datas{
 
 Piece::Piece(const EColor iColor, Position iPosition, ETypePiece iTypePiece, const int iValue):
-				_alive(true),
-				_color(iColor),
-				_position(iPosition),
-				_numJ(iColor==WHITE?JOUEUR_1:JOUEUR_2),
-				_value(iValue),
-				_typePiece(iTypePiece)
+						_alive(true),
+						_color(iColor),
+						_position(iPosition),
+						_numJ(iColor==WHITE?JOUEUR_1:JOUEUR_2),
+						_value(iValue),
+						_typePiece(iTypePiece)
 {}
 
 Piece::~Piece()
@@ -47,7 +49,7 @@ ETypePiece Piece::getTypePiece() const{
 	return _typePiece;
 }
 
-int Piece::getNumJoueur() const{
+ENumPlayer Piece::getNumJoueur() const{
 	return _numJ;
 }
 
@@ -70,6 +72,21 @@ bool Piece::canTakeCase(const Position& iPosition) const{
 	//si on va a l'etape 2, c qu'on a une piece
 	return (!aEchiquier.getCase(iPosition).hasPiece()) ||
 			(aEchiquier.getCase(iPosition).getPiece()->getColor() != _color);
+}
+
+int Piece::getValue() const{
+	return _value;
+}
+
+std::ostream& operator<<(std::ostream& os, const Piece& iPiece) {
+	os << "type : " << iPiece.getTypePiece() << std::endl
+			<< "pos : " << iPiece.getPosition() << std::endl
+			<< "color : " << iPiece.getColor() << std::endl
+			<< "numJ : " << iPiece.getNumJoueur() << std::endl
+			<< "alive ? "<< boolToString(iPiece.isAlive()) << std::endl
+			<< "value : " << iPiece.getValue() << std::endl;
+
+	return os;
 }
 
 }

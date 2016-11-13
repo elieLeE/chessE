@@ -7,10 +7,12 @@
  * Test unitaire de la classe Piece => classe abstraite => on passe par la sous classe Tour
  */
 #include <iostream>
+#include <sstream>
 
 #include "../../../common/src/UnitTest.h"
 #include "../../../game/src/Echiquier.h"
 #include "../../src/piece/Tour.h"
+#include "../../src/piece/Dame.h"
 #include "TestPiece.h"
 
 using namespace std;
@@ -31,6 +33,7 @@ void TestPiece::startTests(void){
 	unitT.addMethod("testAliveDead", &datas::TestPiece::testAliveDead);
 	unitT.addMethod("testIsValideMove", &datas::TestPiece::testIsValideMove);
 	unitT.addMethod("testCanTakeCase", &datas::TestPiece::testCanTakeCase);
+	unitT.addMethod("testToStream", &datas::TestPiece::testToStream);
 
 	unitT.launchMethods();
 
@@ -135,4 +138,24 @@ void TestPiece::testCanTakeCase() const{
 
 	aTour3->setDead();
 	BOOST_ASSERT_MSG(aTour->canTakeCase(aMove.getEndPosition()), "TestPiece canTakeCase - valid/piece same color but dead");
+}
+
+void TestPiece::testToStream(void) const{
+	ostream aStream(0);
+	stringbuf aStr;
+	aStream.rdbuf(&aStr);
+
+	Position aPosition(5, 5);
+	Dame aDame(WHITE, aPosition);
+
+	aStream << aDame;
+
+	string aExpected("type : Dame\n"
+			"pos : (5, 5)\n"
+			"color : WHITE\n"
+			"numJ : JOUEUR_1\n"
+			"alive ? true\n"
+			"value : 9\n");
+
+	BOOST_ASSERT_MSG(aStr.str().compare(aExpected) == 0, "testPiece toStream");
 }

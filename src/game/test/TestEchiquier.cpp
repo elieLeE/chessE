@@ -117,5 +117,5 @@ void TestEchiquier::testSetChangeMove(void) const{
 	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getStartPosition() == aMove.getStartPosition(), "TestEchiquier setChangeMove - startPosition");
 	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getEndPosition() == aMove.getEndPosition(), "TestEchiquier setChangeMove - endPosition");
 	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getTypeMove() == aMove.getTypeMove(), "TestEchiquier setChangeMove - typeMove");
-	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getHasCapturedPiece() == aMove.getHasCapturedPiece(), "TestEchiquier setChangeMove - hasCapturedPiece");
+	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getCapturedPiece() == aMove.getCapturedPiece(), "TestEchiquier setChangeMove - hasCapturedPiece");
 }
