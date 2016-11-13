@@ -19,6 +19,8 @@ public:
 
 	static void startTests(void);
 
+	void testSimple(void) const;
+
 	void testIsValidaMove(void) const;
 
 	void testEstMoveOKTheorique(void) const;

@@ -17,6 +17,9 @@ public:
 
 	static void startTests(void);
 
+	void testSimple(void) const;
+	void testMovePiece(void) const;
+	void testCanAccessCase(void) const;
 	void testIsValideMove(void) const;
 	void testToStream(void) const;
 };

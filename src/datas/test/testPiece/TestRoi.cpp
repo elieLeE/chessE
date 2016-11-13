@@ -30,17 +30,29 @@ TestRoi::~TestRoi()
 void TestRoi::startTests(void){
 	UnitTest<TestRoi> unitT("TestRoi");
 
+	unitT.addMethod("testSimple", &datas::TestRoi::testSimple, false);
 	unitT.addMethod("testEstMoveOKTheorique", &datas::TestRoi::testEstMoveOKTheorique);
+	unitT.addMethod("testEstMoveOKPratique", &datas::TestRoi::testEstMoveOKPratique, false);
 	unitT.addMethod("testIsValidaMove", &datas::TestRoi::testIsValidaMove, false);
-	unitT.addMethod("testPionPeuxTuerLeRoi", &datas::TestRoi::testPionPeuxTuerLeRoi);
+	unitT.addMethod("testIsNormalMove", &datas::TestRoi::testNormal, false);
 	unitT.addMethod("testEstPetitRock", &datas::TestRoi::testEstPetitRock);
 	unitT.addMethod("testEstGrandRock", &datas::TestRoi::testEstGrandRock);
+	unitT.addMethod("testPionPeuxTuerLeRoi", &datas::TestRoi::testPionPeuxTuerLeRoi);
+	unitT.addMethod("testFouPeuxTuerLeRoi", &datas::TestRoi::testFouPeuxTuerLeRoi, false);
+	unitT.addMethod("testTourPeuxTuerLeRoi", &datas::TestRoi::testTourPeuxTuerLeRoi, false);
+	unitT.addMethod("testDamePeuxTuerLeRoi", &datas::TestRoi::testDamePeuxTuerLeRoi, false);
+	unitT.addMethod("testSecondRoiColle", &datas::TestRoi::testSecondRoiColle, false);
 	unitT.addMethod("testToStream", &datas::TestRoi::testToStream);
 
 	unitT.launchMethods();
 }
 
+void TestRoi::testSimple(void) const{
+
+}
+
 void TestRoi::testIsValidaMove(void) const{
+
 }
 
 void TestRoi::testEstMoveOKTheorique(void) const{
@@ -53,6 +65,14 @@ void TestRoi::testEstMoveOKTheorique(void) const{
 	aEchiquier.addPiece(aRoi);
 	Move aMove(aPositionStart, aPositionEnd);
 	BOOST_ASSERT_MSG(aRoi->estMoveOKTheorique(aMove)==NORMAL_MOVE, "test move theorique - normal move");
+}
+
+void TestRoi::testEstMoveOKPratique(void) const{
+
+}
+
+void TestRoi::testNormal(void) const{
+
 }
 
 void TestRoi::testEstPetitRock(void) const{
@@ -102,6 +122,26 @@ void TestRoi::testPionPeuxTuerLeRoi(void) const{
 	aEchiquier.addPiece(aPion);
 
 	BOOST_ASSERT_MSG(aRoi->pionPeuxTuerLeRoi(aPositionRoi, aPositionPion), "test grand rock");
+}
+
+void TestRoi::testCavalierPeuxTuerLeRoi(void) const{
+
+}
+
+void TestRoi::testFouPeuxTuerLeRoi(void) const{
+
+}
+
+void TestRoi::testTourPeuxTuerLeRoi(void) const{
+
+}
+
+void TestRoi::testDamePeuxTuerLeRoi(void) const{
+
+}
+
+void TestRoi::testSecondRoiColle(void) const{
+
 }
 
 void TestRoi::testToStream(void) const{
