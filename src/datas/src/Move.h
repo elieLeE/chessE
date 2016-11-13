@@ -35,13 +35,10 @@ public:
 
 	int evaluateDistance() const;
 
-	bool getPriseEnPassant() const;
-	void setPriseEnPassant(bool iBool);
-
 	bool isValidateMove(const game::Echiquier& iEchiquier) const;
 
-	ETypePiece getHasCapturedPiece() const;
-	void setHasCapturedPiece(ETypePiece iCapturedPiece);
+	ETypePiece getCapturedPiece() const;
+	void setCapturedPiece(ETypePiece iCapturedPiece);
 
 	ETypeMove getTypeMove() const;
 	void setTypeMove(ETypeMove iTypeMove);
@@ -62,6 +59,8 @@ private:
 	ETypePiece _capturedPiece;
 	ETypeMove _typeMove;
 };
+
+std::ostream& operator<<(std::ostream& os, const Move& iMove);
 
 }
 

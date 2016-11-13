@@ -10,14 +10,16 @@
 
 namespace datas{
 
-Move::Move()
+Move::Move():
+				_capturedPiece(NO_TYPE),
+				_typeMove(NORMAL_MOVE)
 {}
 
 Move::Move(const Position& iPositionStart, const Position& iPositionEnd, ETypePiece iCapturedPiece, ETypeMove iTypeMove):
-		_start(iPositionStart),
-		_end(iPositionEnd),
-		_capturedPiece(iCapturedPiece),
-		_typeMove(iTypeMove)
+				_start(iPositionStart),
+				_end(iPositionEnd),
+				_capturedPiece(iCapturedPiece),
+				_typeMove(iTypeMove)
 {}
 
 Move::~Move()
@@ -47,14 +49,10 @@ int Move::evaluateDistance() const{
 	return _start.evaluateDistance(_end);
 }
 
-bool Move::getPriseEnPassant() const{
-	return (_typeMove == PRISE_EN_PASSANT);
-}
-
-ETypePiece Move::getHasCapturedPiece() const{
+ETypePiece Move::getCapturedPiece() const{
 	return _capturedPiece;
 }
-void Move::setHasCapturedPiece(ETypePiece iCapturedPiece){
+void Move::setCapturedPiece(ETypePiece iCapturedPiece){
 	_capturedPiece = iCapturedPiece;
 }
 
@@ -69,10 +67,9 @@ void Move::setTypeMove(ETypeMove iTypeMove){
 bool Move::isValidateMove(const game::Echiquier& iEchiquier) const{
 	bool aBool = false;
 
-	if((this->getEndPosition().isValid()) && (this->getStartPosition() == this->getEndPosition())){
-		//PiecePtr aPiece = iEchiquier.getCase(this->getStartPosition()).getPiece();
+	if((getStartPosition().isValid()) && (getEndPosition().isValid()) && (this->getStartPosition() != this->getEndPosition())){
 		if(iEchiquier.getCase(this->getStartPosition()).hasPiece()){
-			const Piece* aPiece = iEchiquier.getCase(this->getStartPosition()).getPiece().get();
+			const PiecePtr& aPiece = iEchiquier.getCase(this->getStartPosition()).getPiece();
 			aBool = aPiece->isValideMove(*this);
 		}
 	}
@@ -82,24 +79,30 @@ bool Move::isValidateMove(const game::Echiquier& iEchiquier) const{
 
 void Move::setMoveProperties(){
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
-	PiecePtr& aPiece = aEchiquier.accessCase(_start).accessPiece();
+	const PiecePtr& aPiece = aEchiquier.getCase(_start).getPiece();
 
-	if((aPiece->getTypePiece() == PION_TYPE) &&
-			!_start.sameCol(_end) &&
-			!aEchiquier.getCase(_end).hasPiece()){
-		_typeMove = PRISE_EN_PASSANT;
-		_capturedPiece = PION_TYPE;
-	}
-	else if(!aEchiquier.getCase(_end).hasPiece()){
-		_capturedPiece = aEchiquier.getCase(_end).getPiece().get()->getTypePiece();
-	}
-	else if(aPiece->getTypePiece() == ROI_TYPE){
-		if(_start.evaluateDistance(_end) == PETIT_ROCK){
-			_typeMove = PETIT_ROCK;
+	_typeMove = NORMAL_MOVE;
+	_capturedPiece = NO_TYPE;
+
+	if(aPiece){
+		if((aPiece->getTypePiece() == PION_TYPE) &&
+				(evaluateDistance() ==  PRISE_EN_PASSANT) &&
+				!aEchiquier.getCase(_end).hasPiece()){
+			_typeMove = PRISE_EN_PASSANT;
+			_capturedPiece = PION_TYPE;
 		}
-		else if(_start.evaluateDistance(_end) == GRAND_ROCK){
-			_typeMove = GRAND_ROCK;
+		else if(aPiece->getTypePiece() == ROI_TYPE){
+			int dist = evaluateDistance();
+			if(dist == PETIT_ROCK){
+				_typeMove = PETIT_ROCK;
+			}
+			else if(dist == GRAND_ROCK){
+				_typeMove = GRAND_ROCK;
+			}
 		}
+	}
+	if(aEchiquier.getCase(_end).hasPiece()){
+		_capturedPiece = aEchiquier.getCase(_end).getPiece()->getTypePiece();
 	}
 	aEchiquier.setChangeMove(*this);
 }
@@ -107,7 +110,15 @@ void Move::setMoveProperties(){
 void Move::operator=(const Move& iMove){
 	_start = iMove.getStartPosition();
 	_end = iMove.getEndPosition();
-	_capturedPiece = iMove.getHasCapturedPiece();
+	_capturedPiece = iMove.getCapturedPiece();
 	_typeMove = iMove.getTypeMove();
+}
+
+//utilise des enums class ??
+std::ostream& operator<<(std::ostream& os, const Move& iMove){
+	os << "start : " << iMove.getStartPosition() << " / end : " << iMove.getEndPosition() << std::endl;
+	os << "type : " << iMove.getTypeMove() << " / capturedPiece : " << iMove.getCapturedPiece() << std::endl;
+
+	return os;
 }
 }
