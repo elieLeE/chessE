@@ -22,8 +22,6 @@
 #include "testJoueur/testJoueurIA.h"
 #include "testJoueur/TestJoueurHumain.h"
 
-#include "TestMove.h"
-
 using namespace std;
 using namespace datas;
 
@@ -39,8 +37,6 @@ int main() {
 	TestPion::startTests();
 	TestRoi::startTests();
 	TestTour::startTests();
-
-	TestMove::startTests();
 
 	TestJoueur::startTests();
 	TestJoueurHumain::startTests();
