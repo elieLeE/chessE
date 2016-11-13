@@ -39,8 +39,6 @@ public:
 
 	EColor getColorCase() const;
 
-	std::ostream& toStream(std::ostream& aStream) const;
-
 	bool operator==(const Position& iPosition) const ;
 	bool operator!=(const Position& iPosition) const ;
 	void operator=(const Position& iPosition);
@@ -48,9 +46,13 @@ public:
 private:
 	//Position& operator=(const Position&);
 
+	//x => selection ligne
+	//y => selection colonne (inverse graphe "normal")
 	int _x;
 	int _y;
 };
+
+std::ostream& operator<<(std::ostream& os, const Position& iPosition);
 
 }
 

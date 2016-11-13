@@ -12,12 +12,14 @@
 
 namespace datas{
 
-Position::Position()
+Position::Position():
+		_x(0),
+		_y(0)
 {}
 
 Position::Position(int iX, int iY):
-		_x(iX),
-		_y(iY)
+				_x(iX),
+				_y(iY)
 {}
 
 Position::~Position()
@@ -94,10 +96,9 @@ void Position::operator=(const Position& iPosition){
 	setY(iPosition.getY());
 }
 
-std::ostream& Position::toStream(std::ostream& aStream) const{
-	//std::cout << std::endl << "x : " << getX() << ", y : " << getY() << std::endl;
-	aStream << getX() << " " << getY();
-	return aStream;
+std::ostream& operator<<(std::ostream& os, const Position& iPosition) {
+	os << "(" << iPosition.getX() << ", " << iPosition.getY() << ")";
+	return os;
 }
 
 }

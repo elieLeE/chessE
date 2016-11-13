@@ -15,6 +15,7 @@
 
 using namespace datas;
 using namespace common;
+using namespace std;
 
 TestPosition::TestPosition()
 {}
@@ -25,44 +26,59 @@ TestPosition::~TestPosition()
 void TestPosition::startTests(){
 	UnitTest<TestPosition> unitT("TestPosition");
 
-	unitT.addMethod("testComparePosition", &datas::TestPosition::testComparePosition);
+	unitT.addMethod("testDefaultPosition", &datas::TestPosition::testDefaultConstructor);
+	unitT.addMethod("testOperator == ", &datas::TestPosition::testOperatorEgale);
+	unitT.addMethod("testOperator =!", &datas::TestPosition::testOperatorDifference);
+	unitT.addMethod("testOperator =", &datas::TestPosition::testOperatorAffectation);
 	unitT.addMethod("testSame", &datas::TestPosition::testSame);
-	unitT.addMethod("testEvaluatePosition", &datas::TestPosition::testEvaluatePosition);
+	unitT.addMethod("testEvaluateDistance", &datas::TestPosition::testEvaluateDistance);
 	unitT.addMethod("testDiffs", &datas::TestPosition::testDiffs);
 	unitT.addMethod("testToStream", &datas::TestPosition::testToStream);
 
 	unitT.launchMethods();
 }
 
-void TestPosition::testComparePosition() const {
+void TestPosition::testDefaultConstructor(void) const{
+	Position aPosition;
+
+	BOOST_ASSERT_MSG(aPosition.getX() == 0, "TestPosition: defaultConstructor - x");
+	BOOST_ASSERT_MSG(aPosition.getY() == 0, "TestPosition: defaultConstructor - y");
+}
+
+void TestPosition::testOperatorEgale(void) const {
 	Position aPosition1(2, 5);
 	Position aPosition2(2, 5);
-	BOOST_ASSERT_MSG(aPosition1==aPosition2, "testPosition compare - position egales");
 
-	aPosition2.setY(6);
-	BOOST_ASSERT_MSG(aPosition1!=aPosition2, "testPosition compare - position differentes");
+	BOOST_ASSERT_MSG(aPosition1==aPosition2, "testPosition operator ==");
+}
 
-	aPosition1.setPosition(3, 4);
-	aPosition2.setPosition(3, 4);
-	BOOST_ASSERT_MSG(aPosition1==aPosition2, "testPosition compare - setPosition");
+void TestPosition::testOperatorDifference(void) const{
+	Position aPosition1(2, 5);
+	Position aPosition2(3, 2);
 
-	aPosition2.setPosition(3, 5);
-	BOOST_ASSERT_MSG(aPosition1.sameLigne(aPosition2), "test compare sameLigne");
+	BOOST_ASSERT_MSG(aPosition1!=aPosition2, "testPosition operator !=");
+}
 
-	aPosition2.setPosition(4, 4);
-	BOOST_ASSERT_MSG(aPosition1.sameCol(aPosition2), "test compare sameCol");
+void TestPosition::testOperatorAffectation(void) const{
+	Position aPosition1(2, 5);
+	Position aPosition2(3, 2);
+
+	BOOST_ASSERT_MSG(aPosition1!=aPosition2, "testPosition operator = - before affectation");
+
+	aPosition1 = aPosition2;
+	BOOST_ASSERT_MSG(aPosition1==aPosition2, "testPosition operator = - after affectation");
 }
 
 void TestPosition::testSame(void) const{
 	Position aPosition1(2, 5);
 	Position aPosition2(2, 6);
-	BOOST_ASSERT_MSG(aPosition1.sameLigne(aPosition2), "test compare sameLigne");
+	BOOST_ASSERT_MSG(aPosition1.sameLigne(aPosition2), "testPosition same - ligne");
 
 	aPosition2.setPosition(3, 5);
-	BOOST_ASSERT_MSG(aPosition1.sameCol(aPosition2), "test compare sameCol");
+	BOOST_ASSERT_MSG(aPosition1.sameCol(aPosition2), "testPosiion same - colonne");
 }
 
-void TestPosition::testEvaluatePosition(void) const{
+void TestPosition::testEvaluateDistance(void) const{
 	Position aPosition1(2, 5);
 	Position aPosition2(4, 6);
 
@@ -74,18 +90,18 @@ void TestPosition::testDiffs(void) const{
 	Position aPosition1(2, 5);
 	Position aPosition2(4, 6);
 
-	BOOST_ASSERT_MSG(aPosition1.diffLigne(aPosition2) == 2, "testPosition evaluatePosition");
-	BOOST_ASSERT_MSG(aPosition1.diffCol(aPosition2) == 1, "testPosition evaluatePosition");
+	BOOST_ASSERT_MSG(aPosition1.diffLigne(aPosition2) == 2, "testPosition diffs - ligne");
+	BOOST_ASSERT_MSG(aPosition1.diffCol(aPosition2) == 1, "testPosition diffs - colonne");
 }
 
 void TestPosition::testToStream(void) const{
 	Position aPosition(2, 5);
 
-	std::ostream aStream(0);
-	std::stringbuf aStr;
+	ostream aStream(0);
+	stringbuf aStr;
 	aStream.rdbuf(&aStr);
 
-	aPosition.toStream(aStream);
+	aStream << aPosition;
 
-	BOOST_ASSERT_MSG(aStr.str().compare("2 5") == 0, "testPosition evaluatePosition");
+	BOOST_ASSERT_MSG(aStr.str().compare("(2, 5)") == 0, "testPosition toStream");
 }

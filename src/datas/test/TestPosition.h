@@ -17,9 +17,12 @@ public:
 
 	static void startTests();
 
-	void testComparePosition(void) const;
+	void testDefaultConstructor(void) const;
+	void testOperatorEgale(void) const;
+	void testOperatorDifference(void) const;
+	void testOperatorAffectation(void) const;
 	void testSame(void) const;
-	void testEvaluatePosition(void) const;
+	void testEvaluateDistance(void) const;
 	void testDiffs(void) const;
 	void testToStream(void) const;
 
