@@ -11,8 +11,9 @@
 namespace common{
 
 template<typename T>
-UnitTest<T>::UnitTest(std::string aStr):
-_nameClasse(aStr)
+UnitTest<T>::UnitTest(const std::string aStr, const bool iDisplay):
+_nameClasse(aStr),
+_display(iDisplay)
 {}
 
 template<typename T>
@@ -26,27 +27,50 @@ void UnitTest<T>::addMethod(std::string iStr, void (T::*iPtr)(void) const, bool 
 }
 
 template<typename T>
-void UnitTest<T>::launchMethods(void){
+void UnitTest<T>::insertClasseName(void) {
+	_stream << _nameClasse;
+}
+
+template<typename T>
+void UnitTest<T>::display(void){
+	if(ALL_DISPLAY || _display){
+		std::cout << _stream.str() << std::endl;
+	}
+	_stream.str("");
+}
+template<typename T>
+void UnitTest<T>::launchMethods(void) {
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 
-	if(_list.size() == 0){
-		std::cout << _nameClasse << " => TO IMPLEMENT" << std::endl;
-		return;
-	}
+	/*std::cout << std::endl;
+	std::cout << "UnitTest<T>::launchMethods " <<  _nameClasse << std::endl;
+	std::cout << "taille liste : " << _list.size() << std::endl;*/
 
-	std::cout << _nameClasse << std::endl;
-	for(typeListUnitT aValue : _list){
-		aEchiquier.reset();
-		std::cout << "	" << aValue.str;
-		if(aValue.isImplemented && aValue.ptr){
-			(_instance.*(aValue.ptr))();
-			std::cout << "	=> OK" << std::endl;
-		}
-		else{
-			std::cout << "	=> TO IMPLEMENT" << std::endl;
-		}
+	insertClasseName();
+	if(_list.size() == 0){
+		_stream << "		=> TO IMPLEMENT";
 	}
-	std::cout << std::endl;
+	else{
+		_stream << std::endl;
+		for(typeListUnitT aValue : _list){
+			aEchiquier.reset();
+			launchMethod(aValue);
+		}
+		_stream << std::endl;
+	}
+	display();
+}
+
+template<typename T>
+void UnitTest<T>::launchMethod(const typeListUnitT iUnitTest) {
+	_stream << "	" << iUnitTest.str;
+	if(iUnitTest.isImplemented && iUnitTest.ptr){
+		(_instance.*(iUnitTest.ptr))();
+		_stream << "	=> OK" << std::endl;
+	}
+	else{
+		_stream << "	=> TO IMPLEMENT" << std::endl;
+	}
 }
 
 } /* namespace common */

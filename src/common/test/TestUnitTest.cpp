@@ -34,12 +34,10 @@ void TestUnitTest::startTests(){
 
 void TestUnitTest::testA(void) const{
 	BOOST_ASSERT_MSG(true, "testA");
-	cout << "	testA OK	";
 }
 
 void TestUnitTest::testB(void) const{
 	BOOST_ASSERT_MSG(true, "testB");
-	cout << "	testB OK	";
 }
 
 void TestUnitTest::testC(void) const
