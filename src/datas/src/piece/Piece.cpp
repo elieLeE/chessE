@@ -79,7 +79,7 @@ int Piece::getValue() const{
 }
 
 std::ostream& operator<<(std::ostream& os, const Piece& iPiece) {
-	os << "type : " << iPiece.getTypePiece() << std::endl
+	os << "type : " << typePieceToString(iPiece.getTypePiece(), false) << std::endl
 			<< "pos : " << iPiece.getPosition() << std::endl
 			<< "color : " << iPiece.getColor() << std::endl
 			<< "numJ : " << iPiece.getNumJoueur() << std::endl
