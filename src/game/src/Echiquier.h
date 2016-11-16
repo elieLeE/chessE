@@ -92,5 +92,7 @@ private:
 
 };
 
+std::ostream& operator<<(std::ostream& os, const Echiquier& iEchiquier);
+
 } /* namespace game*/
 #endif /* Echiquier_H_ */

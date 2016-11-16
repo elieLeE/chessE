@@ -16,14 +16,15 @@
 #include "../../datas/src/piece/Fou.h"
 #include "../../datas/src/piece/Roi.h"
 #include "../../datas/src/piece/Dame.h"
+#include "../../datas/src/typeDefine/TypePiece.h"
 
 namespace game{
 
 Echiquier Echiquier::_instance = Echiquier();
 
 Echiquier::Echiquier():
-							_possiblePriseEnPassant(false),
-							_hasAlreadyPiece(false)
+									_possiblePriseEnPassant(false),
+									_hasAlreadyPiece(false)
 {}
 
 Echiquier::~Echiquier()
@@ -245,6 +246,26 @@ void Echiquier::setBegginingGameWithoutHandicap(){
 	addPiece(aRoiBlack);
 
 	_hasAlreadyPiece = true;
+}
+
+std::ostream& operator<<(std::ostream& os, const Echiquier& iEchiquier){
+	for(int i=NBRE_LIGNE-1; i>=0; --i){
+		os << " " << i << "|";
+		for(int j=0; j<NBRE_COLONNE; j++){
+			os << " ";
+			if(iEchiquier.getCase(i, j).hasPiece()){
+				//os << iEchiquier.getCase(i, j).getPiece()->simpleDisplay(os);
+				os << typePieceToString(iEchiquier.getCase(i, j).getPiece()->getTypePiece(), true);
+				os << " ";
+				os << "|";
+			}
+		}
+		os << std::endl;
+	}
+	os << "  --------------------------------" << std::endl;
+	os << "    a   b   c   d   e   f   g   h" << std::endl;
+
+	return os;
 }
 
 } /* namespace game*/

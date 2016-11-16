@@ -190,7 +190,7 @@ void TestMove::testToStream(void) const{
 	aStream << aMove;
 
 	string aExpected("start : (2, 2) / end : (5, 6)\n"
-			"type : NORMAL_MOVE / capturedPiece : No\n");
+			"type : NORMAL_MOVE / capturedPiece : No Type\n");
 
 	BOOST_ASSERT_MSG(aStr.str().compare(aExpected) == 0, "testMove toStream");
 }

@@ -9,37 +9,37 @@
 
 namespace datas {
 
-std::ostream& operator<<(std::ostream& os, const ETypePiece iTypePiece){
+std::string typePieceToString(const ETypePiece iTypePiece, const bool oneLetter){
+	std::string aStr;
 	switch(iTypePiece){
-	case PION_TYPE:
-		os << "Pion";
+	case datas::ROI_TYPE:
+		aStr.assign(oneLetter?"R":"Roi");
+		break;
+	case datas::DAME_TYPE:
+		aStr.assign(oneLetter?"D":"Dame");
 		break;
 
-	case CAVALIER_TYPE:
-		os << "Cavalier";
+	case datas::TOUR_TYPE:
+		aStr.assign(oneLetter?"T":"Tour");
 		break;
 
-	case FOU_TYPE:
-		os << "Fou";
+	case datas::CAVALIER_TYPE:
+		aStr.assign(oneLetter?"C":"Cavalier");
 		break;
 
-	case TOUR_TYPE:
-		os << "Tour";
+	case datas::FOU_TYPE:
+		aStr.assign(oneLetter?"F":"Fou");
 		break;
 
-	case DAME_TYPE:
-		os << "Dame";
+	case datas::PION_TYPE:
+		aStr.assign(oneLetter?"P":"Pion");
 		break;
 
-	case ROI_TYPE:
-		os << "Roi";
-		break;
-
-	case NO_TYPE:
-		os << "No";
+	case datas::NO_TYPE:
+		aStr.assign(oneLetter?" ":"No Type");
 		break;
 	}
-	return os;
+	return aStr;
 }
 
 }

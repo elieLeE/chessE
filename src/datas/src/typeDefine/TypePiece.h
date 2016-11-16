@@ -22,7 +22,9 @@ typedef enum ETypePiece{
 	NO_TYPE
 }ETypePiece;
 
-std::ostream& operator<<(std::ostream& os, const ETypePiece iTypePiece);
+std::string typePieceToString(const ETypePiece iTypePiece, const bool oneLetter);
+
+void test();
 
 }
 

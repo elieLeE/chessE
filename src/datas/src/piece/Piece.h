@@ -20,7 +20,6 @@
 #include "../typeDefine/TypePlayer.h"
 
 namespace game{
-class Echiquier;
 }
 
 namespace datas{

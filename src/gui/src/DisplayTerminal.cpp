@@ -6,6 +6,7 @@
  */
 
 #include <iostream>
+#include <sstream>
 
 #include "../../game/src/Echiquier.h"
 #include "DisplayTerminal.h"
@@ -21,7 +22,9 @@ DisplayTerminal::~DisplayTerminal()
 {}
 
 void DisplayTerminal::displayPositionGameTerminal(const game::Echiquier& iEchiquier){
-	datas::ETypePiece aTypePiece;
+	std::cout << iEchiquier << std::endl;
+
+	/*datas::ETypePiece aTypePiece;
 	datas::EColor aColor;
 
 	for(int i=NBRE_LIGNE-1; i>=0; --i){
@@ -45,11 +48,11 @@ void DisplayTerminal::displayPositionGameTerminal(const game::Echiquier& iEchiqu
 		std::cout << std::endl;
 	}
 	std::cout << "  --------------------------------" << std::endl;
-	std::cout << "    a   b   c   d   e   f   g   h" << std::endl;
+	std::cout << "    a   b   c   d   e   f   g   h" << std::endl;*/
 }
 
 void DisplayTerminal::displayPiece(const datas::ETypePiece iTypePiece, const datas::EColor iColor){
-	 //std::cout << "\033[1;31mbold red text\033[0m\n";
+	//std::cout << "\033[1;31mbold red text\033[0m\n";
 	//std::cout << FG_RED << "red text" << std::endl;
 	//std::cout << getColor(2) << "red text" << std::endl;
 	//std::cout << "test" << std::endl;
