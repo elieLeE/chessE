@@ -30,18 +30,18 @@ TestRoi::~TestRoi()
 void TestRoi::startTests(void){
 	UnitTest<TestRoi> unitT("TestRoi");
 
-	unitT.addMethod("testSimple", &datas::TestRoi::testSimple, false);
+	unitT.addMethod("testSimple", &datas::TestRoi::testSimple, NOT_YET_IMPLEMENTED);
 	unitT.addMethod("testEstMoveOKTheorique", &datas::TestRoi::testEstMoveOKTheorique);
-	unitT.addMethod("testEstMoveOKPratique", &datas::TestRoi::testEstMoveOKPratique, false);
-	unitT.addMethod("testIsValidaMove", &datas::TestRoi::testIsValidaMove, false);
-	unitT.addMethod("testIsNormalMove", &datas::TestRoi::testNormal, false);
+	unitT.addMethod("testEstMoveOKPratique", &datas::TestRoi::testEstMoveOKPratique, NOT_YET_IMPLEMENTED);
+	unitT.addMethod("testIsValidaMove", &datas::TestRoi::testIsValidaMove, NOT_YET_IMPLEMENTED);
+	unitT.addMethod("testIsNormalMove", &datas::TestRoi::testNormal, NOT_YET_IMPLEMENTED);
 	unitT.addMethod("testEstPetitRock", &datas::TestRoi::testEstPetitRock);
 	unitT.addMethod("testEstGrandRock", &datas::TestRoi::testEstGrandRock);
 	unitT.addMethod("testPionPeuxTuerLeRoi", &datas::TestRoi::testPionPeuxTuerLeRoi);
-	unitT.addMethod("testFouPeuxTuerLeRoi", &datas::TestRoi::testFouPeuxTuerLeRoi, false);
-	unitT.addMethod("testTourPeuxTuerLeRoi", &datas::TestRoi::testTourPeuxTuerLeRoi, false);
-	unitT.addMethod("testDamePeuxTuerLeRoi", &datas::TestRoi::testDamePeuxTuerLeRoi, false);
-	unitT.addMethod("testSecondRoiColle", &datas::TestRoi::testSecondRoiColle, false);
+	unitT.addMethod("testFouPeuxTuerLeRoi", &datas::TestRoi::testFouPeuxTuerLeRoi, NOT_YET_IMPLEMENTED);
+	unitT.addMethod("testTourPeuxTuerLeRoi", &datas::TestRoi::testTourPeuxTuerLeRoi, NOT_YET_IMPLEMENTED);
+	unitT.addMethod("testDamePeuxTuerLeRoi", &datas::TestRoi::testDamePeuxTuerLeRoi, NOT_YET_IMPLEMENTED);
+	unitT.addMethod("testSecondRoiColle", &datas::TestRoi::testSecondRoiColle, NOT_YET_IMPLEMENTED);
 	unitT.addMethod("testToStream", &datas::TestRoi::testToStream);
 
 	unitT.launchMethods();

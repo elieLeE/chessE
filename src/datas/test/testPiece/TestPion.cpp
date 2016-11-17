@@ -24,10 +24,10 @@ TestPion::~TestPion()
 void TestPion::startTests(void){
 	UnitTest<TestPion> unitT("TestPion");
 
-	unitT.addMethod("testSimple", &datas::TestPion::testSimple, false);
-	unitT.addMethod("testMovePiece", &datas::TestPion::testMovePiece, false);
-	unitT.addMethod("testCanAccessCase", &datas::TestPion::testCanAccessCase, false);
-	unitT.addMethod("testIsValideMove", &datas::TestPion::testIsValideMove, false);
+	unitT.addMethod("testSimple", &datas::TestPion::testSimple, NOT_YET_IMPLEMENTED);
+	unitT.addMethod("testMovePiece", &datas::TestPion::testMovePiece, NOT_YET_IMPLEMENTED);
+	unitT.addMethod("testCanAccessCase", &datas::TestPion::testCanAccessCase, NOT_YET_IMPLEMENTED);
+	unitT.addMethod("testIsValideMove", &datas::TestPion::testIsValideMove, NOT_YET_IMPLEMENTED);
 	unitT.addMethod("testToStream", &datas::TestPion::testToStream);
 
 	unitT.launchMethods();

@@ -14,10 +14,11 @@
 #include <sstream>
 
 #include "../../game/src/Echiquier.h"
+#include "type/EEtatTest.h"
 
 namespace common{
 
-#define ALL_DISPLAY (bool)false
+#define ALL_DISPLAY (bool)true
 
 template<typename T>
 class UnitTest {
@@ -25,15 +26,14 @@ public:
 	UnitTest(const std::string aStr, const bool iDisplay=false);
 	virtual ~UnitTest();
 
-	void addMethod(std::string, void (T::*ptr)(void) const, bool isImplement = true, bool iTLaunch = true);
+	void addMethod(std::string, void (T::*ptr)(void) const, const EEtatTest iEtatTest=TO_LAUNCH);
 	void launchMethods(void) ;
 
 private:
 	struct typeListUnitT{
 		std::string str;
 		void (T::*ptr)(void) const;
-		bool isImplemented;
-		bool toLaunch;
+		const EEtatTest iEtatTest;
 	};
 
 	void insertClasseName(void) ;

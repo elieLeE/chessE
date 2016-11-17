@@ -15,11 +15,11 @@ using namespace std;
 using namespace game;
 
 int main() {
-	cout << "test unitaire game" << endl << endl;
+	cout << "test unitaire game" << endl ;
 
 	TestEchiquier::startTest();
 
-	cout << endl << "all OK" << endl;
+	cout << endl << "all OK" << endl <<endl;
 
 	return 0;
 }

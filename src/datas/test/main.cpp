@@ -29,7 +29,7 @@ using namespace std;
 using namespace datas;
 
 int main() {
-	cout << "test unitaire datas" << endl << endl;
+	cout << "test unitaire datas" << endl ;
 
 	TestPosition::startTests();
 	TestCase::startTest();
@@ -48,7 +48,7 @@ int main() {
 	TestJoueurHumain::startTests();
 	testJoueurIA::startTests();
 
-	cout << endl << "all OK" << endl;
+	cout << endl << "all OK" << endl << endl;
 
 	return 0;
 }

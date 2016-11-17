@@ -23,7 +23,7 @@ TestGuiTerminal::~TestGuiTerminal()
 void TestGuiTerminal::startTests() const{
 	UnitTest<TestGuiTerminal> unitT("TestGuiTerminal");
 
-	unitT.addMethod("testDisplay\n", &gui::TestGuiTerminal::testDisplay);
+	unitT.addMethod("testDisplay", &gui::TestGuiTerminal::testDisplay);
 
 	unitT.launchMethods();
 }

@@ -22,9 +22,9 @@ UnitTest<T>::~UnitTest()
 {}
 
 template<typename T>
-void UnitTest<T>::addMethod(std::string iStr, void (T::*iPtr)(void) const, bool iIsImplement, bool iToLaunch){
-	_atLeastOneToImplement = _atLeastOneToImplement || !iIsImplement;
-	typeListUnitT aStruct = {iStr, iPtr, iIsImplement, iToLaunch};
+void UnitTest<T>::addMethod(std::string iStr, void (T::*iPtr)(void) const, const EEtatTest iEtatTest){
+	_atLeastOneToImplement = _atLeastOneToImplement || (iEtatTest==NOT_YET_IMPLEMENTED);
+	typeListUnitT aStruct = {iStr, iPtr, iEtatTest};
 	_list.push_back(aStruct);
 }
 
@@ -54,8 +54,8 @@ void UnitTest<T>::launchMethods(void) {
 
 	insertClasseName();
 	if(_list.size() == 0){
-		_streamAll << "		=> TO IMPLEMENT";
-		_streamToImplement << "		=> TO IMPLEMENT";
+		_streamAll << "		=> NOT YET IMPLEMENTED";
+		_streamToImplement << "		=> NOT YET IMPLEMENTED";
 	}
 	else{
 		if(_atLeastOneToImplement){
@@ -73,16 +73,16 @@ void UnitTest<T>::launchMethods(void) {
 template<typename T>
 void UnitTest<T>::launchMethod(const typeListUnitT iUnitTest) {
 	_streamAll << "	" << iUnitTest.str;
-	if(!iUnitTest.toLaunch){
+	if(iUnitTest.iEtatTest==NOT_TO_LAUNCH){
 		_streamAll << "	=> NOT LAUNCHED" << std::endl;
 	}
-	else if(iUnitTest.isImplemented && iUnitTest.ptr){
+	else if((iUnitTest.iEtatTest==TO_LAUNCH) && iUnitTest.ptr){
 		(_instance.*(iUnitTest.ptr))();
 		_streamAll << "	=> OK" << std::endl;
 	}
 	else{
-		_streamToImplement << "	" << iUnitTest.str << "		=> TO IMPLEMENT" << std::endl;
-		_streamAll << "	=> TO IMPLEMENT" << std::endl;
+		_streamToImplement << "	" << iUnitTest.str << "		=> NOT YET IMPLEMENTED" << std::endl;
+		_streamAll << "	=> NOT YET IMPLEMENTED" << std::endl;
 	}
 }
 

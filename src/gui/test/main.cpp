@@ -13,13 +13,13 @@ using namespace std;
 using namespace gui;
 
 int main() {
-	cout << "test unitaire gui" << endl << endl;
+	cout << "test unitaire gui" << endl ;
 
 	TestGuiTerminal aTestGuiTerminal;
 
 	aTestGuiTerminal.startTests();
 
-	cout <<endl << "all OK" << endl;
+	cout <<endl << "all OK" << endl << endl;
 
 	return 0;
 }
