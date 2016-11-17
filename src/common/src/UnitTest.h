@@ -17,7 +17,7 @@
 
 namespace common{
 
-#define ALL_DISPLAY (bool)true
+#define ALL_DISPLAY (bool)false
 
 template<typename T>
 class UnitTest {
@@ -25,7 +25,7 @@ public:
 	UnitTest(const std::string aStr, const bool iDisplay=false);
 	virtual ~UnitTest();
 
-	void addMethod(std::string, void (T::*ptr)(void) const, bool isImplement = true);
+	void addMethod(std::string, void (T::*ptr)(void) const, bool isImplement = true, bool iTLaunch = true);
 	void launchMethods(void) ;
 
 private:
@@ -33,6 +33,7 @@ private:
 		std::string str;
 		void (T::*ptr)(void) const;
 		bool isImplemented;
+		bool toLaunch;
 	};
 
 	void insertClasseName(void) ;

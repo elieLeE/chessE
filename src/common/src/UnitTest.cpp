@@ -22,9 +22,9 @@ UnitTest<T>::~UnitTest()
 {}
 
 template<typename T>
-void UnitTest<T>::addMethod(std::string iStr, void (T::*iPtr)(void) const, bool iIsImplement){
+void UnitTest<T>::addMethod(std::string iStr, void (T::*iPtr)(void) const, bool iIsImplement, bool iToLaunch){
 	_atLeastOneToImplement = _atLeastOneToImplement || !iIsImplement;
-	typeListUnitT aStruct = {iStr, iPtr, iIsImplement};
+	typeListUnitT aStruct = {iStr, iPtr, iIsImplement, iToLaunch};
 	_list.push_back(aStruct);
 }
 
@@ -32,7 +32,7 @@ template<typename T>
 void UnitTest<T>::insertClasseName(void) {
 	_streamAll << _nameClasse;
 
-	if(_atLeastOneToImplement)
+	if(_atLeastOneToImplement || (_list.size() == 0))
 		_streamToImplement << _nameClasse;
 }
 
@@ -42,7 +42,7 @@ void UnitTest<T>::display(void){
 		std::cout << _streamAll.str() << std::endl;
 	}
 	else{
-		if(_atLeastOneToImplement)
+		if(_atLeastOneToImplement || (_list.size() == 0))
 			std::cout << _streamToImplement.str() << std::endl;
 	}
 	_streamAll.str("");
@@ -51,10 +51,6 @@ void UnitTest<T>::display(void){
 template<typename T>
 void UnitTest<T>::launchMethods(void) {
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
-
-	/*std::cout << std::endl;
-	std::cout << "UnitTest<T>::launchMethods " <<  _nameClasse << std::endl;
-	std::cout << "taille liste : " << _list.size() << std::endl;*/
 
 	insertClasseName();
 	if(_list.size() == 0){
@@ -77,7 +73,10 @@ void UnitTest<T>::launchMethods(void) {
 template<typename T>
 void UnitTest<T>::launchMethod(const typeListUnitT iUnitTest) {
 	_streamAll << "	" << iUnitTest.str;
-	if(iUnitTest.isImplemented && iUnitTest.ptr){
+	if(!iUnitTest.toLaunch){
+		_streamAll << "	=> NOT LAUNCHED" << std::endl;
+	}
+	else if(iUnitTest.isImplemented && iUnitTest.ptr){
 		(_instance.*(iUnitTest.ptr))();
 		_streamAll << "	=> OK" << std::endl;
 	}

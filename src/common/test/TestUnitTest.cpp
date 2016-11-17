@@ -28,6 +28,7 @@ void TestUnitTest::startTests(){
 	unitT.addMethod("testB", &common::TestUnitTest::testB, true);
 	unitT.addMethod("testC => OK", &common::TestUnitTest::testC, false);
 	unitT.addMethod("testD => OK", 0, false);
+	unitT.addMethod("testD => OK", 0, true, false);
 
 	unitT.launchMethods();
 }
