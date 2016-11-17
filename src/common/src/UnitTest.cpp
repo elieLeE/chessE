@@ -13,7 +13,8 @@ namespace common{
 template<typename T>
 UnitTest<T>::UnitTest(const std::string aStr, const bool iDisplay):
 _nameClasse(aStr),
-_display(iDisplay)
+_display(iDisplay),
+_atLeastOneToImplement(false)
 {}
 
 template<typename T>
@@ -22,21 +23,30 @@ UnitTest<T>::~UnitTest()
 
 template<typename T>
 void UnitTest<T>::addMethod(std::string iStr, void (T::*iPtr)(void) const, bool iIsImplement){
+	_atLeastOneToImplement = _atLeastOneToImplement || !iIsImplement;
 	typeListUnitT aStruct = {iStr, iPtr, iIsImplement};
 	_list.push_back(aStruct);
 }
 
 template<typename T>
 void UnitTest<T>::insertClasseName(void) {
-	_stream << _nameClasse;
+	_streamAll << _nameClasse;
+
+	if(_atLeastOneToImplement)
+		_streamToImplement << _nameClasse;
 }
 
 template<typename T>
 void UnitTest<T>::display(void){
 	if(ALL_DISPLAY || _display){
-		std::cout << _stream.str() << std::endl;
+		std::cout << _streamAll.str() << std::endl;
 	}
-	_stream.str("");
+	else{
+		if(_atLeastOneToImplement)
+			std::cout << _streamToImplement.str() << std::endl;
+	}
+	_streamAll.str("");
+	_streamToImplement.str("");
 }
 template<typename T>
 void UnitTest<T>::launchMethods(void) {
@@ -48,28 +58,32 @@ void UnitTest<T>::launchMethods(void) {
 
 	insertClasseName();
 	if(_list.size() == 0){
-		_stream << "		=> TO IMPLEMENT";
+		_streamAll << "		=> TO IMPLEMENT";
+		_streamToImplement << "		=> TO IMPLEMENT";
 	}
 	else{
-		_stream << std::endl;
+		if(_atLeastOneToImplement){
+			_streamToImplement<< std::endl;
+		}
+		_streamAll << std::endl;
 		for(typeListUnitT aValue : _list){
 			aEchiquier.reset();
 			launchMethod(aValue);
 		}
-		_stream << std::endl;
 	}
 	display();
 }
 
 template<typename T>
 void UnitTest<T>::launchMethod(const typeListUnitT iUnitTest) {
-	_stream << "	" << iUnitTest.str;
+	_streamAll << "	" << iUnitTest.str;
 	if(iUnitTest.isImplemented && iUnitTest.ptr){
 		(_instance.*(iUnitTest.ptr))();
-		_stream << "	=> OK" << std::endl;
+		_streamAll << "	=> OK" << std::endl;
 	}
 	else{
-		_stream << "	=> TO IMPLEMENT" << std::endl;
+		_streamToImplement << "	" << iUnitTest.str << "		=> TO IMPLEMENT" << std::endl;
+		_streamAll << "	=> TO IMPLEMENT" << std::endl;
 	}
 }
 

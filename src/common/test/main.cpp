@@ -18,7 +18,7 @@ int main() {
 	common::TestUnitTest::startTests();
 	common::TestDisplayType::startTests();
 
-	cout << "all OK" << endl;
+	cout << endl << "all OK" << endl;
 
 	return 0;
 }

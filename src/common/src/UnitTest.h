@@ -29,21 +29,24 @@ public:
 	void launchMethods(void) ;
 
 private:
-	T _instance;
-	const std::string _nameClasse;
-	const bool _display;
-	std::stringstream _stream;
-
 	struct typeListUnitT{
 		std::string str;
 		void (T::*ptr)(void) const;
 		bool isImplemented;
 	};
-	std::list<typeListUnitT> _list;
 
 	void insertClasseName(void) ;
 	void launchMethod(const typeListUnitT iUnitTest) ;
 	void display(void);
+
+	T _instance;
+	const std::string _nameClasse;
+	const bool _display;
+	bool _atLeastOneToImplement;
+	std::stringstream _streamAll;
+	std::stringstream _streamToImplement;
+
+	std::list<typeListUnitT> _list;
 };
 
 
