@@ -5,6 +5,7 @@
  *      Author: le_e
  */
 #include <cmath>
+#include <cstddef>
 
 #include "Roi.h"
 #include "../typeDefine/TypePiece.h"
@@ -69,7 +70,7 @@ bool Roi::estRockTheorique(const Move& iMove, ETypeMove iTypeMove) const{
 
 		if(aPiece && (aPiece->getTypePiece()==TOUR_TYPE)){
 			const Tour* aTour = dynamic_cast<const Tour*>(aPiece.get());
-			if(!aTour->getHasAlreadyMoved()){
+			if((aTour != nullptr) && !aTour->getHasAlreadyMoved()){
 				aBool = true;
 			}
 		}

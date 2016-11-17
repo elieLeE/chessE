@@ -27,18 +27,14 @@ Display::~Display()
 
 const Display* Display::getInstance(){
 	if(!_display){
-		_display = new Display();
-		/*if(DISPLAY_WINDOW == TERMINAL_GUI){
-			//datas::Tour* aTour = dynamic_cast<datas::Tour*>(aPieceMove.get());
-			_display = new DisplayTerminal();
-		}*/
+	    _display = new Display();
 	}
 	return _display;
 }
 
 Display* Display::accessInstance(){
 	if(!_display){
-		_display = new Display();
+	    _display = new Display();
 	}
 	return _display;
 }
