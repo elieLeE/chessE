@@ -32,6 +32,7 @@ void TestEchiquier::startTest(){
 	unitT.addMethod("testMovePiece", &game::TestEchiquier::testMovePiece);
 	unitT.addMethod("testReset", &game::TestEchiquier::testReset);
 	unitT.addMethod("testSetChangeMove", &game::TestEchiquier::testSetChangeMove);
+	unitT.addMethod("testToStream", &game::TestEchiquier::testToStream);
 
 	unitT.launchMethods();
 }
@@ -118,4 +119,26 @@ void TestEchiquier::testSetChangeMove(void) const{
 	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getEndPosition() == aMove.getEndPosition(), "TestEchiquier setChangeMove - endPosition");
 	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getTypeMove() == aMove.getTypeMove(), "TestEchiquier setChangeMove - typeMove");
 	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getCapturedPiece() == aMove.getCapturedPiece(), "TestEchiquier setChangeMove - hasCapturedPiece");
+}
+
+void TestEchiquier::testToStream(void) const{
+	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
+	std::stringstream aStr;
+
+	aEchiquier.setBegginingGameWithoutHandicap();
+
+	aStr << aEchiquier;
+
+	string aExpected(" 7| T | C | F | R | D | F | C | T |\n "
+			"6| P | P | P | P | P | P | P | P |\n "
+			"5|   |   |   |   |   |   |   |   |\n "
+			"4|   |   |   |   |   |   |   |   |\n "
+			"3|   |   |   |   |   |   |   |   |\n "
+			"2|   |   |   |   |   |   |   |   |\n "
+			"1| P | P | P | P | P | P | P | P |\n "
+			"0| T | C | F | D | R | F | C | T |\n  "
+			"--------------------------------\n    "
+			"a   b   c   d   e   f   g   h\n\n");
+
+	BOOST_ASSERT_MSG(aExpected.compare(aStr.str()), "testEchiquier ToStream");
 }

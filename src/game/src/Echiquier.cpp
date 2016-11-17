@@ -254,11 +254,13 @@ std::ostream& operator<<(std::ostream& os, const Echiquier& iEchiquier){
 		for(int j=0; j<NBRE_COLONNE; j++){
 			os << " ";
 			if(iEchiquier.getCase(i, j).hasPiece()){
-				//os << iEchiquier.getCase(i, j).getPiece()->simpleDisplay(os);
 				os << typePieceToString(iEchiquier.getCase(i, j).getPiece()->getTypePiece(), true);
-				os << " ";
-				os << "|";
 			}
+			else{
+				os << " ";
+			}
+			os << " ";
+			os << "|";
 		}
 		os << std::endl;
 	}

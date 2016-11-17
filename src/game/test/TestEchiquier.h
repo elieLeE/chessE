@@ -24,6 +24,7 @@ public:
 	void testKillAndRevivePiece(void) const;
 	void testReset(void) const;
 	void testSetChangeMove(void) const;
+	void testToStream(void) const;
 };
 
 } /* namespace datas */
