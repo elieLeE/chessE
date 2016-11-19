@@ -18,7 +18,7 @@
 
 namespace common{
 
-#define ALL_DISPLAY (bool)false
+#define ALL_DISPLAY (bool)true
 
 template<typename T>
 class UnitTest {
@@ -33,12 +33,18 @@ private:
 	struct typeListUnitT{
 		std::string str;
 		void (T::*ptr)(void) const;
-		const EEtatTest iEtatTest;
+		const EEtatTest etatTest;
 	};
 
-	void insertClasseName(void) ;
 	void launchMethod(const typeListUnitT iUnitTest) ;
-	void display(void);
+	void display(std::string iStr, bool iBool = true);
+	void displayClassName(void);
+	void display(const EEtatTest iEtatTest, const std::string iLaunchStr,
+			const std::string iNotLaunchStr, const std::string iNotImplementStr) const;
+	void display(const EEtatTest iEtatTest, const std::string iStr);
+
+	bool displayAll(void) const;
+	bool displayImplement(void) const;
 
 	T _instance;
 	const std::string _nameClasse;
@@ -56,3 +62,4 @@ private:
 #include "UnitTest.cpp"
 
 #endif /* UNITTEST_H_ */
+

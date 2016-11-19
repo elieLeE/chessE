@@ -25,10 +25,12 @@ void TestUnitTest::startTests(){
 	unitT.launchMethods();
 
 	unitT.addMethod("testA", &common::TestUnitTest::testA);
+	unitT.launchMethods();
+
 	unitT.addMethod("testB", &common::TestUnitTest::testB, TO_LAUNCH);
 	unitT.addMethod("testC => OK", &common::TestUnitTest::testC, NOT_YET_IMPLEMENTED);
 	unitT.addMethod("testD => OK", 0, NOT_YET_IMPLEMENTED);
-	unitT.addMethod("testD => OK", 0, NOT_TO_LAUNCH);
+	unitT.addMethod("testE => OK", 0, NOT_TO_LAUNCH);
 
 	unitT.launchMethods();
 }

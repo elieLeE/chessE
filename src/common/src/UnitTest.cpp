@@ -29,61 +29,80 @@ void UnitTest<T>::addMethod(std::string iStr, void (T::*iPtr)(void) const, const
 }
 
 template<typename T>
-void UnitTest<T>::insertClasseName(void) {
-	_streamAll << _nameClasse;
-
-	if(_atLeastOneToImplement || (_list.size() == 0))
-		_streamToImplement << _nameClasse;
+void UnitTest<T>::display(std::string iStr, bool iBool){
+	if(iBool)
+		std::cout << iStr;
 }
 
 template<typename T>
-void UnitTest<T>::display(void){
-	if(ALL_DISPLAY || _display){
-		std::cout << _streamAll.str() << std::endl;
-	}
-	else{
-		if(_atLeastOneToImplement || (_list.size() == 0))
-			std::cout << _streamToImplement.str() << std::endl;
-	}
-	_streamAll.str("");
-	_streamToImplement.str("");
+void UnitTest<T>::displayClassName(){
+	display(_nameClasse, displayAll() || displayImplement());
 }
+
+template<typename T>
+void UnitTest<T>::display(const EEtatTest iEtatTest, const std::string iStr){
+	display(iEtatTest, iStr, iStr, iStr);
+}
+
+template<typename T>
+void UnitTest<T>::display(const EEtatTest iEtatTest, const std::string iLaunchStr,
+		const std::string iNotLaunchStr, const std::string iNotImplementStr) const{
+	switch(iEtatTest){
+	case TO_LAUNCH:
+		if(displayAll()){
+			std::cout << iLaunchStr;
+		}
+		break;
+
+	case NOT_TO_LAUNCH:
+		if(displayAll()){
+			std::cout << iNotLaunchStr;
+		}
+		break;
+
+	case NOT_YET_IMPLEMENTED:
+		std::cout << iNotImplementStr;
+		break;
+	}
+}
+
+template<typename T>
+bool UnitTest<T>::displayAll(void) const{
+	return (ALL_DISPLAY || _display);
+}
+
+template<typename T>
+bool UnitTest<T>::displayImplement(void) const{
+	return (_atLeastOneToImplement || _list.size() == 0);
+}
+
 template<typename T>
 void UnitTest<T>::launchMethods(void) {
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 
-	insertClasseName();
+	displayClassName();
 	if(_list.size() == 0){
-		_streamAll << "		=> NOT YET IMPLEMENTED";
-		_streamToImplement << "		=> NOT YET IMPLEMENTED";
+		display("		=> NOT YET IMPLEMENTED\n");
 	}
 	else{
-		if(_atLeastOneToImplement){
-			_streamToImplement<< std::endl;
-		}
-		_streamAll << std::endl;
+		display("\n", (displayAll() || displayImplement()));
 		for(typeListUnitT aValue : _list){
 			aEchiquier.reset();
 			launchMethod(aValue);
 		}
 	}
-	display();
+	display("\n", (displayAll() || displayImplement()));
 }
 
 template<typename T>
 void UnitTest<T>::launchMethod(const typeListUnitT iUnitTest) {
-	_streamAll << "	" << iUnitTest.str;
-	if(iUnitTest.iEtatTest==NOT_TO_LAUNCH){
-		_streamAll << "	=> NOT LAUNCHED" << std::endl;
-	}
-	else if((iUnitTest.iEtatTest==TO_LAUNCH) && iUnitTest.ptr){
+	display(iUnitTest.etatTest, "	" + iUnitTest.str);
+
+	if((iUnitTest.etatTest==TO_LAUNCH) && iUnitTest.ptr){
 		(_instance.*(iUnitTest.ptr))();
-		_streamAll << "	=> OK" << std::endl;
 	}
-	else{
-		_streamToImplement << "	" << iUnitTest.str << "		=> NOT YET IMPLEMENTED" << std::endl;
-		_streamAll << "	=> NOT YET IMPLEMENTED" << std::endl;
-	}
+
+	display(iUnitTest.etatTest, "	=> OK\n", "	=> NOT LAUNCHED\n", "	=> NOT YET IMPLEMENTED\n");
 }
 
 } /* namespace common */
