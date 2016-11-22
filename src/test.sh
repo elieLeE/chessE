@@ -9,7 +9,7 @@ resultTest(){
     fi
 }
 
-if [ ! -f ./datas/test/prog ] || [ ! -f ./game/test/prog ] || [ ! -f ./gui/test/prog ] || [ ! -f ./common/test/prog ]
+if [ ! -f ./datas/test/prog ] || [ ! -f ./game/test/prog ] || [ ! -f ./gui/test/prog ] 
 then
 	echo "Compilez les tests !"
 	exit
@@ -17,11 +17,11 @@ fi
 
 opt=
 
-echo "lancement des test unitaires"
-echo
+#echo "lancement des test unitaires"
+#echo
 #$opt ./common/test/./prog
-./common/test/prog
-resultTest "common" $?
+#./common/test/prog
+#resultTest "common" $?
 
 echo
 #$opt ./datas/test/./prog

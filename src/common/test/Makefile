@@ -23,6 +23,8 @@ $(EXEC): $(OBJ)
 
 %.o: %.cpp
 	$(CC) -o $@ -c $< $(CFLAGS)
+	
+main.cpp: ../src/UnitTest.h
 
 .PHONY: cleanSimple clean 
 
