@@ -18,7 +18,7 @@
 
 namespace common{
 
-#define ALL_DISPLAY (bool)true
+#define ALL_DISPLAY (bool)false
 
 template<typename T>
 class UnitTest {

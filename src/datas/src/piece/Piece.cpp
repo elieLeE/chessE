@@ -66,6 +66,10 @@ bool Piece::isValideMove(const Move& iMove) const{
 			canTakeCase(iMove.getEndPosition());
 }
 
+bool Piece::canKillCasePiece(const Position& iPosition) const{
+	return canAccessCase(iPosition);
+}
+
 bool Piece::canTakeCase(const Position& iPosition) const{
 	const game::Echiquier& aEchiquier = game::Echiquier::getInstance();
 

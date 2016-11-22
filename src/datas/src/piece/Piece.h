@@ -46,8 +46,10 @@ public:
 	 * use when a new move is played
 	 */
 	virtual bool isValideMove(const Move& iMove) const;
+	virtual bool canKillCasePiece(const Position& iPosition) const;
 	virtual bool canAccessCase(const Position& iPosition) const = 0;
 	bool canTakeCase(const Position& iPosition) const;
+
 
 	/*
 	 * needed for IA and display possible move before play
