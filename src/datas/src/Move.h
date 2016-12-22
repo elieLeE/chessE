@@ -25,6 +25,8 @@ public:
 			ETypePiece iCapturedPiece = NO_TYPE, ETypeMove iTypeMove = NORMAL_MOVE);
 	virtual ~Move();
 
+	void setPositions(const Position& iPositionStart, const Position& iPositionEnd);
+
 	const Position& getStartPosition() const ;
 	void setPositionStart(const Position& iPosition);
 

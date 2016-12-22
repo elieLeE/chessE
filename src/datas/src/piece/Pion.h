@@ -19,12 +19,17 @@ public:
 	virtual ~Pion();
 
 	virtual bool isValideMove(const Move& iMove) const;
+	bool isSimpleMove(const Position& iPosition, const game::Echiquier& iEchiquier) const;
+	bool isSimpleCapture(const Position& iPosition, const game::Echiquier& iEchiquier) const;
+	bool isPassantCapture(const Position& iPosition, const game::Echiquier& iEchiquier) const;
+	bool verifSensMove(const Position& iPosition) const;
 
 	virtual void movePiece(const Position& iPosition);
 
+	virtual bool canKillCasePiece(const Position& iPosition) const;
 	virtual bool canAccessCase(const Position& iPosition) const;
 
-	bool getHasAlreadyMoved(void) const;
+	bool hasAlreadyMoved(void) const;
 	bool getSensCroissant(void) const;
 
 	//virtual const std::list <boost::shared_ptr <Move> > getPossibleMoves() const;

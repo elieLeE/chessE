@@ -20,6 +20,7 @@ public:
 	void testA(void) const;
 	void testB(void) const;
 	void testC(void) const;
+	void testD(void) const;
 };
 
 } /* namespace datas */

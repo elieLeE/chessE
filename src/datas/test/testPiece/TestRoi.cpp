@@ -31,13 +31,13 @@ void TestRoi::startTests(void){
 	UnitTest<TestRoi> unitT("TestRoi");
 
 	unitT.addMethod("testSimple", &datas::TestRoi::testSimple, NOT_YET_IMPLEMENTED);
-	unitT.addMethod("testEstMoveOKTheorique", &datas::TestRoi::testEstMoveOKTheorique);
+	unitT.addMethod("testEstMoveOKTheorique", &datas::TestRoi::testEstMoveOKTheorique, NOT_YET_IMPLEMENTED);
 	unitT.addMethod("testEstMoveOKPratique", &datas::TestRoi::testEstMoveOKPratique, NOT_YET_IMPLEMENTED);
 	unitT.addMethod("testIsValidaMove", &datas::TestRoi::testIsValidaMove, NOT_YET_IMPLEMENTED);
 	unitT.addMethod("testIsNormalMove", &datas::TestRoi::testNormal, NOT_YET_IMPLEMENTED);
-	unitT.addMethod("testEstPetitRock", &datas::TestRoi::testEstPetitRock);
-	unitT.addMethod("testEstGrandRock", &datas::TestRoi::testEstGrandRock);
-	unitT.addMethod("testPionPeuxTuerLeRoi", &datas::TestRoi::testPionPeuxTuerLeRoi);
+	unitT.addMethod("testEstPetitRock", &datas::TestRoi::testEstPetitRock, NOT_YET_IMPLEMENTED);
+	unitT.addMethod("testEstGrandRock", &datas::TestRoi::testEstGrandRock, NOT_YET_IMPLEMENTED);
+	unitT.addMethod("testPionPeuxTuerLeRoi", &datas::TestRoi::testPionPeuxTuerLeRoi, NOT_YET_IMPLEMENTED);
 	unitT.addMethod("testFouPeuxTuerLeRoi", &datas::TestRoi::testFouPeuxTuerLeRoi, NOT_YET_IMPLEMENTED);
 	unitT.addMethod("testTourPeuxTuerLeRoi", &datas::TestRoi::testTourPeuxTuerLeRoi, NOT_YET_IMPLEMENTED);
 	unitT.addMethod("testDamePeuxTuerLeRoi", &datas::TestRoi::testDamePeuxTuerLeRoi, NOT_YET_IMPLEMENTED);
@@ -56,8 +56,8 @@ void TestRoi::testIsValidaMove(void) const{
 }
 
 void TestRoi::testEstMoveOKTheorique(void) const{
-	Position aPositionStart(2, 5);
-	Position aPositionEnd(3, 5);
+	Position aPositionStart(5, 2);
+	Position aPositionEnd(5, 3);
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 
 	Roi* aRoi(new Roi(WHITE, aPositionStart));
@@ -78,9 +78,9 @@ void TestRoi::testNormal(void) const{
 void TestRoi::testEstPetitRock(void) const{
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 
-	Position aPositionStart(0, 4);
-	Position aPositionTour(0, 7);
-	Position aPositionEnd(0, 6);
+	Position aPositionStart(5, 1);
+	Position aPositionTour(8, 1);
+	Position aPositionEnd(7, 1);
 
 	Roi* aRoi(new Roi(WHITE, aPositionStart));
 	Tour* aTour1(new Tour(WHITE, aPositionTour));
@@ -95,9 +95,9 @@ void TestRoi::testEstPetitRock(void) const{
 void TestRoi::testEstGrandRock(void) const{
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 
-	Position aPositionStart(0, 4);
-	Position aPositionEnd(0, 1);
-	Position aPositionTour(0, 0);
+	Position aPositionStart(5, 1);
+	Position aPositionEnd(2, 1);
+	Position aPositionTour(1, 1);
 
 	Roi* aRoi(new Roi(WHITE, aPositionStart));
 	Tour* aTour1(new Tour(WHITE, aPositionTour));
@@ -110,8 +110,8 @@ void TestRoi::testEstGrandRock(void) const{
 }
 
 void TestRoi::testPionPeuxTuerLeRoi(void) const{
-	Position aPositionRoi(2, 5);
-	Position aPositionPion(3, 4);
+	Position aPositionRoi(5, 2);
+	Position aPositionPion(4, 3);
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 	aEchiquier.reset();
 

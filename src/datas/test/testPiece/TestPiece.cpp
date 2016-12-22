@@ -51,7 +51,7 @@ void TestPiece::testSimple(void) const{
 
 void TestPiece::testMovePiece(void) const{
 	Position aPositionStart(2, 2);
-	Position aPositionEnd(6, 2);
+	Position aPositionEnd(2, 6);
 	Tour* aTour(new Tour(WHITE, aPositionStart));
 
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
@@ -84,7 +84,7 @@ void TestPiece::testIsValideMove(void) const{
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 
 	Position aPositionStart(2, 2);
-	Position aPositionEnd(4, 2);
+	Position aPositionEnd(2, 4);
 	Piece* aTour(new Tour(WHITE, aPositionStart));
 	Move aMove(aPositionStart, aPositionEnd);
 
@@ -117,7 +117,7 @@ void TestPiece::testCanTakeCase() const{
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 
 	Position aPositionStart(2, 2);
-	Position aPositionEnd(4, 2);
+	Position aPositionEnd(2, 4);
 	Piece* aTour(new Tour(WHITE, aPositionStart));
 	Move aMove(aPositionStart, aPositionEnd);
 

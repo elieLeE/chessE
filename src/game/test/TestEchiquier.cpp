@@ -31,7 +31,7 @@ void TestEchiquier::startTest(){
 	unitT.addMethod("testKillAndRevivePiece", &game::TestEchiquier::testKillAndRevivePiece);
 	unitT.addMethod("testMovePiece", &game::TestEchiquier::testMovePiece);
 	unitT.addMethod("testReset", &game::TestEchiquier::testReset);
-	unitT.addMethod("testSetChangeMove", &game::TestEchiquier::testSetChangeMove);
+	unitT.addMethod("testDoChangeMove", &game::TestEchiquier::testDoChangeMove);
 	unitT.addMethod("testToStream", &game::TestEchiquier::testToStream);
 
 	unitT.launchMethods();
@@ -88,8 +88,8 @@ void TestEchiquier::testReset(void) const{
 	aEchiquier.setBegginingGameWithoutHandicap();
 	aEchiquier.reset();
 
-	for(int i=0; i<NBRE_LIGNE; ++i){
-		for(int j=0; j<NBRE_COLONNE; ++j){
+	for(int i=1; i<=NBRE_LIGNE; ++i){
+		for(int j=1; j<=NBRE_COLONNE; ++j){
 			Position aPos(i, j);
 			string aStr("TestEchiquier reset - hasNotPiece (" + std::to_string(i) + ", " + std::to_string(j) +")");
 			BOOST_ASSERT_MSG(!aEchiquier.getCase(aPos).hasPiece(), aStr.c_str());
@@ -97,28 +97,29 @@ void TestEchiquier::testReset(void) const{
 	}
 }
 
-void TestEchiquier::testSetChangeMove(void) const{
+void TestEchiquier::testDoChangeMove(void) const{
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 
-	Position aPositionStart(1, 5);
-	Position aPositionEnd(2, 5);
+	Position aPositionStart(1, 1);
+	Position aPositionEnd(1, 2);
 	Move aMove(aPositionStart, aPositionEnd);
 	datas::Pion* aPion(new datas::Pion(datas::WHITE, aPositionStart, true));
 
 	aEchiquier.addPiece(aPion);
 
-	aEchiquier.setChangeMove(aMove);
-	BOOST_ASSERT_MSG(!aEchiquier.getPossiblePriseEnPassant(), "TestEchiquier setChangeMove - priseEnPassantNotPossible");
+	aEchiquier.doChangeMove(aMove);
+	BOOST_ASSERT_MSG(!aEchiquier.getPossiblePriseEnPassant(), "TestEchiquier doChangeMove - priseEnPassantNotPossible");
 
-	aPositionEnd.setX(aPositionEnd.getX()+1);
+	aPositionEnd.setY(aPositionEnd.getY()+1);
 	aMove.setPositionEnd(aPositionEnd);
-	aEchiquier.setChangeMove(aMove);
-	BOOST_ASSERT_MSG(aEchiquier.getPossiblePriseEnPassant(), "TestEchiquier setChangeMove - priseEnPassantPossible");
+	aPion->movePiece(aPositionStart);
+	aEchiquier.doChangeMove(aMove);
+	BOOST_ASSERT_MSG(aEchiquier.getPossiblePriseEnPassant(), "TestEchiquier doChangeMove - priseEnPassantPossible");
 
-	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getStartPosition() == aMove.getStartPosition(), "TestEchiquier setChangeMove - startPosition");
-	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getEndPosition() == aMove.getEndPosition(), "TestEchiquier setChangeMove - endPosition");
-	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getTypeMove() == aMove.getTypeMove(), "TestEchiquier setChangeMove - typeMove");
-	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getCapturedPiece() == aMove.getCapturedPiece(), "TestEchiquier setChangeMove - hasCapturedPiece");
+	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getStartPosition() == aMove.getStartPosition(), "TestEchiquier doChangeMove - startPosition");
+	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getEndPosition() == aMove.getEndPosition(), "TestEchiquier doChangeMove - endPosition");
+	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getTypeMove() == aMove.getTypeMove(), "TestEchiquier doChangeMove - typeMove");
+	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getCapturedPiece() == aMove.getCapturedPiece(), "TestEchiquier doChangeMove - hasCapturedPiece");
 }
 
 void TestEchiquier::testToStream(void) const{
@@ -128,17 +129,20 @@ void TestEchiquier::testToStream(void) const{
 	aEchiquier.setBegginingGameWithoutHandicap();
 
 	aStr << aEchiquier;
+	string aExpected(""
+			"\nechiquier : \n"
+			" 8| T | C | F | R | D | F | C | T |\n"
+			" 7| P | P | P | P | P | P | P | P |\n"
+			" 6|   |   |   |   |   |   |   |   |\n"
+			" 5|   |   |   |   |   |   |   |   |\n"
+			" 4|   |   |   |   |   |   |   |   |\n"
+			" 3|   |   |   |   |   |   |   |   |\n"
+			" 2| P | P | P | P | P | P | P | P |\n"
+			" 1| T | C | F | D | R | F | C | T |\n"
+			"  --------------------------------\n"
+			"    a   b   c   d   e   f   g   h\n"
+			"    1   2   3   4   5   6   7   8\n"
+			"\n");
 
-	string aExpected(" 7| T | C | F | R | D | F | C | T |\n "
-			"6| P | P | P | P | P | P | P | P |\n "
-			"5|   |   |   |   |   |   |   |   |\n "
-			"4|   |   |   |   |   |   |   |   |\n "
-			"3|   |   |   |   |   |   |   |   |\n "
-			"2|   |   |   |   |   |   |   |   |\n "
-			"1| P | P | P | P | P | P | P | P |\n "
-			"0| T | C | F | D | R | F | C | T |\n  "
-			"--------------------------------\n    "
-			"a   b   c   d   e   f   g   h\n\n");
-
-	BOOST_ASSERT_MSG(aExpected.compare(aStr.str()), "testEchiquier ToStream");
+	BOOST_ASSERT_MSG(aExpected.compare(aStr.str())==0, "testEchiquier ToStream");
 }

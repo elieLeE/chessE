@@ -135,7 +135,7 @@ bool Roi::canBeKilled(const Position& iPosition) const{
 
 	for( auto it = aEchiquier.getAllPiecesJ1().begin(); aBool && (it != aEchiquier.getAllPiecesJ1().end()) ; ++it ){
 		if(it->get()->isAlive()){
-			aBool = aBool && it->get()->canAccessCase(iPosition);
+			aBool = aBool && it->get()->canKillCasePiece(iPosition);
 		}
 	}
 
@@ -148,7 +148,7 @@ bool Roi::pionPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position&
 }
 
 bool Roi::canAccessCase(const Position& iPosition) const{
-	return (_position.evaluateDistance(iPosition) < 2);
+	return (_position.evaluateDistance(iPosition) <= 2);
 }
 
 const std::list <boost::shared_ptr <Move> > Roi::getPossibleMoves() const {

@@ -7,6 +7,7 @@
 
 #include "Cavalier.h"
 #include "../typeDefine/TypePiece.h"
+#include "../typeDefine/TypeMove.h"
 #include "../typeDefine/PieceValue.h"
 
 namespace datas {
@@ -24,7 +25,7 @@ bool Cavalier::isValideMove(const Move& iMove) const{
 }
 
 bool Cavalier::canAccessCase(const Position& iPosition) const{
-	return (_position.evaluateDistance(iPosition) == 5);
+	return (_position.evaluateDistance(iPosition) == distanceMove(CAVALIER_MOVE));
 }
 
 }

@@ -17,10 +17,13 @@ public:
 
 	static void startTests(void);
 
-	void testSimple(void) const;
+	void testVerifSensMove(void) const;
 	void testMovePiece(void) const;
+	void testCanKillCasePiece(void) const;
 	void testCanAccessCase(void) const;
-	void testIsValideMove(void) const;
+	void testIsSimpleMove(void) const;
+	void testIsSimpleCapture(void) const;
+	void testIsPassantCapture(void) const;
 	void testToStream(void) const;
 };
 

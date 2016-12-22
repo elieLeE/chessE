@@ -14,11 +14,17 @@ namespace datas{
 
 typedef enum ETypeMove{
 	NORMAL_MOVE = 0,
-	PRISE_EN_PASSANT = 2,
-	PETIT_ROCK = 4,
-	GRAND_ROCK = 9,
+	PRISE_EN_PASSANT,
+	SIMPLE_CAPTURE_PION,
+	SIMPLE_MOVE_PION,
+	DOUBLE_MOVE_PION,
+	PETIT_ROCK,
+	GRAND_ROCK,
+	CAVALIER_MOVE,
 	INCORRECT_MOVE
 }ETypeMove;
+
+int distanceMove(const ETypeMove iTypeMove);
 
 std::ostream& operator<<(std::ostream& os, const ETypeMove iTypeMove);
 

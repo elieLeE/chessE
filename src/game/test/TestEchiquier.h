@@ -23,7 +23,7 @@ public:
 	void testAddPiece(void) const;
 	void testKillAndRevivePiece(void) const;
 	void testReset(void) const;
-	void testSetChangeMove(void) const;
+	void testDoChangeMove(void) const;
 	void testToStream(void) const;
 };
 

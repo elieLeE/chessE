@@ -28,9 +28,10 @@ void TestUnitTest::startTests(){
 	unitT.launchMethods();
 
 	unitT.addMethod("testB", &common::TestUnitTest::testB, TO_LAUNCH);
-	unitT.addMethod("testC => OK", &common::TestUnitTest::testC, NOT_YET_IMPLEMENTED);
-	unitT.addMethod("testD => OK", 0, NOT_YET_IMPLEMENTED);
-	unitT.addMethod("testE => OK", 0, NOT_TO_LAUNCH);
+	unitT.addMethod("testC", &common::TestUnitTest::testC, TO_LAUNCH, true);
+	unitT.addMethod("testD => OK", &common::TestUnitTest::testD, NOT_YET_IMPLEMENTED);
+	unitT.addMethod("testE => OK", 0, NOT_YET_IMPLEMENTED);
+	unitT.addMethod("testF => OK", 0, NOT_TO_LAUNCH);
 
 	unitT.launchMethods();
 }
@@ -43,5 +44,10 @@ void TestUnitTest::testB(void) const{
 	BOOST_ASSERT_MSG(true, "testB");
 }
 
-void TestUnitTest::testC(void) const
+void TestUnitTest::testC(void) const{
+	cout << "\taffichage attendu " ;
+	BOOST_ASSERT_MSG(true, "testB");
+}
+
+void TestUnitTest::testD(void) const
 {}

@@ -54,19 +54,19 @@ bool Echiquier::getPossiblePriseEnPassant() const{
 }
 
 const datas::Case& Echiquier::getCase(int ligne, int col) const{
-	return _echiquier[ligne][col];
+	return _echiquier[col-1][ligne-1];
 }
 
 datas::Case& Echiquier::accessCase(int ligne, int col){
-	return _echiquier[ligne][col];
+	return _echiquier[col-1][ligne-1];
 }
 
 const datas::Case& Echiquier::getCase(const datas::Position& iPosition) const{
-	return _echiquier[iPosition.getX()][iPosition.getY()];
+	return _echiquier[iPosition.getY()-1][iPosition.getX()-1];
 }
 
 datas::Case& Echiquier::accessCase(const datas::Position& iPosition){
-	return _echiquier[iPosition.getX()][iPosition.getY()];
+	return _echiquier[iPosition.getY()-1][iPosition.getX()-1];
 }
 
 const datas::Move& Echiquier::getLastMove() const{
@@ -78,21 +78,22 @@ const datas::Move& Echiquier::getLastMove() const{
  * necessaire pour setter si move est un rock ou priseEnPassant
  * peux pas le faire dans validMove (encore moins bien dans conception)
  */
-void Echiquier::setChangeMove(const datas::Move& iMove){
+void Echiquier::doChangeMove(const datas::Move& iMove){
 	_possiblePriseEnPassant = false;
 	const datas::PiecePtr& aPieceMove = this->getCase(iMove.getStartPosition()).getPiece();
 
 	if(aPieceMove){
 		if(aPieceMove->getTypePiece() == datas::PION_TYPE){
-			if(std::abs(iMove.getStartPosition().getX() - iMove.getEndPosition().getX()) == 2){
+			if(iMove.getStartPosition().diffCol(iMove.getEndPosition()) == 2){
 				_possiblePriseEnPassant = true;
 			}
 		}
 		_lastMove = iMove;
+		accessCase(iMove.getStartPosition()).accessPiece()->movePiece(iMove.getEndPosition());
 	}
 	else{
 		//erreur ou debug
-		std::cout << "Echiquier::setChangeMove - incorrecte Move" << std::endl;
+		std::cout << "Echiquier::doChangeMove - incorrecte Move" << std::endl;
 	}
 
 
@@ -166,82 +167,82 @@ void Echiquier::setBegginingGameWithoutHandicap(){
 	datas::Position aPosition;
 
 	//Pions
-	for(int i = 0; i<NBRE_COLONNE; i++){
-		aPosition.setPosition(1, i);
+	for(int i = 1; i<=NBRE_COLONNE; i++){
+		aPosition.setPosition(i, 2);
 		datas::PiecePtr aPionWhite(new datas::Pion(datas::WHITE, aPosition, true));
 		addPiece(aPionWhite);
 
-		aPosition.setPosition(6, i);
+		aPosition.setPosition(i, 7);
 		datas::PiecePtr aPionBlack(new datas::Pion(datas::BLACK, aPosition, false));
 		addPiece(aPionBlack);
 	}
 
 	//Tours
-	aPosition.setPosition(0, 0);
+	aPosition.setPosition(1, 1);
 	datas::PiecePtr aTourWhiteLeft(new datas::Tour(datas::WHITE, aPosition));
 	addPiece(aTourWhiteLeft);
 
-	aPosition.setPosition(0, 7);
+	aPosition.setPosition(8, 1);
 	datas::PiecePtr aTourWhiteRight(new datas::Tour(datas::WHITE, aPosition));
 	addPiece(aTourWhiteRight);
 
-	aPosition.setPosition(7, 0);
+	aPosition.setPosition(1, 8);
 	datas::PiecePtr aTourBlackLeft(new datas::Tour(datas::BLACK, aPosition));
 	addPiece(aTourBlackLeft);
 
-	aPosition.setPosition(7, 7);
+	aPosition.setPosition(8, 8);
 	datas::PiecePtr aTourBlackRight(new datas::Tour(datas::BLACK, aPosition));
 	addPiece(aTourBlackRight);
 
 	//Cavaliers
-	aPosition.setPosition(0, 1);
+	aPosition.setPosition(2, 1);
 	datas::PiecePtr aCavalierWhiteLeft(new datas::Cavalier(datas::WHITE, aPosition));
 	addPiece(aCavalierWhiteLeft);
 
-	aPosition.setPosition(0, 6);
+	aPosition.setPosition(7, 1);
 	datas::PiecePtr aCavalierWhiteRight(new datas::Cavalier(datas::WHITE, aPosition));
 	addPiece(aCavalierWhiteRight);
 
-	aPosition.setPosition(7, 1);
+	aPosition.setPosition(2, 8);
 	datas::PiecePtr aCavalierBlackLeft(new datas::Cavalier(datas::BLACK, aPosition));
 	addPiece(aCavalierBlackLeft);
 
-	aPosition.setPosition(7, 6);
+	aPosition.setPosition(7, 8);
 	datas::PiecePtr aCavalierBlackRight(new datas::Cavalier(datas::BLACK, aPosition));
 	addPiece(aCavalierBlackRight);
 
 	//Fou
-	aPosition.setPosition(0, 2);
+	aPosition.setPosition(3, 1);
 	datas::PiecePtr aFouWhiteLeft(new datas::Fou(datas::WHITE, aPosition));
 	addPiece(aFouWhiteLeft);
 
-	aPosition.setPosition(0, 5);
+	aPosition.setPosition(6, 1);
 	datas::PiecePtr aFouWhiteRight(new datas::Fou(datas::WHITE, aPosition));
 	addPiece(aFouWhiteRight);
 
-	aPosition.setPosition(7, 2);
+	aPosition.setPosition(3, 8);
 	datas::PiecePtr aFouBlackLeft(new datas::Fou(datas::BLACK, aPosition));
 	addPiece(aFouBlackLeft);
 
-	aPosition.setPosition(7, 5);
+	aPosition.setPosition(6, 8);
 	datas::PiecePtr aFouBlackRight(new datas::Fou(datas::BLACK, aPosition));
 	addPiece(aFouBlackRight);
 
 	//Dame
-	aPosition.setPosition(0, 3);
+	aPosition.setPosition(4, 1);
 	datas::PiecePtr aDameWhite(new datas::Dame(datas::WHITE, aPosition));
 	addPiece(aDameWhite);
 
-	aPosition.setPosition(7, 4);
+	aPosition.setPosition(5, 8);
 	datas::PiecePtr aDameBlack(new datas::Dame(datas::WHITE, aPosition));
 	addPiece(aDameBlack);
 
 	//Roi
-	aPosition.setPosition(0, 4);
+	aPosition.setPosition(5, 1);
 	datas::PiecePtr aRoiWhite(new datas::Roi(datas::BLACK, aPosition));
 	addPiece(aRoiWhite);
 
-	aPosition.setPosition(7, 3);
+	aPosition.setPosition(4, 8);
 	datas::PiecePtr aRoiBlack(new datas::Roi(datas::BLACK, aPosition));
 	addPiece(aRoiBlack);
 
@@ -249,9 +250,11 @@ void Echiquier::setBegginingGameWithoutHandicap(){
 }
 
 std::ostream& operator<<(std::ostream& os, const Echiquier& iEchiquier){
-	for(int i=NBRE_LIGNE-1; i>=0; --i){
-		os << " " << i << "|";
-		for(int j=0; j<NBRE_COLONNE; j++){
+	os << std::endl << "echiquier : " << std::endl;
+
+	for(int j=NBRE_LIGNE; j>0; --j){
+		os << " " << j << "|";
+		for(int i=1; i<=NBRE_COLONNE; i++){
 			os << " ";
 			if(iEchiquier.getCase(i, j).hasPiece()){
 				os << typePieceToString(iEchiquier.getCase(i, j).getPiece()->getTypePiece(), true);
@@ -266,6 +269,8 @@ std::ostream& operator<<(std::ostream& os, const Echiquier& iEchiquier){
 	}
 	os << "  --------------------------------" << std::endl;
 	os << "    a   b   c   d   e   f   g   h" << std::endl;
+	os << "    1   2   3   4   5   6   7   8" << std::endl;
+	os << std::endl;
 
 	return os;
 }

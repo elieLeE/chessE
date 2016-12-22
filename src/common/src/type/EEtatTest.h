@@ -12,6 +12,7 @@ namespace common{
 
 typedef enum EEtatTest{
 	TO_LAUNCH,
+	//TO_LAUNCH_WITH_DISPLAY
 	NOT_TO_LAUNCH,
 	NOT_YET_IMPLEMENTED
 }EEtatTest;

@@ -15,6 +15,7 @@ std::string typePieceToString(const ETypePiece iTypePiece, const bool oneLetter)
 	case datas::ROI_TYPE:
 		aStr.assign(oneLetter?"R":"Roi");
 		break;
+
 	case datas::DAME_TYPE:
 		aStr.assign(oneLetter?"D":"Dame");
 		break;

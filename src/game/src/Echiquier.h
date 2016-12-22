@@ -63,7 +63,7 @@ public:
 
 	const datas::Move& getLastMove() const;
 
-	void setChangeMove(const datas::Move& iMove);
+	void doChangeMove(const datas::Move& iMove);
 
 	//supprime toutes les pieces
 	void reset();

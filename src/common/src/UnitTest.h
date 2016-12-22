@@ -26,7 +26,7 @@ public:
 	UnitTest(const std::string aStr, const bool iDisplay=false);
 	virtual ~UnitTest();
 
-	void addMethod(std::string, void (T::*ptr)(void) const, const EEtatTest iEtatTest=TO_LAUNCH);
+	void addMethod(std::string, void (T::*ptr)(void) const, const EEtatTest iEtatTest=TO_LAUNCH, const bool iDisplay = false);
 	void launchMethods(void) ;
 
 private:
@@ -34,14 +34,15 @@ private:
 		std::string str;
 		void (T::*ptr)(void) const;
 		const EEtatTest etatTest;
+		bool display;
 	};
 
 	void launchMethod(const typeListUnitT iUnitTest) ;
-	void display(std::string iStr, bool iBool = true);
+	void display(std::string iStr, bool iBool = true) const;
 	void displayClassName(void);
 	void display(const EEtatTest iEtatTest, const std::string iLaunchStr,
-			const std::string iNotLaunchStr, const std::string iNotImplementStr) const;
-	void display(const EEtatTest iEtatTest, const std::string iStr);
+			const std::string iNotLaunchStr, const std::string iNotImplementStr, const bool forceDisplay = false) const;
+	void display(const EEtatTest iEtatTest, const std::string iStr, const bool forceDisplay = false);
 
 	bool displayAll(void) const;
 	bool displayImplement(void) const;

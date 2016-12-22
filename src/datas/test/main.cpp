@@ -25,6 +25,10 @@
 
 #include "TestMove.h"
 
+#include "TestPartie.h"
+
+#include "TestOptionsGame.h"
+
 using namespace std;
 using namespace datas;
 
@@ -35,7 +39,7 @@ int main() {
 	TestCase::startTest();
 
 	TestCavalier::startTests();
-	TestDame::startTests();
+	//TestDame::startTests();
 	TestFou::startTests();
 	TestPiece::startTests();
 	TestPion::startTests();
@@ -47,6 +51,10 @@ int main() {
 	TestJoueur::startTests();
 	TestJoueurHumain::startTests();
 	testJoueurIA::startTests();
+
+	TestPartie::startTests();
+
+	TestOptionsGame::startTests();
 
 	cout << "all OK" << endl << endl;
 

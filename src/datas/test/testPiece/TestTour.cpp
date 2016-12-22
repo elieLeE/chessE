@@ -7,6 +7,7 @@
 
 #include "TestTour.h"
 #include "../../src/piece/Tour.h"
+#include "../../src/piece/Dame.h"
 #include "../../../game/src/Echiquier.h"
 #include "../../../common/src/UnitTest.h"
 
@@ -37,8 +38,8 @@ void TestTour::startTests(void){
 void TestTour::testIsValideMove(void) const{
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 
-	Position aPositionStart(2, 5);
-	Position aPositionEnd(7, 5);
+	Position aPositionStart(5, 2);
+	Position aPositionEnd(5, 7);
 	Move aMove(aPositionStart, aPositionEnd);
 	Tour *aTour(new Tour(WHITE, aPositionStart));
 
@@ -65,9 +66,10 @@ void TestTour::testIsValideMove(void) const{
 
 void TestTour::testCanAccess(void)const{
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
+	cout << endl;
 
-	Position aPositionStart(2, 5);
-	Position aPositionEnd(2, 7);
+	Position aPositionStart(5, 2);
+	Position aPositionEnd(7, 2);
 	Tour* aTour(new Tour(WHITE, aPositionStart));
 	aEchiquier.addPiece(aTour);
 
@@ -75,28 +77,29 @@ void TestTour::testCanAccess(void)const{
 	BOOST_ASSERT_MSG(aTour->canAccessCase(aPositionEnd), "TestTour canAccess - test sameLigne");
 
 	//test canAccessCase ok => suivant la colonne
-	aPositionEnd.setPosition(7, 5);
+	aPositionEnd.setPosition(5, 7);
 	BOOST_ASSERT_MSG(aTour->canAccessCase(aPositionEnd), "TestTour canAccess - test sameCol");
 
 	//test canAccessCase not ok => ligne et colonne differents
-	aPositionEnd.setPosition(6, 4);
+	aPositionEnd.setPosition(4, 6);
 	BOOST_ASSERT_MSG(!aTour->canAccessCase(aPositionEnd), "TestTour canAccess - different line and col");
 
 	//test canAccessCase not ok => piece sur le chemin (noire ou blanche)
-	aPositionEnd.setPosition(7, 5);
-	Tour* aTour2(new Tour(WHITE, Position(5, 5)));
-	aEchiquier.addPiece(aTour2);
+	aPositionEnd.setPosition(5, 7);
+	Dame* aDame(new Dame(WHITE, Position(5, 5)));
+	aEchiquier.addPiece(aDame);
 	BOOST_ASSERT_MSG(!aTour->canAccessCase(aPositionEnd), "TestTour canAccess - piece sur le chemin, ligne");
 
-	aPositionEnd.setPosition(2, 1);
-	Tour* aTour3(new Tour(WHITE, Position(2, 4)));
-	aEchiquier.addPiece(aTour3);
+	aPositionEnd.setPosition(1, 2);
+	Dame* aDame2(new Dame(WHITE, Position(4, 2)));
+	aEchiquier.addPiece(aDame2);
+	//cout << "echiquier : " << aEchiquier << endl;
 	BOOST_ASSERT_MSG(!aTour->canAccessCase(aPositionEnd), "TestTour canAccess - piece sur le chemin, col");
 }
 
 void TestTour::testMovePiece(void) const{
-	Position aPositionStart(2, 5);
-	Position aPositionEnd(7, 5);
+	Position aPositionStart(5, 2);
+	Position aPositionEnd(5, 7);
 	Tour *aTour = new Tour(WHITE, aPositionStart);
 
 	BOOST_ASSERT_MSG(!aTour->getHasAlreadyMoved(), "TestTour MovePiece - hasNotMoved");

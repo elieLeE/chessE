@@ -25,6 +25,11 @@ Move::Move(const Position& iPositionStart, const Position& iPositionEnd, ETypePi
 Move::~Move()
 {}
 
+void Move::setPositions(const Position& iPositionStart, const Position& iPositionEnd){
+	setPositionStart(iPositionStart);
+	setPositionEnd(iPositionEnd);
+}
+
 const Position& Move::getStartPosition() const{
 	return _start;
 }
@@ -86,25 +91,25 @@ void Move::setMoveProperties(){
 
 	if(aPiece){
 		if((aPiece->getTypePiece() == PION_TYPE) &&
-				(evaluateDistance() ==  PRISE_EN_PASSANT) &&
+				(evaluateDistance() ==  distanceMove(PRISE_EN_PASSANT)) &&
 				!aEchiquier.getCase(_end).hasPiece()){
 			_typeMove = PRISE_EN_PASSANT;
 			_capturedPiece = PION_TYPE;
 		}
 		else if(aPiece->getTypePiece() == ROI_TYPE){
 			int dist = evaluateDistance();
-			if(dist == PETIT_ROCK){
+			if(dist == distanceMove(PETIT_ROCK)){
 				_typeMove = PETIT_ROCK;
 			}
-			else if(dist == GRAND_ROCK){
+			else if(dist == distanceMove(GRAND_ROCK)){
 				_typeMove = GRAND_ROCK;
 			}
 		}
 	}
-	if(aEchiquier.getCase(_end).hasPiece()){
+	if((_capturedPiece == NO_TYPE) && aEchiquier.getCase(_end).hasPiece()){
 		_capturedPiece = aEchiquier.getCase(_end).getPiece()->getTypePiece();
 	}
-	aEchiquier.setChangeMove(*this);
+	//aEchiquier.doChangeMove(*this);
 }
 
 void Move::operator=(const Move& iMove){

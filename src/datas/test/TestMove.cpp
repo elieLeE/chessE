@@ -121,8 +121,8 @@ void TestMove::testIsValideMove(void) const{
 }
 
 void TestMove::testSetMoveProperties(void) const{
-	Position aPositionStart(2, 2);
-	Position aPositionEnd(2, 3);
+	Position aPositionStart(3, 3);
+	Position aPositionEnd(4, 3);
 	Move aMove(aPositionStart, aPositionEnd);
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 
@@ -141,10 +141,9 @@ void TestMove::testSetMoveProperties(void) const{
 	BOOST_ASSERT_MSG(aMove.getTypeMove() == NORMAL_MOVE, "TestMove typeMove - NORMAL_MOVE");
 
 	aMove.setCapturedPiece(NO_TYPE);
-	aPositionStart.setPosition(0, 4);
-	aPositionEnd.setPosition(0, 6);
-	aMove.setPositionStart(aPositionStart);
-	aMove.setPositionEnd(aPositionEnd);
+	aPositionStart.setPosition(5, 1);
+	aPositionEnd.setPosition(7, 1);
+	aMove.setPositions(aPositionStart, aPositionEnd);
 
 	//petit rock move
 	Roi *aRoi(new Roi(WHITE, aPositionStart));
@@ -154,25 +153,34 @@ void TestMove::testSetMoveProperties(void) const{
 	BOOST_ASSERT_MSG(aMove.getTypeMove() == PETIT_ROCK, "TestMove typeMove - PETIT_ROCK");
 
 	//grand rock move
-	aMove.setPositionEnd(Position(0, 1));
+	aMove.setPositionEnd(Position(2, 1));
 	aMove.setMoveProperties();
 	BOOST_ASSERT_MSG(!aMove.hasCapturePiece(), "TestMove capturedPiece - GRAND_ROCK");
 	BOOST_ASSERT_MSG(aMove.getTypeMove() == GRAND_ROCK, "TestMove typeMove - GRAND_ROCK");
 
-	aPositionStart.setPosition(2, 0);
-	aPositionEnd.setPosition(3, 1);
+	// ??
+	/*aPositionStart.setPosition(7, 7);
+	aPositionEnd.setPosition(6, 5);
 	aMove.setPositionStart(aPositionStart);
 	aMove.setPositionEnd(aPositionEnd);
 	Pion *aPion(new Pion(WHITE, aPositionStart, true));
 	Pion *aPion2(new Pion(WHITE, aPositionEnd, true));
 	aEchiquier.addPiece(aPion);
 	aEchiquier.addPiece(aPion2);
+	std::cout << aEchiquier;
 	aMove.setMoveProperties();
 	BOOST_ASSERT_MSG(aMove.hasCapturePiece(), "TestMove capturedPiece - NORMAL_MOVE/prise en passant");
-	BOOST_ASSERT_MSG(aMove.getTypeMove() == NORMAL_MOVE, "TestMove typeMove - NORMAL_MOVE/prise en passant");
+	BOOST_ASSERT_MSG(aMove.getTypeMove() == NORMAL_MOVE, "TestMove typeMove - NORMAL_MOVE/prise en passant");*/
 
+	//PRISE EN PASSANT
 	aMove.setCapturedPiece(NO_TYPE);
-	aPion2->movePiece(Position(5, 1));
+	Pion *aPion(new Pion(WHITE, Position(7, 2), true));
+	Pion *aPion2(new Pion(WHITE, Position(6, 4), true));
+	aEchiquier.addPiece(aPion);
+	aEchiquier.addPiece(aPion2);
+	aPion->movePiece(Position(7, 4));
+	aMove.setPositionStart(Position(6, 4));
+	aMove.setPositionEnd(Position(7, 5));
 	aMove.setMoveProperties();
 	BOOST_ASSERT_MSG(aMove.hasCapturePiece(), "TestMove capturedPiece - PRISE_EN_PASSANT");
 	BOOST_ASSERT_MSG(aMove.getTypeMove() == PRISE_EN_PASSANT, "TestMove typeMove - PRISE_EN_PASSANT");

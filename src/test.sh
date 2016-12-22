@@ -65,3 +65,8 @@ resultTest "gui" $?
 
 echo 
 echo "All tests OK"
+
+echo 
+echo 
+echo "aFaire : "
+more aResoudre

@@ -31,8 +31,8 @@ void TestCavalier::startTests(void){
 }
 
 void TestCavalier::testCanAccess(void) const{
-	Position aPositionStart(2, 5);
-	Position aPositionEnd(4, 4);
+	Position aPositionStart(6, 3);
+	Position aPositionEnd(5, 5);
 	Move aMove(aPositionStart, aPositionEnd);
 	Cavalier aCavalier(WHITE, aPositionStart);
 
@@ -41,13 +41,13 @@ void TestCavalier::testCanAccess(void) const{
 	BOOST_ASSERT_MSG(aCavalier.isValideMove(aMove), "TestCavalier MovePiece - test position 1");
 
 	//test mouvement OK
-	aPositionEnd.setPosition(0, 6);
+	aPositionEnd.setPosition(7, 1);
 	aMove.setPositionEnd(aPositionEnd);
 	BOOST_ASSERT_MSG(aCavalier.canAccessCase(aPositionEnd), "TestCavalier canAccess - test position 2");
 	BOOST_ASSERT_MSG(aCavalier.isValideMove(aMove), "TestCavalier MovePiece - test position 2");
 
 	//test mouvement not OK
-	aPositionEnd.setPosition(7, 3);
+	aPositionEnd.setPosition(4, 8);
 	aMove.setPositionEnd(aPositionEnd);
 	BOOST_ASSERT_MSG(!aCavalier.canAccessCase(aPositionEnd), "TestCavalier canAccess - cannot access");
 	BOOST_ASSERT_MSG(!aCavalier.isValideMove(aMove), "TestCavalier MovePiece - not valide move");
@@ -56,8 +56,8 @@ void TestCavalier::testCanAccess(void) const{
 void TestCavalier::testIsValideMove(void) const{
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 
-	Position aPositionStart(2, 5);
-	Position aPositionEnd(4, 4);
+	Position aPositionStart(6, 3);
+	Position aPositionEnd(5, 5);
 	//Move aMove(Position(aPositionStart.getX()+1, aPositionStart.getY()), aPositionEnd);
 	Move aMove(aPositionStart, aPositionEnd);
 
