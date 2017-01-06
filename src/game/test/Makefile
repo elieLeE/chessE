@@ -10,7 +10,7 @@
 CC=g++
 CFLAGS=-std=c++11 -Wextra -Wall -g# -ansi -pedantic
 LDFLAGS=
-EXEC=prog
+EXEC=test
 projet=../../
 SRC=$(shell find $(projet) -name "*.cpp" -not -path "../../main.cpp" -not -path "*datas/test*" -not -path "*gui/test*" -not -path "*common/test*" -not -path "*common/src/UnitTest.cpp") 
 OBJ= $(SRC:.cpp=.o)
