@@ -26,7 +26,7 @@ TestPion::~TestPion()
 {}
 
 void TestPion::startTests(void){
-	UnitTest<TestPion> unitT("TestPion", true);
+	UnitTest<TestPion> unitT("TestPion");
 
 	unitT.addMethod("testMovePiece", &datas::TestPion::testMovePiece);
 	unitT.addMethod("testVerifSensMove", &datas::TestPion::testVerifSensMove);
@@ -43,32 +43,32 @@ void TestPion::startTests(void){
 void TestPion::testMovePiece(void) const{
 	Position aPositionStart(7, 2);
 	Position aPositionEnd(7, 3);
-	Pion *aPion(new Pion(WHITE, aPositionStart, true));
+	Pion aPion(WHITE, aPositionStart, true);
 
-	BOOST_ASSERT_MSG(!aPion->hasAlreadyMoved(), "TestPion movePiece - hasAlreadyMoved false");
-	BOOST_ASSERT_MSG(aPion->getPosition() == aPositionStart, "TestPion movePiece - position before move");
+	BOOST_ASSERT_MSG(!aPion.hasAlreadyMoved(), "TestPion movePiece - hasAlreadyMoved false");
+	BOOST_ASSERT_MSG(aPion.getPosition() == aPositionStart, "TestPion movePiece - position before move");
 
-	aPion->movePiece(aPositionEnd);
-	BOOST_ASSERT_MSG(aPion->hasAlreadyMoved(), "TestPion movePiece - hasAlreadyMoved true");
-	BOOST_ASSERT_MSG(aPion->getPosition() == aPositionEnd, "TestPion movePiece - position after move");
+	aPion.movePiece(aPositionEnd);
+	BOOST_ASSERT_MSG(aPion.hasAlreadyMoved(), "TestPion movePiece - hasAlreadyMoved true");
+	BOOST_ASSERT_MSG(aPion.getPosition() == aPositionEnd, "TestPion movePiece - position after move");
 }
 
 void TestPion::testVerifSensMove(void) const{
 	Position aPositionStart(7, 2);
 	Position aPositionEnd(7, 3);
-	Pion *aPion(new Pion(WHITE, aPositionStart, true));
+	Pion aPion(WHITE, aPositionStart, true);
 
-	BOOST_ASSERT_MSG(aPion->verifSensMove(aPositionEnd), "TestPion verifSensMove - sens croissant / move OK");
+	BOOST_ASSERT_MSG(aPion.verifSensMove(aPositionEnd), "TestPion verifSensMove - sens croissant / move OK");
 
 	aPositionEnd.setPosition(7, 1);
-	BOOST_ASSERT_MSG(!aPion->verifSensMove(aPositionEnd), "TestPion verifSensMove - sens croissant / move not OK");
+	BOOST_ASSERT_MSG(!aPion.verifSensMove(aPositionEnd), "TestPion verifSensMove - sens croissant / move not OK");
 
 	aPositionEnd.setPosition(7, 3);
-	Pion *aPion2(new Pion(BLACK, aPositionStart, false));
-	BOOST_ASSERT_MSG(!aPion2->verifSensMove(aPositionEnd), "TestPion verifSensMove - sens decroissant / move not OK");
+	Pion aPion2(BLACK, aPositionStart, false);
+	BOOST_ASSERT_MSG(!aPion2.verifSensMove(aPositionEnd), "TestPion verifSensMove - sens decroissant / move not OK");
 
 	aPositionEnd.setPosition(7, 1);
-	BOOST_ASSERT_MSG(aPion2->verifSensMove(aPositionEnd), "TestPion verifSensMove - sens decroissant / move OK");
+	BOOST_ASSERT_MSG(aPion2.verifSensMove(aPositionEnd), "TestPion verifSensMove - sens decroissant / move OK");
 }
 
 void TestPion::testIsSimpleMove(void) const{
@@ -261,12 +261,12 @@ void TestPion::testCanAccessCase(void) const{
 }
 
 void TestPion::testCanKillCasePiece(void) const{
-	Pion *aPion(new Pion(WHITE, Position(2, 2), true));
+	Pion aPion(WHITE, Position(2, 2), true);
 
-	BOOST_ASSERT_MSG(!aPion->canKillCasePiece(Position(5, 5)), "testPion CanKillCasePiece - wrong position - not accessible");
-	BOOST_ASSERT_MSG(!aPion->canKillCasePiece(Position(3, 2)), "testPion CanKillCasePiece - wrong position - not diagonal");
-	BOOST_ASSERT_MSG(!aPion->canKillCasePiece(Position(1, 1)), "testPion CanKillCasePiece - wrong position - wrong way");
-	BOOST_ASSERT_MSG(aPion->canKillCasePiece(Position(3, 3)), "testPion CanKillCasePiece - OK");
+	BOOST_ASSERT_MSG(!aPion.canKillCasePiece(Position(5, 5)), "testPion CanKillCasePiece - wrong position - not accessible");
+	BOOST_ASSERT_MSG(!aPion.canKillCasePiece(Position(3, 2)), "testPion CanKillCasePiece - wrong position - not diagonal");
+	BOOST_ASSERT_MSG(!aPion.canKillCasePiece(Position(1, 1)), "testPion CanKillCasePiece - wrong position - wrong way");
+	BOOST_ASSERT_MSG(aPion.canKillCasePiece(Position(3, 3)), "testPion CanKillCasePiece - OK");
 }
 
 void TestPion::testToStream(void) const{

@@ -46,13 +46,12 @@ bool Pion::canAccessCase(const Position& iPosition) const{
 			(isSimpleMove(iPosition, aEchiquier) || isSimpleCapture(iPosition, aEchiquier) || isPassantCapture(iPosition, aEchiquier));
 
 	return aBool;
-
 }
 
 bool Pion::isSimpleMove(const Position& iPosition, const game::Echiquier& iEchiquier) const{
 	return ((_position.evaluateDistance(iPosition) == distanceMove(SIMPLE_MOVE_PION))
 					|| ((_position.evaluateDistance(iPosition) == distanceMove(DOUBLE_MOVE_PION)) && !_hasAlreadyMoved)) &&
-			_position.sameLigne(iPosition) &&
+			_position.sameCol(iPosition) &&
 			(!iEchiquier.getCase(iPosition).hasPiece());
 }
 
@@ -75,7 +74,7 @@ bool Pion::isPassantCapture(const Position& iPosition, const game::Echiquier& iE
 				(aSecondPiece->getTypePiece() == PION_TYPE) &&
 				(aSecondPiece->getColor() != getColor()) &&
 				(_position.evaluateDistance(iPosition) == distanceMove(PRISE_EN_PASSANT)) &&
-				(iPosition.getX() == iEchiquier.getLastMove().getEndPosition().getX());
+				iPosition.sameCol(iEchiquier.getLastMove().getEndPosition());
 	}
 
 	return aBool;
