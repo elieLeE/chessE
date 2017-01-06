@@ -102,10 +102,10 @@ void TestTour::testMovePiece(void) const{
 	Position aPositionEnd(5, 7);
 	Tour *aTour = new Tour(WHITE, aPositionStart);
 
-	BOOST_ASSERT_MSG(!aTour->getHasAlreadyMoved(), "TestTour MovePiece - hasNotMoved");
+	BOOST_ASSERT_MSG(!aTour->hasAlreadyMoved(), "TestTour MovePiece - hasNotMoved");
 
 	aTour->movePiece(aPositionEnd);
-	BOOST_ASSERT_MSG(aTour->getHasAlreadyMoved(), "TestTour MovePiece - hasMoved");
+	BOOST_ASSERT_MSG(aTour->hasAlreadyMoved(), "TestTour MovePiece - hasMoved");
 
 	delete aTour;
 }

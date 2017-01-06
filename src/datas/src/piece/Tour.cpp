@@ -17,8 +17,8 @@
 namespace datas{
 
 Tour::Tour(const EColor iColor, Position iPosition):
-						Piece(iColor, iPosition, TOUR_TYPE, TOUR_VALUE),
-						_hasAlreadyMoved(false)
+								Piece(iColor, iPosition, TOUR_TYPE, TOUR_VALUE),
+								_hasAlreadyMoved(false)
 {}
 
 Tour::~Tour()
@@ -38,17 +38,6 @@ bool Tour::canAccessCase(const Position& iPosition) const{
 	bool aBool = false;
 
 	if(iPosition.sameLigne(_position)){
-		int aDebut = std::min(iPosition.getY(), _position.getY());
-		int aEnd = std::max(iPosition.getY(), _position.getY());
-		int aLigne = _position.getX();
-		const game::Echiquier& aGame = game::Echiquier::getInstance();
-
-		aBool = true;
-		for(int j=aDebut+1; aBool && (j<aEnd); ++j){
-			aBool= !aGame.getCase(aLigne, j).hasPiece();
-		}
-	}
-	else if(iPosition.sameCol(_position)){
 		int aDebut = std::min(iPosition.getX(), _position.getX());
 		int aEnd = std::max(iPosition.getX(), _position.getX());
 		int aCol = _position.getY();
@@ -59,11 +48,22 @@ bool Tour::canAccessCase(const Position& iPosition) const{
 			aBool = !aGame.getCase(i, aCol).hasPiece();
 		}
 	}
+	else if(iPosition.sameCol(_position)){
+		int aDebut = std::min(iPosition.getY(), _position.getY());
+		int aEnd = std::max(iPosition.getY(), _position.getY());
+		int aLigne = _position.getX();
+		const game::Echiquier& aGame = game::Echiquier::getInstance();
+
+		aBool = true;
+		for(int j=aDebut+1; aBool && (j<aEnd); ++j){
+			aBool = !aGame.getCase(aLigne, j).hasPiece();
+		}
+	}
 
 	return aBool;
 }
 
-bool Tour::getHasAlreadyMoved() const{
+bool Tour::hasAlreadyMoved() const{
 	return _hasAlreadyMoved;
 }
 
@@ -75,7 +75,7 @@ bool Tour::getHasAlreadyMoved() const{
 
 std::ostream& operator<<(std::ostream& os, const Tour& iTour){
 	os << *((Piece*)&iTour) <<
-			"already moved ? " << boolToString(iTour.getHasAlreadyMoved()) << std::endl;
+			"already moved ? " << boolToString(iTour.hasAlreadyMoved()) << std::endl;
 
 	return os;
 }

@@ -28,7 +28,7 @@ public:
 
 	//virtual const std::list <boost::shared_ptr <Move> > getPossibleMoves() const;
 
-	bool getHasAlreadyMoved() const;
+	bool hasAlreadyMoved() const;
 
 private:
 	bool _hasAlreadyMoved;
