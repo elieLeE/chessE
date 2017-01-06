@@ -12,4 +12,20 @@ log des tests uniatires pas dans le bon ordre
     => du a l'utilisation de ostream dans la classe unitTest afin de faire qu'un seul if.
     peux etre corrige avec des MACROS de log => a implementer
 
+    => pieces joueurs a mettre dans la classe joueurs avec pointeur intelligent vers ces deux objets dans Echiquier + methode de selection 
+    du bon joueur avec num ou la couleur + liste/tableau de piece morte et vivante. Pour les pieces mortes => file pour les retour arrieres
+    ==> utiliser 1 methode de liberation de la memoire pesonelle ?? (pour supprimer la memoire meme quand 2 instances encore en vie)
 
+    => pour les retour arrieres (recommencer coup), pour prise en passant possible ou non => etudier avant dernier coup.
+    avoir une methode "setMoveProperties" dans Echqiuier qui est appele par doChangeMove quand fait Move et par "redoMove" pour revenir en
+    arriere comme ca l'avant dernier coup est directement etudie...
+
+    => ajouter les exceptions pour position par exemple
+
+    => ajouter systeme de log
+	==> LOG_ERR
+	==> LOG_INFO
+	==> LOG_WARM
+	==> LOG_DEBUG
+
+    => changer << => ajouter methode toStream et appeler dans <<
