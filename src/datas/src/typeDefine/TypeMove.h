@@ -12,6 +12,9 @@
 
 namespace datas{
 
+#define POS_X_END_PETIT_ROCK 7
+#define POS_X_END_GRAND_ROCK 3
+
 typedef enum ETypeMove{
 	NORMAL_MOVE = 0,
 	PRISE_EN_PASSANT,
@@ -20,6 +23,7 @@ typedef enum ETypeMove{
 	DOUBLE_MOVE_PION,
 	PETIT_ROCK,
 	GRAND_ROCK,
+	SIMPLE_MOVE_ROI_MAX, 	//en diagonale
 	CAVALIER_MOVE,
 	INCORRECT_MOVE
 }ETypeMove;

@@ -26,20 +26,18 @@ int distanceMove(const ETypeMove iTypeMove){
 
 	case PRISE_EN_PASSANT:
 	case SIMPLE_CAPTURE_PION:
+	case SIMPLE_MOVE_ROI_MAX:
 		dist = 2;
 		break;
 
 	case PETIT_ROCK:
+	case GRAND_ROCK:
 	case DOUBLE_MOVE_PION:
 		dist = 4;
 		break;
 
 	case CAVALIER_MOVE:
 		dist = 5;
-		break;
-
-	case GRAND_ROCK:
-		dist = 9;
 		break;
 	}
 
@@ -52,6 +50,8 @@ std::ostream& operator<<(std::ostream& os, const ETypeMove iTypeMove){
 	case SIMPLE_MOVE_PION:
 	case SIMPLE_CAPTURE_PION:
 	case DOUBLE_MOVE_PION:
+	case SIMPLE_MOVE_ROI_MAX:
+	case CAVALIER_MOVE:
 		os << "NORMAL_MOVE";
 		break;
 
