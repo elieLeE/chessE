@@ -22,13 +22,16 @@ namespace game{
 
 Echiquier Echiquier::_instance = Echiquier();
 
-Echiquier::Echiquier():
-									_possiblePriseEnPassant(false),
-									_hasAlreadyPiece(false)
+Echiquier::Echiquier():_possiblePriseEnPassant(false),
+						_hasAlreadyPiece(false)
 {}
 
 Echiquier::~Echiquier()
 {}
+
+const datas::Echiquier& Echiquier::getPlateau() const{
+	return _echiquier;
+}
 
 void Echiquier::initEchiquier()
 {}
@@ -80,16 +83,16 @@ const datas::Move& Echiquier::getLastMove() const{
  */
 void Echiquier::doChangeMove(const datas::Move& iMove){
 	_possiblePriseEnPassant = false;
-	const datas::PiecePtr& aPieceMove = this->getCase(iMove.getStartPosition()).getPiece();
+	datas::PiecePtr& aPieceMove = this->accessCase(iMove.getStartPosition()).accessPiece();
 
 	if(aPieceMove){
 		if(aPieceMove->getTypePiece() == datas::PION_TYPE){
-			if(iMove.getStartPosition().diffCol(iMove.getEndPosition()) == 2){
+			if(iMove.getStartPosition().diffLigne(iMove.getEndPosition()) == datas::distanceMove(datas::PRISE_EN_PASSANT)){
 				_possiblePriseEnPassant = true;
 			}
 		}
 		_lastMove = iMove;
-		accessCase(iMove.getStartPosition()).accessPiece()->movePiece(iMove.getEndPosition());
+		aPieceMove->movePiece(iMove.getEndPosition());
 	}
 	else{
 		//erreur ou debug
@@ -153,10 +156,13 @@ void Echiquier::reset(){
 				it2->reset();
 			}
 		}*/
-		for(auto it = _echiquier.begin(); it != _echiquier.end(); ++it){
-			for(auto it2 = it->begin(); it2 != it->end(); ++it2){
-				if(it2->hasPiece()){
-					it2->resetPiece();
+
+		typedef std::array<datas::Case, NBRE_LIGNE> typeTab;
+
+		for(typeTab& aValueTab : _echiquier){
+			for(datas::Case& aValueCase : aValueTab){
+				if(aValueCase.hasPiece()){
+					aValueCase.resetPiece();
 				}
 			}
 		}

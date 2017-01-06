@@ -29,6 +29,8 @@ public:
 	//utile ?? => pour _possiblePriseEnPassant ? => passer par 1 pointeur de booleen ??
 	static Echiquier& accessInstance();
 
+	const datas::Echiquier& getPlateau() const;
+
 	void initEchiquier();
 
 	void movePiece(const datas::Position& iPositionStart, const datas::Position& iPositionEnd);
