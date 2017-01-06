@@ -9,7 +9,7 @@ resultTest(){
     fi
 }
 
-if [ ! -f ./datas/test/prog ] || [ ! -f ./game/test/prog ] || [ ! -f ./gui/test/prog ] 
+if [ ! -f ./datas/test/test ] || [ ! -f ./game/test/test ] || [ ! -f ./gui/test/test ] 
 then
 	echo "Compilez les tests !"
 	exit
@@ -30,10 +30,10 @@ if [ $? = 1 ]
 then
 	if [ $1 = -v ] || [ $1 = -valgrind ]
 	then
-		valgrind ./datas/test/prog
+		valgrind ./datas/test/test
 	fi
 else
-	./datas/test/prog
+	./datas/test/test
 fi
 resultTest "datas" $?
 
@@ -43,10 +43,10 @@ if [ $? = 1 ]
 then
 	if [ $1 = -v ] || [ $1 = -valgrind ]
 	then
-		valgrind ./game/test/prog
+		valgrind ./game/test/test
 	fi
 else
-	./game/test/prog
+	./game/test/test
 fi
 resultTest "game" $? 
 
@@ -56,10 +56,10 @@ if [ $? = 1 ]
 then
 	if [ $1 = -v ] || [ $1 = -valgrind ]
 	then
-		valgrind ./gui/test/prog
+		valgrind ./gui/test/test
 	fi
 else
-	./gui/test/prog
+	./gui/test/test
 fi
 resultTest "gui" $?
 
