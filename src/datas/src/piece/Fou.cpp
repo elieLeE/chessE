@@ -31,10 +31,6 @@ bool Fou::isValideMove(const Move& iMove) const{
 bool Fou::canAccessCase(const Position& iPosition) const{
 	bool aBool = false;
 
-	/*std::cout << "canAccessCase Fou => "
-			"depart : " << _position <<
-			" // end    : " << iPosition << std::endl;*/
-
 	if(_position.getColorCase() == iPosition.getColorCase()){
 		aBool = true;
 		int addLigne = (_position.getX()<iPosition.getX()?1:-1);
@@ -47,11 +43,9 @@ bool Fou::canAccessCase(const Position& iPosition) const{
 
 		for(int i=_position.getX()+addLigne, j=_position.getY()+addCol, n=0; (n<diffLigne-1) && aBool; i=i+addLigne, j=j+addCol, n++){
 			aBool = !aEchiquier.getCase(i, j).hasPiece();
-			//std::cout << "Position test : " << Position(i, j) << " => " << boolToString(aBool) << std::endl;
 		}
 	}
 
-	//std::cout << "return canAccessCase : " << boolToString(aBool) << std::endl;
 	return aBool;
 }
 

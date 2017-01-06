@@ -58,24 +58,12 @@ void TestFou::testCanAccessCase(void) const{
 	aMove.setPositionEnd(aPositionEnd);
 	Position aPositionDame(4, 5);
 	Dame* aDame(new Dame(WHITE, aPositionDame));
-	//to verify aFou2 ont the corrcet path
-	//cout << endl << "echiquier 1 : " << endl << aEchiquier << endl;
 	BOOST_ASSERT_MSG(aFou->canAccessCase(aPositionEnd), "TestFou canAccess - test position 2");
+
 	aEchiquier.addPiece(aDame);
-	/*cout << "dame added at position " << aPositionDame << endl;
-	cout << "piece : " << *aDame << endl;
-	cout << endl << "echiquier 2 : " << endl << aEchiquier << endl;
-	if(aEchiquier.getCase(5, 4).hasPiece()){
-		cout << "aPositionDame has piece" << endl;
-	}
-	else{
-		cout << "aPositionDame has not piece" << endl;
-	}*/
 	BOOST_ASSERT_MSG(!aFou->canAccessCase(aPositionEnd), "TestFou canAccess - piece present on the path");
 
 	aEchiquier.movePiece(aPositionDame, aPositionEnd);
-	//incorrecte move with isValideMove but not with canAccessCase (test are done on all case till before last case)
-	//cout << endl << "echiquier : " << endl << aEchiquier << endl;
 	BOOST_ASSERT_MSG(aFou->canAccessCase(aPositionEnd), "TestFou canAccess - piece already present in the end case and same color");
 	BOOST_ASSERT_MSG(!aFou->isValideMove(aMove), "TestFou isValideMove - piece already present in the end case and same color");
 
