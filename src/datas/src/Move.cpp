@@ -90,18 +90,18 @@ void Move::setMoveProperties(){
 	_capturedPiece = NO_TYPE;
 
 	if(aPiece){
+		int dist = evaluateDistance();
 		if((aPiece->getTypePiece() == PION_TYPE) &&
-				(evaluateDistance() ==  distanceMove(PRISE_EN_PASSANT)) &&
+				(dist ==  distanceMove(PRISE_EN_PASSANT)) &&
 				!aEchiquier.getCase(_end).hasPiece()){
 			_typeMove = PRISE_EN_PASSANT;
 			_capturedPiece = PION_TYPE;
 		}
 		else if(aPiece->getTypePiece() == ROI_TYPE){
-			int dist = evaluateDistance();
-			if(dist == distanceMove(PETIT_ROCK)){
+			if(_end.getX() == POS_X_END_PETIT_ROCK){
 				_typeMove = PETIT_ROCK;
 			}
-			else if(dist == distanceMove(GRAND_ROCK)){
+			else if(_end.getX() == POS_X_END_GRAND_ROCK){
 				_typeMove = GRAND_ROCK;
 			}
 		}
