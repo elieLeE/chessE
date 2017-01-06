@@ -153,7 +153,7 @@ void TestMove::testSetMoveProperties(void) const{
 	BOOST_ASSERT_MSG(aMove.getTypeMove() == PETIT_ROCK, "TestMove typeMove - PETIT_ROCK");
 
 	//grand rock move
-	aMove.setPositionEnd(Position(2, 1));
+	aMove.setPositionEnd(Position(3, 1));
 	aMove.setMoveProperties();
 	BOOST_ASSERT_MSG(!aMove.hasCapturePiece(), "TestMove capturedPiece - GRAND_ROCK");
 	BOOST_ASSERT_MSG(aMove.getTypeMove() == GRAND_ROCK, "TestMove typeMove - GRAND_ROCK");

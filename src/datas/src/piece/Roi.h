@@ -30,24 +30,18 @@ public:
 	bool estNormalMoveTheorique(const Move& iMove) const;
 	bool estPetitRockTheorique(const Move& iMove) const;
 	bool estGrandRockTheorique(const Move& iMove) const;
-	bool estRockTheorique(const Move& iMove, ETypeMove iTypeMove) const;
+	bool estRockTheorique(const Move& iMove, const ETypeMove iTypeMove) const;
 
 	bool estNormalMovePratique(const Move& iMove) const;
-	bool estRockPratique(const Move& iMove, ETypeMove iTypeMove) const;
+	bool estRockPratique(const ETypeMove iTypeMove) const;
 
-	bool canBeKilled(const Position& iPosition) const;
+	bool canBeKilled() const;
+	bool canBeKilledAtPosition(const Position& iPosition) const;
 	virtual bool canAccessCase(const Position& iPosition) const;
 
-	bool pionPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionPion) const;
-	bool cavalierPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionCavalier) const;
-	bool fouPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionFou) const;
-	bool tourPeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionTour) const;
-	bool damePeuxTuerLeRoi(const Position& iPositionFinaleMove, const Position& iPositionDame) const;
-	bool secondRoiColle(const Position& iPositionFinaleMove, const Position& iPositionRoi) const;
+	//virtual const std::list <boost::shared_ptr <Move> >getPossibleMoves() const ;
 
-	virtual const std::list <boost::shared_ptr <Move> >getPossibleMoves() const ;
-
-	bool getHasAlreadyMoved(void) const;
+	bool hasAlreadyMoved(void) const;
 
 private:
 
