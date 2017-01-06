@@ -41,8 +41,8 @@ void TestPosition::startTests(){
 void TestPosition::testDefaultConstructor(void) const{
 	Position aPosition;
 
-	BOOST_ASSERT_MSG(aPosition.getX() == 0, "TestPosition: defaultConstructor - x");
-	BOOST_ASSERT_MSG(aPosition.getY() == 0, "TestPosition: defaultConstructor - y");
+	BOOST_ASSERT_MSG(aPosition.getX() == 1, "TestPosition: defaultConstructor - x");
+	BOOST_ASSERT_MSG(aPosition.getY() == 1, "TestPosition: defaultConstructor - y");
 }
 
 void TestPosition::testOperatorEgale(void) const {
@@ -71,10 +71,10 @@ void TestPosition::testOperatorAffectation(void) const{
 
 void TestPosition::testSame(void) const{
 	Position aPosition1(2, 5);
-	Position aPosition2(2, 6);
+	Position aPosition2(3, 5);
 	BOOST_ASSERT_MSG(aPosition1.sameLigne(aPosition2), "testPosition same - ligne");
 
-	aPosition2.setPosition(3, 5);
+	aPosition2.setPosition(2, 6);
 	BOOST_ASSERT_MSG(aPosition1.sameCol(aPosition2), "testPosiion same - colonne");
 }
 
@@ -90,8 +90,8 @@ void TestPosition::testDiffs(void) const{
 	Position aPosition1(2, 5);
 	Position aPosition2(4, 6);
 
-	BOOST_ASSERT_MSG(aPosition1.diffLigne(aPosition2) == 2, "testPosition diffs - ligne");
-	BOOST_ASSERT_MSG(aPosition1.diffCol(aPosition2) == 1, "testPosition diffs - colonne");
+	BOOST_ASSERT_MSG(aPosition1.diffLigne(aPosition2) == 1, "testPosition diffs - ligne");
+	BOOST_ASSERT_MSG(aPosition1.diffCol(aPosition2) == 2, "testPosition diffs - colonne");
 }
 
 void TestPosition::testToStream(void) const{

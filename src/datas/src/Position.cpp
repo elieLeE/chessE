@@ -13,8 +13,8 @@
 namespace datas{
 
 Position::Position():
-		_x(0),
-		_y(0)
+		_x(1),
+		_y(1)
 {}
 
 Position::Position(int iX, int iY):
@@ -31,23 +31,23 @@ void Position::setPosition(int x, int y){
 }
 
 bool Position::sameLigne(const Position& iPosition) const{
-	return (_x == iPosition.getX());
+	return (_y == iPosition.getY());
 }
 
 bool Position::sameCol(const Position& iPosition) const{
-	return (this->_y == iPosition.getY());
+	return (_x == iPosition.getX());
 }
 
 int Position::diffLigne(const Position& iPosition) const{
-	return std::abs(getX() - iPosition.getX());
-}
-
-int Position::diffCol(const Position& iPosition) const{
 	return std::abs(getY() - iPosition.getY());
 }
 
+int Position::diffCol(const Position& iPosition) const{
+	return std::abs(getX() - iPosition.getX());
+}
+
 bool Position::isValid() const{
-	return ((_x >=0) && (_x<NBRE_LIGNE) && (_y>=0) && (_y < NBRE_COLONNE));
+	return ((_x >=1) && (_x<=NBRE_COLONNE) && (_y>=1) && (_y <= NBRE_LIGNE));
 }
 
 int Position::getX() const{
@@ -78,13 +78,13 @@ int Position::evaluateDistance(const Position& iPosition) const{
 }
 
 EColor Position::getColorCase() const{
-	int sum = getX() + getY();
+	int sum = _x + _y;
 
 	return (sum%2==0?WHITE:BLACK);
 }
 
 bool Position::operator==(const Position& iPosition) const {
-	return ((iPosition._x == _x) && (iPosition._y) == _y);
+	return ((iPosition._x == _x) && (iPosition._y == _y));
 }
 
 bool Position::operator!=(const Position& iPosition) const {
