@@ -22,7 +22,7 @@ namespace datas{
 
 	typedef boost::shared_ptr<Move> MovePtr;
 
-	typedef std::unique_ptr<datas::Piece> PiecePtr;
+	typedef std::shared_ptr<datas::Piece> PiecePtr;
 
 	typedef std::array<PiecePtr, NBRE_PIECE_INIT> AllPiecePtr;
 
