@@ -8,6 +8,7 @@
 #include "TestCase.h"
 #include "../../common/src/UnitTest.h"
 #include "../src/Case.h"
+#include "../src/piece/Tour.h"
 
 using namespace std;
 using namespace game;

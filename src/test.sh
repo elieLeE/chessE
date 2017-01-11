@@ -68,5 +68,9 @@ echo "All tests OK"
 
 echo 
 echo 
-echo "aFaire : "
-more aResoudre
+
+if [ -f aResoudre ]
+then
+    echo "aFaire : "
+    more aResoudre
+fi
