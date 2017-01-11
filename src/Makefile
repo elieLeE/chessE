@@ -21,14 +21,9 @@ OBJ_SRC=$(SRC:.cpp=.o)
 EXEC_SRC=prog
 EXEC_TST=test
 
-# Liste des fichiers objets :
-#NOM = $(basename $(notdir $(SRC)))
-#OBJ_TST=$(addprefix $(OBJDIR)/, $(addsuffix .o, $(NOM)))
-OBJ_TST=$(TST:.cpp=.o) #$(OBJ_SRC)
+PROJECT=~/Bureau/projetPerso/chessE/src
 
-projet=~/Bureau/projetPerso/chessE/src
-
-all: $(EXEC_SRC) $(EXEC_TST)
+all: $(EXEC_SRC) $(EXEC_TST) 
 
 $(EXEC_SRC): $(OBJ_SRC)
 	$(CC) -o $@ $^ $(LDFLAGS)
@@ -36,20 +31,22 @@ $(EXEC_SRC): $(OBJ_SRC)
 %.o: %.cpp
 	$(CC) -o $@ -c $< $(CFLAGS)
 
-$(EXEC_TST): $(OBJ_TST)
-	cd $(projet)/datas/test; 	make -f Makefile
-	cd $(projet)/game/test;		make -f Makefile
-	cd $(projet)/gui/test;		make -f Makefile
+$(EXEC_TST):
+	cd $(PROJECT)/datas/test; 	make -f Makefile
+	cd $(PROJECT)/game/test;	make -f Makefile
+	cd $(PROJECT)/gui/test;		make -f Makefile
+	#cd $(PROJECT)/testCPP; 	make -f Makefile test
 	#cd $(projet)/common/test; 	make -f Makefile
 
 .PHONY: cleanSimple clean 
 
 cleanSimple:
 	rm -rf $(OBJ_SRC)
-	cd $(projet)/datas/test; 	make -f Makefile clean
-	cd $(projet)/game/test; 	make -f Makefile clean
-	cd $(projet)/gui/test; 	make -f Makefile clean
-	cd $(projet)/common/test; 	make -f Makefile clean
+	cd $(PROJECT)/datas/test; 	make -f Makefile clean
+	cd $(PROJECT)/game/test; 	make -f Makefile clean
+	cd $(PROJECT)/gui/test; 	make -f Makefile clean
+	cd $(PROJECT)/common/test; 	make -f Makefile clean
+	cd $(PROJECT)/testCPP; 	make -f Makefile clean
 
 clean: cleanSimple
-	rm -rf $(EXEC_SRC) $(EXEC_TST)	
+	rm -rf $(EXEC_SRC) $(EXEC_TST)
