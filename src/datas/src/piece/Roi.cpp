@@ -12,6 +12,7 @@
 #include "../typeDefine/PieceValue.h"
 #include "../../../game/src/Echiquier.h"
 #include "../../../common/src/DisplayType.h"
+#include "Tour.h"
 
 namespace datas{
 
@@ -76,7 +77,7 @@ bool Roi::estRockTheorique(const Move& iMove, const ETypeMove iTypeMove) const{
 			const PiecePtr& aPiece = game::Echiquier::getInstance().getCase(x, y).getPiece();
 
 			if(aPiece && (aPiece->getTypePiece()==TOUR_TYPE)){
-				const Tour* aTour = dynamic_cast<const Tour*>(aPiece.get());
+				Tour* aTour = dynamic_cast<Tour*>(aPiece.get());
 				if((aTour != nullptr) && !aTour->hasAlreadyMoved()){
 					aBool = true;
 				}
