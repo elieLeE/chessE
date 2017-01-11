@@ -11,7 +11,7 @@
 
 namespace datas {
 
-JoueurIA::JoueurIA(EColor iColor, ETypePlayer iTypePlayer):Joueur(iColor, iTypePlayer)
+JoueurIA::JoueurIA(EColor iColor):Joueur(iColor, IA_PlAYER)
 {}
 
 JoueurIA::~JoueurIA()

@@ -15,7 +15,7 @@ namespace datas {
 class JoueurHumain : public Joueur
 {
 public:
-	JoueurHumain(EColor iColor, ETypePlayer iTypePlayer);
+	JoueurHumain(EColor iColor);
 	virtual ~JoueurHumain();
 
 	virtual MovePtr nextMove();

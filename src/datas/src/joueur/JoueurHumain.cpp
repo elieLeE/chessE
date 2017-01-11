@@ -11,7 +11,7 @@
 
 namespace datas {
 
-JoueurHumain::JoueurHumain(EColor iColor, ETypePlayer iTypePlayer):Joueur(iColor, iTypePlayer)
+JoueurHumain::JoueurHumain(EColor iColor):Joueur(iColor, HUMAN_PLAYER)
 {}
 
 JoueurHumain::~JoueurHumain()
