@@ -29,3 +29,7 @@ log des tests uniatires pas dans le bon ordre
 	==> LOG_DEBUG
 
     => changer << => ajouter methode toStream et appeler dans <<
+
+    => Echiquier => list de weak_ptr + 2 shared_ptr<Joueur> qui contiennent 1 shared_ptr vers le roi et 1 tableau de shared_ptr vers les autres pieces vivantes et 1 autre vers les pieces mortes...
+
+
