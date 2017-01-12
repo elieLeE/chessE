@@ -11,13 +11,15 @@
 #include <boost/shared_ptr.hpp>
 #include <vector>
 
+#include "../typeDefine/Types.h"
 #include "../piece/Piece.h"
 #include "../typeDefine/Color.h"
 #include "../typeDefine/TypePlayer.h"
 #include "../Move.h"
-#include "../typeDefine/Types.h"
 
 namespace datas {
+
+class Roi;
 
 class Joueur {
 public:
@@ -31,16 +33,26 @@ public:
 
 	MovePtr newMove();
 
+	void setKing(const PiecePtr iRoi);
+	const std::weak_ptr<Roi> getKing() const;
+
+	bool hasLost();
+	bool kingCheck();
+
 
 private:
 	Joueur(const Joueur&);
 	Joueur& operator=(const Joueur&);
 
-	std::vector<boost::shared_ptr<Piece> > _alivePiece;
+	//std::vector<boost::shared_ptr<Piece> > _alivePiece;
+	std::weak_ptr<Roi> _myKing;
+
 	const EColor _color;
 	const ETypePlayer _typePlayer;
 	int _points;
 };
 
 } /* namespace datas */
+
 #endif /* JOUEUR_H_ */
+

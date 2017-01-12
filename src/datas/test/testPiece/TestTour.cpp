@@ -66,7 +66,6 @@ void TestTour::testIsValideMove(void) const{
 
 void TestTour::testCanAccess(void)const{
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
-	cout << endl;
 
 	Position aPositionStart(5, 2);
 	Position aPositionEnd(7, 2);

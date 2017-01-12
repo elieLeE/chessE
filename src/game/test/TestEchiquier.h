@@ -24,6 +24,8 @@ public:
 	void testKillAndRevivePiece(void) const;
 	void testReset(void) const;
 	void testDoChangeMove(void) const;
+	void testGetKing() const;
+	void testSetBegginingGameWithoutHandicapRoi() const;
 	void testToStream(void) const;
 };
 

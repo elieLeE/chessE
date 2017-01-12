@@ -16,14 +16,18 @@
 #include "../../datas/src/piece/Fou.h"
 #include "../../datas/src/piece/Roi.h"
 #include "../../datas/src/piece/Dame.h"
+
 #include "../../datas/src/typeDefine/TypePiece.h"
+
+#include "../../datas/src/joueur/Joueur.h"
+#include "../../datas/src/joueur/JoueurHumain.h"
 
 namespace game{
 
 Echiquier Echiquier::_instance = Echiquier();
 
 Echiquier::Echiquier():_possiblePriseEnPassant(false),
-						_hasAlreadyPiece(false)
+		_hasAlreadyPiece(false)
 {}
 
 Echiquier::~Echiquier()
@@ -158,66 +162,94 @@ void Echiquier::reset(){
 		}*/
 
 		typedef std::array<datas::Case, NBRE_LIGNE> typeTab;
+		int x = 0;
 
 		for(typeTab& aValueTab : _echiquier){
 			for(datas::Case& aValueCase : aValueTab){
 				if(aValueCase.hasPiece()){
+					const datas::PiecePtr& aPiece = aValueCase.getPiece();
 					aValueCase.resetPiece();
+					x++;
 				}
 			}
 		}
 	}
 }
 
+const std::shared_ptr<datas::Joueur> Echiquier::getJoueur(int numJ) const{
+	return _joueurs[numJ];
+}
+
+/*std::shared_ptr<datas::Joueur> Echiquier::accessJoueur(int numJ) {
+	return _joueurs[numJ];
+}*/
+
 void Echiquier::setBegginingGameWithoutHandicap(){
-	datas::Position aPosition;
-
 	//Pions
-	for(int i = 1; i<=NBRE_COLONNE; i++){
-		aPosition.setPosition(i, 2);
-		datas::PiecePtr aPionWhite(new datas::Pion(datas::WHITE, aPosition, true));
-		addPiece(aPionWhite);
-
-		aPosition.setPosition(i, 7);
-		datas::PiecePtr aPionBlack(new datas::Pion(datas::BLACK, aPosition, false));
-		addPiece(aPionBlack);
-	}
+	setBegginingGameWithoutHandicapPion();
 
 	//Tours
-	aPosition.setPosition(1, 1);
-	datas::PiecePtr aTourWhiteLeft(new datas::Tour(datas::WHITE, aPosition));
-	addPiece(aTourWhiteLeft);
-
-	aPosition.setPosition(8, 1);
-	datas::PiecePtr aTourWhiteRight(new datas::Tour(datas::WHITE, aPosition));
-	addPiece(aTourWhiteRight);
-
-	aPosition.setPosition(1, 8);
-	datas::PiecePtr aTourBlackLeft(new datas::Tour(datas::BLACK, aPosition));
-	addPiece(aTourBlackLeft);
-
-	aPosition.setPosition(8, 8);
-	datas::PiecePtr aTourBlackRight(new datas::Tour(datas::BLACK, aPosition));
-	addPiece(aTourBlackRight);
+	setBegginingGameWithoutHandicapTour();
 
 	//Cavaliers
-	aPosition.setPosition(2, 1);
-	datas::PiecePtr aCavalierWhiteLeft(new datas::Cavalier(datas::WHITE, aPosition));
-	addPiece(aCavalierWhiteLeft);
-
-	aPosition.setPosition(7, 1);
-	datas::PiecePtr aCavalierWhiteRight(new datas::Cavalier(datas::WHITE, aPosition));
-	addPiece(aCavalierWhiteRight);
-
-	aPosition.setPosition(2, 8);
-	datas::PiecePtr aCavalierBlackLeft(new datas::Cavalier(datas::BLACK, aPosition));
-	addPiece(aCavalierBlackLeft);
-
-	aPosition.setPosition(7, 8);
-	datas::PiecePtr aCavalierBlackRight(new datas::Cavalier(datas::BLACK, aPosition));
-	addPiece(aCavalierBlackRight);
+	setBegginingGameWithoutHandicapCavalier();
 
 	//Fou
+	setBegginingGameWithoutHandicapFou();
+
+	//Dame
+	setBegginingGameWithoutHandicapDame();
+
+	//Roi
+	setBegginingGameWithoutHandicapRoi();
+
+	_hasAlreadyPiece = true;
+}
+
+void Echiquier::setJoueurKing(const datas::PiecePtr iRoiJ1, const datas::PiecePtr iRoiJ2){
+	if(!_joueurs[datas::JOUEUR_1]){
+		_joueurs[datas::JOUEUR_1].reset(new datas::JoueurHumain(datas::WHITE));
+	}
+
+	if(!_joueurs[datas::JOUEUR_2]){
+		_joueurs[datas::JOUEUR_2].reset(new datas::JoueurHumain(datas::BLACK));
+	}
+	_joueurs[datas::JOUEUR_1]->setKing(iRoiJ1);
+	_joueurs[datas::JOUEUR_2]->setKing(iRoiJ2);
+}
+
+void Echiquier::setBegginingGameWithoutHandicapRoi(){
+	datas::Position aPosition;
+
+	aPosition.setPosition(5, 1);
+	datas::Roi *aRoi(new datas::Roi(datas::WHITE, aPosition));
+	datas::PiecePtr aRoiWhite(aRoi);
+
+	aPosition.setPosition(5, 8);
+	datas::Roi *aRoi2(new datas::Roi(datas::BLACK, aPosition));
+	datas::PiecePtr aRoiBlack(aRoi2);
+
+	setJoueurKing(aRoiWhite, aRoiBlack);
+
+	addPiece(aRoiWhite);
+	addPiece(aRoiBlack);
+}
+
+void Echiquier::setBegginingGameWithoutHandicapDame(){
+	datas::Position aPosition;
+
+	aPosition.setPosition(4, 1);
+	datas::PiecePtr aDameWhite(new datas::Dame(datas::WHITE, aPosition));
+	addPiece(aDameWhite);
+
+	aPosition.setPosition(4, 8);
+	datas::PiecePtr aDameBlack(new datas::Dame(datas::BLACK, aPosition));
+	addPiece(aDameBlack);
+}
+
+void Echiquier::setBegginingGameWithoutHandicapFou(){
+	datas::Position aPosition;
+
 	aPosition.setPosition(3, 1);
 	datas::PiecePtr aFouWhiteLeft(new datas::Fou(datas::WHITE, aPosition));
 	addPiece(aFouWhiteLeft);
@@ -233,26 +265,60 @@ void Echiquier::setBegginingGameWithoutHandicap(){
 	aPosition.setPosition(6, 8);
 	datas::PiecePtr aFouBlackRight(new datas::Fou(datas::BLACK, aPosition));
 	addPiece(aFouBlackRight);
+}
 
-	//Dame
-	aPosition.setPosition(4, 1);
-	datas::PiecePtr aDameWhite(new datas::Dame(datas::WHITE, aPosition));
-	addPiece(aDameWhite);
+void Echiquier::setBegginingGameWithoutHandicapCavalier(){
+	datas::Position aPosition;
 
-	aPosition.setPosition(5, 8);
-	datas::PiecePtr aDameBlack(new datas::Dame(datas::WHITE, aPosition));
-	addPiece(aDameBlack);
+	aPosition.setPosition(2, 1);
+	datas::PiecePtr aCavalierWhiteLeft(new datas::Cavalier(datas::WHITE, aPosition));
+	addPiece(aCavalierWhiteLeft);
 
-	//Roi
-	aPosition.setPosition(5, 1);
-	datas::PiecePtr aRoiWhite(new datas::Roi(datas::BLACK, aPosition));
-	addPiece(aRoiWhite);
+	aPosition.setPosition(7, 1);
+	datas::PiecePtr aCavalierWhiteRight(new datas::Cavalier(datas::WHITE, aPosition));
+	addPiece(aCavalierWhiteRight);
 
-	aPosition.setPosition(4, 8);
-	datas::PiecePtr aRoiBlack(new datas::Roi(datas::BLACK, aPosition));
-	addPiece(aRoiBlack);
+	aPosition.setPosition(2, 8);
+	datas::PiecePtr aCavalierBlackLeft(new datas::Cavalier(datas::BLACK, aPosition));
+	addPiece(aCavalierBlackLeft);
 
-	_hasAlreadyPiece = true;
+	aPosition.setPosition(7, 8);
+	datas::PiecePtr aCavalierBlackRight(new datas::Cavalier(datas::BLACK, aPosition));
+	addPiece(aCavalierBlackRight);
+}
+
+void Echiquier::setBegginingGameWithoutHandicapTour(){
+	datas::Position aPosition;
+
+	aPosition.setPosition(1, 1);
+	datas::PiecePtr aTourWhiteLeft(new datas::Tour(datas::WHITE, aPosition));
+	addPiece(aTourWhiteLeft);
+
+	aPosition.setPosition(8, 1);
+	datas::PiecePtr aTourWhiteRight(new datas::Tour(datas::WHITE, aPosition));
+	addPiece(aTourWhiteRight);
+
+	aPosition.setPosition(1, 8);
+	datas::PiecePtr aTourBlackLeft(new datas::Tour(datas::BLACK, aPosition));
+	addPiece(aTourBlackLeft);
+
+	aPosition.setPosition(8, 8);
+	datas::PiecePtr aTourBlackRight(new datas::Tour(datas::BLACK, aPosition));
+	addPiece(aTourBlackRight);
+}
+
+void Echiquier::setBegginingGameWithoutHandicapPion(){
+	datas::Position aPosition;
+
+	for(int i = 1; i<=NBRE_COLONNE; i++){
+		aPosition.setPosition(i, 2);
+		datas::PiecePtr aPionWhite(new datas::Pion(datas::WHITE, aPosition, true));
+		addPiece(aPionWhite);
+
+		aPosition.setPosition(i, 7);
+		datas::PiecePtr aPionBlack(new datas::Pion(datas::BLACK, aPosition, false));
+		addPiece(aPionBlack);
+	}
 }
 
 std::ostream& operator<<(std::ostream& os, const Echiquier& iEchiquier){
@@ -282,4 +348,5 @@ std::ostream& operator<<(std::ostream& os, const Echiquier& iEchiquier){
 }
 
 } /* namespace game*/
+
 

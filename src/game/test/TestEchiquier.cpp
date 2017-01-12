@@ -12,6 +12,7 @@
 #include "../../datas/src/piece/Tour.h"
 #include "../../datas/src/piece/Pion.h"
 #include "../../common/src/UnitTest.h"
+#include "../../datas/src/joueur/Joueur.h"
 
 using namespace std;
 using namespace game;
@@ -32,7 +33,11 @@ void TestEchiquier::startTest(){
 	unitT.addMethod("testMovePiece", &game::TestEchiquier::testMovePiece);
 	unitT.addMethod("testReset", &game::TestEchiquier::testReset);
 	unitT.addMethod("testDoChangeMove", &game::TestEchiquier::testDoChangeMove);
+	unitT.addMethod("testGetKing", &game::TestEchiquier::testGetKing, NOT_YET_IMPLEMENTED);
+	unitT.addMethod("testSetBegginingGameWithoutHandicapRoi", &game::TestEchiquier::testSetBegginingGameWithoutHandicapRoi);
 	unitT.addMethod("testToStream", &game::TestEchiquier::testToStream);
+
+
 
 	unitT.launchMethods();
 }
@@ -95,6 +100,8 @@ void TestEchiquier::testReset(void) const{
 			BOOST_ASSERT_MSG(!aEchiquier.getCase(aPos).hasPiece(), aStr.c_str());
 		}
 	}
+	BOOST_ASSERT_MSG(aEchiquier.getJoueur(datas::JOUEUR_1)->getKing().expired(), "TestEchiquier reset - verif roi J1 expired");
+	BOOST_ASSERT_MSG(aEchiquier.getJoueur(datas::JOUEUR_2)->getKing().expired(), "TestEchiquier reset - verif roi J2 expired");
 }
 
 void TestEchiquier::testDoChangeMove(void) const{
@@ -122,6 +129,21 @@ void TestEchiquier::testDoChangeMove(void) const{
 	BOOST_ASSERT_MSG(aEchiquier.getLastMove().getCapturedPiece() == aMove.getCapturedPiece(), "TestEchiquier doChangeMove - hasCapturedPiece");
 }
 
+void TestEchiquier::testGetKing() const{
+	//BOOST_ASSERT_MSG(false, "TestEchiquier getKing - TO DO");
+}
+
+void TestEchiquier::testSetBegginingGameWithoutHandicapRoi() const{
+	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
+
+	aEchiquier.setBegginingGameWithoutHandicap();
+
+	const datas::PiecePtr& aRoi1 = aEchiquier.getCase(5, 1).getPiece();
+	const std::shared_ptr<datas::Roi> aRoi3 = aEchiquier.getJoueur(datas::JOUEUR_1)->getKing().lock();
+
+	BOOST_ASSERT_MSG(aRoi1.get() == (datas::Piece*)aRoi3.get(), "TestEchiquier testSetBegginingGameWithoutHandicapRoi - verif pointeur king joueur == pointeur king Echiquier");
+}
+
 void TestEchiquier::testToStream(void) const{
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 	std::stringstream aStr;
@@ -131,7 +153,7 @@ void TestEchiquier::testToStream(void) const{
 	aStr << aEchiquier;
 	string aExpected(""
 			"\nechiquier : \n"
-			" 8| T | C | F | R | D | F | C | T |\n"
+			" 8| T | C | F | D | R | F | C | T |\n"
 			" 7| P | P | P | P | P | P | P | P |\n"
 			" 6|   |   |   |   |   |   |   |   |\n"
 			" 5|   |   |   |   |   |   |   |   |\n"

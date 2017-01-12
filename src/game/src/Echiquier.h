@@ -12,12 +12,17 @@
 
 #include "../../datas/src/piece/Piece.h"
 #include "../../datas/src/typeDefine/Types.h"
-#include "../../datas/src/piece/Tour.h"
 #include "../../datas/src/Position.h"
 #include "../../datas/src/typeDefine/Dimension.h"
 #include "../../datas/src/Case.h"
 #include "../../datas/src/Move.h"
 #include "../../datas/src/typeDefine/TypePlayer.h"
+#include "../../datas/src/typeDefine/NbrePiece.h"
+
+namespace datas{
+class Roi;
+class Joueur;
+}
 
 namespace game{
 
@@ -67,18 +72,30 @@ public:
 
 	void doChangeMove(const datas::Move& iMove);
 
+	const std::shared_ptr <datas::Joueur> getJoueur(int numJ) const;
+	//std::shared_ptr<datas::Joueur> accessJoueur(int numJ) ;
+
 	//supprime toutes les pieces
 	void reset();
 
 	void setByFile(FILE* f);
 	void resetByFile(FILE* f);
-	void setBegginingGameWithoutHandicap();
 
+	void setBegginingGameWithoutHandicap();
+	void setBegginingGameWithoutHandicapRoi();
+	void setBegginingGameWithoutHandicapDame();
+	void setBegginingGameWithoutHandicapFou();
+	void setBegginingGameWithoutHandicapCavalier();
+	void setBegginingGameWithoutHandicapTour();
+	void setBegginingGameWithoutHandicapPion();
 
 private:
 	Echiquier();
 	Echiquier(const Echiquier&);
 	Echiquier& operator=(const Echiquier&);
+
+	//void setJoueurKing(const std::shared_ptr<datas::Roi> iRoiJoueur1, const std::shared_ptr<datas::Roi> iRoiJoueur2);
+	void setJoueurKing(const datas::PiecePtr iRoiJoueur1, const datas::PiecePtr iRoiJoueur2);
 
 	static Echiquier _instance;
 
@@ -92,6 +109,7 @@ private:
 
 	bool _hasAlreadyPiece;
 
+	std::array<std::shared_ptr<datas::Joueur>, NBRE_JOUEURS> _joueurs;
 };
 
 std::ostream& operator<<(std::ostream& os, const Echiquier& iEchiquier);
