@@ -36,8 +36,10 @@ public:
 	void setKing(const PiecePtr iRoi);
 	const std::weak_ptr<Roi> getKing() const;
 
+	int getNbrePts();
+
 	bool hasLost();
-	bool kingCheck();
+	bool kingChessCheck();
 
 
 private:
