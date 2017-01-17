@@ -5,13 +5,6 @@ Makefile 	=> avoir 1 makefile qui compile chaque fichier .cpp => .cpp to .o
 TO DO
 
 log des tests uniatires pas dans le bon ordre
-    => afficahge des logs puis le nom de tous les tets lances...
-
-    => on veux nom test lance puis affichage des logs associes
-
-    => du a l'utilisation de ostream dans la classe unitTest afin de faire qu'un seul if.
-    peux etre corrige avec des MACROS de log => a implementer
-
     => pieces joueurs a mettre dans la classe joueurs avec pointeur intelligent vers ces deux objets dans Echiquier + methode de selection 
     du bon joueur avec num ou la couleur + liste/tableau de piece morte et vivante. Pour les pieces mortes => file pour les retour arrieres
     ==> utiliser 1 methode de liberation de la memoire pesonelle ?? (pour supprimer la memoire meme quand 2 instances encore en vie)
@@ -28,8 +21,11 @@ log des tests uniatires pas dans le bon ordre
 	==> LOG_WARM
 	==> LOG_DEBUG
 
-    => changer << => ajouter methode toStream et appeler dans <<
+    => changer << ==> ajouter methode toStream et appeler dans <<
 
     => Echiquier => list de weak_ptr + 2 shared_ptr<Joueur> qui contiennent 1 shared_ptr vers le roi et 1 tableau de shared_ptr vers les autres pieces vivantes et 1 autre vers les pieces mortes...
 
+
+    => ACTUELLEMENT : ajout verification roi peux etre tue a la fin de Move.isValide 
+	==> en train de voir pour setter les joueurs correctement
 
