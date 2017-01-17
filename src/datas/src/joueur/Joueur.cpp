@@ -41,8 +41,12 @@ bool Joueur::hasLost(){
 	return !_myKing.expired() && !_myKing.lock()->isAlive();
 }
 
-bool Joueur::kingCheck(){
+bool Joueur::kingChessCheck(){
 	return !_myKing.expired() && _myKing.lock()->canBeKilled();
+}
+
+int Joueur::getNbrePts(){
+	return _points;
 }
 
 /*MovePtr Joueur::newMove(){

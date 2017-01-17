@@ -22,7 +22,7 @@ MovePtr JoueurHumain::nextMove(){
 
 	do{
 		aMove = gui::Display::nextMove();
-	}while(aMove->isValidateMove((game::Echiquier::getInstance())));
+	}while(aMove->isValide((game::Echiquier::getInstance())));
 
 	return aMove;
 }
