@@ -102,22 +102,35 @@ void TestMove::testIsValideMove(void) const{
 
 	game::Echiquier& aEchiquier = game::Echiquier::accessInstance();
 
-	BOOST_ASSERT_MSG(!aMove.isValidateMove(aEchiquier), "TestMove isValideMove - startPosition not valid");
+	BOOST_ASSERT_MSG(!aMove.isValide(aEchiquier), "TestMove isValideMove - startPosition not valid");
 
 	aPositionStart.setPosition(2, 6);
 	aMove.setPositionStart(aPositionStart);
-	BOOST_ASSERT_MSG(!aMove.isValidateMove(aEchiquier), "TestMove isValideMove - endPosition not valid");
+	BOOST_ASSERT_MSG(!aMove.isValide(aEchiquier), "TestMove isValideMove - endPosition not valid");
 
 	aMove.setPositionEnd(aPositionStart);
-	BOOST_ASSERT_MSG(!aMove.isValidateMove(aEchiquier), "TestMove isValideMove - startPosition = endPosition");
+	BOOST_ASSERT_MSG(!aMove.isValide(aEchiquier), "TestMove isValideMove - startPosition = endPosition");
 
 	aPositionEnd.setPosition(4, 6);
 	aMove.setPositionEnd(aPositionEnd);
-	BOOST_ASSERT_MSG(!aMove.isValidateMove(aEchiquier), "TestMove isValideMove - case at endPosition has not piece");
+	BOOST_ASSERT_MSG(!aMove.isValide(aEchiquier), "TestMove isValideMove - case at endPosition has not piece");
 
-	Tour *aTour(new Tour(WHITE, aPositionStart));
-	aEchiquier.addPiece(aTour);
-	BOOST_ASSERT_MSG(aMove.isValidateMove(aEchiquier), "TestMove isValideMove - valid");
+	Tour *aTourBlack(new Tour(BLACK, Position(6, 6)));
+	Tour *aTourWhite(new Tour(WHITE, Position(8, 1)));
+	Roi *aRoi(new Roi(WHITE, Position(5, 1)));
+	aEchiquier.addPiece(aTourBlack);
+	aEchiquier.addPiece(aTourWhite);
+	aEchiquier.addPiece(aRoi);
+	aMove.setPositions(Position(5, 1), Position(7, 1));
+	BOOST_ASSERT_MSG(!aMove.isValide(aEchiquier), "test isValideMove - rock move - king can be killed while move");
+
+	aTourBlack->movePiece(Position(5, 6));
+	aMove.setPositions(Position(8, 1), Position(7, 1));
+	BOOST_ASSERT_MSG(!aMove.isValide(aEchiquier), "test isValideMove - king can be killed after move - already chess before");
+
+	aTourBlack->setDead();
+	BOOST_ASSERT_MSG(aMove.isValide(aEchiquier), "TestMove isValideMove - valid");
+
 }
 
 void TestMove::testSetMoveProperties(void) const{

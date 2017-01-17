@@ -7,6 +7,8 @@
 
 #include "Move.h"
 #include "../../game/src/Echiquier.h"
+#include "joueur/Joueur.h"
+#include "piece/Roi.h"
 
 namespace datas{
 
@@ -69,13 +71,17 @@ void Move::setTypeMove(ETypeMove iTypeMove){
 	_typeMove = iTypeMove;
 }
 
-bool Move::isValidateMove(const game::Echiquier& iEchiquier) const{
+bool Move::isValide(const game::Echiquier& iEchiquier) const{
 	bool aBool = false;
 
 	if((getStartPosition().isValid()) && (getEndPosition().isValid()) && (this->getStartPosition() != this->getEndPosition())){
 		if(iEchiquier.getCase(this->getStartPosition()).hasPiece()){
 			const PiecePtr& aPiece = iEchiquier.getCase(this->getStartPosition()).getPiece();
 			aBool = aPiece->isValideMove(*this);
+			const std::shared_ptr<Joueur>& aJoueur = iEchiquier.getJoueur(aPiece->getNumJoueur());
+			if(aJoueur){
+				aBool = aBool && !aJoueur->getKing().expired() && !aJoueur->getKing().lock()->canBeKilled();
+			}
 		}
 	}
 

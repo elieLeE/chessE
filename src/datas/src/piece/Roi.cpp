@@ -70,17 +70,18 @@ bool Roi::estRockTheorique(const Move& iMove, const ETypeMove iTypeMove) const{
 	if(iMove.getStartPosition().sameLigne(iMove.getEndPosition()) &&
 			(iMove.evaluateDistance() == distanceMove(iTypeMove)) &&
 			(!_hasAlreadyMoved)){
+
 		int y = _position.getY();
 		int x = (iMove.getEndPosition().getX()==7?8:iMove.getEndPosition().getX()==3?1:-1);
 
 		if(((x == 8) && (iTypeMove == PETIT_ROCK)) || ((x == 1) && (iTypeMove == GRAND_ROCK))){
 			const PiecePtr& aPiece = game::Echiquier::getInstance().getCase(x, y).getPiece();
 
+			//on ne verifie pas la couleur de la tour car si pas de la meme couleur que le roi => alors aura deja bouge
+			//et vu que l'on verifie cela aussi...
 			if(aPiece && (aPiece->getTypePiece()==TOUR_TYPE)){
 				Tour* aTour = dynamic_cast<Tour*>(aPiece.get());
-				if((aTour != nullptr) && !aTour->hasAlreadyMoved()){
-					aBool = true;
-				}
+				aBool = (aTour != nullptr) && (!aTour->hasAlreadyMoved());
 			}
 		}
 	}
@@ -121,7 +122,6 @@ bool Roi::estNormalMovePratique(const Move& iMove) const{
 
 bool Roi::estRockPratique(const ETypeMove iTypeMove) const{
 	bool aBool = true;
-
 	//not take initial position for end or deb because has obviously piece...
 	int y = _position.getY();
 	int deb = (iTypeMove==PETIT_ROCK?_position.getX()+1:POS_X_END_GRAND_ROCK);
@@ -136,11 +136,8 @@ bool Roi::estRockPratique(const ETypeMove iTypeMove) const{
 		aBool = !game::Echiquier::getInstance().getCase(i, y).hasPiece();
 	}
 
-	for(int i=deb; aBool && (i<=end); i++){
-		aPosition.setX(i);
-		aBool = !canBeKilledAtPosition(aPosition);
-	}
-
+	aPosition.setX(deb);
+	aBool = aBool && !canBeKilledAtPosition(aPosition);
 	return aBool;
 }
 

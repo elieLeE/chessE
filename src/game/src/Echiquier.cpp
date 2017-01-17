@@ -28,7 +28,9 @@ Echiquier Echiquier::_instance = Echiquier();
 
 Echiquier::Echiquier():_possiblePriseEnPassant(false),
 		_hasAlreadyPiece(false)
-{}
+{
+	setAutomatiquejoueurs();
+}
 
 Echiquier::~Echiquier()
 {}
@@ -133,6 +135,9 @@ void Echiquier::addPiece(datas::Piece* iPiece){
 }
 
 void Echiquier::addPiece(datas::PiecePtr& iPiece){
+	if(iPiece->getTypePiece() == datas::ROI_TYPE){
+		_joueurs[iPiece->getNumJoueur()]->setKing(iPiece);
+	}
 	setPiece(iPiece, iPiece->getPosition());
 	_hasAlreadyPiece = true;
 	//addPiece iPiece in allPiece du joueur
@@ -162,14 +167,11 @@ void Echiquier::reset(){
 		}*/
 
 		typedef std::array<datas::Case, NBRE_LIGNE> typeTab;
-		int x = 0;
 
 		for(typeTab& aValueTab : _echiquier){
 			for(datas::Case& aValueCase : aValueTab){
 				if(aValueCase.hasPiece()){
-					const datas::PiecePtr& aPiece = aValueCase.getPiece();
 					aValueCase.resetPiece();
-					x++;
 				}
 			}
 		}
@@ -206,7 +208,7 @@ void Echiquier::setBegginingGameWithoutHandicap(){
 	_hasAlreadyPiece = true;
 }
 
-void Echiquier::setJoueurKing(const datas::PiecePtr iRoiJ1, const datas::PiecePtr iRoiJ2){
+void Echiquier::setAutomatiquejoueurs(){
 	if(!_joueurs[datas::JOUEUR_1]){
 		_joueurs[datas::JOUEUR_1].reset(new datas::JoueurHumain(datas::WHITE));
 	}
@@ -214,6 +216,9 @@ void Echiquier::setJoueurKing(const datas::PiecePtr iRoiJ1, const datas::PiecePt
 	if(!_joueurs[datas::JOUEUR_2]){
 		_joueurs[datas::JOUEUR_2].reset(new datas::JoueurHumain(datas::BLACK));
 	}
+}
+
+void Echiquier::setJoueurKing(const datas::PiecePtr iRoiJ1, const datas::PiecePtr iRoiJ2){
 	_joueurs[datas::JOUEUR_1]->setKing(iRoiJ1);
 	_joueurs[datas::JOUEUR_2]->setKing(iRoiJ2);
 }

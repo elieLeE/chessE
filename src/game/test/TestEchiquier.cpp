@@ -11,6 +11,7 @@
 #include "../../datas/src/Position.h"
 #include "../../datas/src/piece/Tour.h"
 #include "../../datas/src/piece/Pion.h"
+#include "../../datas/src/piece/Roi.h"
 #include "../../common/src/UnitTest.h"
 #include "../../datas/src/joueur/Joueur.h"
 
@@ -47,10 +48,18 @@ void TestEchiquier::testAddPiece(void) const{
 
 	Position aPosition(2, 5);
 	Tour *aTour = new Tour(WHITE, aPosition);
+
+	BOOST_ASSERT_MSG(aEchiquier.getJoueur(aTour->getNumJoueur())->getKing().expired(), "TestEchiquier addPiece - hasNotPiece - piece not added");
+	BOOST_ASSERT_MSG(!aEchiquier.getCase(aPosition).hasPiece(), "TestEchiquier addPiece - king joueur - expired");
 	aEchiquier.addPiece(aTour);
 
 	BOOST_ASSERT_MSG(aEchiquier.getCase(aPosition).hasPiece(), "TestEchiquier addPiece - hasPiece");
+	BOOST_ASSERT_MSG(aEchiquier.getJoueur(aTour->getNumJoueur())->getKing().expired(), "TestEchiquier addPiece - king joueur - expired - piece added not king");
 	BOOST_ASSERT_MSG(!aEchiquier.getCase(Position(aPosition).getX()+1, aPosition.getY()).hasPiece(), "TestEchiquier addPiece - hasNotPiece");
+
+	Roi *aRoi = new Roi(WHITE, aPosition);
+	aEchiquier.addPiece(aRoi);
+	BOOST_ASSERT_MSG(!aEchiquier.getJoueur(aRoi->getNumJoueur())->getKing().expired(), "TestEchiquier addPiece - king joueur - expired - OK");
 }
 
 //egalement RevicePiece

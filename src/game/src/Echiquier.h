@@ -72,6 +72,8 @@ public:
 
 	void doChangeMove(const datas::Move& iMove);
 
+	//methode pour les tests qaund la flemme d'initialiser...
+	void setAutomatiquejoueurs();
 	const std::shared_ptr <datas::Joueur> getJoueur(int numJ) const;
 	//std::shared_ptr<datas::Joueur> accessJoueur(int numJ) ;
 
