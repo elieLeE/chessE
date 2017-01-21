@@ -9,6 +9,7 @@
 
 #include "TestUnitTest.h"
 #include "TestDisplayType.h"
+#include "TestLogs.h"
 
 using namespace std;
 
@@ -16,9 +17,12 @@ int main() {
 	cout << "test unitaire common" << endl << endl;
 
 	common::TestUnitTest::startTests();
+
 	common::TestDisplayType::startTests();
 
-	cout << "all OK" << endl << endl;
+	common::TestLogs::startTests();
+
+	cout << endl << "all OK" << endl << endl;
 
 	return 0;
 }
