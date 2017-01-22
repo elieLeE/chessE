@@ -51,6 +51,8 @@ public:
 
 	//add prise en passant and remove bool priseEnPAssant
 
+	void toStream(std::ostream& os) const;
+
 private:
 	Position _start;
 	Position _end;

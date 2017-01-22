@@ -67,6 +67,8 @@ public:
 	const Position& getPosition() const;
 	Position& accessPosition();
 
+	void toStream(std::ostream& os) const;
+
 protected:
 	bool _alive;
 	const EColor _color;

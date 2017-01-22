@@ -13,12 +13,12 @@
 namespace datas{
 
 Piece::Piece(const EColor iColor, Position iPosition, ETypePiece iTypePiece, const int iValue):
-						_alive(true),
-						_color(iColor),
-						_position(iPosition),
-						_numJ(iColor==WHITE?JOUEUR_1:JOUEUR_2),
-						_value(iValue),
-						_typePiece(iTypePiece)
+								_alive(true),
+								_color(iColor),
+								_position(iPosition),
+								_numJ(iColor==WHITE?JOUEUR_1:JOUEUR_2),
+								_value(iValue),
+								_typePiece(iTypePiece)
 {}
 
 Piece::~Piece()
@@ -82,13 +82,17 @@ int Piece::getValue() const{
 	return _value;
 }
 
+void Piece::toStream(std::ostream& os) const{
+	os << "type : " << typePieceToString(_typePiece, false) << std::endl
+			<< "pos : " << _position << std::endl
+			<< "color : " << _color << std::endl
+			<< "numJ : " << _numJ << std::endl
+			<< "alive ? "<< boolToString(_alive) << std::endl
+			<< "value : " << _value << std::endl;
+}
+
 std::ostream& operator<<(std::ostream& os, const Piece& iPiece) {
-	os << "type : " << typePieceToString(iPiece.getTypePiece(), false) << std::endl
-			<< "pos : " << iPiece.getPosition() << std::endl
-			<< "color : " << iPiece.getColor() << std::endl
-			<< "numJ : " << iPiece.getNumJoueur() << std::endl
-			<< "alive ? "<< boolToString(iPiece.isAlive()) << std::endl
-			<< "value : " << iPiece.getValue() << std::endl;
+	iPiece.toStream(os);
 
 	return os;
 }

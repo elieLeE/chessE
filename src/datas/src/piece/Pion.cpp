@@ -103,10 +103,14 @@ bool Pion::getSensCroissant(void) const{
 	return aList;
 }*/
 
+void Pion::toStream(std::ostream& os) const{
+	Piece::toStream(os);
+	os << "sens croissant ? " << boolToString(_sensCroissant) << std::endl
+			<< "already moved ? " << boolToString(_hasAlreadyMoved) << std::endl;
+}
+
 std::ostream& operator<<(std::ostream& os, const Pion& iPion){
-	os << *((Piece*)&iPion) <<
-			"sens croissant ? " << boolToString(iPion.getSensCroissant()) << std::endl <<
-			"already moved ? " << boolToString(iPion.hasAlreadyMoved()) << std::endl;
+	iPion.toStream(os);
 
 	return os;
 }

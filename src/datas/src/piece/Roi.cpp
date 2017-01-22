@@ -174,9 +174,13 @@ bool Roi::hasAlreadyMoved(void) const{
 	return _hasAlreadyMoved;
 }
 
+void Roi::toStream(std::ostream& os) const{
+	Piece::toStream(os);
+	os << "already moved ? " << boolToString(_hasAlreadyMoved) << std::endl;
+}
+
 std::ostream& operator<<(std::ostream& os, const Roi& iRoi){
-	os << *((Piece*)&iRoi) <<
-			"already moved ? " << boolToString(iRoi.hasAlreadyMoved()) << std::endl;
+	iRoi.toStream(os);
 
 	return os;
 }

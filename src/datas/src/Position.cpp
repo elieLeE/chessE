@@ -96,8 +96,13 @@ void Position::operator=(const Position& iPosition){
 	setY(iPosition.getY());
 }
 
+void Position::toStream(std::ostream& os) const{
+	os << "(" << _x << ", " << _y << ")";
+}
+
 std::ostream& operator<<(std::ostream& os, const Position& iPosition) {
-	os << "(" << iPosition.getX() << ", " << iPosition.getY() << ")";
+	iPosition.toStream(os);
+
 	return os;
 }
 

@@ -30,6 +30,8 @@ public:
 
 	bool hasAlreadyMoved() const;
 
+	void toStream(std::ostream& os) const;
+
 private:
 	bool _hasAlreadyMoved;
 };

@@ -326,15 +326,15 @@ void Echiquier::setBegginingGameWithoutHandicapPion(){
 	}
 }
 
-std::ostream& operator<<(std::ostream& os, const Echiquier& iEchiquier){
+void Echiquier::toStream(std::ostream& os) const{
 	os << std::endl << "echiquier : " << std::endl;
 
 	for(int j=NBRE_LIGNE; j>0; --j){
 		os << " " << j << "|";
 		for(int i=1; i<=NBRE_COLONNE; i++){
 			os << " ";
-			if(iEchiquier.getCase(i, j).hasPiece()){
-				os << typePieceToString(iEchiquier.getCase(i, j).getPiece()->getTypePiece(), true);
+			if(getCase(i, j).hasPiece()){
+				os << typePieceToString(getCase(i, j).getPiece()->getTypePiece(), true);
 			}
 			else{
 				os << " ";
@@ -348,6 +348,10 @@ std::ostream& operator<<(std::ostream& os, const Echiquier& iEchiquier){
 	os << "    a   b   c   d   e   f   g   h" << std::endl;
 	os << "    1   2   3   4   5   6   7   8" << std::endl;
 	os << std::endl;
+}
+
+std::ostream& operator<<(std::ostream& os, const Echiquier& iEchiquier){
+	iEchiquier.toStream(os);
 
 	return os;
 }

@@ -34,6 +34,8 @@ public:
 
 	//virtual const std::list <boost::shared_ptr <Move> > getPossibleMoves() const;
 
+	void toStream(std::ostream& os) const;
+
 private:
 	bool _hasAlreadyMoved;
 	/*

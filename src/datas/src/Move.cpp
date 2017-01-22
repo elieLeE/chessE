@@ -125,10 +125,14 @@ void Move::operator=(const Move& iMove){
 	_typeMove = iMove.getTypeMove();
 }
 
+void Move::toStream(std::ostream& os) const{
+	os << "start : " << _start << " / end : " << _end << std::endl;
+	os << "type : " << _typeMove << " / capturedPiece : " << typePieceToString(_capturedPiece, false) << std::endl;
+}
+
 //utilise des enums class ??
 std::ostream& operator<<(std::ostream& os, const Move& iMove){
-	os << "start : " << iMove.getStartPosition() << " / end : " << iMove.getEndPosition() << std::endl;
-	os << "type : " << iMove.getTypeMove() << " / capturedPiece : " << typePieceToString(iMove.getCapturedPiece(), false) << std::endl;
+	iMove.toStream(os);
 
 	return os;
 }

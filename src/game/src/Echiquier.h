@@ -91,6 +91,8 @@ public:
 	void setBegginingGameWithoutHandicapTour();
 	void setBegginingGameWithoutHandicapPion();
 
+	void toStream(std::ostream& os) const;
+
 private:
 	Echiquier();
 	Echiquier(const Echiquier&);

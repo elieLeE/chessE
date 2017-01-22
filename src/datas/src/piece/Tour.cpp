@@ -73,9 +73,15 @@ bool Tour::hasAlreadyMoved() const{
 	return aList;
 }*/
 
+void Tour::toStream(std::ostream& os) const{
+	Piece::toStream(os);
+	os << "already moved ? " << boolToString(_hasAlreadyMoved) << std::endl;
+
+	//return os;
+}
+
 std::ostream& operator<<(std::ostream& os, const Tour& iTour){
-	os << *((Piece*)&iTour) <<
-			"already moved ? " << boolToString(iTour.hasAlreadyMoved()) << std::endl;
+	iTour.toStream(os);
 
 	return os;
 }

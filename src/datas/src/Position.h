@@ -43,6 +43,8 @@ public:
 	bool operator!=(const Position& iPosition) const ;
 	void operator=(const Position& iPosition);
 
+	void toStream(std::ostream& os) const;
+
 private:
 	//Position& operator=(const Position&);
 
