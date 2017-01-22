@@ -23,7 +23,7 @@ MovePtr JoueurIA::nextMove(){
 
 	do{
 		//aMove = game::nextMoveIA(aEchiquier);
-	}while(aMove->isValide(aEchiquier));
+	}while(aMove->isValid(aEchiquier));
 
 	return aMove;
 }

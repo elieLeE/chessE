@@ -18,11 +18,13 @@ JoueurHumain::~JoueurHumain()
 {}
 
 MovePtr JoueurHumain::nextMove(){
-	MoveCSPtr aMove;
+	const game::Echiquier& aEchiquier = game::Echiquier::getInstance();
+	const gui::Display& aDisplay = gui::Display::getInstance();
+	boost::shared_ptr<datas::Move> aMove;
 
 	do{
-		aMove = gui::Display::nextMove();
-	}while(aMove->isValide((game::Echiquier::getInstance())));
+		aMove = aDisplay.nextMove();
+	}while(aMove->isValid(aEchiquier));
 
 	return aMove;
 }

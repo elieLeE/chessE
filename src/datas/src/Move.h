@@ -37,7 +37,7 @@ public:
 
 	int evaluateDistance() const;
 
-	bool isValide(const game::Echiquier& iEchiquier) const;
+	bool isValid(const game::Echiquier& iEchiquier) const;
 
 	ETypePiece getCapturedPiece() const;
 	void setCapturedPiece(ETypePiece iCapturedPiece);

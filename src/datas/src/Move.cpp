@@ -71,7 +71,7 @@ void Move::setTypeMove(ETypeMove iTypeMove){
 	_typeMove = iTypeMove;
 }
 
-bool Move::isValide(const game::Echiquier& iEchiquier) const{
+bool Move::isValid(const game::Echiquier& iEchiquier) const{
 	bool aBool = false;
 
 	if((getStartPosition().isValid()) && (getEndPosition().isValid()) && (this->getStartPosition() != this->getEndPosition())){
