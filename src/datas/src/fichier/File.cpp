@@ -4,16 +4,18 @@
  *  Created on: 15 oct. 2016
  *      Author: le_e
  */
-#include "Fichier.h"
+#include "File.h"
 
 namespace datas {
 
-Fichier::Fichier(std::string s)
+File::File(std::string& iPath, std::ios_base::openmode iMode):
+		_path(iPath),
+		_mode(iMode)
 {
 	//f = open(s.c_str(), "r");
 }
 
-Fichier::~Fichier()
+File::~File()
 {}
 
 } /* namespace datas */
