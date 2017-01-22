@@ -5,7 +5,7 @@
  *      Author: le_e
  */
 
-#include "../testUnitaires/TestDisplayType.h"
+#include "TestDisplayType.h"
 
 #include "../src/UnitTest.h"
 

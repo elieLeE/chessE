@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-#include "../testUnitaires/TestGuiTerminal.h"
+#include "TestGuiTerminal.h"
 
 using namespace std;
 using namespace gui;

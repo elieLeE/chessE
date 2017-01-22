@@ -4,7 +4,7 @@
  *  Created on: 29 oct. 2016
  *      Author: le_e
  */
-#include "../../testUnitaires/testPiece/TestPion.h"
+#include "../testPiece/TestPion.h"
 
 #include <iostream>
 #include <sstream>

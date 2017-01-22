@@ -4,7 +4,7 @@
  *  Created on: 30 oct. 2016
  *      Author: le_e
  */
-#include "../testUnitaires/TestEchiquier.h"
+#include "TestEchiquier.h"
 
 #include <iostream>
 

@@ -9,7 +9,7 @@
 #include <boost/shared_ptr.hpp>
 #include <memory>
 
-#include "../testUnitaires/TestEchiquier.h"
+#include "TestEchiquier.h"
 
 using namespace std;
 using namespace game;

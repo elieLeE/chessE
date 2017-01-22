@@ -5,7 +5,7 @@
  *      Author: le_e
  */
 
-#include "../../testUnitaires/testPiece/TestTour.h"
+#include "../testPiece/TestTour.h"
 
 #include "../../src/piece/Tour.h"
 #include "../../src/piece/Dame.h"

@@ -5,7 +5,7 @@
  *      Author: le_e
  */
 
-#include "../../testUnitaires/testPiece/TestRoi.h"
+#include "../testPiece/TestRoi.h"
 
 #include <iostream>
 #include <sstream>

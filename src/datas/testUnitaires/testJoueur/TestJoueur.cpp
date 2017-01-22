@@ -5,7 +5,7 @@
  *      Author: le_e
  */
 
-#include "../../testUnitaires/testJoueur/TestJoueur.h"
+#include "../testJoueur/TestJoueur.h"
 
 #include "../../../common/src/UnitTest.h"
 

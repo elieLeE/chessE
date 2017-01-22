@@ -5,7 +5,7 @@
  *      Author: le_e
  */
 
-#include "../testUnitaires/TestGuiTerminal.h"
+#include "TestGuiTerminal.h"
 
 #include "../src/DisplayTerminal.h"
 #include "../../game/src/Echiquier.h"

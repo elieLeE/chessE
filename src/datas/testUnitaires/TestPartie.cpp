@@ -5,7 +5,7 @@
  *      Author: le_e
  */
 
-#include "../testUnitaires/TestPartie.h"
+#include "TestPartie.h"
 
 #include "../../common/src/UnitTest.h"
 #include "../src/Partie.h"

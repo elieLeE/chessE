@@ -5,7 +5,7 @@
  *      Author: le_e
  */
 
-#include "../testUnitaires/TestMove.h"
+#include "TestMove.h"
 
 #include "../src/Move.h"
 #include "../../common/src/UnitTest.h"

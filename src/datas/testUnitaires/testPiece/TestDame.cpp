@@ -4,7 +4,7 @@
  *  Created on: 29 oct. 2016
  *      Author: le_e
  */
-#include "../../testUnitaires/testPiece/TestDame.h"
+#include "../testPiece/TestDame.h"
 
 #include <iostream>
 

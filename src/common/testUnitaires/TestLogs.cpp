@@ -5,7 +5,7 @@
  *      Author: le_e
  */
 
-#include "../testUnitaires/TestLogs.h"
+#include "TestLogs.h"
 
 #include "../src/UnitTest.h"
 #include "../src/MacrosLogs.h"

@@ -6,7 +6,7 @@
  *
  * Test unitaire de la classe Piece => classe abstraite => on passe par la sous classe Tour
  */
-#include "../../testUnitaires/testPiece/TestPiece.h"
+#include "../testPiece/TestPiece.h"
 
 #include <iostream>
 #include <sstream>

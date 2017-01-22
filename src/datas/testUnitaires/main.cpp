@@ -8,22 +8,23 @@
 #include <iostream>
 #include <boost/assert.hpp>
 
-#include "../testUnitaires/testJoueur/testJoueurIA.h"
-#include "../testUnitaires/testJoueur/TestJoueur.h"
-#include "../testUnitaires/testJoueur/TestJoueurHumain.h"
-#include "../testUnitaires/testPiece/TestCavalier.h"
-#include "../testUnitaires/testPiece/TestDame.h"
-#include "../testUnitaires/testPiece/TestFou.h"
-#include "../testUnitaires/testPiece/TestPiece.h"
-#include "../testUnitaires/testPiece/TestPion.h"
-#include "../testUnitaires/testPiece/TestRoi.h"
-#include "../testUnitaires/testPiece/TestTour.h"
+#include "testJoueur/testJoueurIA.h"
+#include "testJoueur/TestJoueur.h"
+#include "testJoueur/TestJoueurHumain.h"
+#include "testPiece/TestCavalier.h"
+#include "testPiece/TestDame.h"
+#include "testPiece/TestFou.h"
+#include "testPiece/TestPiece.h"
+#include "testPiece/TestPion.h"
+#include "testPiece/TestRoi.h"
+#include "testPiece/TestTour.h"
 
-#include "../testUnitaires/TestCase.h"
-#include "../testUnitaires/TestMove.h"
-#include "../testUnitaires/TestOptionsGame.h"
-#include "../testUnitaires/TestPartie.h"
-#include "../testUnitaires/TestPosition.h"
+#include "TestCase.h"
+#include "TestFile.h"
+#include "TestMove.h"
+#include "TestOptionsGame.h"
+#include "TestPartie.h"
+#include "TestPosition.h"
 
 using namespace std;
 using namespace datas;
@@ -51,6 +52,8 @@ int main() {
 	TestPartie::startTests();
 
 	TestOptionsGame::startTests();
+
+	TestFile::startTests();
 
 	cout << "all OK" << endl << endl;
 

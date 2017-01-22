@@ -7,9 +7,9 @@
 
 #include <iostream>
 
-#include "../testUnitaires/TestDisplayType.h"
-#include "../testUnitaires/TestLogs.h"
-#include "../testUnitaires/TestUnitTest.h"
+#include "TestDisplayType.h"
+#include "TestLogs.h"
+#include "TestUnitTest.h"
 
 using namespace std;
 

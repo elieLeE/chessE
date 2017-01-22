@@ -5,7 +5,7 @@
  *      Author: le_e
  */
 
-#include "../testUnitaires/TestPosition.h"
+#include "TestPosition.h"
 
 #include <boost/assert.hpp>
 #include <sstream>

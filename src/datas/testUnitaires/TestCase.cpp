@@ -5,7 +5,7 @@
  *      Author: le_e
  */
 
-#include "../testUnitaires/TestCase.h"
+#include "TestCase.h"
 
 #include "../../common/src/UnitTest.h"
 #include "../src/Case.h"

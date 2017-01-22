@@ -5,7 +5,7 @@
  *      Author: le_e
  */
 
-#include "../testUnitaires/TestOptionsGame.h"
+#include "TestOptionsGame.h"
 
 #include "../../common/src/UnitTest.h"
 #include "../src/OptionsGame.h"
