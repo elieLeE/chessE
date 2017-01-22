@@ -13,6 +13,11 @@
 #include "../../datas/src/typeDefine/TypePiece.h"
 #include "../../datas/src/typeDefine/Color.h"
 
+namespace datas{
+	class Position;
+	class Move;
+}
+
 namespace gui{
 
 class DisplayTerminal {
@@ -23,11 +28,9 @@ public:
 	//void updateDisplay(const game::Echiquier& iEchiquier, const Move& iMove);
 
 	void displayPositionGameTerminal(const game::Echiquier& iEchiquier);
-	void displayPiece(const datas::ETypePiece iTypePiece, const datas::EColor iColor);
-	std::string getSymbol(const datas::ETypePiece iTypePiece);
 	std::string getColor(int color);
 
-	//static datas::MoveCSPtr nextMove();
+	boost::shared_ptr<datas::Move> nextMove() const;
 	//static boost::shared_ptr<datas::Move> nextMove();
 
 };

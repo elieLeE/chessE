@@ -13,6 +13,8 @@
 #include "../../datas/src/typeDefine/Dimension.h"
 #include "ColorDisplay.h"
 
+#include "../../datas/src/Move.h"
+
 namespace gui {
 
 DisplayTerminal::DisplayTerminal()
@@ -30,6 +32,12 @@ std::string DisplayTerminal::getColor(int color){
 	/*aResult.append(FG_RED);
 	+COLOR_SUFFIX);*/
 	return aResult;
+}
+
+boost::shared_ptr<datas::Move> DisplayTerminal::nextMove() const{
+	boost::shared_ptr<datas::Move> aMove(new datas::Move(datas::Position(1, 1), datas::Position(2, 2)));
+
+	return aMove;
 }
 
 } /* namespace gui */

@@ -8,6 +8,11 @@
 #ifndef DISPLAYWINDOW_H_
 #define DISPLAYWINDOW_H_
 
+namespace datas{
+	class Move;
+	class Position;
+}
+
 namespace gui{
 
 class DisplayWindow{
@@ -17,9 +22,9 @@ public:
 
 	//void updateDisplay(const game::Echiquier& iEchiquier, const Move& iMove);
 
-	void displayPositionGameWindow(const game::Echiquier& iEchiquier);
+	void displayUpdated(const game::Echiquier& iEchiquier);
 
-	//static datas::MoveCSPtr nextMove();
+	const boost::shared_ptr<datas::Move> nextMove() const;
 	//static boost::shared_ptr<datas::Move> nextMove();
 
 };

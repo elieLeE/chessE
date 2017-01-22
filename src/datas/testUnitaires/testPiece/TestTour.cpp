@@ -128,7 +128,5 @@ void TestTour::testToStream(void) const{
 			"value : 5\n"
 			"already moved ? false\n");
 
-	std::cout << aTour << endl << aExpected << endl;
-
 	BOOST_ASSERT_MSG(aStr.str().compare(aExpected) == 0, "testTour toStream");
 }
