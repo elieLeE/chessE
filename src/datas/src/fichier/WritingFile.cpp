@@ -17,10 +17,11 @@ WritingFile::WritingFile(std::string& iPath, std::ios_base::openmode iMode):
 WritingFile::~WritingFile()
 {}
 
-bool ReadingFile::open(){
+bool WritingFile::open(){
 	_file.open(_path.c_str(), _mode);
 
-	return _file;
+	return true;
+	//return _file;
 }
 
 }

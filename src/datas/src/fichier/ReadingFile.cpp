@@ -19,7 +19,8 @@ ReadingFile::~ReadingFile()
 bool ReadingFile::open(){
 	_file.open(_path.c_str(), _mode);
 
-	return _file;
+	//return _file;
+	return true;
 }
 
 std::string ReadingFile::readingLine() const{
@@ -27,7 +28,7 @@ std::string ReadingFile::readingLine() const{
 
 	//std::ifstream.getline(_file, aStr);
 
-	_file.getline(aStr);
+	//_file.getline(aStr);
 
 	return aStr;
 }
