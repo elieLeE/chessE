@@ -32,9 +32,9 @@ $(EXEC_SRC): $(OBJ_SRC)
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 $(EXEC_TST):
-	cd $(PROJECT)/datas/test; 	make -f Makefile
-	cd $(PROJECT)/game/test;	make -f Makefile
-	cd $(PROJECT)/gui/test;		make -f Makefile
+	cd $(PROJECT)/datas/testUnitaires; 	make -f Makefile
+	cd $(PROJECT)/game/testUnitaires;	make -f Makefile
+	cd $(PROJECT)/gui/testUnitaires;		make -f Makefile
 	#cd $(PROJECT)/testCPP; 	make -f Makefile test
 	#cd $(projet)/common/test; 	make -f Makefile
 
@@ -42,10 +42,10 @@ $(EXEC_TST):
 
 cleanSimple:
 	rm -rf $(OBJ_SRC)
-	cd $(PROJECT)/datas/test; 	make -f Makefile clean
-	cd $(PROJECT)/game/test; 	make -f Makefile clean
-	cd $(PROJECT)/gui/test; 	make -f Makefile clean
-	cd $(PROJECT)/common/test; 	make -f Makefile clean
+	cd $(PROJECT)/datas/testUnitaires; 	make -f Makefile clean
+	cd $(PROJECT)/game/testUnitaires; 	make -f Makefile clean
+	cd $(PROJECT)/gui/testUnitaires; 	make -f Makefile clean
+	cd $(PROJECT)/common/testUnitaires; 	make -f Makefile clean
 	cd $(PROJECT)/testCPP; 	make -f Makefile clean
 
 clean: cleanSimple
